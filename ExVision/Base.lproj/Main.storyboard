@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C106a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="M4p-aR-L0k">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Camera-->
@@ -16,49 +17,82 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OYc-ve-v0z">
-                                <rect key="frame" x="73" y="428" width="46" height="47"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="+">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="onGimbalScrollUpTouchDown:" destination="uqc-4B-zff" eventType="touchDown" id="Apl-L0-PGv"/>
-                                    <action selector="onGimbalScrollUpTouchUp:" destination="uqc-4B-zff" eventType="touchUpInside" id="gmZ-69-3Uo"/>
-                                    <action selector="onGimbalScrollUpTouchUp:" destination="uqc-4B-zff" eventType="touchUpOutside" id="iPL-M5-rnm"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hDb-32-9qV">
-                                <rect key="frame" x="25" y="428" width="46" height="47"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="-">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="onGimbalScroollDownTouchDown:" destination="uqc-4B-zff" eventType="touchDown" id="NuH-vf-2Cm"/>
-                                    <action selector="onGimbalScroollDownTouchUp:" destination="uqc-4B-zff" eventType="touchUpInside" id="Olf-cO-W0f"/>
-                                    <action selector="onGimbalScroollDownTouchUp:" destination="uqc-4B-zff" eventType="touchUpOutside" id="U6F-xY-mtf"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pRo-c7-Utz">
-                                <rect key="frame" x="44" y="72" width="202" height="47"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="Start Attitude Update">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="69g-yd-tEh" userLabel="ControllsView">
+                                <rect key="frame" x="16" y="550" width="568" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OYc-ve-v0z">
+                                        <rect key="frame" x="411" y="3" width="46" height="47"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="+">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onGimbalScrollUpTouchDown:" destination="uqc-4B-zff" eventType="touchDown" id="Apl-L0-PGv"/>
+                                            <action selector="onGimbalScrollUpTouchUp:" destination="uqc-4B-zff" eventType="touchUpInside" id="gmZ-69-3Uo"/>
+                                            <action selector="onGimbalScrollUpTouchUp:" destination="uqc-4B-zff" eventType="touchUpOutside" id="iPL-M5-rnm"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hDb-32-9qV">
+                                        <rect key="frame" x="123" y="3" width="46" height="47"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="46" id="WYX-HZ-C75"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="-">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onGimbalScroollDownTouchDown:" destination="uqc-4B-zff" eventType="touchDown" id="NuH-vf-2Cm"/>
+                                            <action selector="onGimbalScroollDownTouchUp:" destination="uqc-4B-zff" eventType="touchUpInside" id="Olf-cO-W0f"/>
+                                            <action selector="onGimbalScroollDownTouchUp:" destination="uqc-4B-zff" eventType="touchUpOutside" id="U6F-xY-mtf"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vLW-gE-0bb">
+                                        <rect key="frame" x="246" y="10" width="77" height="30"/>
+                                        <state key="normal" title="Take Photo">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onTakePhotoButtonClicked:" destination="uqc-4B-zff" eventType="touchUpInside" id="S6g-7j-9Sa"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="hDb-32-9qV" secondAttribute="bottom" id="0Gb-qK-86O"/>
+                                    <constraint firstAttribute="trailing" secondItem="OYc-ve-v0z" secondAttribute="trailing" constant="50" id="6HP-dw-5BY"/>
+                                    <constraint firstItem="OYc-ve-v0z" firstAttribute="width" secondItem="hDb-32-9qV" secondAttribute="width" id="B8i-fs-o5U"/>
+                                    <constraint firstAttribute="height" constant="50" id="BWh-QU-otq"/>
+                                    <constraint firstItem="hDb-32-9qV" firstAttribute="top" secondItem="69g-yd-tEh" secondAttribute="top" constant="3" id="F6U-Ms-4kG"/>
+                                    <constraint firstItem="OYc-ve-v0z" firstAttribute="height" secondItem="hDb-32-9qV" secondAttribute="height" id="Gkb-9i-RDb"/>
+                                    <constraint firstAttribute="centerY" secondItem="vLW-gE-0bb" secondAttribute="centerY" id="TqL-fY-cOa"/>
+                                    <constraint firstAttribute="centerX" secondItem="vLW-gE-0bb" secondAttribute="centerX" id="jrA-u8-8X6"/>
+                                    <constraint firstItem="OYc-ve-v0z" firstAttribute="baseline" secondItem="hDb-32-9qV" secondAttribute="baseline" id="yqU-PI-ruT"/>
+                                    <constraint firstItem="hDb-32-9qV" firstAttribute="leading" secondItem="69g-yd-tEh" secondAttribute="leading" constant="50" id="z5X-Cd-Qh7"/>
+                                </constraints>
+                            </view>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="246" translatesAutoresizingMaskIntoConstraints="NO" id="R3O-hr-wxt">
-                                <rect key="frame" x="-58" y="511" width="246" height="106"/>
+                                <rect key="frame" x="9" y="72" width="246" height="106"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vLW-gE-0bb">
-                                <rect key="frame" x="120" y="436" width="77" height="30"/>
-                                <state key="normal" title="Take Photo">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                         </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="69g-yd-tEh" secondAttribute="trailing" id="2NA-DD-GR6"/>
+                            <constraint firstItem="69g-yd-tEh" firstAttribute="leading" secondItem="pPX-cz-P0v" secondAttribute="leadingMargin" id="6Yr-HP-yVU"/>
+                            <constraint firstItem="69g-yd-tEh" firstAttribute="leading" secondItem="pPX-cz-P0v" secondAttribute="leading" id="Fkg-wc-8UK"/>
+                            <constraint firstItem="69g-yd-tEh" firstAttribute="bottom" secondItem="F9T-iT-djq" secondAttribute="top" id="bBB-NM-pp5"/>
+                            <constraint firstItem="69g-yd-tEh" firstAttribute="leading" secondItem="pPX-cz-P0v" secondAttribute="leadingMargin" id="dzL-A5-40C"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="69g-yd-tEh" secondAttribute="trailing" id="fRq-wj-ckR"/>
+                            <constraint firstItem="F9T-iT-djq" firstAttribute="top" secondItem="69g-yd-tEh" secondAttribute="bottom" id="kf0-JC-nvb"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="2NA-DD-GR6"/>
+                                <exclude reference="6Yr-HP-yVU"/>
+                                <exclude reference="Fkg-wc-8UK"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="attitudeLabel" destination="R3O-hr-wxt" id="cHW-nM-E2X"/>
