@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <DJISDK/DJISDK.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, DJIAppManagerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
