@@ -18,7 +18,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     //Register App with key
-    NSString* appKey = @"15e1f97fcf7b133c7a1b1ab7";
+    NSString* appKey = @"773b2b523692e45f23f0983d";
     
     [DJIAppManager registerApp:appKey withDelegate:self];
 
