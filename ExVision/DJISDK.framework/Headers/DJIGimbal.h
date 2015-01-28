@@ -88,7 +88,7 @@ typedef void (^GimbalAttitudeResultBlock)(DJIGimbalAttitude attitude);
 
 @property(nonatomic, weak) id<DJIGimbalDelegate> delegate;
 
-/**
+/**c
  *  the attitude update time interval, the value should not smaller then 25ms. default is 50ms
  */
 @property(nonatomic, assign) int attitudeUpdateInterval;
