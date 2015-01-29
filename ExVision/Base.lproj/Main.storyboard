@@ -125,6 +125,16 @@
                                     <segue destination="uqc-4B-zff" kind="show" id="CcG-di-ozb"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="feW-GB-3W4">
+                                <rect key="frame" x="165" y="77" width="134" height="97"/>
+                                <state key="normal" title="Library" backgroundImage="redbg.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="0oq-s6-j4j" kind="show" id="SM2-q0-0JQ"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x7k-xT-vou">
                                 <rect key="frame" x="11" y="187" width="142" height="97"/>
                                 <state key="normal" title="Settings" backgroundImage="redbg.png">
@@ -142,14 +152,14 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="feW-GB-3W4">
-                                <rect key="frame" x="165" y="77" width="134" height="97"/>
-                                <state key="normal" title="Library" backgroundImage="redbg.png">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zTF-Ep-whd">
+                                <rect key="frame" x="70" y="478" width="142" height="97"/>
+                                <state key="normal" title="New Flight" backgroundImage="redbg.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="0oq-s6-j4j" kind="show" id="SM2-q0-0JQ"/>
+                                    <segue destination="Fua-83-gen" kind="show" id="CrF-OJ-oSU"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -275,7 +285,6 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
                         <outlet property="tableView1" destination="0gh-As-VOc" id="KEt-Ru-e66"/>
@@ -285,6 +294,29 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qsx-lb-nax" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1599" y="813"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="t9M-9l-mH2">
+            <objects>
+                <viewController id="Fua-83-gen" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ptp-n1-5V6"/>
+                        <viewControllerLayoutGuide type="bottom" id="uKS-gG-v1k"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FXq-CP-HW6">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="D94-X9-GI5">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TOP-yX-ggF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1159" y="1259"/>
         </scene>
     </scenes>
     <resources>

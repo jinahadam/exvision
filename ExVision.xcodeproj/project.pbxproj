@@ -11,6 +11,7 @@
 		8070192C1A78D5F000B599C0 /* LibraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8070192B1A78D5F000B599C0 /* LibraryViewController.m */; };
 		807019301A7A0C8500B599C0 /* redbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8070192F1A7A0C8500B599C0 /* redbg.png */; };
 		807019331A7A151C00B599C0 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 807019321A7A151C00B599C0 /* SettingsViewController.m */; };
+		807019371A7A1EC500B599C0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 807019361A7A1EC500B599C0 /* MapKit.framework */; };
 		80DFAAD61A760CE100F69205 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 80DFAAD51A760CE100F69205 /* main.m */; };
 		80DFAAD91A760CE100F69205 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 80DFAAD81A760CE100F69205 /* AppDelegate.mm */; };
 		80DFAADC1A760CE100F69205 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80DFAADB1A760CE100F69205 /* ViewController.m */; };
@@ -55,6 +56,7 @@
 		8070192F1A7A0C8500B599C0 /* redbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redbg.png; sourceTree = "<group>"; };
 		807019311A7A151C00B599C0 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		807019321A7A151C00B599C0 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		807019361A7A1EC500B599C0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		80DFAAD01A760CE100F69205 /* ExVision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExVision.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80DFAAD41A760CE100F69205 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80DFAAD51A760CE100F69205 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				807019371A7A1EC500B599C0 /* MapKit.framework in Frameworks */,
 				80DFAB771A7610F200F69205 /* libiconv.dylib in Frameworks */,
 				80DFAAFC1A76100C00F69205 /* libz.dylib in Frameworks */,
 				80DFAB6C1A7610AE00F69205 /* libavfilter.a in Frameworks */,
@@ -200,6 +203,7 @@
 		80DFAAC71A760CE100F69205 = {
 			isa = PBXGroup;
 			children = (
+				807019361A7A1EC500B599C0 /* MapKit.framework */,
 				80DFAAD21A760CE100F69205 /* ExVision */,
 				80DFAAEC1A760CE100F69205 /* ExVisionTests */,
 				80DFAAD11A760CE100F69205 /* Products */,
