@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		807019291A762CEB00B599C0 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 807019281A762CEB00B599C0 /* CameraViewController.m */; };
 		8070192C1A78D5F000B599C0 /* LibraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8070192B1A78D5F000B599C0 /* LibraryViewController.m */; };
+		807019301A7A0C8500B599C0 /* redbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8070192F1A7A0C8500B599C0 /* redbg.png */; };
+		807019331A7A151C00B599C0 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 807019321A7A151C00B599C0 /* SettingsViewController.m */; };
 		80DFAAD61A760CE100F69205 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 80DFAAD51A760CE100F69205 /* main.m */; };
 		80DFAAD91A760CE100F69205 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 80DFAAD81A760CE100F69205 /* AppDelegate.mm */; };
 		80DFAADC1A760CE100F69205 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80DFAADB1A760CE100F69205 /* ViewController.m */; };
@@ -50,6 +52,9 @@
 		807019281A762CEB00B599C0 /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
 		8070192A1A78D5F000B599C0 /* LibraryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryViewController.h; sourceTree = "<group>"; };
 		8070192B1A78D5F000B599C0 /* LibraryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryViewController.m; sourceTree = "<group>"; };
+		8070192F1A7A0C8500B599C0 /* redbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redbg.png; sourceTree = "<group>"; };
+		807019311A7A151C00B599C0 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		807019321A7A151C00B599C0 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		80DFAAD01A760CE100F69205 /* ExVision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExVision.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80DFAAD41A760CE100F69205 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80DFAAD51A760CE100F69205 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -221,6 +226,8 @@
 				807019281A762CEB00B599C0 /* CameraViewController.m */,
 				8070192A1A78D5F000B599C0 /* LibraryViewController.h */,
 				8070192B1A78D5F000B599C0 /* LibraryViewController.m */,
+				807019311A7A151C00B599C0 /* SettingsViewController.h */,
+				807019321A7A151C00B599C0 /* SettingsViewController.m */,
 				80DFAADD1A760CE100F69205 /* Main.storyboard */,
 				80DFAAE01A760CE100F69205 /* Images.xcassets */,
 				80DFAAE21A760CE100F69205 /* LaunchScreen.xib */,
@@ -232,6 +239,7 @@
 		80DFAAD31A760CE100F69205 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8070192F1A7A0C8500B599C0 /* redbg.png */,
 				80DFAAFD1A7610AE00F69205 /* VideoPreviewer */,
 				80DFAAF91A760FDA00F69205 /* DJISDK.framework */,
 				80DFAB761A7610F200F69205 /* libiconv.dylib */,
@@ -536,6 +544,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				807019301A7A0C8500B599C0 /* redbg.png in Resources */,
 				80DFAADF1A760CE100F69205 /* Main.storyboard in Resources */,
 				80DFAAE41A760CE100F69205 /* LaunchScreen.xib in Resources */,
 				80DFAAE11A760CE100F69205 /* Images.xcassets in Resources */,
@@ -564,6 +573,7 @@
 				80DFAAD61A760CE100F69205 /* main.m in Sources */,
 				80DFAB741A7610AE00F69205 /* VideoFrameExtractor.m in Sources */,
 				807019291A762CEB00B599C0 /* CameraViewController.m in Sources */,
+				807019331A7A151C00B599C0 /* SettingsViewController.m in Sources */,
 				80DFAB731A7610AE00F69205 /* MovieGLView.m in Sources */,
 				80DFAB681A7610AE00F69205 /* DJIDispatch.m in Sources */,
 			);

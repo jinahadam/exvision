@@ -101,7 +101,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lG6-pg-ChW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1522" y="177"/>
+            <point key="canvasLocation" x="1586" y="-655"/>
         </scene>
         <!--RootView-->
         <scene sceneID="tne-QT-ifu">
@@ -116,17 +116,36 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="89i-DP-iGq">
-                                <rect key="frame" x="34" y="100" width="69" height="59"/>
-                                <state key="normal" title="Capture">
+                                <rect key="frame" x="11" y="76" width="142" height="98"/>
+                                <state key="normal" title="Capture" backgroundImage="redbg.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="uqc-4B-zff" kind="show" id="CcG-di-ozb"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x7k-xT-vou">
+                                <rect key="frame" x="11" y="187" width="142" height="97"/>
+                                <state key="normal" title="Settings" backgroundImage="redbg.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="9D7-eN-hib" kind="show" id="TFh-aT-x2x"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QTW-7q-8tm">
+                                <rect key="frame" x="165" y="187" width="134" height="97"/>
+                                <state key="normal" title="Flights" backgroundImage="redbg.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="feW-GB-3W4">
-                                <rect key="frame" x="184" y="114" width="48" height="30"/>
-                                <state key="normal" title="Library">
+                                <rect key="frame" x="165" y="77" width="134" height="97"/>
+                                <state key="normal" title="Library" backgroundImage="redbg.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -205,8 +224,71 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PQT-4p-Xig" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1529" y="857"/>
+            <point key="canvasLocation" x="1593" y="105"/>
+        </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="zqh-Bn-eXc">
+            <objects>
+                <viewController id="9D7-eN-hib" customClass="SettingsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="j44-1l-uy2"/>
+                        <viewControllerLayoutGuide type="bottom" id="0o3-BN-ikD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="If6-J8-IXt">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="0gh-As-VOc">
+                                <rect key="frame" x="0.0" y="0.0" width="172" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexBackgroundColor" red="1" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="iQ2-Rd-gcQ" customClass="CustomTableViewCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="266" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iQ2-Rd-gcQ" id="dG7-x8-FhZ">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="9D7-eN-hib" id="WwG-5h-w4f"/>
+                                    <outlet property="delegate" destination="9D7-eN-hib" id="yva-Ve-E1L"/>
+                                </connections>
+                            </tableView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ZDU-Av-rEe">
+                                <rect key="frame" x="172" y="64" width="178" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexBackgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="wZU-2k-VRu" customClass="CustomTableViewCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="266" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wZU-2k-VRu" id="DTu-t8-GAF">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="9D7-eN-hib" id="F9R-9C-eV0"/>
+                                    <outlet property="delegate" destination="9D7-eN-hib" id="TU1-d4-pl1"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView1" destination="0gh-As-VOc" id="KEt-Ru-e66"/>
+                        <outlet property="tableView2" destination="ZDU-Av-rEe" id="bPm-Or-SF9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qsx-lb-nax" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1599" y="813"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="redbg.png" width="10" height="10"/>
+    </resources>
     <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
 </document>
