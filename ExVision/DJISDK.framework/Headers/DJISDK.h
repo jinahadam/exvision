@@ -18,6 +18,10 @@
 #import <DJISDK/DJIDrone.h>
 #import <DJISDK/DJIError.h>
 #import <DJISDK/DJIGimbal.h>
+#import <DJISDK/DJIGroundStation.h>
+#import <DJISDK/DJIGroundStationFlyingInfo.h>
+#import <DJISDK/DJIGroundStationTask.h>
+#import <DJISDK/DJIGroundStationWaypoint.h>
 #import <DJISDK/DJIMainController.h>
 #import <DJISDK/DJIPhantomMainController.h>
 #import <DJISDK/DJIMCSystemState.h>

@@ -12,6 +12,8 @@
 		807019301A7A0C8500B599C0 /* redbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8070192F1A7A0C8500B599C0 /* redbg.png */; };
 		807019331A7A151C00B599C0 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 807019321A7A151C00B599C0 /* SettingsViewController.m */; };
 		807019371A7A1EC500B599C0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 807019361A7A1EC500B599C0 /* MapKit.framework */; };
+		8070193A1A7A233900B599C0 /* camera_shutter_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 807019391A7A233900B599C0 /* camera_shutter_icon.png */; };
+		80CDAB7E1A80AB4800DD91C0 /* DJISDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80CDAB7D1A80AB4800DD91C0 /* DJISDK.framework */; };
 		80DFAAD61A760CE100F69205 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 80DFAAD51A760CE100F69205 /* main.m */; };
 		80DFAAD91A760CE100F69205 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 80DFAAD81A760CE100F69205 /* AppDelegate.mm */; };
 		80DFAADC1A760CE100F69205 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80DFAADB1A760CE100F69205 /* ViewController.m */; };
@@ -19,7 +21,6 @@
 		80DFAAE11A760CE100F69205 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80DFAAE01A760CE100F69205 /* Images.xcassets */; };
 		80DFAAE41A760CE100F69205 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80DFAAE21A760CE100F69205 /* LaunchScreen.xib */; };
 		80DFAAF01A760CE100F69205 /* ExVisionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 80DFAAEF1A760CE100F69205 /* ExVisionTests.m */; };
-		80DFAAFA1A760FDA00F69205 /* DJISDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80DFAAF91A760FDA00F69205 /* DJISDK.framework */; };
 		80DFAAFC1A76100C00F69205 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 80DFAAFB1A76100C00F69205 /* libz.dylib */; };
 		80DFAB681A7610AE00F69205 /* DJIDispatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 80DFAAFF1A7610AE00F69205 /* DJIDispatch.m */; };
 		80DFAB691A7610AE00F69205 /* DJILinkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 80DFAB011A7610AE00F69205 /* DJILinkQueue.m */; };
@@ -57,6 +58,8 @@
 		807019311A7A151C00B599C0 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		807019321A7A151C00B599C0 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		807019361A7A1EC500B599C0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		807019391A7A233900B599C0 /* camera_shutter_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_shutter_icon.png; sourceTree = "<group>"; };
+		80CDAB7D1A80AB4800DD91C0 /* DJISDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DJISDK.framework; path = ExVision/DJISDK.framework; sourceTree = "<group>"; };
 		80DFAAD01A760CE100F69205 /* ExVision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExVision.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80DFAAD41A760CE100F69205 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80DFAAD51A760CE100F69205 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -70,7 +73,6 @@
 		80DFAAE91A760CE100F69205 /* ExVisionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExVisionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		80DFAAEE1A760CE100F69205 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80DFAAEF1A760CE100F69205 /* ExVisionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExVisionTests.m; sourceTree = "<group>"; };
-		80DFAAF91A760FDA00F69205 /* DJISDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DJISDK.framework; sourceTree = "<group>"; };
 		80DFAAFB1A76100C00F69205 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		80DFAAFE1A7610AE00F69205 /* DJIDispatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJIDispatch.h; sourceTree = "<group>"; };
 		80DFAAFF1A7610AE00F69205 /* DJIDispatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJIDispatch.m; sourceTree = "<group>"; };
@@ -174,13 +176,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80CDAB7E1A80AB4800DD91C0 /* DJISDK.framework in Frameworks */,
 				807019371A7A1EC500B599C0 /* MapKit.framework in Frameworks */,
 				80DFAB771A7610F200F69205 /* libiconv.dylib in Frameworks */,
 				80DFAAFC1A76100C00F69205 /* libz.dylib in Frameworks */,
 				80DFAB6C1A7610AE00F69205 /* libavfilter.a in Frameworks */,
 				80DFAB721A7610AE00F69205 /* libswscale.a in Frameworks */,
 				80DFAB6E1A7610AE00F69205 /* libavresample.a in Frameworks */,
-				80DFAAFA1A760FDA00F69205 /* DJISDK.framework in Frameworks */,
 				80DFAB6D1A7610AE00F69205 /* libavformat.a in Frameworks */,
 				80DFAB6B1A7610AE00F69205 /* libavdevice.a in Frameworks */,
 				80DFAB711A7610AE00F69205 /* libswresample.a in Frameworks */,
@@ -203,6 +205,7 @@
 		80DFAAC71A760CE100F69205 = {
 			isa = PBXGroup;
 			children = (
+				80CDAB7D1A80AB4800DD91C0 /* DJISDK.framework */,
 				807019361A7A1EC500B599C0 /* MapKit.framework */,
 				80DFAAD21A760CE100F69205 /* ExVision */,
 				80DFAAEC1A760CE100F69205 /* ExVisionTests */,
@@ -243,9 +246,9 @@
 		80DFAAD31A760CE100F69205 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				807019391A7A233900B599C0 /* camera_shutter_icon.png */,
 				8070192F1A7A0C8500B599C0 /* redbg.png */,
 				80DFAAFD1A7610AE00F69205 /* VideoPreviewer */,
-				80DFAAF91A760FDA00F69205 /* DJISDK.framework */,
 				80DFAB761A7610F200F69205 /* libiconv.dylib */,
 				80DFAAFB1A76100C00F69205 /* libz.dylib */,
 				80DFAAD41A760CE100F69205 /* Info.plist */,
@@ -552,6 +555,7 @@
 				80DFAADF1A760CE100F69205 /* Main.storyboard in Resources */,
 				80DFAAE41A760CE100F69205 /* LaunchScreen.xib in Resources */,
 				80DFAAE11A760CE100F69205 /* Images.xcassets in Resources */,
+				8070193A1A7A233900B599C0 /* camera_shutter_icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -706,6 +710,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ExVision",
+					"$(PROJECT_DIR)",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -729,6 +734,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ExVision",
+					"$(PROJECT_DIR)",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",

@@ -70,7 +70,7 @@ typedef NS_ENUM(NSUInteger, DJIMainControllerNoFlyStatus)
 @property(nonatomic, readonly) float altitude;
 
 /**
- *  Attitude of the drone
+ *  Attitude of the drone, Pitch[-180, 180], Roll[-180, 180], Yaw[-180, 180]
  */
 @property(nonatomic, readonly) DJIAttitude attitude;
 

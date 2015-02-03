@@ -52,7 +52,6 @@
  *  @param captureMode Tell the camera what capture action will be do, if capture mode is multi capture or continuous capture, user should call the 'stopTakePhotWithResult' to stop catpture if need.
  *  @param block  The remote execute result.
  */
-
 -(void) startTakePhoto:(CameraCaptureMode)captureMode withResult:(DJIExecuteResultBlock)block;
 
 /**
@@ -337,6 +336,21 @@
  *  @param block The remote execute result block
  */
 -(void) setCamerMode:(CameraMode)mode withResultBlock:(DJIExecuteResultBlock)block;
+
+/**
+ *  Get the camera's photo name prefix
+ *
+ *  @param block The remote execute result block
+ */
+-(void) getCameraPhotoNamePrefix:(void (^)(NSString* prefix, DJIError* error))block;
+
+/**
+ *  Set the camera's photo name prefix. The new name prefix must have four fixed characters, and the character should be 'A' - 'Z' and '_'
+ *
+ *  @param prefix Photo name prefix
+ *  @param block The remote execute result block
+ */
+-(void) setCameraPhotoNamePrefix:(NSString*)prefix withResultBlock:(DJIExecuteResultBlock)block;
 
 @end
 

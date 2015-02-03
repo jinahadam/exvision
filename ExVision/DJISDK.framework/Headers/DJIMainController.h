@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 #import <DJISDK/DJIObject.h>
+#import <DJISDK/DJIGroundStation.h>
 
 @class DJIMCSystemState;
 
@@ -73,7 +74,7 @@ typedef struct
 @end
 
 
-@interface DJIMainController : DJIObject
+@interface DJIMainController : DJIObject <DJIGroundStation>
 
 /**
  *  Manin controller delegate
