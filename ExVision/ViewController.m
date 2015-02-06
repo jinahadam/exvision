@@ -67,50 +67,281 @@
 }
 
 -(IBAction) onUploadTaskClicked:(id)sender
+
 {
-    const float height = 20;
+    
+
+    const float height = 10;
     DJIGroundStationTask* newTask = [DJIGroundStationTask newTask];
-    CLLocationCoordinate2D  point1 = { 22.5351709662 , 113.9419635173 };
+//    CLLocationCoordinate2D  point1 = { 22.5351709662 , 113.9419635173 };
     CLLocationCoordinate2D  point2 = { 22.5352549662 , 113.9433645173 };
     CLLocationCoordinate2D  point3 = { 22.5346709662 , 113.9434005173 };
     CLLocationCoordinate2D  point4 = { 22.5346039662 , 113.9418915173 };
+    CLLocationCoordinate2D  point5 = { 22.5346039662 , 113.9418915173 };
+    CLLocationCoordinate2D  point6 = { 22.5346039662 , 113.9418915173 };
+    CLLocationCoordinate2D  point7 = { 22.5346039662 , 113.9418915173 };
+    CLLocationCoordinate2D  point8 = { 22.5346039662 , 113.9418915173 };
+    CLLocationCoordinate2D  point9 = { 22.5346039662 , 113.9418915173 };
+    CLLocationCoordinate2D  point10 = { 22.5346039662 , 113.9418915173 };
+    CLLocationCoordinate2D  point11 = { 22.5346039662 , 113.9418915173 };
+    CLLocationCoordinate2D  point12 = { 22.5346039662 , 113.9418915173 };
+    CLLocationCoordinate2D  point13 = { 22.5346039662 , 113.9418915173 };
     
     if (CLLocationCoordinate2DIsValid(_homeLocation)) {
-#define TEN_METER  0.0000899322
-#define HALF_METER 0.0000089322
-        point1 = CLLocationCoordinate2DMake(_homeLocation.latitude + HALF_METER, _homeLocation.longitude);
-        point2 = CLLocationCoordinate2DMake(_homeLocation.latitude + (HALF_METER*2), _homeLocation.longitude);
-        point3 = CLLocationCoordinate2DMake(_homeLocation.latitude + (HALF_METER*3), _homeLocation.longitude);
-        point4 = CLLocationCoordinate2DMake(_homeLocation.latitude + (HALF_METER*4), _homeLocation.longitude);
-    }
-    DJIGroundStationWaypoint* wp1 = [[DJIGroundStationWaypoint alloc] initWithCoordinate:point1];
-    wp1.altitude = height;
-    wp1.horizontalVelocity = 8;
-    wp1.stayTime = 3.0;
+
+       // point1 = CLLocationCoordinate2DMake(1.287818,103.786205);
+        point2 = CLLocationCoordinate2DMake(1.297818,103.786221);
+        point3 = CLLocationCoordinate2DMake(1.297816,103.786232);
+        point4 = CLLocationCoordinate2DMake(1.297807,103.786246);
+        point5 = CLLocationCoordinate2DMake(1.297796,103.786257);
+        point6 = CLLocationCoordinate2DMake(1.297774,103.786261);
+        point7 = CLLocationCoordinate2DMake(1.297768,103.786247);
+        point8 = CLLocationCoordinate2DMake(1.297773,103.786229);
+        point9 = CLLocationCoordinate2DMake(1.297789,103.786214);
+        point10 = CLLocationCoordinate2DMake(1.297802,103.786211);
+        point11 = CLLocationCoordinate2DMake(1.297826,103.786206);
+        point12 = CLLocationCoordinate2DMake(1.297830,103.786213);
+        point13 = CLLocationCoordinate2DMake(1.297832,103.786224);
+
+        
+        }
+    
+//    DJIGroundStationWaypoint* wp1 = [[DJIGroundStationWaypoint alloc] initWithCoordinate:point1];
+//    wp1.altitude = height;
+//    wp1.horizontalVelocity = 4;
+//    wp1.stayTime = 1.0;
     
     DJIGroundStationWaypoint* wp2 = [[DJIGroundStationWaypoint alloc] initWithCoordinate:point2];
     wp2.altitude = height;
-    wp2.horizontalVelocity = 8;
-    wp2.stayTime = 3.0;
+    wp2.horizontalVelocity = 4;
+    wp2.stayTime = 1.0;
     
     DJIGroundStationWaypoint* wp3 = [[DJIGroundStationWaypoint alloc] initWithCoordinate:point3];
     wp3.altitude = height;
-    wp3.horizontalVelocity = 8;
-    wp3.stayTime = 3.0;
+    wp3.horizontalVelocity = 4;
+    wp3.stayTime = 1.0;
     
     DJIGroundStationWaypoint* wp4 = [[DJIGroundStationWaypoint alloc] initWithCoordinate:point4];
     wp4.altitude = height;
-    wp4.horizontalVelocity = 8;
-    wp4.stayTime = 3.0;
+    wp4.horizontalVelocity = 4;
+    wp4.stayTime = 1.0;
+
+    DJIGroundStationWaypoint* wp5 = [[DJIGroundStationWaypoint alloc] initWithCoordinate:point5];
+    wp5.altitude = height;
+    wp5.horizontalVelocity = 4;
+    wp5.stayTime = 1.0;
+
+    DJIGroundStationWaypoint* wp6 = [[DJIGroundStationWaypoint alloc] initWithCoordinate:point6];
+    wp6.altitude = height;
+    wp6.horizontalVelocity = 4;
+    wp6.stayTime = 1.0;
+
+    DJIGroundStationWaypoint* wp7 = [[DJIGroundStationWaypoint alloc] initWithCoordinate:point7];
+    wp7.altitude = height;
+    wp7.horizontalVelocity = 4;
+    wp7.stayTime = 1.0;
+
+    DJIGroundStationWaypoint* wp8 = [[DJIGroundStationWaypoint alloc] initWithCoordinate:point8];
+    wp8.altitude = height;
+    wp8.horizontalVelocity = 4;
+    wp8.stayTime = 1.0;
+
+    DJIGroundStationWaypoint* wp9 = [[DJIGroundStationWaypoint alloc] initWithCoordinate:point9];
+    wp9.altitude = height;
+    wp9.horizontalVelocity = 4;
+    wp9.stayTime = 1.0;
+
+    DJIGroundStationWaypoint* wp10 = [[DJIGroundStationWaypoint alloc] initWithCoordinate:point10];
+    wp10.altitude = height;
+    wp10.horizontalVelocity = 4;
+    wp10.stayTime =1.0;
+
+    DJIGroundStationWaypoint* wp11 = [[DJIGroundStationWaypoint alloc] initWithCoordinate:point11];
+    wp11.altitude = height;
+    wp11.horizontalVelocity = 4;
+    wp11.stayTime = 1.0;
+
+    DJIGroundStationWaypoint* wp12 = [[DJIGroundStationWaypoint alloc] initWithCoordinate:point12];
+    wp12.altitude = height;
+    wp12.horizontalVelocity = 4;
+    wp12.stayTime = 1.0;
+
+    DJIGroundStationWaypoint* wp13 = [[DJIGroundStationWaypoint alloc] initWithCoordinate:point13];
+    wp13.altitude = height;
+    wp13.horizontalVelocity = 4;
+    wp13.stayTime = 1.0;
+
     
-    [newTask addWaypoint:wp1];
+    [newTask removeAllWaypoint];
+    
+
+    
+   // [newTask addWaypoint:wp1];
     [newTask addWaypoint:wp2];
     [newTask addWaypoint:wp3];
     [newTask addWaypoint:wp4];
-    
+    [newTask addWaypoint:wp5];
+    [newTask addWaypoint:wp6];
+    [newTask addWaypoint:wp7];
+    [newTask addWaypoint:wp8];
+    [newTask addWaypoint:wp9];
+    [newTask addWaypoint:wp10];
+    [newTask addWaypoint:wp11];
+    [newTask addWaypoint:wp12];
+    [newTask addWaypoint:wp13];
+
+    self.logLabel.text = [NSString stringWithFormat:@"%d",[newTask waypointCount]];
+
     
     [_groundStation uploadGroundStationTask:newTask];
 }
+
+
+
+-(IBAction) uploadCalculatedPoints:(id)sender
+
+{
+    
+   
+    CGPoint p2 = CGPointMake(0,0);
+    CGPoint p3 = CGPointMake(0.00000199,-0.000011);
+    CGPoint p4 = CGPointMake(0.00000900,-0.000014);
+    CGPoint p5 = CGPointMake(0.00001099,-0.000011);
+    CGPoint p6 = CGPointMake(0.00002199,-0.000003);
+    CGPoint p7 = CGPointMake(0.00000599,0.0000139);
+    CGPoint p8 = CGPointMake(-0.0000050,0.0000179);
+    CGPoint p9 = CGPointMake(-0.0000160,0.0000150);
+    CGPoint p10 = CGPointMake(-0.0000129,0.0000030);
+    CGPoint p11 = CGPointMake(-0.0000240,0.0000049);
+    CGPoint p12 = CGPointMake(-0.0000040,-0.000006);
+    CGPoint p13 = CGPointMake(-0.0000020,-0.000010);
+    
+    
+    const float height = 10;
+    DJIGroundStationTask* newTask = [DJIGroundStationTask newTask];
+    //    CLLocationCoordinate2D  point1 = { 22.5351709662 , 113.9419635173 };
+    CLLocationCoordinate2D  point2 = { 22.5352549662 , 113.9433645173 };
+    CLLocationCoordinate2D  point3 = { 22.5346709662 , 113.9434005173 };
+    CLLocationCoordinate2D  point4 = { 22.5346039662 , 113.9418915173 };
+    CLLocationCoordinate2D  point5 = { 22.5346039662 , 113.9418915173 };
+    CLLocationCoordinate2D  point6 = { 22.5346039662 , 113.9418915173 };
+    CLLocationCoordinate2D  point7 = { 22.5346039662 , 113.9418915173 };
+    CLLocationCoordinate2D  point8 = { 22.5346039662 , 113.9418915173 };
+    CLLocationCoordinate2D  point9 = { 22.5346039662 , 113.9418915173 };
+    CLLocationCoordinate2D  point10 = { 22.5346039662 , 113.9418915173 };
+    CLLocationCoordinate2D  point11 = { 22.5346039662 , 113.9418915173 };
+    CLLocationCoordinate2D  point12 = { 22.5346039662 , 113.9418915173 };
+    CLLocationCoordinate2D  point13 = { 22.5346039662 , 113.9418915173 };
+    
+    if (CLLocationCoordinate2DIsValid(_homeLocation)) {
+        
+        // point1 = CLLocationCoordinate2DMake(1.287818,103.786205);
+        point2 = CLLocationCoordinate2DMake(_homeLocation.latitude+p2.x,_homeLocation.longitude+p2.y);
+        point3 = CLLocationCoordinate2DMake(_homeLocation.latitude+p3.x,_homeLocation.longitude+p3.y);
+        point4 = CLLocationCoordinate2DMake(_homeLocation.latitude+p4.x,_homeLocation.longitude+p4.y);
+        point5 = CLLocationCoordinate2DMake(_homeLocation.latitude+p5.x,_homeLocation.longitude+p5.y);
+        point6 = CLLocationCoordinate2DMake(_homeLocation.latitude+p6.x,_homeLocation.longitude+p6.y);
+        point7 = CLLocationCoordinate2DMake(_homeLocation.latitude+p7.x,_homeLocation.longitude+p7.y);
+        point8 = CLLocationCoordinate2DMake(_homeLocation.latitude+p8.x,_homeLocation.longitude+p8.y);
+        point9 = CLLocationCoordinate2DMake(_homeLocation.latitude+p9.x,_homeLocation.longitude+p9.y);
+        point10 = CLLocationCoordinate2DMake(_homeLocation.latitude+p10.x,_homeLocation.longitude+p10.y);
+        point11 = CLLocationCoordinate2DMake(_homeLocation.latitude+p11.x,_homeLocation.longitude+p11.y);
+        point12 = CLLocationCoordinate2DMake(_homeLocation.latitude+p12.x,_homeLocation.longitude+p12.y);
+        point13 = CLLocationCoordinate2DMake(_homeLocation.latitude+p13.x,_homeLocation.longitude+p13.y);
+        
+        
+    }
+    
+    //    DJIGroundStationWaypoint* wp1 = [[DJIGroundStationWaypoint alloc] initWithCoordinate:point1];
+    //    wp1.altitude = height;
+    //    wp1.horizontalVelocity = 4;
+    //    wp1.stayTime = 1.0;
+    
+    DJIGroundStationWaypoint* wp2 = [[DJIGroundStationWaypoint alloc] initWithCoordinate:point2];
+    wp2.altitude = height;
+    wp2.horizontalVelocity = 4;
+    wp2.stayTime = 1.0;
+    
+    DJIGroundStationWaypoint* wp3 = [[DJIGroundStationWaypoint alloc] initWithCoordinate:point3];
+    wp3.altitude = height;
+    wp3.horizontalVelocity = 4;
+    wp3.stayTime = 1.0;
+    
+    DJIGroundStationWaypoint* wp4 = [[DJIGroundStationWaypoint alloc] initWithCoordinate:point4];
+    wp4.altitude = height;
+    wp4.horizontalVelocity = 4;
+    wp4.stayTime = 1.0;
+    
+    DJIGroundStationWaypoint* wp5 = [[DJIGroundStationWaypoint alloc] initWithCoordinate:point5];
+    wp5.altitude = height;
+    wp5.horizontalVelocity = 4;
+    wp5.stayTime = 1.0;
+    
+    DJIGroundStationWaypoint* wp6 = [[DJIGroundStationWaypoint alloc] initWithCoordinate:point6];
+    wp6.altitude = height;
+    wp6.horizontalVelocity = 4;
+    wp6.stayTime = 1.0;
+    
+    DJIGroundStationWaypoint* wp7 = [[DJIGroundStationWaypoint alloc] initWithCoordinate:point7];
+    wp7.altitude = height;
+    wp7.horizontalVelocity = 4;
+    wp7.stayTime = 1.0;
+    
+    DJIGroundStationWaypoint* wp8 = [[DJIGroundStationWaypoint alloc] initWithCoordinate:point8];
+    wp8.altitude = height;
+    wp8.horizontalVelocity = 4;
+    wp8.stayTime = 1.0;
+    
+    DJIGroundStationWaypoint* wp9 = [[DJIGroundStationWaypoint alloc] initWithCoordinate:point9];
+    wp9.altitude = height;
+    wp9.horizontalVelocity = 4;
+    wp9.stayTime = 1.0;
+    
+    DJIGroundStationWaypoint* wp10 = [[DJIGroundStationWaypoint alloc] initWithCoordinate:point10];
+    wp10.altitude = height;
+    wp10.horizontalVelocity = 4;
+    wp10.stayTime =1.0;
+    
+    DJIGroundStationWaypoint* wp11 = [[DJIGroundStationWaypoint alloc] initWithCoordinate:point11];
+    wp11.altitude = height;
+    wp11.horizontalVelocity = 4;
+    wp11.stayTime = 1.0;
+    
+    DJIGroundStationWaypoint* wp12 = [[DJIGroundStationWaypoint alloc] initWithCoordinate:point12];
+    wp12.altitude = height;
+    wp12.horizontalVelocity = 4;
+    wp12.stayTime = 1.0;
+    
+    DJIGroundStationWaypoint* wp13 = [[DJIGroundStationWaypoint alloc] initWithCoordinate:point13];
+    wp13.altitude = height;
+    wp13.horizontalVelocity = 4;
+    wp13.stayTime = 1.0;
+    
+    
+    [newTask removeAllWaypoint];
+    
+    
+    
+    // [newTask addWaypoint:wp1];
+    [newTask addWaypoint:wp2];
+    [newTask addWaypoint:wp3];
+    [newTask addWaypoint:wp4];
+    [newTask addWaypoint:wp5];
+    [newTask addWaypoint:wp6];
+    [newTask addWaypoint:wp7];
+    [newTask addWaypoint:wp8];
+    [newTask addWaypoint:wp9];
+    [newTask addWaypoint:wp10];
+    [newTask addWaypoint:wp11];
+    [newTask addWaypoint:wp12];
+    [newTask addWaypoint:wp13];
+    
+    self.logLabel.text = [NSString stringWithFormat:@"%d",[newTask waypointCount]];
+    
+    [_groundStation uploadGroundStationTask:newTask];
+}
+
+
 
 -(IBAction) onDownloadTaskClicked:(id)sender
 {
@@ -142,15 +373,17 @@
 -(void) onGroundStationOpenWithResult:(GroundStationExecuteResult*)result
 {
     if (result.executeStatus == GSExecStatusBegan) {
-        NSLog(@"Ground Station Open Began");
+        self.logLabel.text = @"Ground Station Open Began";
     }
     else if (result.executeStatus == GSExecStatusSuccessed)
     {
-        NSLog(@"Ground Station Open Successed");
+        self.logLabel.text = @"Ground Station Open Successed";
+
     }
     else
     {
-        NSLog(@"Ground Station Open Failed:%d", (int)result.error);
+        self.logLabel.text = [NSString stringWithFormat: @"Ground Station Open Failed:%d", (int)result.error];
+
     }
 }
 
@@ -172,15 +405,19 @@
 -(void) onGroundStationUploadTaskWithResult:(GroundStationExecuteResult*)result
 {
     if (result.executeStatus == GSExecStatusBegan) {
-        NSLog(@"Upload Task Began");
+        
+        self.logLabel.text = @"Upload Task Began";
+
     }
     else if (result.executeStatus == GSExecStatusSuccessed)
     {
-        NSLog(@"Upload Task Success");
+        self.logLabel.text = @"Upload Task Success";
+
     }
     else
     {
-        NSLog(@"Upload Task Failed: %d", (int)result.error);
+        self.logLabel.text = [NSString stringWithFormat:@"Upload Task Failed: %d", (int)result.error];
+
     }
 }
 
@@ -202,15 +439,18 @@
 -(void) onGroundStationStartTaskWithResult:(GroundStationExecuteResult*)result
 {
     if (result.executeStatus == GSExecStatusBegan) {
-        NSLog(@"Task Start Began");
+        self.logLabel.text = @"Task Start Began";
+
     }
     else if (result.executeStatus == GSExecStatusSuccessed)
     {
-        NSLog(@"Task Start Success");
+        self.logLabel.text = @"Task Start Success";
+
     }
     else
     {
-        NSLog(@"Task Start Failed : %d", (int)result.error);
+        self.logLabel.text = [NSString stringWithFormat:@"Task Start Failed : %d", (int)result.error];
+
     }
 }
 
@@ -247,15 +487,18 @@
 -(void) onGroundStationGoHomeWithResult:(GroundStationExecuteResult*)result
 {
     if (result.executeStatus == GSExecStatusBegan) {
-        NSLog(@"GoHome Began");
+        self.logLabel.text = @"GoHome Began";
+
     }
     else if (result.executeStatus == GSExecStatusSuccessed)
     {
-        NSLog(@"GoHome Success");
+        self.logLabel.text = @"GoHome Success";
+
     }
     else
     {
-        NSLog(@"GoHome Failed : %d", (int)result.error);
+        self.logLabel.text = [NSString stringWithFormat:@"GoHomeFailed : %d", (int)result.error];
+
     }
 }
 
@@ -405,6 +648,12 @@
     self.satelliteLabel.text = [NSString stringWithFormat:@"%d", flyingInfo.satelliteCount];
     self.homeLocationLabel.text = [NSString stringWithFormat:@"%f, %f", flyingInfo.homeLocation.latitude, flyingInfo.homeLocation.longitude];
     self.droneLocationLabel.text = [NSString stringWithFormat:@"%f, %f", flyingInfo.droneLocation.latitude, flyingInfo.droneLocation.longitude];
+    self.targetWp.text = [NSString stringWithFormat:@"%d", flyingInfo.targetWaypointIndex];
+    self.altitude.text = [NSString stringWithFormat:@"%f", flyingInfo.altitude];
+    self.targetAltitude.text = [NSString stringWithFormat:@"%f", flyingInfo.targetAltitude];
+   // NSLog(@"target %d", flyingInfo.targetWaypointIndex);
+    
+
 }
 
 #pragma mark - DJIDroneDelegate

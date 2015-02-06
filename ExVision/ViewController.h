@@ -24,6 +24,10 @@
 @property(nonatomic, strong) IBOutlet UILabel* homeLocationLabel;
 @property(nonatomic, strong) IBOutlet UILabel* droneLocationLabel;
 @property(nonatomic, strong) IBOutlet UILabel* contrlModeLabel;
+@property(nonatomic, strong) IBOutlet UILabel* logLabel;
+@property(nonatomic, strong) IBOutlet UILabel* targetWp;
+@property(nonatomic, strong) IBOutlet UILabel* altitude;
+@property(nonatomic, strong) IBOutlet UILabel* targetAltitude;
 
 -(IBAction) onOpenButtonClicked:(id)sender;
 

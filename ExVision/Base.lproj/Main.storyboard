@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C106a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="M4p-aR-L0k">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="M4p-aR-L0k">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -162,8 +162,8 @@
                                     <segue destination="Fua-83-gen" kind="show" id="CrF-OJ-oSU"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hiy-X2-iyT">
-                                <rect key="frame" x="16" y="91" width="142" height="97"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hiy-X2-iyT">
+                                <rect key="frame" x="16" y="80" width="100" height="59"/>
                                 <state key="normal" title="Go Home" backgroundImage="redbg.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -172,9 +172,9 @@
                                     <action selector="onGoHomeButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9LE-72-hn5"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fdG-in-smg">
-                                <rect key="frame" x="16" y="326" width="142" height="97"/>
-                                <state key="normal" title="Upload Task" backgroundImage="redbg.png">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fdG-in-smg">
+                                <rect key="frame" x="127" y="147" width="88" height="51"/>
+                                <state key="normal" title="upload 1" backgroundImage="redbg.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -182,8 +182,8 @@
                                     <action selector="onUploadTaskClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nbS-Gz-yV4"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UIW-2i-382">
-                                <rect key="frame" x="16" y="221" width="142" height="97"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UIW-2i-382">
+                                <rect key="frame" x="16" y="147" width="100" height="51"/>
                                 <state key="normal" title="Start" backgroundImage="redbg.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -192,60 +192,70 @@
                                     <action selector="onOpenButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Whg-yp-nTr"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eCZ-xm-bHh">
-                                <rect key="frame" x="168" y="326" width="142" height="97"/>
-                                <state key="normal" title="Start Task" backgroundImage="redbg.png">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="onStartTaskButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="M8N-ST-GxU"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Home Point:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="psA-Qm-obr">
-                                <rect key="frame" x="25" y="450" width="87" height="21"/>
+                                <rect key="frame" x="22" y="268" width="87" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="N/A" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k8V-0Y-vFF">
-                                <rect key="frame" x="127" y="450" width="225" height="21"/>
+                                <rect key="frame" x="124" y="268" width="225" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Satellite:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bee-ht-mjN">
-                                <rect key="frame" x="25" y="537" width="87" height="21"/>
+                                <rect key="frame" x="23" y="355" width="87" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="N/A" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ge-Kw-8Qs">
-                                <rect key="frame" x="127" y="537" width="106" height="21"/>
+                                <rect key="frame" x="124" y="355" width="106" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Target WP" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VsE-vT-8vS">
+                                <rect key="frame" x="23" y="384" width="87" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="N/A" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o7l-T0-mMZ">
+                                <rect key="frame" x="124" y="384" width="106" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="altitude" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OCA-cy-nIz">
+                                <rect key="frame" x="24" y="413" width="87" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="N/A" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1nk-sM-5md">
+                                <rect key="frame" x="119" y="413" width="106" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Drone Point:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8rL-gK-wgq">
-                                <rect key="frame" x="25" y="508" width="87" height="21"/>
+                                <rect key="frame" x="22" y="326" width="87" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="N/A" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dv6-fM-lDg">
-                                <rect key="frame" x="127" y="508" width="225" height="21"/>
+                                <rect key="frame" x="124" y="326" width="225" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Control Mode:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I3Y-nA-PxS">
-                                <rect key="frame" x="25" y="479" width="87" height="21"/>
+                                <rect key="frame" x="22" y="297" width="87" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="N/A" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rgk-4s-FeP">
-                                <rect key="frame" x="127" y="479" width="106" height="21"/>
+                                <rect key="frame" x="124" y="297" width="106" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IfS-Qq-sTO">
-                                <rect key="frame" x="168" y="221" width="142" height="97"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IfS-Qq-sTO">
+                                <rect key="frame" x="124" y="82" width="91" height="57"/>
                                 <state key="normal" title="Stop" backgroundImage="redbg.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -254,15 +264,65 @@
                                     <action selector="onCloseButtonClicked:" destination="BYZ-38-t0r" eventType="touchDown" id="J4G-Gk-mxz"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eCZ-xm-bHh">
+                                <rect key="frame" x="16" y="206" width="100" height="50"/>
+                                <state key="normal" title="Start Task" backgroundImage="redbg.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onStartTaskButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="M8N-ST-GxU"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Log" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5gR-AY-dEE">
+                                <rect key="frame" x="22" y="483" width="288" height="74"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="target Altitude" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6nH-rS-4lL">
+                                <rect key="frame" x="24" y="442" width="97" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="N/A" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qg9-tt-xDH">
+                                <rect key="frame" x="124" y="442" width="106" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0yO-tH-1Za">
+                                <rect key="frame" x="128" y="206" width="88" height="51"/>
+                                <state key="normal" title="Upload 2" backgroundImage="redbg.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="uploadCalculatedPoints:" destination="BYZ-38-t0r" eventType="touchUpInside" id="L0F-pI-Vkk"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Hiy-X2-iyT" firstAttribute="width" secondItem="eCZ-xm-bHh" secondAttribute="width" id="3iU-FR-ZL7"/>
+                            <constraint firstItem="Hiy-X2-iyT" firstAttribute="height" secondItem="IfS-Qq-sTO" secondAttribute="height" id="BUW-me-UgG"/>
+                            <constraint firstItem="Hiy-X2-iyT" firstAttribute="width" secondItem="UIW-2i-382" secondAttribute="width" id="CBB-Kv-q20"/>
+                            <constraint firstItem="Hiy-X2-iyT" firstAttribute="height" secondItem="eCZ-xm-bHh" secondAttribute="height" id="Cqn-Gt-Q9V"/>
+                            <constraint firstItem="Hiy-X2-iyT" firstAttribute="width" secondItem="IfS-Qq-sTO" secondAttribute="width" id="Oyb-r8-gRM"/>
+                            <constraint firstItem="Hiy-X2-iyT" firstAttribute="height" secondItem="UIW-2i-382" secondAttribute="height" id="aX0-VP-2ic"/>
+                            <constraint firstItem="Hiy-X2-iyT" firstAttribute="width" secondItem="fdG-in-smg" secondAttribute="width" id="d5q-Bo-Td7"/>
+                            <constraint firstItem="Hiy-X2-iyT" firstAttribute="height" secondItem="fdG-in-smg" secondAttribute="height" id="pIg-Ri-5ce"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Lfe-rw-462"/>
                     <connections>
+                        <outlet property="altitude" destination="1nk-sM-5md" id="See-Ur-cSI"/>
                         <outlet property="contrlModeLabel" destination="Rgk-4s-FeP" id="qse-IG-BFH"/>
                         <outlet property="droneLocationLabel" destination="dv6-fM-lDg" id="UGp-Ek-ry2"/>
                         <outlet property="homeLocationLabel" destination="k8V-0Y-vFF" id="qdi-Db-Lpm"/>
+                        <outlet property="logLabel" destination="5gR-AY-dEE" id="95g-6v-Tcl"/>
                         <outlet property="satelliteLabel" destination="9Ge-Kw-8Qs" id="7pj-m8-1EZ"/>
+                        <outlet property="targetAltitude" destination="qg9-tt-xDH" id="u4N-oZ-UnM"/>
+                        <outlet property="targetWp" destination="o7l-T0-mMZ" id="OTC-eB-dpU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
