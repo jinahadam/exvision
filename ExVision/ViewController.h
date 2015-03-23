@@ -20,6 +20,9 @@
     UILabel* _connectionStatusLabel;
     
     CLLocationCoordinate2D _homeLocation;
+
+    NSString *wp_index;
+
 }
 
 @property(nonatomic, strong) IBOutlet UILabel* satelliteLabel;

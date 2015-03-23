@@ -31,7 +31,9 @@
     _camera.delegate = self;
 
     
+    
     _groundStation = _drone.mainController;
+    
 }
 
 -(void) viewWillAppear:(BOOL)animated
@@ -518,6 +520,8 @@
 
 -(void) groundStation:(id<DJIGroundStation>)gs didUpdateFlyingInformation:(DJIGroundStationFlyingInfo*)flyingInfo
 {
+    wp_index = self.targetWp.text;
+    
     [self onGroundStationControlModeChanged:flyingInfo.controlMode];
     [self onGroundStationGpsStatusChanged:flyingInfo.gpsStatus];
     
@@ -526,6 +530,12 @@
     self.homeLocationLabel.text = [NSString stringWithFormat:@"%f, %f", flyingInfo.homeLocation.latitude, flyingInfo.homeLocation.longitude];
     self.droneLocationLabel.text = [NSString stringWithFormat:@"%f, %f", flyingInfo.droneLocation.latitude, flyingInfo.droneLocation.longitude];
     self.targetWp.text = [NSString stringWithFormat:@"%d", flyingInfo.targetWaypointIndex];
+    
+    if (![wp_index isEqualToString:[NSString stringWithFormat:@"%d", flyingInfo.targetWaypointIndex]]) {
+        [self takePicture];
+        self.logLabel.text = @"Picture taken";
+    }
+    
     self.altitude.text = [NSString stringWithFormat:@"%f", flyingInfo.altitude];
     self.targetAltitude.text = [NSString stringWithFormat:@"%f", flyingInfo.targetAltitude];
    // NSLog(@"target %d", flyingInfo.targetWaypointIndex);
