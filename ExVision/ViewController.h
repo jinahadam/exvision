@@ -11,9 +11,11 @@
 
 
 
-@interface ViewController : UIViewController <DJIDroneDelegate, GroundStationDelegate>
+@interface ViewController : UIViewController <DJIDroneDelegate, GroundStationDelegate, DJICameraDelegate>
 {
     DJIDrone* _drone;
+    DJICamera* _camera;
+
     NSObject<DJIGroundStation>* _groundStation;
     UILabel* _connectionStatusLabel;
     
@@ -44,6 +46,9 @@
 -(IBAction) onContinueTaskButtonClicked:(id)sender;
 
 -(IBAction) onGoHomeButtonClicked:(id)sender;
+
+-(IBAction) onTakePhotoButtonClicked:(id)sender;
+
 
 @end
 
