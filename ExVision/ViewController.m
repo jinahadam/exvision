@@ -12,7 +12,11 @@
 
 @end
 
+
+
 @implementation ViewController
+
+
 
 - (void)viewDidLoad
 {
@@ -31,7 +35,6 @@
     _camera.delegate = self;
 
     
-    
     _groundStation = _drone.mainController;
     
 }
@@ -46,6 +49,7 @@
 
     
     [_drone connectToDrone];
+    
 }
 
 -(void) viewWillDisappear:(BOOL)animated
@@ -279,6 +283,9 @@
     {
         
     }
+   
+
+    
 }
 
 -(void) onGroundStationUploadTaskWithResult:(GroundStationExecuteResult*)result
@@ -578,7 +585,13 @@
     if (systemState.isUSBMode) {
         [_camera setCamerMode:CameraCameraMode withResultBlock:Nil];
     }
+    
+  
+
 }
+
+
+
 
 
 
@@ -609,4 +622,8 @@
             break;
     }
 }
+
 @end
+
+
+

@@ -15,6 +15,7 @@
 {
     DJIDrone* _drone;
     DJICamera* _camera;
+    
 
     NSObject<DJIGroundStation>* _groundStation;
     UILabel* _connectionStatusLabel;
@@ -22,6 +23,7 @@
     CLLocationCoordinate2D _homeLocation;
 
     NSString *wp_index;
+
 
 }
 
@@ -34,11 +36,11 @@
 @property(nonatomic, strong) IBOutlet UILabel* altitude;
 @property(nonatomic, strong) IBOutlet UILabel* targetAltitude;
 
+
 -(IBAction) onOpenButtonClicked:(id)sender;
 
 -(IBAction) onCloseButtonClicked:(id)sender;
 
--(IBAction) onUploadTaskClicked:(id)sender;
 
 -(IBAction) onDownloadTaskClicked:(id)sender;
 
@@ -52,6 +54,8 @@
 
 -(IBAction) onTakePhotoButtonClicked:(id)sender;
 
-
 @end
+
+
+
 

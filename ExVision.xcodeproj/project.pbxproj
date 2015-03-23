@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		807019291A762CEB00B599C0 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 807019281A762CEB00B599C0 /* CameraViewController.m */; };
-		8070192C1A78D5F000B599C0 /* LibraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8070192B1A78D5F000B599C0 /* LibraryViewController.m */; };
 		807019301A7A0C8500B599C0 /* redbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8070192F1A7A0C8500B599C0 /* redbg.png */; };
 		807019331A7A151C00B599C0 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 807019321A7A151C00B599C0 /* SettingsViewController.m */; };
 		807019371A7A1EC500B599C0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 807019361A7A1EC500B599C0 /* MapKit.framework */; };
@@ -52,8 +51,6 @@
 /* Begin PBXFileReference section */
 		807019271A762CEB00B599C0 /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
 		807019281A762CEB00B599C0 /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
-		8070192A1A78D5F000B599C0 /* LibraryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryViewController.h; sourceTree = "<group>"; };
-		8070192B1A78D5F000B599C0 /* LibraryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryViewController.m; sourceTree = "<group>"; };
 		8070192F1A7A0C8500B599C0 /* redbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redbg.png; sourceTree = "<group>"; };
 		807019311A7A151C00B599C0 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		807019321A7A151C00B599C0 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
@@ -231,8 +228,6 @@
 				80DFAADB1A760CE100F69205 /* ViewController.m */,
 				807019271A762CEB00B599C0 /* CameraViewController.h */,
 				807019281A762CEB00B599C0 /* CameraViewController.m */,
-				8070192A1A78D5F000B599C0 /* LibraryViewController.h */,
-				8070192B1A78D5F000B599C0 /* LibraryViewController.m */,
 				807019311A7A151C00B599C0 /* SettingsViewController.h */,
 				807019321A7A151C00B599C0 /* SettingsViewController.m */,
 				80DFAADD1A760CE100F69205 /* Main.storyboard */,
@@ -573,7 +568,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8070192C1A78D5F000B599C0 /* LibraryViewController.m in Sources */,
 				80DFAADC1A760CE100F69205 /* ViewController.m in Sources */,
 				80DFAB691A7610AE00F69205 /* DJILinkQueue.m in Sources */,
 				80DFAAD91A760CE100F69205 /* AppDelegate.mm in Sources */,
