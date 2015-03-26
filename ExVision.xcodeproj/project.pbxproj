@@ -8,11 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		807019291A762CEB00B599C0 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 807019281A762CEB00B599C0 /* CameraViewController.m */; };
-		807019301A7A0C8500B599C0 /* redbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8070192F1A7A0C8500B599C0 /* redbg.png */; };
-		807019331A7A151C00B599C0 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 807019321A7A151C00B599C0 /* SettingsViewController.m */; };
-		807019371A7A1EC500B599C0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 807019361A7A1EC500B599C0 /* MapKit.framework */; };
-		8070193A1A7A233900B599C0 /* camera_shutter_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 807019391A7A233900B599C0 /* camera_shutter_icon.png */; };
-		80CDAB7E1A80AB4800DD91C0 /* DJISDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80CDAB7D1A80AB4800DD91C0 /* DJISDK.framework */; };
+		807BCBB31AC2A015007E23E2 /* DJISDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 807BCBB21AC2A015007E23E2 /* DJISDK.framework */; };
 		80DFAAD61A760CE100F69205 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 80DFAAD51A760CE100F69205 /* main.m */; };
 		80DFAAD91A760CE100F69205 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 80DFAAD81A760CE100F69205 /* AppDelegate.mm */; };
 		80DFAADC1A760CE100F69205 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80DFAADB1A760CE100F69205 /* ViewController.m */; };
@@ -51,12 +47,7 @@
 /* Begin PBXFileReference section */
 		807019271A762CEB00B599C0 /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
 		807019281A762CEB00B599C0 /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
-		8070192F1A7A0C8500B599C0 /* redbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redbg.png; sourceTree = "<group>"; };
-		807019311A7A151C00B599C0 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
-		807019321A7A151C00B599C0 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
-		807019361A7A1EC500B599C0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		807019391A7A233900B599C0 /* camera_shutter_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_shutter_icon.png; sourceTree = "<group>"; };
-		80CDAB7D1A80AB4800DD91C0 /* DJISDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DJISDK.framework; path = ExVision/DJISDK.framework; sourceTree = "<group>"; };
+		807BCBB21AC2A015007E23E2 /* DJISDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DJISDK.framework; sourceTree = "<group>"; };
 		80DFAAD01A760CE100F69205 /* ExVision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExVision.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80DFAAD41A760CE100F69205 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80DFAAD51A760CE100F69205 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -173,8 +164,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				80CDAB7E1A80AB4800DD91C0 /* DJISDK.framework in Frameworks */,
-				807019371A7A1EC500B599C0 /* MapKit.framework in Frameworks */,
 				80DFAB771A7610F200F69205 /* libiconv.dylib in Frameworks */,
 				80DFAAFC1A76100C00F69205 /* libz.dylib in Frameworks */,
 				80DFAB6C1A7610AE00F69205 /* libavfilter.a in Frameworks */,
@@ -184,6 +173,7 @@
 				80DFAB6B1A7610AE00F69205 /* libavdevice.a in Frameworks */,
 				80DFAB711A7610AE00F69205 /* libswresample.a in Frameworks */,
 				80DFAB6F1A7610AE00F69205 /* libavutil.a in Frameworks */,
+				807BCBB31AC2A015007E23E2 /* DJISDK.framework in Frameworks */,
 				80DFAB701A7610AE00F69205 /* libpostproc.a in Frameworks */,
 				80DFAB6A1A7610AE00F69205 /* libavcodec.a in Frameworks */,
 			);
@@ -202,8 +192,6 @@
 		80DFAAC71A760CE100F69205 = {
 			isa = PBXGroup;
 			children = (
-				80CDAB7D1A80AB4800DD91C0 /* DJISDK.framework */,
-				807019361A7A1EC500B599C0 /* MapKit.framework */,
 				80DFAAD21A760CE100F69205 /* ExVision */,
 				80DFAAEC1A760CE100F69205 /* ExVisionTests */,
 				80DFAAD11A760CE100F69205 /* Products */,
@@ -228,8 +216,6 @@
 				80DFAADB1A760CE100F69205 /* ViewController.m */,
 				807019271A762CEB00B599C0 /* CameraViewController.h */,
 				807019281A762CEB00B599C0 /* CameraViewController.m */,
-				807019311A7A151C00B599C0 /* SettingsViewController.h */,
-				807019321A7A151C00B599C0 /* SettingsViewController.m */,
 				80DFAADD1A760CE100F69205 /* Main.storyboard */,
 				80DFAAE01A760CE100F69205 /* Images.xcassets */,
 				80DFAAE21A760CE100F69205 /* LaunchScreen.xib */,
@@ -241,8 +227,7 @@
 		80DFAAD31A760CE100F69205 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				807019391A7A233900B599C0 /* camera_shutter_icon.png */,
-				8070192F1A7A0C8500B599C0 /* redbg.png */,
+				807BCBB21AC2A015007E23E2 /* DJISDK.framework */,
 				80DFAAFD1A7610AE00F69205 /* VideoPreviewer */,
 				80DFAB761A7610F200F69205 /* libiconv.dylib */,
 				80DFAAFB1A76100C00F69205 /* libz.dylib */,
@@ -546,11 +531,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				807019301A7A0C8500B599C0 /* redbg.png in Resources */,
 				80DFAADF1A760CE100F69205 /* Main.storyboard in Resources */,
 				80DFAAE41A760CE100F69205 /* LaunchScreen.xib in Resources */,
 				80DFAAE11A760CE100F69205 /* Images.xcassets in Resources */,
-				8070193A1A7A233900B599C0 /* camera_shutter_icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -575,7 +558,6 @@
 				80DFAAD61A760CE100F69205 /* main.m in Sources */,
 				80DFAB741A7610AE00F69205 /* VideoFrameExtractor.m in Sources */,
 				807019291A762CEB00B599C0 /* CameraViewController.m in Sources */,
-				807019331A7A151C00B599C0 /* SettingsViewController.m in Sources */,
 				80DFAB731A7610AE00F69205 /* MovieGLView.m in Sources */,
 				80DFAB681A7610AE00F69205 /* DJIDispatch.m in Sources */,
 			);
@@ -704,7 +686,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ExVision",
-					"$(PROJECT_DIR)",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -728,7 +709,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ExVision",
-					"$(PROJECT_DIR)",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",

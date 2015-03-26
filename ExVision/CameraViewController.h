@@ -7,28 +7,51 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <DJISDK/DJIDrone.h>
-#import <DJISDK/DJICamera.h>
-#import <DJISDK/DJIGimbal.h>
+#import <DJISDK/DJISDK.h>
 
 
-@interface CameraViewController : UIViewController<DJICameraDelegate, DJIGimbalDelegate>
+
+@interface CameraViewController : UIViewController <DJIDroneDelegate, GroundStationDelegate, DJICameraDelegate>
 {
     DJIDrone* _drone;
     DJICamera* _camera;
     
     UILabel* _connectionStatusLabel;
     BOOL _gimbalAttitudeUpdateFlag;
+    BOOL shootPan;
+
     
+
+    NSObject<DJIGroundStation>* _groundStation;
+    CLLocationCoordinate2D _homeLocation;
+    NSString *wp_index;
     
-    
+    double currentAltitude;
+
     
 }
 
 @property(nonatomic, retain) IBOutlet UIView* videoPreviewView;
-
-
+@property(nonatomic, strong) IBOutlet UILabel* logLabel;
 @property(nonatomic, strong) IBOutlet UILabel* attitudeLabel;
+
+
+/**
+ *
+ * Debug Outlets
+ *
+ */
+
+@property(nonatomic, strong) IBOutlet UILabel* homeLocationLabel;
+@property(nonatomic, strong) IBOutlet UILabel* droneLocation;
+@property(nonatomic, strong) IBOutlet UILabel* targetWP;
+@property(nonatomic, strong) IBOutlet UILabel* altitude;
+@property(nonatomic, strong) IBOutlet UILabel* targetAltitude;
+
+@property(nonatomic, strong) IBOutlet UILabel* WaypointAltitude;
+
+
+
 /**
  *  Gimbal
  *
