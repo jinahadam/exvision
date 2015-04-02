@@ -9,6 +9,8 @@
 #import "CameraViewController.h"
 #import "VideoPreviewer.h"
 #import <DJISDK/DJISDK.h>
+#import <DJISDK/DJISDCardOperation.h>
+
 
 @interface CameraViewController ()
 
@@ -808,6 +810,18 @@
     
     currentAltitude = flyingInfo.altitude;
     
+    
+}
+
+-(IBAction)clear:(id)sender {
+    [_camera formatSDCard:^(DJIError *error) {
+        NSLog(@"error %@", error.errorDescription);
+    }];
+
+}
+
+-(void)formatSDCard:(DJIExecuteResultBlock)block {
+    NSLog(@"format SD card");
     
 }
 

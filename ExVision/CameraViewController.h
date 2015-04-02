@@ -11,7 +11,7 @@
 
 
 
-@interface CameraViewController : UIViewController <DJIDroneDelegate, GroundStationDelegate, DJICameraDelegate>
+@interface CameraViewController : UIViewController <DJIDroneDelegate, GroundStationDelegate, DJICameraDelegate, DJISDCardOperation>
 {
     DJIDrone* _drone;
     DJICamera* _camera;

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		807019291A762CEB00B599C0 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 807019281A762CEB00B599C0 /* CameraViewController.m */; };
 		807BCBB31AC2A015007E23E2 /* DJISDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 807BCBB21AC2A015007E23E2 /* DJISDK.framework */; };
+		8090FAB91ACD12470011D83C /* MediaTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8090FAB81ACD12470011D83C /* MediaTestViewController.m */; };
 		80DFAAD61A760CE100F69205 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 80DFAAD51A760CE100F69205 /* main.m */; };
 		80DFAAD91A760CE100F69205 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 80DFAAD81A760CE100F69205 /* AppDelegate.mm */; };
 		80DFAADC1A760CE100F69205 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80DFAADB1A760CE100F69205 /* ViewController.m */; };
@@ -48,6 +49,8 @@
 		807019271A762CEB00B599C0 /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
 		807019281A762CEB00B599C0 /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
 		807BCBB21AC2A015007E23E2 /* DJISDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DJISDK.framework; sourceTree = "<group>"; };
+		8090FAB71ACD12470011D83C /* MediaTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaTestViewController.h; sourceTree = "<group>"; };
+		8090FAB81ACD12470011D83C /* MediaTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaTestViewController.m; sourceTree = "<group>"; };
 		80DFAAD01A760CE100F69205 /* ExVision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExVision.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80DFAAD41A760CE100F69205 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80DFAAD51A760CE100F69205 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -210,6 +213,8 @@
 		80DFAAD21A760CE100F69205 /* ExVision */ = {
 			isa = PBXGroup;
 			children = (
+				8090FAB71ACD12470011D83C /* MediaTestViewController.h */,
+				8090FAB81ACD12470011D83C /* MediaTestViewController.m */,
 				80DFAAD71A760CE100F69205 /* AppDelegate.h */,
 				80DFAAD81A760CE100F69205 /* AppDelegate.mm */,
 				80DFAADA1A760CE100F69205 /* ViewController.h */,
@@ -556,6 +561,7 @@
 				80DFAAD91A760CE100F69205 /* AppDelegate.mm in Sources */,
 				80DFAB751A7610AE00F69205 /* VideoPreviewer.m in Sources */,
 				80DFAAD61A760CE100F69205 /* main.m in Sources */,
+				8090FAB91ACD12470011D83C /* MediaTestViewController.m in Sources */,
 				80DFAB741A7610AE00F69205 /* VideoFrameExtractor.m in Sources */,
 				807019291A762CEB00B599C0 /* CameraViewController.m in Sources */,
 				80DFAB731A7610AE00F69205 /* MovieGLView.m in Sources */,

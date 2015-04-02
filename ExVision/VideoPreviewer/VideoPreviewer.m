@@ -222,14 +222,14 @@
             inputData = NULL;
         }
     }
-    for(int i = 0;i<RENDER_FRAME_NUMBER;i++){
-        pthread_rwlock_wrlock(&(_renderYUVFrame[i]->mutex));
-        free(_renderYUVFrame[i]->luma);
-        free(_renderYUVFrame[i]->chromaB);
-        free(_renderYUVFrame[i]->chromaR);
-        pthread_rwlock_unlock(&(_renderYUVFrame[i]->mutex));
-        free(_renderYUVFrame[i]);
-    }
+//    for(int i = 0;i<RENDER_FRAME_NUMBER;i++){
+//        pthread_rwlock_wrlock(&(_renderYUVFrame[i]->mutex));
+//        free(_renderYUVFrame[i]->luma);
+//        free(_renderYUVFrame[i]->chromaB);
+//        free(_renderYUVFrame[i]->chromaR);
+//        pthread_rwlock_unlock(&(_renderYUVFrame[i]->mutex));
+//        free(_renderYUVFrame[i]);
+//    }
 }
 
 -(void) dealloc
