@@ -216,9 +216,9 @@
 //    if (!systemState.isTimeSynced) {
 //        [_camera syncTime:nil];
 //    }
-//    if (systemState.isUSBMode) {
-//        [_camera setCamerMode:CameraCameraMode withResultBlock:Nil];
-//    }
+    if (systemState.isUSBMode) {
+        [_camera setCamerMode:CameraCameraMode withResultBlock:Nil];
+    }
 }
 
 #pragma mark - Gimbal movement

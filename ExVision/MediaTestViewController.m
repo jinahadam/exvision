@@ -10,6 +10,18 @@
 //#import "MediaPreviewViewController.h"
 #import <DJISDK/DJISDK.h>
 
+#define ThrowWandException(wand) { \
+char * description; \
+ExceptionType severity; \
+\
+description = MagickGetException(wand,&severity); \
+(void) fprintf(stderr, "%s %s %lu %s\n", GetMagickModule(), description); \
+description = (char *) MagickRelinquishMemory(description); \
+exit(-1); \
+}
+
+
+
 @implementation MediaTestViewController
 
 - (void)viewDidLoad
@@ -22,6 +34,7 @@
     _loadingManager = [[MediaLoadingManager alloc] initWithThreadsForImage:4 threadsForVideo:4];
     _fetchingMedias = NO;
     
+    self.imagesForProcessing = [[NSMutableArray alloc] init];
     
     self.status.text = @"Preparing for download...";
 }
@@ -43,44 +56,52 @@
 
 -(IBAction)download:(id)sender {
     
-   // DJIMedia *m = [_mediasList objectAtIndex:1];
-    
-    //    [_mediasList enumerateObjectsUsingBlock:^(DJIMedia *media, NSUInteger idx, BOOL *stop) {
-    //        NSLog(@"downloading.... %@", media.mediaURL);
-    //
-    //
-    //
-    //
-    //    }];
-   // __block long long totalDownload = 0;
-    
-//    for (int i = 0; i < _mediasList.count; i++) {
-//        DJIMedia *m = [_mediasList objectAtIndex:i];
-//        totalDownload = totalDownload + m.fileSize;
-//    }
     
     __block long long filesDownloaded = 0;
 
-//
+
     for (int i = 0; i < _mediasList.count; i++) {
-        DJIMedia *m = [_mediasList objectAtIndex:i];
         
+  //  [_mediasList enumerateObjectsUsingBlock:^(DJIMedia *m, NSUInteger idx, BOOL *stop) {
+    
+    
+        
+        DJIMedia *m = [_mediasList objectAtIndex:i];
+        //sleep(10);
         
       //  long long fileSize = m.fileSize;
         NSMutableData* mediaData = [[NSMutableData alloc] init];
         
+        
         [m fetchMediaData:^(NSData *data, BOOL *stop, NSError *error) {
             if (*stop) {
                 if (error) {
-                    NSLog(@"fetchMediaDataError:%@", error);
+                    NSLog(@"failed :%d index", i);
+                    filesDownloaded = filesDownloaded + 1;
+
                 }
                 else
                 {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        self.image.image = [UIImage imageWithData:mediaData];
+                        CGSize imageSize = CGSizeMake(1096, 822);
+                        UIImage *unwarped = [self unwarpVisionImage:[self resizedImage:[UIImage imageWithData:mediaData] to:imageSize interpolationQuality:kCGInterpolationMedium]];
+                        
+
+                        self.image.image = unwarped;
+                        [self.imagesForProcessing addObject:unwarped];
+                        
                         filesDownloaded = filesDownloaded + 1;
                         
                         self.status.text = [NSString stringWithFormat:@"downloading %d of %i", (int)filesDownloaded, _mediasList.count];
+                        
+                        NSLog(@"process?? %d %d", (int)filesDownloaded, _mediasList.count);
+                        if((int)filesDownloaded == _mediasList.count) {
+                            
+                      //      [self.imagesForProcessing sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+                            [self processImages];
+                            self.status.text = @"Processing Pano...";
+                            NSLog(@"Process Pano");
+                        }
                         
                     });
                 }
@@ -89,43 +110,43 @@
             {
                 if (data && data.length > 0) {
                     [mediaData appendData:data];
-                  //  fileTotaldownloaded += data.length;
-                  //  int progress = (int)(fileTotaldownloaded*100 / fileSize);
-                   // NSLog(@"Progress on Image %@ : %d",m.fileName, progress);
                 }
             }
         }];
     }
 
 
-//    NSURL *url = [NSURL URLWithString:m.mediaURL];
-//
-//    NSURLSessionDownloadTask *downloadPhotoTask = [[NSURLSession sharedSession]
-//                                                   downloadTaskWithURL:url completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error) {
-//                                                       
-//                                                       NSLog(@"download error %@", error.description);
-//                                                       
-//                                                       NSData *d =  [NSData dataWithContentsOfURL:location];
-//                                                       
-//                                                       NSLog(@"data %d", d.length);
-//
-//                                                       
-//                                                       UIImage *downloadedImage = [UIImage imageWithData:d];
-//                                                       //self.image.image = downloadedImage;
-//                                                       
-//                                                   }];
-//    
-//    
-//    [downloadPhotoTask resume];
-    
-//    [_mediasList enumerateObjectsUsingBlock:^(DJIMedia *media, NSUInteger idx, BOOL *stop) {
-//        NSLog(@"downloading.... %@", media.mediaURL);
-//        
-//      
-//        
-//        
-//    }];
 }
+
+
+
+
+-(void) processImages {
+    __block UIImage *result;
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+        
+        
+        UIImage *uncropped =[CVWrapper processWithArray:self.imagesForProcessing];
+        
+        
+        CGRect boundsToCrop = CGRectMake(0, 40, [uncropped size].width, [uncropped size].height-100);
+        
+       // NSLog(@"%f %f SIZE", [uncropped size].width-20, [uncropped size].height-100);
+        
+        result = [self croppedImage:boundsToCrop image:uncropped];
+        
+        UIImageWriteToSavedPhotosAlbum(result, nil, nil, nil);
+        
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            //Run UI Updates
+            self.image.image = result;
+            self.status.text = @"Done";
+            
+        });
+    });
+}
+
+
 
 -(void) updateMedias
 {
@@ -189,6 +210,137 @@
     
     [self updateMedias];
 }
+
+
+#pragma "Wand and CV"
+
+
+- (UIImage *)croppedImage:(CGRect)bounds
+                    image:(UIImage*) src {
+    CGFloat scale = MAX(src.scale, 1.0f);
+    CGRect scaledBounds = CGRectMake(bounds.origin.x * scale, bounds.origin.y * scale, bounds.size.width * scale, bounds.size.height * scale);
+    CGImageRef imageRef = CGImageCreateWithImageInRect([src CGImage], scaledBounds);
+    UIImage *croppedImage = [UIImage imageWithCGImage:imageRef scale:src.scale orientation:UIImageOrientationUp];
+    CGImageRelease(imageRef);
+    return croppedImage;
+}
+
+
+
+- (CGImageRef)resizedImage:(UIImage*)src
+                        to:(CGSize)newSize
+      interpolationQuality:(CGInterpolationQuality)quality {
+    
+    
+    
+    CGFloat scale = MAX(1.0f, src.scale);
+    CGRect newRect = CGRectIntegral(CGRectMake(0, 0, newSize.width*scale, newSize.height*scale));
+    //    CGRect transposedRect = CGRectMake(0, 0, newRect.size.height, newRect.size.width);
+    CGImageRef imageRef = src.CGImage;
+    
+    // Fix for a colorspace / transparency issue that affects some types of
+    // images. See here: http://vocaro.com/trevor/blog/2009/10/12/resize-a-uiimage-the-right-way/comment-page-2/#comment-39951
+    
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    CGContextRef bitmap = CGBitmapContextCreate(
+                                                NULL,
+                                                newRect.size.width,
+                                                newRect.size.height,
+                                                8, /* bits per channel */
+                                                (newRect.size.width * 4), /* 4 channels per pixel * numPixels/row */
+                                                colorSpace,
+                                                (CGBitmapInfo)kCGImageAlphaPremultipliedLast
+                                                );
+    CGColorSpaceRelease(colorSpace);
+    
+    // Set the quality level to use when rescaling
+    CGContextSetInterpolationQuality(bitmap, quality);
+    
+    // Draw into the context; this scales the image
+    CGContextDrawImage(bitmap, newRect, imageRef);
+    
+    // Get the resized image from the context and a UIImage
+    CGImageRef newImageRef = CGBitmapContextCreateImage(bitmap);
+    // UIImage *newImage = [UIImage imageWithCGImage:newImageRef scale:src.scale orientation:UIImageOrientationUp];
+    
+    // Clean up
+    CGContextRelease(bitmap);
+    //CGImageRelease(newImageRef);
+    
+    return newImageRef;
+}
+
+
+
+
+- (UIImage *)unwarpVisionImage:(CGImageRef)srcCGImage {
+    
+    const unsigned long width = CGImageGetWidth(srcCGImage);
+    const unsigned long height = CGImageGetHeight(srcCGImage);
+    const char *map = "ARGB"; // hard coded
+    const StorageType inputStorage = CharPixel;
+    CGImageRef standardized = createStandardImage(srcCGImage);
+    NSData *srcData = (NSData *) CFBridgingRelease(CGDataProviderCopyData(CGImageGetDataProvider(standardized)));
+    CGImageRelease(standardized);
+    const void *bytes = [srcData bytes];
+    MagickWandGenesis();
+    MagickWand * magick_wand_local= NewMagickWand();
+    MagickBooleanType status = MagickConstituteImage(magick_wand_local, width, height, map, inputStorage, bytes);
+    if (status == MagickFalse) {
+        ThrowWandException(magick_wand_local);
+    }
+    double points[8];
+    points[0] = 0.1194435;
+    points[1] = -0.354597;
+    points[2] = -0.018339;
+    
+    status = MagickDistortImage(magick_wand_local, BarrelDistortion, 3, points, MagickFalse);
+    
+    if (status == MagickFalse) {
+        ThrowWandException(magick_wand_local);
+    }
+    const int bitmapBytesPerRow = (int)(width * strlen(map));
+    const int bitmapByteCount = (int)(bitmapBytesPerRow * height);
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    char *trgt_image = malloc(bitmapByteCount);
+    status = MagickExportImagePixels(magick_wand_local, 0, 0, width, height, map, CharPixel, trgt_image);
+    if (status == MagickFalse) {
+        ThrowWandException(magick_wand_local);
+    }
+    magick_wand_local = DestroyMagickWand(magick_wand_local);
+    MagickWandTerminus();
+    CGContextRef context = CGBitmapContextCreate (trgt_image,
+                                                  width,
+                                                  height,
+                                                  8, // bits per component
+                                                  bitmapBytesPerRow,
+                                                  colorSpace,
+                                                  (CGBitmapInfo)kCGImageAlphaPremultipliedFirst);
+    CGColorSpaceRelease(colorSpace);
+    CGImageRef cgimage = CGBitmapContextCreateImage(context);
+    UIImage *image = [[UIImage alloc] initWithCGImage:cgimage];
+    CGImageRelease(cgimage);
+    CGContextRelease(context);
+    free(trgt_image);
+    return image;
+}
+
+
+CGImageRef createStandardImage(CGImageRef image) {
+    const size_t width = CGImageGetWidth(image);
+    const size_t height = CGImageGetHeight(image);
+    CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
+    CGContextRef ctx = CGBitmapContextCreate(NULL, width, height, 8, 4*width, space,
+                                             kCGBitmapByteOrder32Big | kCGImageAlphaPremultipliedFirst);
+    CGColorSpaceRelease(space);
+    CGContextDrawImage(ctx, CGRectMake(0, 0, width, height), image);
+    CGImageRef dstImage = CGBitmapContextCreateImage(ctx);
+    CGContextRelease(ctx);
+    return dstImage;
+}
+
+
+
 @end
 
 @interface MediaContextLoadingTask : NSObject
@@ -297,6 +449,11 @@
         [queue cancelAllOperations];
     }
 }
+
+
+
+
+
 
 @end
 
