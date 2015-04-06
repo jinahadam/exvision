@@ -80,6 +80,18 @@
 -(IBAction) uploadPanaromaWaypoints:(id)sender
 
 {
+    
+    CLLocationCoordinate2D step1 = [self coordinateFromCoord:_CurrentDroneLocation atDistanceKm:(0.5/1000) atBearingDegrees:currentYaw - 45];
+    
+    
+    CLLocationCoordinate2D step2 = [self coordinateFromCoord:_CurrentDroneLocation atDistanceKm:(0.5/1000) atBearingDegrees:currentYaw + 25];
+    
+    CLLocationCoordinate2D step3 = [self coordinateFromCoord:_CurrentDroneLocation atDistanceKm:(0.5/1000) atBearingDegrees:currentYaw + 50];
+    
+    CLLocationCoordinate2D step4 = [self coordinateFromCoord:_CurrentDroneLocation atDistanceKm:(0.5/1000) atBearingDegrees:currentYaw + 75];
+    
+    
+    
     CGPoint p3 = CGPointMake(0.00000199,-0.000011);
     CGPoint p4 = CGPointMake(0.00000900,-0.000014);
     CGPoint p5 = CGPointMake(0.00001099,-0.000011);
@@ -104,22 +116,22 @@
         
     }
     
-    DJIGroundStationWaypoint* wp3 = [[DJIGroundStationWaypoint alloc] initWithCoordinate:point3];
+    DJIGroundStationWaypoint* wp3 = [[DJIGroundStationWaypoint alloc] initWithCoordinate:step1];
     wp3.altitude = height;
     wp3.horizontalVelocity = 4;
     wp3.stayTime = 1.0;
     
-    DJIGroundStationWaypoint* wp4 = [[DJIGroundStationWaypoint alloc] initWithCoordinate:point4];
+    DJIGroundStationWaypoint* wp4 = [[DJIGroundStationWaypoint alloc] initWithCoordinate:step2];
     wp4.altitude = height;
     wp4.horizontalVelocity = 4;
     wp4.stayTime = 1.0;
     
-    DJIGroundStationWaypoint* wp5 = [[DJIGroundStationWaypoint alloc] initWithCoordinate:point5];
+    DJIGroundStationWaypoint* wp5 = [[DJIGroundStationWaypoint alloc] initWithCoordinate:step3];
     wp5.altitude = height;
     wp5.horizontalVelocity = 4;
     wp5.stayTime = 1.0;
     
-    DJIGroundStationWaypoint* wp6 = [[DJIGroundStationWaypoint alloc] initWithCoordinate:point6];
+    DJIGroundStationWaypoint* wp6 = [[DJIGroundStationWaypoint alloc] initWithCoordinate:step4];
     wp6.altitude = height;
     wp6.horizontalVelocity = 4;
     wp6.stayTime = 1.0;
@@ -588,6 +600,7 @@
 
 -(void) onGroundStationStartTaskWithResult:(GroundStationExecuteResult*)result
 {
+    
     if (result.executeStatus == GSExecStatusBegan) {
         self.logLabel.text = @"Task Start Began";
         [self takeContinousPictures];
@@ -716,7 +729,7 @@
             break;
     }
     
-//    self.contrlModeLabel.text = ctrlMode;
+    self.contrlModeLabel.text = ctrlMode;
 }
 
 -(void) onGroundStationGpsStatusChanged:(GroundStationGpsStatus)status
@@ -743,6 +756,8 @@
 
 -(void) groundStation:(id<DJIGroundStation>)gs didExecuteWithResult:(GroundStationExecuteResult*)result
 {
+    
+    
     switch (result.currentAction) {
         case GSActionOpen:
         {
@@ -801,12 +816,18 @@
     self.logLabel.text = [NSString stringWithFormat:@"Sat: %d", flyingInfo.satelliteCount];
     self.homeLocationLabel.text = [NSString stringWithFormat:@"%f, %f", flyingInfo.homeLocation.latitude, flyingInfo.homeLocation.longitude];
     self.droneLocation.text = [NSString stringWithFormat:@"%f, %f", flyingInfo.droneLocation.latitude, flyingInfo.droneLocation.longitude];
+    
+    
+    _CurrentDroneLocation = flyingInfo.droneLocation;
+    
     self.targetWP.text = [NSString stringWithFormat:@"%d", flyingInfo.targetWaypointIndex];
     self.altitude.text = [NSString stringWithFormat:@"%f", flyingInfo.altitude];
     self.targetAltitude.text = [NSString stringWithFormat:@"%f", flyingInfo.targetAltitude];
     
+    DJIAttitude att = flyingInfo.attitude;
     
-    
+    currentYaw = att.yaw/10000.0;
+    self.cYaw.text = [NSString stringWithFormat:@"%f", [self degreesFromRadians:currentYaw]];
     
     currentAltitude = flyingInfo.altitude;
     
@@ -825,5 +846,45 @@
     
 }
 
+
+#pragma GPS Calculations
+
+- (double)radiansFromDegrees:(double)degrees
+{
+    return degrees * (M_PI/180.0);
+}
+
+- (double)degreesFromRadians:(double)radians
+{
+    return radians * (180.0/M_PI);
+}
+
+
+- (CLLocationCoordinate2D)coordinateFromCoord:
+(CLLocationCoordinate2D)fromCoord
+                                 atDistanceKm:(double)distanceKm
+                             atBearingDegrees:(double)bearingDegrees
+{
+    double distanceRadians = distanceKm / 6371.0;
+    //6,371 = Earth's radius in km
+    double bearingRadians = [self radiansFromDegrees:bearingDegrees];
+    double fromLatRadians = [self radiansFromDegrees:fromCoord.latitude];
+    double fromLonRadians = [self radiansFromDegrees:fromCoord.longitude];
+    
+    double toLatRadians = asin( sin(fromLatRadians) * cos(distanceRadians)
+                               + cos(fromLatRadians) * sin(distanceRadians) * cos(bearingRadians) );
+    
+    double toLonRadians = fromLonRadians + atan2(sin(bearingRadians)
+                                                 * sin(distanceRadians) * cos(fromLatRadians), cos(distanceRadians)
+                                                 - sin(fromLatRadians) * sin(toLatRadians));
+    
+    // adjust toLonRadians to be in the range -180 to +180...
+    toLonRadians = fmod((toLonRadians + 3*M_PI), (2*M_PI)) - M_PI;
+    
+    CLLocationCoordinate2D result;
+    result.latitude = [self degreesFromRadians:toLatRadians];
+    result.longitude = [self degreesFromRadians:toLonRadians];
+    return result;
+}
 
 @end

@@ -24,9 +24,11 @@
 
     NSObject<DJIGroundStation>* _groundStation;
     CLLocationCoordinate2D _homeLocation;
+    CLLocationCoordinate2D _CurrentDroneLocation;
     NSString *wp_index;
     
     double currentAltitude;
+    double currentYaw;
 
     
 }
@@ -47,8 +49,10 @@
 @property(nonatomic, strong) IBOutlet UILabel* targetWP;
 @property(nonatomic, strong) IBOutlet UILabel* altitude;
 @property(nonatomic, strong) IBOutlet UILabel* targetAltitude;
-
+@property(nonatomic, strong) IBOutlet UILabel* cYaw;
 @property(nonatomic, strong) IBOutlet UILabel* WaypointAltitude;
+@property(nonatomic, strong) IBOutlet UILabel* contrlModeLabel;
+
 
 
 

@@ -79,7 +79,6 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M9u-dM-Hc2">
                                 <rect key="frame" x="7" y="454" width="317" height="78"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="81" y="510" width="317" height="78"/>
@@ -180,6 +179,15 @@
                                     <rect key="frame" x="583" y="218" width="148" height="21"/>
                                 </variation>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MlB-5h-EoU">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="581" y="182" width="148" height="21"/>
+                                </variation>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pRo-c7-Utz">
                                 <rect key="frame" x="96" y="74" width="139" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -277,6 +285,33 @@
                                     <action selector="clear:" destination="uqc-4B-zff" eventType="touchUpInside" id="4It-7e-Zef"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mode" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o2L-Q2-5ST">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="440" y="182" width="45" height="21"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yaw" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gk6-dt-OuZ">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="440" y="153" width="32" height="21"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ann-p2-flY">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="581" y="153" width="148" height="21"/>
+                                </variation>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
@@ -290,12 +325,16 @@
                                 <exclude reference="isQ-JU-V6P"/>
                                 <exclude reference="xvV-lI-FQv"/>
                                 <exclude reference="tuJ-L9-BmM"/>
+                                <exclude reference="MlB-5h-EoU"/>
                                 <exclude reference="8Hc-qj-AHk"/>
                                 <exclude reference="q26-BF-zRq"/>
                                 <exclude reference="CcZ-sL-Q99"/>
                                 <exclude reference="RBz-1O-Imn"/>
                                 <exclude reference="6lT-Kh-CCd"/>
                                 <exclude reference="2Nx-Fq-6tm"/>
+                                <exclude reference="o2L-Q2-5ST"/>
+                                <exclude reference="gk6-dt-OuZ"/>
+                                <exclude reference="Ann-p2-flY"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
@@ -309,12 +348,16 @@
                                 <include reference="isQ-JU-V6P"/>
                                 <include reference="xvV-lI-FQv"/>
                                 <include reference="tuJ-L9-BmM"/>
+                                <include reference="MlB-5h-EoU"/>
                                 <include reference="8Hc-qj-AHk"/>
                                 <include reference="q26-BF-zRq"/>
                                 <include reference="CcZ-sL-Q99"/>
                                 <include reference="RBz-1O-Imn"/>
                                 <include reference="6lT-Kh-CCd"/>
                                 <include reference="2Nx-Fq-6tm"/>
+                                <include reference="o2L-Q2-5ST"/>
+                                <include reference="gk6-dt-OuZ"/>
+                                <include reference="Ann-p2-flY"/>
                             </mask>
                         </variation>
                     </view>
@@ -322,6 +365,8 @@
                         <outlet property="WaypointAltitude" destination="xvV-lI-FQv" id="I6H-mD-Za4"/>
                         <outlet property="altitude" destination="XMK-19-ewZ" id="CXH-Qv-87V"/>
                         <outlet property="attitudeLabel" destination="R3O-hr-wxt" id="cHW-nM-E2X"/>
+                        <outlet property="cYaw" destination="Ann-p2-flY" id="xbx-QY-vgT"/>
+                        <outlet property="contrlModeLabel" destination="MlB-5h-EoU" id="beA-hi-ymk"/>
                         <outlet property="droneLocation" destination="GAe-C2-pS4" id="UrL-cD-N63"/>
                         <outlet property="homeLocationLabel" destination="tuJ-L9-BmM" id="yKR-hU-fU1"/>
                         <outlet property="logLabel" destination="M9u-dM-Hc2" id="6t3-na-G6W"/>
