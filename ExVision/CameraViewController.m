@@ -26,10 +26,6 @@
     _drone = [[DJIDrone alloc] initWithType:DJIDrone_Phantom];
     _camera = _drone.camera;
     _camera.delegate = self;
-    
-    //_drone.gimbal.delegate = self;
-    
-    
     _groundStation = _drone.mainController;
 
     
@@ -39,6 +35,8 @@
     
     
     shootPan = true;
+    
+    wp_idx = -1;
 }
 
 -(void) dealloc
@@ -78,76 +76,27 @@
 }
 
 -(IBAction) uploadPanaromaWaypoints:(id)sender
-
 {
-    
-    CLLocationCoordinate2D step1 = [self coordinateFromCoord:_CurrentDroneLocation atDistanceKm:(0.5/1000) atBearingDegrees:currentYaw - 45];
-    
-    
-    CLLocationCoordinate2D step2 = [self coordinateFromCoord:_CurrentDroneLocation atDistanceKm:(0.5/1000) atBearingDegrees:currentYaw + 25];
-    
-    CLLocationCoordinate2D step3 = [self coordinateFromCoord:_CurrentDroneLocation atDistanceKm:(0.5/1000) atBearingDegrees:currentYaw + 50];
-    
-    CLLocationCoordinate2D step4 = [self coordinateFromCoord:_CurrentDroneLocation atDistanceKm:(0.5/1000) atBearingDegrees:currentYaw + 75];
-    
-    
-    
-    CGPoint p3 = CGPointMake(0.00000199,-0.000011);
-    CGPoint p4 = CGPointMake(0.00000900,-0.000014);
-    CGPoint p5 = CGPointMake(0.00001099,-0.000011);
-    CGPoint p6 = CGPointMake(0.00002199,-0.000003);
-    
     const float height = currentAltitude;
-    
     self.WaypointAltitude.text = [NSString stringWithFormat:@" %f", height];
     
     DJIGroundStationTask* newTask = [DJIGroundStationTask newTask];
-    CLLocationCoordinate2D  point3 = { 22.5346709662 , 113.9434005173 };
-    CLLocationCoordinate2D  point4 = { 22.5346039662 , 113.9418915173 };
-    CLLocationCoordinate2D  point5 = { 22.5346039662 , 113.9418915173 };
-    CLLocationCoordinate2D  point6 = { 22.5346039662 , 113.9418915173 };
+    [newTask removeAllWaypoint];
+    float _yaw = currentYaw;
     
-    if (CLLocationCoordinate2DIsValid(_homeLocation)) {
+    for (int i = 0; i < 15; i++) {
+        CLLocationCoordinate2D step = [self coordinateFromCoord:_CurrentDroneLocation atDistanceKm:(0.5/1000) atBearingDegrees: _yaw];
         
-        point3 = CLLocationCoordinate2DMake(_homeLocation.latitude+p3.x,_homeLocation.longitude+p3.y);
-        point4 = CLLocationCoordinate2DMake(_homeLocation.latitude+p4.x,_homeLocation.longitude+p4.y);
-        point5 = CLLocationCoordinate2DMake(_homeLocation.latitude+p5.x,_homeLocation.longitude+p5.y);
-        point6 = CLLocationCoordinate2DMake(_homeLocation.latitude+p6.x,_homeLocation.longitude+p6.y);
+        DJIGroundStationWaypoint* wp = [[DJIGroundStationWaypoint alloc] initWithCoordinate:step];
+        wp.altitude = height;
+        wp.horizontalVelocity = 2;
+        wp.stayTime = 1.0;
+        
+        [newTask addWaypoint:wp];
+        _yaw = _yaw + 15;
         
     }
-    
-    DJIGroundStationWaypoint* wp3 = [[DJIGroundStationWaypoint alloc] initWithCoordinate:step1];
-    wp3.altitude = height;
-    wp3.horizontalVelocity = 4;
-    wp3.stayTime = 1.0;
-    
-    DJIGroundStationWaypoint* wp4 = [[DJIGroundStationWaypoint alloc] initWithCoordinate:step2];
-    wp4.altitude = height;
-    wp4.horizontalVelocity = 4;
-    wp4.stayTime = 1.0;
-    
-    DJIGroundStationWaypoint* wp5 = [[DJIGroundStationWaypoint alloc] initWithCoordinate:step3];
-    wp5.altitude = height;
-    wp5.horizontalVelocity = 4;
-    wp5.stayTime = 1.0;
-    
-    DJIGroundStationWaypoint* wp6 = [[DJIGroundStationWaypoint alloc] initWithCoordinate:step4];
-    wp6.altitude = height;
-    wp6.horizontalVelocity = 4;
-    wp6.stayTime = 1.0;
-    
-    
-    [newTask removeAllWaypoint];
-    
-    [newTask addWaypoint:wp3];
-    [newTask addWaypoint:wp4];
-    [newTask addWaypoint:wp5];
-    [newTask addWaypoint:wp6];
-    
-    
-    
     [_groundStation uploadGroundStationTask:newTask];
-
 }
 
 
@@ -161,7 +110,6 @@
 
 -(IBAction) onTakePhotoButtonClicked:(id)sender
 {
-    
     shootPan = true;
     [self takeContinousPictures];
 }
@@ -183,8 +131,6 @@
 
 
 -(void) takeContinousPictures {
-
-
     
     [_camera startTakePhoto:CameraSingleCapture withResult:^(DJIError *error) {
         if (error.errorCode != ERR_Successed) {
@@ -201,13 +147,20 @@
         }
         
     }];
- 
     
+}
+
+-(void) SingleShot {
     
-    
-    
-    
-    
+    [_camera startTakePhoto:CameraSingleCapture withResult:^(DJIError *error) {
+        if (error.errorCode != ERR_Successed) {
+            NSLog(@"Take Photo Error : %@", error.errorDescription);
+        } else {
+            
+            
+        }
+        
+    }];
 }
 
 -(IBAction)stopPan:(id)sender {
@@ -603,7 +556,7 @@
     
     if (result.executeStatus == GSExecStatusBegan) {
         self.logLabel.text = @"Task Start Began";
-        [self takeContinousPictures];
+       // [self takeContinousPictures];
         
     }
     else if (result.executeStatus == GSExecStatusSuccessed)
@@ -807,7 +760,6 @@
 
 -(void) groundStation:(id<DJIGroundStation>)gs didUpdateFlyingInformation:(DJIGroundStationFlyingInfo*)flyingInfo
 {
-   // wp_index = [NSString stringWithFormat:@"%d", flyingInfo.targetWaypointIndex];
     
     [self onGroundStationControlModeChanged:flyingInfo.controlMode];
     [self onGroundStationGpsStatusChanged:flyingInfo.gpsStatus];
@@ -821,6 +773,16 @@
     _CurrentDroneLocation = flyingInfo.droneLocation;
     
     self.targetWP.text = [NSString stringWithFormat:@"%d", flyingInfo.targetWaypointIndex];
+    
+    if (flyingInfo.targetWaypointIndex != -1) {
+        if (wp_idx != flyingInfo.targetWaypointIndex) {
+            [self SingleShot];
+        }
+    }
+    
+    wp_idx = flyingInfo.targetWaypointIndex;
+    
+    
     self.altitude.text = [NSString stringWithFormat:@"%f", flyingInfo.altitude];
     self.targetAltitude.text = [NSString stringWithFormat:@"%f", flyingInfo.targetAltitude];
     

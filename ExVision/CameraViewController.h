@@ -25,7 +25,7 @@
     NSObject<DJIGroundStation>* _groundStation;
     CLLocationCoordinate2D _homeLocation;
     CLLocationCoordinate2D _CurrentDroneLocation;
-    NSString *wp_index;
+    int wp_idx;
     
     double currentAltitude;
     double currentYaw;
