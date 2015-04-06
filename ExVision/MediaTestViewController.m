@@ -56,67 +56,62 @@ exit(-1); \
 
 -(IBAction)download:(id)sender {
     
+    downloadStatus = [[NSMutableDictionary alloc] initWithCapacity:_mediasList.count];
     
-    __block long long filesDownloaded = 0;
-
-
     for (int i = 0; i < _mediasList.count; i++) {
-        
-  //  [_mediasList enumerateObjectsUsingBlock:^(DJIMedia *m, NSUInteger idx, BOOL *stop) {
+        [downloadStatus setObject:[NSNumber numberWithInt:0] forKey:[NSNumber numberWithInt:i]];
+    }
+    
+    [self downloadImageOfIndex:0];
+
+}
+
+
+-(void)downloadImageOfIndex:(int)idx {
+
+    DJIMedia *m = [_mediasList objectAtIndex:idx];
+    NSMutableData* mediaData = [[NSMutableData alloc] init];
     
     
-        
-        DJIMedia *m = [_mediasList objectAtIndex:i];
-        //sleep(10);
-        
-      //  long long fileSize = m.fileSize;
-        NSMutableData* mediaData = [[NSMutableData alloc] init];
-        
-        
-        [m fetchMediaData:^(NSData *data, BOOL *stop, NSError *error) {
-            if (*stop) {
-                if (error) {
-                    NSLog(@"failed :%d index", i);
-                    filesDownloaded = filesDownloaded + 1;
-
-                }
-                else
-                {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        CGSize imageSize = CGSizeMake(1096, 822);
-                        UIImage *unwarped = [self unwarpVisionImage:[self resizedImage:[UIImage imageWithData:mediaData] to:imageSize interpolationQuality:kCGInterpolationMedium]];
-                        
-
-                        self.image.image = unwarped;
-                        [self.imagesForProcessing addObject:unwarped];
-                        
-                        filesDownloaded = filesDownloaded + 1;
-                        
-                        self.status.text = [NSString stringWithFormat:@"downloading %d of %i", (int)filesDownloaded, _mediasList.count];
-                        
-                        NSLog(@"process?? %d %d", (int)filesDownloaded, _mediasList.count);
-                        if((int)filesDownloaded == _mediasList.count) {
-                            
-                      //      [self.imagesForProcessing sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-                            [self processImages];
-                            self.status.text = @"Processing Pano...";
-                            NSLog(@"Process Pano");
-                        }
-                        
-                    });
-                }
+    [m fetchMediaData:^(NSData *data, BOOL *stop, NSError *error) {
+        if (*stop) {
+            if (error) {
+             NSLog(@"failed :%d index, %@ %d", idx, error.description, error.code);
+                [self downloadImageOfIndex:idx];
+   
             }
             else
             {
-                if (data && data.length > 0) {
-                    [mediaData appendData:data];
-                }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    CGSize imageSize = CGSizeMake(1096, 822);
+                    UIImage *unwarped = [self unwarpVisionImage:[self resizedImage:[UIImage imageWithData:mediaData] to:imageSize interpolationQuality:kCGInterpolationMedium]];
+                    [self.imagesForProcessing addObject:unwarped];
+                    
+                    if (idx < _mediasList.count - 1)
+                        [self downloadImageOfIndex:idx+1];
+                    
+                    
+                    int images_remaining = _mediasList.count - self.imagesForProcessing.count;
+                    
+                    self.status.text = [NSString stringWithFormat:@"Downloading: %d of %d ",idx + 1, _mediasList.count];
+                    
+                    if (images_remaining == 0) {
+                        self.status.text = @"Processing Pano";
+                        [self processImages];
+                    }
+                });
             }
-        }];
-    }
-
+        }
+        else
+        {
+            if (data && data.length > 0) {
+                [mediaData appendData:data];
+            }
+        }
+    }];
 
 }
+
 
 
 

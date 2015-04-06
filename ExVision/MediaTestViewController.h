@@ -23,7 +23,7 @@
     MagickWand * magick_wand;
 
     
-    
+    NSMutableDictionary* downloadStatus;
     NSArray* _mediasList;
     BOOL _fetchingMedias;
 }
@@ -36,6 +36,10 @@
 - (CGImageRef)resizedImage:(UIImage*)src to:(CGSize)newSize interpolationQuality:(CGInterpolationQuality)quality;
 - (UIImage *)croppedImage:(CGRect)bounds image:(UIImage*) src;
 - (UIImage *)unwarpVisionImage:(CGImageRef)srcCGImage;
+
+-(IBAction)downloadMissing:(id)sender;
+
+
 
 @end
 

@@ -453,18 +453,32 @@
                                     <rect key="frame" x="279" y="118" width="467" height="43"/>
                                 </variation>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rSc-4n-68q">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="152" y="118" width="46" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="downloadMissing:" destination="Wqb-os-swp" eventType="touchUpInside" id="xc6-nR-qvo"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="0mC-FT-gDL"/>
                                 <exclude reference="WhM-wJ-LDH"/>
+                                <exclude reference="rSc-4n-68q"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
                             <mask key="subviews">
                                 <include reference="0mC-FT-gDL"/>
                                 <include reference="WhM-wJ-LDH"/>
+                                <include reference="rSc-4n-68q"/>
                             </mask>
                         </variation>
                     </view>
