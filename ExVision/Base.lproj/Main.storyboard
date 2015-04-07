@@ -4,6 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7518.3"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Camera-->
@@ -20,7 +21,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2iW-bB-837" userLabel="VideoPreviewLayer">
                                 <rect key="frame" x="0.0" y="64" width="600" height="350"/>
-                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OYc-ve-v0z">
                                 <rect key="frame" x="385" y="424" width="75" height="50"/>
@@ -101,6 +102,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="4Tm-Se-foC" firstAttribute="baseline" secondItem="hDb-32-9qV" secondAttribute="baseline" id="1zs-Qw-pFl">
+                                <variation key="heightClass=compact" constant="-58"/>
                                 <variation key="widthClass=regular" constant="24"/>
                             </constraint>
                             <constraint firstItem="OYc-ve-v0z" firstAttribute="leading" secondItem="4Tm-Se-foC" secondAttribute="trailing" constant="7" id="2Xb-uu-cvd">
@@ -108,9 +110,14 @@
                             </constraint>
                             <constraint firstAttribute="centerY" secondItem="hDb-32-9qV" secondAttribute="centerY" id="7l0-gW-zrG"/>
                             <constraint firstItem="hDb-32-9qV" firstAttribute="height" secondItem="4Tm-Se-foC" secondAttribute="height" id="9BE-75-aUO"/>
-                            <constraint firstItem="hDb-32-9qV" firstAttribute="top" secondItem="OYc-ve-v0z" secondAttribute="top" id="Hsx-l3-dtQ"/>
+                            <constraint firstItem="4Tm-Se-foC" firstAttribute="leading" secondItem="pPX-cz-P0v" secondAttribute="leadingMargin" constant="415" id="EFl-Ur-2fF"/>
+                            <constraint firstItem="hDb-32-9qV" firstAttribute="top" secondItem="OYc-ve-v0z" secondAttribute="top" id="Hsx-l3-dtQ">
+                                <variation key="heightClass=compact" constant="58"/>
+                            </constraint>
                             <constraint firstItem="2iW-bB-837" firstAttribute="top" secondItem="91D-Sp-K7o" secondAttribute="bottom" id="J3c-rk-BUP"/>
-                            <constraint firstItem="hDb-32-9qV" firstAttribute="baseline" secondItem="OYc-ve-v0z" secondAttribute="firstBaseline" id="JWA-U1-14C"/>
+                            <constraint firstItem="hDb-32-9qV" firstAttribute="baseline" secondItem="OYc-ve-v0z" secondAttribute="firstBaseline" id="JWA-U1-14C">
+                                <variation key="heightClass=compact" constant="58"/>
+                            </constraint>
                             <constraint firstItem="hDb-32-9qV" firstAttribute="top" secondItem="2iW-bB-837" secondAttribute="bottom" constant="8" symbolic="YES" id="Mg4-Uu-P1N"/>
                             <constraint firstItem="OYc-ve-v0z" firstAttribute="centerY" secondItem="4Tm-Se-foC" secondAttribute="centerY" id="Mzl-F5-cIv">
                                 <variation key="widthClass=regular" constant="-24"/>
@@ -118,16 +125,24 @@
                             <constraint firstItem="hDb-32-9qV" firstAttribute="top" secondItem="2iW-bB-837" secondAttribute="bottom" constant="8" symbolic="YES" id="Oss-4z-xgc"/>
                             <constraint firstItem="4Tm-Se-foC" firstAttribute="bottom" secondItem="hDb-32-9qV" secondAttribute="bottom" id="Rqq-T6-cjG"/>
                             <constraint firstItem="4Tm-Se-foC" firstAttribute="leading" secondItem="hDb-32-9qV" secondAttribute="trailing" constant="8" id="SDc-WA-ldK">
+                                <variation key="heightClass=compact" constant="-232"/>
                                 <variation key="widthClass=regular" constant="1"/>
                             </constraint>
                             <constraint firstAttribute="leading" secondItem="hDb-32-9qV" secondAttribute="centerX" id="TDD-Yk-Wln"/>
                             <constraint firstItem="4Tm-Se-foC" firstAttribute="height" secondItem="iUv-mx-3Lw" secondAttribute="height" id="TOV-c4-rtP"/>
                             <constraint firstItem="hDb-32-9qV" firstAttribute="centerY" secondItem="4Tm-Se-foC" secondAttribute="centerY" id="cnk-Ci-CdE">
+                                <variation key="heightClass=compact" constant="58"/>
                                 <variation key="widthClass=regular" constant="-24"/>
                             </constraint>
-                            <constraint firstItem="OYc-ve-v0z" firstAttribute="baseline" secondItem="hDb-32-9qV" secondAttribute="firstBaseline" id="e3V-rM-iSV"/>
-                            <constraint firstItem="F9T-iT-djq" firstAttribute="top" secondItem="hDb-32-9qV" secondAttribute="bottom" constant="82" id="e9Z-kB-aEe"/>
-                            <constraint firstAttribute="trailing" secondItem="2iW-bB-837" secondAttribute="trailing" id="hMo-zr-VrP"/>
+                            <constraint firstItem="OYc-ve-v0z" firstAttribute="baseline" secondItem="hDb-32-9qV" secondAttribute="firstBaseline" id="e3V-rM-iSV">
+                                <variation key="heightClass=compact" constant="-58"/>
+                            </constraint>
+                            <constraint firstItem="F9T-iT-djq" firstAttribute="top" secondItem="hDb-32-9qV" secondAttribute="bottom" constant="82" id="e9Z-kB-aEe">
+                                <variation key="heightClass=compact" constant="24"/>
+                            </constraint>
+                            <constraint firstAttribute="trailing" secondItem="2iW-bB-837" secondAttribute="trailing" id="hMo-zr-VrP">
+                                <variation key="heightClass=compact" constant="240"/>
+                            </constraint>
                             <constraint firstItem="F9T-iT-djq" firstAttribute="top" secondItem="iUv-mx-3Lw" secondAttribute="bottom" constant="24" id="iA9-Sn-BuY">
                                 <variation key="widthClass=regular" constant="4"/>
                             </constraint>
@@ -138,6 +153,7 @@
                                 <variation key="widthClass=regular" constant="-2"/>
                             </constraint>
                             <constraint firstItem="4Tm-Se-foC" firstAttribute="top" secondItem="2iW-bB-837" secondAttribute="bottom" constant="10" id="wyO-13-4Nt">
+                                <variation key="heightClass=compact" constant="-132"/>
                                 <variation key="widthClass=regular" constant="8"/>
                             </constraint>
                             <constraint firstItem="2iW-bB-837" firstAttribute="leading" secondItem="pPX-cz-P0v" secondAttribute="leading" id="yPx-av-zeM"/>
@@ -153,9 +169,22 @@
                                 <exclude reference="Oss-4z-xgc"/>
                                 <exclude reference="TDD-Yk-Wln"/>
                                 <exclude reference="l1v-6L-UgX"/>
+                                <exclude reference="EFl-Ur-2fF"/>
                                 <exclude reference="Rqq-T6-cjG"/>
                                 <exclude reference="uCH-dI-6Jm"/>
                                 <exclude reference="yud-rD-oil"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact">
+                            <mask key="constraints">
+                                <include reference="EFl-Ur-2fF"/>
+                                <exclude reference="zj7-8d-wYR"/>
+                                <include reference="e3V-rM-iSV"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="zj7-8d-wYR"/>
                             </mask>
                         </variation>
                     </view>
