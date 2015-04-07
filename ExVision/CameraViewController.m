@@ -37,6 +37,12 @@
     shootPan = true;
     
     wp_idx = -1;
+    
+    
+    [self.captureBtn primaryStyle];
+    [self.panDownBtn warningStyle];
+    [self.panUpBtn warningStyle];
+    [self.ProcessBtn dangerStyle];
 }
 
 -(void) dealloc
@@ -75,10 +81,8 @@
     
 }
 
--(IBAction) uploadPanaromaWaypoints:(id)sender
-{
+-(void) calculateAndUploadWPs {
     const float height = currentAltitude;
-    self.WaypointAltitude.text = [NSString stringWithFormat:@" %f", height];
     
     DJIGroundStationTask* newTask = [DJIGroundStationTask newTask];
     [newTask removeAllWaypoint];
@@ -300,8 +304,7 @@
         NSOperationQueue* asyncQueue = [NSOperationQueue mainQueue];
         asyncQueue.maxConcurrentOperationCount = 1;
         [_drone.gimbal startGimbalAttitudeUpdateToQueue:asyncQueue withResultBlock:^(DJIGimbalAttitude attitude) {
-            NSString* attiString = [NSString stringWithFormat:@"Pitch = %d\nRoll = %d\nYaw = %d\n", attitude.pitch, attitude.roll, attitude.yaw];
-            self.attitudeLabel.text = attiString;
+        //    NSString* attiString = [NSString stringWithFormat:@"Pitch = %d\nRoll = %d\nYaw = %d\n", attitude.pitch, attitude.roll, attitude.yaw];
         }];
         //        [_drone.gimbalManager startGimbalAttitudeUpdates];
         //        [NSThread detachNewThreadSelector:@selector(readGimbalAttitude) toTarget:self withObject:Nil];
@@ -330,8 +333,8 @@
     NSOperationQueue* asyncQueue = [NSOperationQueue mainQueue];
     asyncQueue.maxConcurrentOperationCount = 1;
     [_drone.gimbal startGimbalAttitudeUpdateToQueue:asyncQueue withResultBlock:^(DJIGimbalAttitude attitude) {
-        NSString* attiString = [NSString stringWithFormat:@"Pitch = %d\nRoll = %d\nYaw = %d\n", attitude.pitch, attitude.roll, attitude.yaw];
-        self.attitudeLabel.text = attiString;
+//        NSString* attiString = [NSString stringWithFormat:@"Pitch = %d\nRoll = %d\nYaw = %d\n", attitude.pitch, attitude.roll, attitude.yaw];
+//        self.attitudeLabel.text = attiString;
     }];
 }
 
@@ -348,8 +351,8 @@
     NSOperationQueue* asyncQueue = [NSOperationQueue mainQueue];
     asyncQueue.maxConcurrentOperationCount = 1;
     [_drone.gimbal startGimbalAttitudeUpdateToQueue:asyncQueue withResultBlock:^(DJIGimbalAttitude attitude) {
-        NSString* attiString = [NSString stringWithFormat:@"Pitch = %d\nRoll = %d\nYaw = %d\n", attitude.pitch, attitude.roll, attitude.yaw];
-        self.attitudeLabel.text = attiString;
+//        NSString* attiString = [NSString stringWithFormat:@"Pitch = %d\nRoll = %d\nYaw = %d\n", attitude.pitch, attitude.roll, attitude.yaw];
+//        self.attitudeLabel.text = attiString;
     }];
 }
 
@@ -367,8 +370,8 @@
     NSOperationQueue* asyncQueue = [NSOperationQueue mainQueue];
     asyncQueue.maxConcurrentOperationCount = 1;
     [_drone.gimbal startGimbalAttitudeUpdateToQueue:asyncQueue withResultBlock:^(DJIGimbalAttitude attitude) {
-        NSString* attiString = [NSString stringWithFormat:@"Pitch = %d\nRoll = %d\nYaw = %d\n", attitude.pitch, attitude.roll, attitude.yaw];
-        self.attitudeLabel.text = attiString;
+//        NSString* attiString = [NSString stringWithFormat:@"Pitch = %d\nRoll = %d\nYaw = %d\n", attitude.pitch, attitude.roll, attitude.yaw];
+//        self.attitudeLabel.text = attiString;
     }];
 }
 
@@ -387,8 +390,8 @@
     NSOperationQueue* asyncQueue = [NSOperationQueue mainQueue];
     asyncQueue.maxConcurrentOperationCount = 1;
     [_drone.gimbal startGimbalAttitudeUpdateToQueue:asyncQueue withResultBlock:^(DJIGimbalAttitude attitude) {
-        NSString* attiString = [NSString stringWithFormat:@"Pitch = %d\nRoll = %d\nYaw = %d\n", attitude.pitch, attitude.roll, attitude.yaw];
-        self.attitudeLabel.text = attiString;
+//        NSString* attiString = [NSString stringWithFormat:@"Pitch = %d\nRoll = %d\nYaw = %d\n", attitude.pitch, attitude.roll, attitude.yaw];
+//        self.attitudeLabel.text = attiString;
     }];
 }
 
@@ -465,6 +468,11 @@
 -(IBAction) onStartTaskButtonClicked:(id)sender
 {
     [_groundStation startGroundStationTask];
+    [self clear];
+    sleep(1);
+    [self calculateAndUploadWPs];
+    sleep(1);
+    [self onGroundStationStartTaskWithResult:sender];
 }
 
 -(IBAction) onPauseTaskButtonClicked:(id)sender
@@ -487,16 +495,16 @@
 -(void) onGroundStationOpenWithResult:(GroundStationExecuteResult*)result
 {
     if (result.executeStatus == GSExecStatusBegan) {
-        self.logLabel.text = @"Ground Station Open Began";
+       // self.logLabel.text = @"Ground Station Open Began";
     }
     else if (result.executeStatus == GSExecStatusSuccessed)
     {
-        self.logLabel.text = @"Ground Station Open Successed";
+        //self.logLabel.text = @"Ground Station Open Successed";
         
     }
     else
     {
-        self.logLabel.text = [NSString stringWithFormat: @"Ground Station Open Failed:%d", (int)result.error];
+        //self.logLabel.text = [NSString stringWithFormat: @"Ground Station Open Failed:%d", (int)result.error];
         
     }
 }
@@ -523,17 +531,17 @@
 {
     if (result.executeStatus == GSExecStatusBegan) {
         
-        self.logLabel.text = @"Upload Task Began";
+        //self.logLabel.text = @"Upload Task Began";
         
     }
     else if (result.executeStatus == GSExecStatusSuccessed)
     {
-        self.logLabel.text = @"Upload Task Success";
+        //self.logLabel.text = @"Upload Task Success";
         
     }
     else
     {
-        self.logLabel.text = [NSString stringWithFormat:@"Upload Task Failed: %d", (int)result.error];
+        //self.logLabel.text = [NSString stringWithFormat:@"Upload Task Failed: %d", (int)result.error];
         
     }
 }
@@ -557,18 +565,18 @@
 {
     
     if (result.executeStatus == GSExecStatusBegan) {
-        self.logLabel.text = @"Task Start Began";
+      //  self.logLabel.text = @"Task Start Began";
        // [self takeContinousPictures];
         
     }
     else if (result.executeStatus == GSExecStatusSuccessed)
     {
-        self.logLabel.text = @"Task Start Success";
+       // self.logLabel.text = @"Task Start Success";
         
     }
     else
     {
-        self.logLabel.text = [NSString stringWithFormat:@"Task Start Failed : %d", (int)result.error];
+       // self.logLabel.text = [NSString stringWithFormat:@"Task Start Failed : %d", (int)result.error];
         
     }
 }
@@ -606,17 +614,17 @@
 -(void) onGroundStationGoHomeWithResult:(GroundStationExecuteResult*)result
 {
     if (result.executeStatus == GSExecStatusBegan) {
-        self.logLabel.text = @"GoHome Began";
+     //   self.logLabel.text = @"GoHome Began";
         
     }
     else if (result.executeStatus == GSExecStatusSuccessed)
     {
-        self.logLabel.text = @"GoHome Success";
+      //  self.logLabel.text = @"GoHome Success";
         
     }
     else
     {
-        self.logLabel.text = [NSString stringWithFormat:@"GoHomeFailed : %d", (int)result.error];
+       // self.logLabel.text = [NSString stringWithFormat:@"GoHomeFailed : %d", (int)result.error];
         
     }
 }
@@ -684,7 +692,7 @@
             break;
     }
     
-    self.contrlModeLabel.text = ctrlMode;
+   // self.contrlModeLabel.text = ctrlMode;
 }
 
 -(void) onGroundStationGpsStatusChanged:(GroundStationGpsStatus)status
@@ -771,15 +779,8 @@
     [self onGroundStationGpsStatusChanged:flyingInfo.gpsStatus];
     
     _homeLocation = flyingInfo.homeLocation;
-    self.logLabel.text = [NSString stringWithFormat:@"Sat: %d", flyingInfo.satelliteCount];
-    self.homeLocationLabel.text = [NSString stringWithFormat:@"%f, %f", flyingInfo.homeLocation.latitude, flyingInfo.homeLocation.longitude];
-    self.droneLocation.text = [NSString stringWithFormat:@"%f, %f", flyingInfo.droneLocation.latitude, flyingInfo.droneLocation.longitude];
-    
-    
     _CurrentDroneLocation = flyingInfo.droneLocation;
-    
-    self.targetWP.text = [NSString stringWithFormat:@"%d", flyingInfo.targetWaypointIndex];
-    
+   
     if (flyingInfo.targetWaypointIndex != -1) {
         if (wp_idx != flyingInfo.targetWaypointIndex) {
             [self SingleShot];
@@ -787,31 +788,27 @@
     }
     
     wp_idx = flyingInfo.targetWaypointIndex;
-    
-    
-    self.altitude.text = [NSString stringWithFormat:@"%f", flyingInfo.altitude];
-    self.targetAltitude.text = [NSString stringWithFormat:@"%f", flyingInfo.targetAltitude];
-    
     DJIAttitude att = flyingInfo.attitude;
-    
     currentYaw = att.yaw/10000.0;
-    self.cYaw.text = [NSString stringWithFormat:@"%f", [self degreesFromRadians:currentYaw]];
-    
     currentAltitude = flyingInfo.altitude;
     
     
 }
 
--(IBAction)clear:(id)sender {
+-(void)clear {
     [_camera formatSDCard:^(DJIError *error) {
-        NSLog(@"error %@", error.errorDescription);
+       // NSLog(@"error %@", error.errorDescription);
+    }];
+    
+    sleep(1);
+    
+    [_camera formatSDCard:^(DJIError *error) {
+        // NSLog(@"error %@", error.errorDescription);
     }];
 
 }
 
--(void) getSDCardInfo:(void(^)(DJICameraSDCardInfo* sdInfo, DJIError* error))block {
-    
-}
+
 
 
 #pragma GPS Calculations

@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <DJISDK/DJISDK.h>
+#import "UIButton+Bootstrap.h"
 
 
 
-@interface CameraViewController : UIViewController <DJIDroneDelegate, GroundStationDelegate, DJICameraDelegate, DJISDCardOperation>
+@interface CameraViewController : UIViewController <DJIDroneDelegate, GroundStationDelegate, DJICameraDelegate>
 {
     DJIDrone* _drone;
     DJICamera* _camera;
@@ -34,25 +35,13 @@
 }
 
 @property(nonatomic, retain) IBOutlet UIView* videoPreviewView;
-@property(nonatomic, strong) IBOutlet UILabel* logLabel;
-@property(nonatomic, strong) IBOutlet UILabel* attitudeLabel;
 @property(nonatomic, strong) IBOutlet UIBarButtonItem *connectionStatus;
+@property(nonatomic, strong) IBOutlet UIButton *captureBtn;
+@property(nonatomic, strong) IBOutlet UIButton *panUpBtn;
+@property(nonatomic, strong) IBOutlet UIButton *panDownBtn;
+@property(nonatomic, strong) IBOutlet UIButton *ProcessBtn;
 
 
-/**
- *
- * Debug Outlets
- *
- */
-
-@property(nonatomic, strong) IBOutlet UILabel* homeLocationLabel;
-@property(nonatomic, strong) IBOutlet UILabel* droneLocation;
-@property(nonatomic, strong) IBOutlet UILabel* targetWP;
-@property(nonatomic, strong) IBOutlet UILabel* altitude;
-@property(nonatomic, strong) IBOutlet UILabel* targetAltitude;
-@property(nonatomic, strong) IBOutlet UILabel* cYaw;
-@property(nonatomic, strong) IBOutlet UILabel* WaypointAltitude;
-@property(nonatomic, strong) IBOutlet UILabel* contrlModeLabel;
 
 
 
