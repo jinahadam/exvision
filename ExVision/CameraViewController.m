@@ -405,25 +405,27 @@
     switch (status) {
         case ConnectionStartConnect:
         {
-            NSLog(@"Start Reconnect...");
+            NSLog(@"");
+            self.connectionStatus.title = @"Start Reconnect...";
+
             break;
         }
         case ConnectionSuccessed:
         {
             NSLog(@"Connect Successed...");
-            _connectionStatusLabel.text = @"Connected";
+            self.connectionStatus.title = @"Connected";
             break;
         }
         case ConnectionFailed:
         {
             NSLog(@"Connect Failed...");
-            _connectionStatusLabel.text = @"Connect Failed";
+            self.connectionStatus.title = @"Connect Failed";
             break;
         }
         case ConnectionBroken:
         {
             NSLog(@"Connect Broken...");
-            _connectionStatusLabel.text = @"Disconnected";
+            self.connectionStatus.title = @"Disconnected";
             break;
         }
         default:
@@ -690,14 +692,18 @@
     switch (status) {
         case GSGpsGood:
         {
+            NSLog(@"GPS Good");
             break;
         }
         case GSGpsWeak:
         {
+            NSLog(@"GPS Weak");
             break;
         }
         case GSGpsBad:
         {
+            NSLog(@"GPS Bad");
+
             break;
         }
         default:
@@ -803,8 +809,7 @@
 
 }
 
--(void)formatSDCard:(DJIExecuteResultBlock)block {
-    NSLog(@"format SD card");
+-(void) getSDCardInfo:(void(^)(DJICameraSDCardInfo* sdInfo, DJIError* error))block {
     
 }
 

@@ -7,10 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIButton+Bootstrap.h"
 
 
 
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController {
+    
+    
+}
+
+@property (unsafe_unretained, nonatomic) IBOutlet UIButton *NewCapture;
+
 @end
+
 

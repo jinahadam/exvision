@@ -36,6 +36,7 @@
 @property(nonatomic, retain) IBOutlet UIView* videoPreviewView;
 @property(nonatomic, strong) IBOutlet UILabel* logLabel;
 @property(nonatomic, strong) IBOutlet UILabel* attitudeLabel;
+@property(nonatomic, strong) IBOutlet UIBarButtonItem *connectionStatus;
 
 
 /**
