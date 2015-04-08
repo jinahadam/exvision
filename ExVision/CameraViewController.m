@@ -21,21 +21,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
     
     _drone = [[DJIDrone alloc] initWithType:DJIDrone_Phantom];
     _camera = _drone.camera;
     _camera.delegate = self;
     _groundStation = _drone.mainController;
 
-    
-    //Start video data decode thread
     [[VideoPreviewer instance] start];
     currentAltitude = 0;
-    
-    
     shootPan = true;
-    
     wp_idx = -1;
     
     
@@ -49,17 +43,15 @@
                                              selector:@selector(orientationChanged:)
                                                  name:@"UIDeviceOrientationDidChangeNotification"
                                                object:nil];
+    
 }
 
 
 - (void)orientationChanged:(NSNotification *)notification{
-   // UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
-    
-    //do stuff
     [self stopStream:nil];
     [self startStream:nil];
-  
 }
+
 
 -(void) dealloc
 {
@@ -171,7 +163,6 @@
 }
 
 -(void) SingleShot {
-    
     [_camera startTakePhoto:CameraSingleCapture withResult:^(DJIError *error) {
         if (error.errorCode != ERR_Successed) {
             NSLog(@"Take Photo Error : %@", error.errorDescription);
@@ -207,17 +198,6 @@
 }
 
 #pragma mark - Gimbal movement
-
-
-
-
-//
-//- (NSUInteger)supportedInterfaceOrientations
-//{
-//    return UIInterfaceOrientationMaskLandscape;
-//}
-
-
 -(void) onGimbalAttitudeYawRotationForward
 {
     DJIGimbalRotation pitch = {YES, 0, RelativeAngle, RotationForward};
@@ -483,12 +463,26 @@
 
 -(IBAction) onStartTaskButtonClicked:(id)sender
 {
-    [_groundStation startGroundStationTask];
-    [self clear];
-    sleep(1);
-    [self calculateAndUploadWPs];
-    sleep(1);
-    [self onGroundStationStartTaskWithResult:sender];
+    
+    
+    
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+        //Background Thread
+        [self clear];
+        sleep(2);
+        [_groundStation openGroundStation];
+        sleep(2);
+        [self calculateAndUploadWPs];
+        sleep(5);
+        [_groundStation startGroundStationTask];
+        
+        
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            //Run UI Updates
+        });
+    });
+    
+    
 }
 
 -(IBAction) onPauseTaskButtonClicked:(id)sender
@@ -592,7 +586,7 @@
     }
     else
     {
-       // self.logLabel.text = [NSString stringWithFormat:@"Task Start Failed : %d", (int)result.error];
+       NSLog(@"%@",[NSString stringWithFormat:@"Task Start Failed : %d", (int)result.error]);
         
     }
 }
@@ -716,17 +710,17 @@
     switch (status) {
         case GSGpsGood:
         {
-            NSLog(@"GPS Good");
+            //NSLog(@"GPS Good");
             break;
         }
         case GSGpsWeak:
         {
-            NSLog(@"GPS Weak");
+        //    NSLog(@"GPS Weak");
             break;
         }
         case GSGpsBad:
         {
-            NSLog(@"GPS Bad");
+          //  NSLog(@"GPS Bad");
 
             break;
         }
@@ -808,12 +802,16 @@
     currentYaw = att.yaw/10000.0;
     currentAltitude = flyingInfo.altitude;
     
-    
 }
 
 -(void)clear {
+    
+    NSLog(@"clearing Memory Card");
     [_camera formatSDCard:^(DJIError *error) {
         NSLog(@"error %@", error.errorDescription);
+        if (error.errorCode == ERR_Successed) {
+            NSLog(@"Formated CD card");
+        }
     }];
     
     sleep(1);

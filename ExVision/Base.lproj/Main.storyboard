@@ -79,7 +79,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <action selector="onOpenButtonClicked:" destination="uqc-4B-zff" eventType="touchUpInside" id="q2G-gm-XEL"/>
+                                    <action selector="onStartTaskButtonClicked:" destination="uqc-4B-zff" eventType="touchUpInside" id="EUi-t7-KZ1"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hDb-32-9qV">
@@ -199,7 +199,7 @@
                     </toolbarItems>
                     <connections>
                         <outlet property="ProcessBtn" destination="iUv-mx-3Lw" id="WTs-L8-ytv"/>
-                        <outlet property="captureBtn" destination="4Tm-Se-foC" id="hir-fj-AMu"/>
+                        <outlet property="captureBtn" destination="4Tm-Se-foC" id="3jw-LP-VcR"/>
                         <outlet property="connectionStatus" destination="tbQ-RF-MpL" id="JER-7e-PYJ"/>
                         <outlet property="panDownBtn" destination="OYc-ve-v0z" id="Haj-1z-C7q"/>
                         <outlet property="panUpBtn" destination="hDb-32-9qV" id="q0V-TY-zXa"/>
