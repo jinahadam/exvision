@@ -21,7 +21,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2iW-bB-837" userLabel="VideoPreviewLayer">
                                 <rect key="frame" x="0.0" y="64" width="600" height="350"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OYc-ve-v0z">
                                 <rect key="frame" x="385" y="424" width="75" height="50"/>
@@ -320,10 +320,10 @@
             </objects>
             <point key="canvasLocation" x="187" y="530"/>
         </scene>
-        <!--Media Test View Controller-->
+        <!--Process Controller-->
         <scene sceneID="4bw-1J-RAB">
             <objects>
-                <viewController id="Wqb-os-swp" customClass="MediaTestViewController" sceneMemberID="viewController">
+                <viewController id="Wqb-os-swp" customClass="ProcessController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pYh-FS-WdM"/>
                         <viewControllerLayoutGuide type="bottom" id="qLA-kX-IU9"/>
@@ -332,69 +332,43 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Process" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Xq-Tn-qbf">
-                                <rect key="frame" x="279" y="20" width="62" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0BN-FV-8mt">
+                                <rect key="frame" x="0.0" y="64" width="584" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="roW-jP-7Bw"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0mC-FT-gDL">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="5" y="187" width="1024" height="534"/>
-                                </variation>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dW8-lB-Nmq">
+                                <rect key="frame" x="0.0" y="115" width="600" height="441"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WhM-wJ-LDH">
-                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="279" y="118" width="467" height="43"/>
-                                </variation>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rSc-4n-68q">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="152" y="118" width="46" height="30"/>
-                                </variation>
-                                <connections>
-                                    <action selector="downloadMissing:" destination="Wqb-os-swp" eventType="touchUpInside" id="xc6-nR-qvo"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="0mC-FT-gDL"/>
-                                <exclude reference="WhM-wJ-LDH"/>
-                                <exclude reference="rSc-4n-68q"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=regular-widthClass=regular">
-                            <mask key="subviews">
-                                <include reference="0mC-FT-gDL"/>
-                                <include reference="WhM-wJ-LDH"/>
-                                <include reference="rSc-4n-68q"/>
-                            </mask>
-                        </variation>
+                        <constraints>
+                            <constraint firstItem="qLA-kX-IU9" firstAttribute="top" secondItem="dW8-lB-Nmq" secondAttribute="bottom" id="2Aj-xW-fVC"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dW8-lB-Nmq" secondAttribute="trailing" constant="-16" id="BJQ-65-8Xc"/>
+                            <constraint firstItem="dW8-lB-Nmq" firstAttribute="top" secondItem="pYh-FS-WdM" secondAttribute="bottom" constant="51" id="CM1-u7-sQ2"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="0BN-FV-8mt" secondAttribute="trailing" id="iIi-DE-eaq"/>
+                            <constraint firstItem="dW8-lB-Nmq" firstAttribute="leading" secondItem="Xgn-J5-wVf" secondAttribute="leadingMargin" constant="-16" id="imx-Oe-UtM"/>
+                            <constraint firstItem="0BN-FV-8mt" firstAttribute="leading" secondItem="Xgn-J5-wVf" secondAttribute="leadingMargin" constant="-16" id="t8Q-xT-gm1"/>
+                            <constraint firstItem="0BN-FV-8mt" firstAttribute="top" secondItem="pYh-FS-WdM" secondAttribute="bottom" id="u3w-uv-cBp"/>
+                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="image" destination="0mC-FT-gDL" id="9Jo-Ql-pWw"/>
-                        <outlet property="status" destination="WhM-wJ-LDH" id="YKB-nW-OOv"/>
+                        <outlet property="image" destination="dW8-lB-Nmq" id="WAd-Cb-tRa"/>
+                        <outlet property="status" destination="0BN-FV-8mt" id="aoz-2d-Ky6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fCz-0T-xsU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2211" y="276.75"/>
+            <point key="canvasLocation" x="2211" y="276"/>
         </scene>
         <!--Processing-->
         <scene sceneID="JFd-Go-OuK">
             <objects>
-                <viewController id="2NZ-fd-cQl" userLabel="Processing" customClass="MediaTestViewController" sceneMemberID="viewController">
+                <viewController id="2NZ-fd-cQl" userLabel="Processing" customClass="ProcessController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ENw-lh-U29"/>
                         <viewControllerLayoutGuide type="bottom" id="NOg-Qr-JaO"/>

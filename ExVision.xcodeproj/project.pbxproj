@@ -13,7 +13,7 @@
 		801F7A0F1AD3B3630095BE17 /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 801F7A0E1AD3B3630095BE17 /* HelpViewController.m */; };
 		807019291A762CEB00B599C0 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 807019281A762CEB00B599C0 /* CameraViewController.m */; };
 		807BCBB31AC2A015007E23E2 /* DJISDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 807BCBB21AC2A015007E23E2 /* DJISDK.framework */; };
-		8090FAB91ACD12470011D83C /* MediaTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8090FAB81ACD12470011D83C /* MediaTestViewController.m */; };
+		8090FAB91ACD12470011D83C /* ProcessController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8090FAB81ACD12470011D83C /* ProcessController.m */; };
 		8090FABB1ACD2B000011D83C /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8090FABA1ACD2B000011D83C /* opencv2.framework */; };
 		8090FAC51ACD2B8B0011D83C /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8090FABC1ACD2B8A0011D83C /* Accelerate.framework */; };
 		8090FAC61ACD2B8B0011D83C /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8090FABD1ACD2B8A0011D83C /* AssetsLibrary.framework */; };
@@ -79,8 +79,8 @@
 		807019271A762CEB00B599C0 /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
 		807019281A762CEB00B599C0 /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
 		807BCBB21AC2A015007E23E2 /* DJISDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DJISDK.framework; sourceTree = "<group>"; };
-		8090FAB71ACD12470011D83C /* MediaTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaTestViewController.h; sourceTree = "<group>"; };
-		8090FAB81ACD12470011D83C /* MediaTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaTestViewController.m; sourceTree = "<group>"; };
+		8090FAB71ACD12470011D83C /* ProcessController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProcessController.h; sourceTree = "<group>"; };
+		8090FAB81ACD12470011D83C /* ProcessController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProcessController.m; sourceTree = "<group>"; };
 		8090FABA1ACD2B000011D83C /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 		8090FABC1ACD2B8A0011D83C /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		8090FABD1ACD2B8A0011D83C /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
@@ -297,8 +297,8 @@
 		80DFAAD21A760CE100F69205 /* ExVision */ = {
 			isa = PBXGroup;
 			children = (
-				8090FAB71ACD12470011D83C /* MediaTestViewController.h */,
-				8090FAB81ACD12470011D83C /* MediaTestViewController.m */,
+				8090FAB71ACD12470011D83C /* ProcessController.h */,
+				8090FAB81ACD12470011D83C /* ProcessController.m */,
 				80DFAAD71A760CE100F69205 /* AppDelegate.h */,
 				80DFAAD81A760CE100F69205 /* AppDelegate.mm */,
 				80DFAADA1A760CE100F69205 /* ViewController.h */,
@@ -669,7 +669,7 @@
 				8090FAD81ACD2BD70011D83C /* stitching.cpp in Sources */,
 				80DFAB751A7610AE00F69205 /* VideoPreviewer.m in Sources */,
 				80DFAAD61A760CE100F69205 /* main.m in Sources */,
-				8090FAB91ACD12470011D83C /* MediaTestViewController.m in Sources */,
+				8090FAB91ACD12470011D83C /* ProcessController.m in Sources */,
 				8090FAD71ACD2BD70011D83C /* CVWrapper.mm in Sources */,
 				80DFAB741A7610AE00F69205 /* VideoFrameExtractor.m in Sources */,
 				807019291A762CEB00B599C0 /* CameraViewController.m in Sources */,

@@ -6,7 +6,7 @@
 //  Copyright (c) 2014年 DJI. All rights reserved.
 //
 
-#import "MediaTestViewController.h"
+#import "ProcessController.h"
 //#import "MediaPreviewViewController.h"
 #import <DJISDK/DJISDK.h>
 
@@ -22,7 +22,7 @@ exit(-1); \
 
 
 
-@implementation MediaTestViewController
+@implementation ProcessController
 
 - (void)viewDidLoad
 {
@@ -84,7 +84,7 @@ exit(-1); \
             {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     CGSize imageSize = CGSizeMake(1096, 822);
-                    UIImage *unwarped = [self unwarpVisionImage:[self resizedImage:[UIImage imageWithData:mediaData] to:imageSize interpolationQuality:kCGInterpolationMedium]];
+                    UIImage *unwarped = [self unwarpVisionImage:[self resizedImage:[UIImage imageWithData:mediaData] to:imageSize interpolationQuality:kCGInterpolationHigh]];
                     [self.imagesForProcessing addObject:unwarped];
                     
                     if (idx < _mediasList.count - 1)
@@ -124,7 +124,7 @@ exit(-1); \
         UIImage *uncropped =[CVWrapper processWithArray:self.imagesForProcessing];
         
         
-        CGRect boundsToCrop = CGRectMake(0, 40, [uncropped size].width, [uncropped size].height-100);
+        CGRect boundsToCrop = CGRectMake(0, 80, [uncropped size].width, [uncropped size].height-120);
         
        // NSLog(@"%f %f SIZE", [uncropped size].width-20, [uncropped size].height-100);
         

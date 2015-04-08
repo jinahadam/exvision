@@ -43,6 +43,22 @@
     [self.panDownBtn warningStyle];
     [self.panUpBtn warningStyle];
     [self.ProcessBtn dangerStyle];
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self // put here the view controller which has to be notified
+                                             selector:@selector(orientationChanged:)
+                                                 name:@"UIDeviceOrientationDidChangeNotification"
+                                               object:nil];
+}
+
+
+- (void)orientationChanged:(NSNotification *)notification{
+   // UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+    
+    //do stuff
+    [self stopStream:nil];
+    [self startStream:nil];
+  
 }
 
 -(void) dealloc
@@ -97,7 +113,7 @@
         wp.stayTime = 1.0;
         
         [newTask addWaypoint:wp];
-        _yaw = _yaw + 15;
+        _yaw = _yaw + 12;
         
     }
     [_groundStation uploadGroundStationTask:newTask];
@@ -797,13 +813,13 @@
 
 -(void)clear {
     [_camera formatSDCard:^(DJIError *error) {
-       // NSLog(@"error %@", error.errorDescription);
+        NSLog(@"error %@", error.errorDescription);
     }];
     
     sleep(1);
     
     [_camera formatSDCard:^(DJIError *error) {
-        // NSLog(@"error %@", error.errorDescription);
+         NSLog(@"error %@", error.errorDescription);
     }];
 
 }

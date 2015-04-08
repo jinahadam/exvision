@@ -15,7 +15,7 @@
 
 @class MediaLoadingManager;
 
-@interface MediaTestViewController : UIViewController <DJIDroneDelegate, DJICameraDelegate>
+@interface ProcessController : UIViewController <DJIDroneDelegate, DJICameraDelegate>
 {
     DJIDrone* _drone;
     DJIMediaManager* _mediaManager;
