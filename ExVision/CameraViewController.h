@@ -35,7 +35,9 @@
 }
 
 @property(nonatomic, retain) IBOutlet UIView* videoPreviewView;
-@property(nonatomic, strong) IBOutlet UIBarButtonItem *connectionStatus;
+@property(nonatomic, strong) IBOutlet UIBarButtonItem *barStatus;
+@property(nonatomic, strong) IBOutlet UIBarButtonItem *barAlt;
+@property(nonatomic, strong) IBOutlet UIBarButtonItem *satCount;
 @property(nonatomic, strong) IBOutlet UIButton *captureBtn;
 @property(nonatomic, strong) IBOutlet UIButton *panUpBtn;
 @property(nonatomic, strong) IBOutlet UIButton *panDownBtn;

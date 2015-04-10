@@ -124,7 +124,7 @@ exit(-1); \
         UIImage *uncropped =[CVWrapper processWithArray:self.imagesForProcessing];
         
         
-        CGRect boundsToCrop = CGRectMake(0, 80, [uncropped size].width, [uncropped size].height-120);
+        CGRect boundsToCrop = CGRectMake(80, 80, [uncropped size].width - 110, [uncropped size].height-140);
         
        // NSLog(@"%f %f SIZE", [uncropped size].width-20, [uncropped size].height-100);
         

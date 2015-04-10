@@ -189,20 +189,24 @@
                         </variation>
                     </view>
                     <toolbarItems>
+                        <barButtonItem title="Sats: 0" id="YQ5-VO-Mh8"/>
+                        <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="f3h-L9-Jje"/>
+                        <barButtonItem title="Alt: 0" id="0IV-nl-COE"/>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="lBp-7I-F4X"/>
-                        <barButtonItem title="Connection Status" id="tbQ-RF-MpL">
+                        <barButtonItem title="GS Off" id="tbQ-RF-MpL">
                             <connections>
                                 <segue destination="gFO-8L-8IT" kind="presentation" id="nlp-nw-hPq"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Jtu-9O-ML5"/>
                     </toolbarItems>
                     <connections>
                         <outlet property="ProcessBtn" destination="iUv-mx-3Lw" id="WTs-L8-ytv"/>
+                        <outlet property="barAlt" destination="0IV-nl-COE" id="05a-Xl-H8a"/>
+                        <outlet property="barStatus" destination="tbQ-RF-MpL" id="9in-aG-QEf"/>
                         <outlet property="captureBtn" destination="4Tm-Se-foC" id="3jw-LP-VcR"/>
-                        <outlet property="connectionStatus" destination="tbQ-RF-MpL" id="JER-7e-PYJ"/>
                         <outlet property="panDownBtn" destination="OYc-ve-v0z" id="Haj-1z-C7q"/>
                         <outlet property="panUpBtn" destination="hDb-32-9qV" id="q0V-TY-zXa"/>
+                        <outlet property="satCount" destination="YQ5-VO-Mh8" id="HNp-4g-eM9"/>
                         <outlet property="videoPreviewView" destination="2iW-bB-837" id="TL4-5i-cMj"/>
                     </connections>
                 </viewController>
@@ -240,6 +244,7 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="1" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="89i-DP-iGq" secondAttribute="bottom" constant="441" id="Qg2-M7-dB8"/>
                             <constraint firstItem="89i-DP-iGq" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="100" id="cZg-WL-9ns"/>
@@ -303,13 +308,14 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="M4p-aR-L0k" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8jp-DR-qGW">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics" barStyle="black"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="8jp-DR-qGW">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
-                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="qDh-0x-XT0">
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" id="qDh-0x-XT0">
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>

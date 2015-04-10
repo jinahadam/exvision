@@ -89,25 +89,43 @@
     
 }
 
--(void) calculateAndUploadWPs {
+-(void) calculateAndUploadWPsForDirection:(int)direction {
+    
+   
     const float height = currentAltitude;
     
     DJIGroundStationTask* newTask = [DJIGroundStationTask newTask];
     [newTask removeAllWaypoint];
     float _yaw = currentYaw;
     
-    for (int i = 0; i < 15; i++) {
-        CLLocationCoordinate2D step = [self coordinateFromCoord:_CurrentDroneLocation atDistanceKm:(0.5/1000) atBearingDegrees: _yaw];
-        
-        DJIGroundStationWaypoint* wp = [[DJIGroundStationWaypoint alloc] initWithCoordinate:step];
-        wp.altitude = height;
-        wp.horizontalVelocity = 2;
-        wp.stayTime = 1.0;
-        
-        [newTask addWaypoint:wp];
-        _yaw = _yaw + 12;
-        
-    }
+     if (direction == 0) {
+        for (int i = 0; i < 15; i++) {
+            CLLocationCoordinate2D step = [self coordinateFromCoord:_CurrentDroneLocation atDistanceKm:(0.5/1000) atBearingDegrees: _yaw];
+            
+            DJIGroundStationWaypoint* wp = [[DJIGroundStationWaypoint alloc] initWithCoordinate:step];
+            wp.altitude = height;
+            wp.horizontalVelocity = 2;
+            wp.stayTime = 1.0;
+            
+            [newTask addWaypoint:wp];
+            _yaw = _yaw + 12;
+            
+        }
+     } else {
+         for (int i = 0; i < 15; i++) {
+             CLLocationCoordinate2D step = [self coordinateFromCoord:_CurrentDroneLocation atDistanceKm:(0.5/1000) atBearingDegrees: _yaw];
+             
+             DJIGroundStationWaypoint* wp = [[DJIGroundStationWaypoint alloc] initWithCoordinate:step];
+             wp.altitude = height;
+             wp.horizontalVelocity = 2;
+             wp.stayTime = 1.0;
+             
+             [newTask addWaypoint:wp];
+             _yaw = _yaw - 12;
+             
+         }
+         
+     }
     [_groundStation uploadGroundStationTask:newTask];
 }
 
@@ -404,27 +422,33 @@
     switch (status) {
         case ConnectionStartConnect:
         {
-            NSLog(@"");
-            self.connectionStatus.title = @"Start Reconnect...";
+         //   NSLog(@"Connection Started");
+            self.navigationItem.title = @"Start Reconnect...";
+            //self.connectionStatus.title = @"Start Reconnect...";
 
             break;
         }
         case ConnectionSuccessed:
         {
-            NSLog(@"Connect Successed...");
-            self.connectionStatus.title = @"Connected";
+           // NSLog(@"connected");
+            self.navigationItem.title = @"Connected";
+           // self.connectionStatus.title = @"Connected";
             break;
         }
         case ConnectionFailed:
         {
-            NSLog(@"Connect Failed...");
-            self.connectionStatus.title = @"Connect Failed";
+            //NSLog(@"Connect Failed...");
+            self.navigationItem.title = @"Connection Failed";
+
+            //self.connectionStatus.title = @"Connect Failed";
             break;
         }
         case ConnectionBroken:
         {
-            NSLog(@"Connect Broken...");
-            self.connectionStatus.title = @"Disconnected";
+            self.navigationItem.title = @"Disconnected";
+
+           // NSLog(@"Connect Broken...");
+          //  self.connectionStatus.title = @"Disconnected";
             break;
         }
         default:
@@ -464,6 +488,8 @@
 -(IBAction) onStartTaskButtonClicked:(id)sender
 {
     
+    self.barStatus.title = @"Starting GS";
+
     
     
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
@@ -472,13 +498,15 @@
         sleep(2);
         [_groundStation openGroundStation];
         sleep(2);
-        [self calculateAndUploadWPs];
+        [self calculateAndUploadWPsForDirection:1];
         sleep(5);
         [_groundStation startGroundStationTask];
         
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
             //Run UI Updates
+            self.barStatus.title = @"GS On";
+
         });
     });
     
@@ -541,13 +569,19 @@
 {
     if (result.executeStatus == GSExecStatusBegan) {
         
+        self.barStatus.title = @"Uploading WPs";
+
+        
         //self.logLabel.text = @"Upload Task Began";
         
     }
     else if (result.executeStatus == GSExecStatusSuccessed)
     {
+        
         //self.logLabel.text = @"Upload Task Success";
         
+        self.barStatus.title = @"Uploaded WPs";
+
     }
     else
     {
@@ -609,7 +643,9 @@
 -(void) onGroundStationContinueTaskWithResult:(GroundStationExecuteResult*)result
 {
     if (result.executeStatus == GSExecStatusBegan) {
-        NSLog(@"Task Start Began");
+        //NSLog(@"Task Start Began");
+        self.barStatus.title = @"Pano Started";
+
     }
     else if (result.executeStatus == GSExecStatusSuccessed)
     {
@@ -794,6 +830,7 @@
     if (flyingInfo.targetWaypointIndex != -1) {
         if (wp_idx != flyingInfo.targetWaypointIndex) {
             [self SingleShot];
+            self.barStatus.title = [NSString stringWithFormat:@"%d images taken", flyingInfo.targetWaypointIndex];
         }
     }
     
@@ -802,23 +839,21 @@
     currentYaw = att.yaw/10000.0;
     currentAltitude = flyingInfo.altitude;
     
+    self.satCount.title = [NSString stringWithFormat:@"Sats: %d", flyingInfo.satelliteCount];
+    self.barAlt.title = [NSString stringWithFormat:@"Alt: %f", currentAltitude];
 }
 
 -(void)clear {
     
-    NSLog(@"clearing Memory Card");
+  //  NSLog(@"clearing Memory Card");
     [_camera formatSDCard:^(DJIError *error) {
         NSLog(@"error %@", error.errorDescription);
         if (error.errorCode == ERR_Successed) {
-            NSLog(@"Formated CD card");
+           // NSLog(@"Formated CD card");
+            self.barStatus.title = @"SD erased";
         }
     }];
     
-    sleep(1);
-    
-    [_camera formatSDCard:^(DJIError *error) {
-         NSLog(@"error %@", error.errorDescription);
-    }];
 
 }
 
