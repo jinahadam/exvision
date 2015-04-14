@@ -12,10 +12,7 @@
 
 
 
-@interface ViewController : UIViewController {
-    
-    
-}
+@interface ViewController : UIViewController
 
 @property (unsafe_unretained, nonatomic) IBOutlet UIButton *NewCapture;
 

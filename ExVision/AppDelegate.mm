@@ -22,8 +22,6 @@
     
     [DJIAppManager registerApp:appKey withDelegate:self];
 
-    
-    
     return YES;
 }
 

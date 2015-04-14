@@ -97,11 +97,11 @@
 		8090FAD31ACD2BD70011D83C /* CVWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CVWrapper.mm; sourceTree = "<group>"; };
 		8090FAD41ACD2BD70011D83C /* stitching.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = stitching.cpp; sourceTree = "<group>"; };
 		8090FAD51ACD2BD70011D83C /* stitching.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stitching.h; sourceTree = "<group>"; };
-		8090FAF71ACD2E6B0011D83C /* libjpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libjpeg.a; path = IM/libjpeg.a; sourceTree = "<group>"; };
-		8090FAF81ACD2E6B0011D83C /* libMagickCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMagickCore.a; path = IM/libMagickCore.a; sourceTree = "<group>"; };
-		8090FAF91ACD2E6B0011D83C /* libMagickWand.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMagickWand.a; path = IM/libMagickWand.a; sourceTree = "<group>"; };
-		8090FAFA1ACD2E6B0011D83C /* libpng.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpng.a; path = IM/libpng.a; sourceTree = "<group>"; };
-		8090FAFB1ACD2E6B0011D83C /* libtiff.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libtiff.a; path = IM/libtiff.a; sourceTree = "<group>"; };
+		8090FAF71ACD2E6B0011D83C /* libjpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libjpeg.a; path = ../IM/libjpeg.a; sourceTree = "<group>"; };
+		8090FAF81ACD2E6B0011D83C /* libMagickCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMagickCore.a; path = ../IM/libMagickCore.a; sourceTree = "<group>"; };
+		8090FAF91ACD2E6B0011D83C /* libMagickWand.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMagickWand.a; path = ../IM/libMagickWand.a; sourceTree = "<group>"; };
+		8090FAFA1ACD2E6B0011D83C /* libpng.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpng.a; path = ../IM/libpng.a; sourceTree = "<group>"; };
+		8090FAFB1ACD2E6B0011D83C /* libtiff.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libtiff.a; path = ../IM/libtiff.a; sourceTree = "<group>"; };
 		8090FB051ACD31E10011D83C /* IM */ = {isa = PBXFileReference; lastKnownFileType = folder; path = IM; sourceTree = "<group>"; };
 		80DFAAD01A760CE100F69205 /* ExVision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExVision.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80DFAAD41A760CE100F69205 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -274,11 +274,6 @@
 		80DFAAC71A760CE100F69205 = {
 			isa = PBXGroup;
 			children = (
-				8090FAF71ACD2E6B0011D83C /* libjpeg.a */,
-				8090FAF81ACD2E6B0011D83C /* libMagickCore.a */,
-				8090FAF91ACD2E6B0011D83C /* libMagickWand.a */,
-				8090FAFA1ACD2E6B0011D83C /* libpng.a */,
-				8090FAFB1ACD2E6B0011D83C /* libtiff.a */,
 				80DFAAD21A760CE100F69205 /* ExVision */,
 				80DFAAEC1A760CE100F69205 /* ExVisionTests */,
 				80DFAAD11A760CE100F69205 /* Products */,
@@ -318,6 +313,11 @@
 		80DFAAD31A760CE100F69205 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8090FAF71ACD2E6B0011D83C /* libjpeg.a */,
+				8090FAF81ACD2E6B0011D83C /* libMagickCore.a */,
+				8090FAF91ACD2E6B0011D83C /* libMagickWand.a */,
+				8090FAFA1ACD2E6B0011D83C /* libpng.a */,
+				8090FAFB1ACD2E6B0011D83C /* libtiff.a */,
 				801F7A0C1AD384440095BE17 /* Strap Button */,
 				8090FB051ACD31E10011D83C /* IM */,
 				8090FAD01ACD2BD70011D83C /* UIImage+OpenCV.h */,
@@ -805,6 +805,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/ExVision/",
 				);
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -833,6 +834,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/ExVision/",
 				);
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,

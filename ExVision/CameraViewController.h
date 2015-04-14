@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <DJISDK/DJISDK.h>
 #import "UIButton+Bootstrap.h"
-
+#import "ProcessController.h"
 
 
 @interface CameraViewController : UIViewController <DJIDroneDelegate, GroundStationDelegate, DJICameraDelegate>
@@ -21,17 +21,14 @@
     BOOL _gimbalAttitudeUpdateFlag;
     BOOL shootPan;
 
-    
-
     NSObject<DJIGroundStation>* _groundStation;
     CLLocationCoordinate2D _homeLocation;
     CLLocationCoordinate2D _CurrentDroneLocation;
+ 
     int wp_idx;
-    
     double currentAltitude;
     double currentYaw;
 
-    
 }
 
 @property(nonatomic, retain) IBOutlet UIView* videoPreviewView;
@@ -42,10 +39,6 @@
 @property(nonatomic, strong) IBOutlet UIButton *panUpBtn;
 @property(nonatomic, strong) IBOutlet UIButton *panDownBtn;
 @property(nonatomic, strong) IBOutlet UIButton *ProcessBtn;
-
-
-
-
 
 
 /**
@@ -69,9 +62,6 @@
 -(IBAction) onGimbalYawRotationBackwardTouchUp:(id)sender;
 
 -(IBAction) onGimbalAttitudeUpdateTest:(id)sender;
-
-
-
 
 
 

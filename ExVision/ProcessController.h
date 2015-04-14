@@ -37,7 +37,6 @@
 - (UIImage *)croppedImage:(CGRect)bounds image:(UIImage*) src;
 - (UIImage *)unwarpVisionImage:(CGImageRef)srcCGImage;
 
--(IBAction)downloadMissing:(id)sender;
 
 
 

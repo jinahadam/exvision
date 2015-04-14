@@ -65,8 +65,6 @@
     
     _drone.delegate = self;
     _groundStation.groundStationDelegate = self;
-
-    
     [_drone connectToDrone];
     [_camera startCameraSystemStateUpdates];
     [[VideoPreviewer instance] setView:self.videoPreviewView];
@@ -108,7 +106,7 @@
             wp.stayTime = 1.0;
             
             [newTask addWaypoint:wp];
-            _yaw = _yaw + 12;
+            _yaw = _yaw + 13;
             
         }
      } else {
@@ -121,7 +119,7 @@
              wp.stayTime = 1.0;
              
              [newTask addWaypoint:wp];
-             _yaw = _yaw - 12;
+             _yaw = _yaw - 13;
              
          }
          
@@ -216,6 +214,7 @@
 }
 
 #pragma mark - Gimbal movement
+
 -(void) onGimbalAttitudeYawRotationForward
 {
     DJIGimbalRotation pitch = {YES, 0, RelativeAngle, RotationForward};
@@ -475,7 +474,6 @@
         [alertView show];
     }
 }
-
 
 
 
@@ -843,6 +841,8 @@
     self.barAlt.title = [NSString stringWithFormat:@"Alt: %f", currentAltitude];
 }
 
+#pragma SD Card Operations
+
 -(void)clear {
     
   //  NSLog(@"clearing Memory Card");
@@ -858,8 +858,6 @@
 }
 
 
-
-
 #pragma GPS Calculations
 
 - (double)radiansFromDegrees:(double)degrees
@@ -871,7 +869,6 @@
 {
     return radians * (180.0/M_PI);
 }
-
 
 - (CLLocationCoordinate2D)coordinateFromCoord:
 (CLLocationCoordinate2D)fromCoord
