@@ -12,6 +12,10 @@
 	<dict>
 		<key>D0B53F47DFD447756E87296EA91764EF878E2750</key>
 		<string>https://github.com/avetics/exVision.git</string>
+		<key>F2FE0AAE95F0B87896F2BEE0B176D4FC32D691A3</key>
+		<string>https://github.com/facebook/pop.git</string>
+		<key>F77902D90318FC374527371DE3704CB2ED7DA403</key>
+		<string>https://github.com/schneiderandre/popping.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>ExVision.xcodeproj</string>
@@ -19,6 +23,10 @@
 	<dict>
 		<key>D0B53F47DFD447756E87296EA91764EF878E2750</key>
 		<string>../..</string>
+		<key>F2FE0AAE95F0B87896F2BEE0B176D4FC32D691A3</key>
+		<string>../../../pop</string>
+		<key>F77902D90318FC374527371DE3704CB2ED7DA403</key>
+		<string>../../../popping</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/avetics/exVision.git</string>
@@ -35,6 +43,22 @@
 			<string>D0B53F47DFD447756E87296EA91764EF878E2750</string>
 			<key>IDESourceControlWCCName</key>
 			<string>ExVision</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>F2FE0AAE95F0B87896F2BEE0B176D4FC32D691A3</string>
+			<key>IDESourceControlWCCName</key>
+			<string>pop</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>F77902D90318FC374527371DE3704CB2ED7DA403</string>
+			<key>IDESourceControlWCCName</key>
+			<string>popping</string>
 		</dict>
 	</array>
 </dict>

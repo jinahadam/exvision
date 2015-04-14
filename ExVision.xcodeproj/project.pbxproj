@@ -35,7 +35,6 @@
 		8090FB061ACD31E10011D83C /* IM in Resources */ = {isa = PBXBuildFile; fileRef = 8090FB051ACD31E10011D83C /* IM */; };
 		80DFAAD61A760CE100F69205 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 80DFAAD51A760CE100F69205 /* main.m */; };
 		80DFAAD91A760CE100F69205 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 80DFAAD81A760CE100F69205 /* AppDelegate.mm */; };
-		80DFAADC1A760CE100F69205 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80DFAADB1A760CE100F69205 /* ViewController.m */; };
 		80DFAADF1A760CE100F69205 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80DFAADD1A760CE100F69205 /* Main.storyboard */; };
 		80DFAAE11A760CE100F69205 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80DFAAE01A760CE100F69205 /* Images.xcassets */; };
 		80DFAAE41A760CE100F69205 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80DFAAE21A760CE100F69205 /* LaunchScreen.xib */; };
@@ -108,8 +107,6 @@
 		80DFAAD51A760CE100F69205 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		80DFAAD71A760CE100F69205 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		80DFAAD81A760CE100F69205 /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
-		80DFAADA1A760CE100F69205 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		80DFAADB1A760CE100F69205 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		80DFAADE1A760CE100F69205 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		80DFAAE01A760CE100F69205 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		80DFAAE31A760CE100F69205 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -296,8 +293,6 @@
 				8090FAB81ACD12470011D83C /* ProcessController.m */,
 				80DFAAD71A760CE100F69205 /* AppDelegate.h */,
 				80DFAAD81A760CE100F69205 /* AppDelegate.mm */,
-				80DFAADA1A760CE100F69205 /* ViewController.h */,
-				80DFAADB1A760CE100F69205 /* ViewController.m */,
 				807019271A762CEB00B599C0 /* CameraViewController.h */,
 				807019281A762CEB00B599C0 /* CameraViewController.m */,
 				801F7A0D1AD3B3630095BE17 /* HelpViewController.h */,
@@ -663,7 +658,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				801F7A0A1AD384390095BE17 /* NSString+FontAwesome.m in Sources */,
-				80DFAADC1A760CE100F69205 /* ViewController.m in Sources */,
 				80DFAB691A7610AE00F69205 /* DJILinkQueue.m in Sources */,
 				80DFAAD91A760CE100F69205 /* AppDelegate.mm in Sources */,
 				8090FAD81ACD2BD70011D83C /* stitching.cpp in Sources */,
@@ -821,7 +815,9 @@
 					"$(SRCROOT)/IM",
 					"$(PROJECT_DIR)/IM",
 					"$(PROJECT_DIR)/ExVision/IM",
+					"$(PROJECT_DIR)/ExVision",
 				);
+				OTHER_LDFLAGS = "-lc++ ";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -850,7 +846,9 @@
 					"$(SRCROOT)/IM",
 					"$(PROJECT_DIR)/IM",
 					"$(PROJECT_DIR)/ExVision/IM",
+					"$(PROJECT_DIR)/ExVision",
 				);
+				OTHER_LDFLAGS = "-lc++ ";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
