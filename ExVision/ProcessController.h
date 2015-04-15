@@ -21,6 +21,7 @@
     DJIMediaManager* _mediaManager;
     MediaLoadingManager* _loadingManager;
     MagickWand * magick_wand;
+    UIImage *pano;
 
     
     NSMutableDictionary* downloadStatus;
@@ -35,7 +36,7 @@
 
 @property(nonatomic, strong) IBOutlet UIBarButtonItem *barStatus;
 
--(IBAction)dismiss:(id)sender;
+-(IBAction)share:(id)sender;
 
 
 - (CGImageRef)resizedImage:(UIImage*)src to:(CGSize)newSize interpolationQuality:(CGInterpolationQuality)quality;

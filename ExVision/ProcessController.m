@@ -135,6 +135,7 @@ exit(-1); \
         dispatch_async(dispatch_get_main_queue(), ^(void){
             //Run UI Updates
             self.image.image = result;
+            pano = result;
             self.status.text = @"Done";
             
         });
@@ -335,12 +336,29 @@ CGImageRef createStandardImage(CGImageRef image) {
     return dstImage;
 }
 
--(IBAction)dismiss:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
-    
+-(IBAction)share:(id)sender {
+    [self shareText:@"Vision+ Pano" andImage:pano andUrl:[NSURL
+                                                          URLWithString:@"http://google.com"]];
 }
 
 
+- (void)shareText:(NSString *)text andImage:(UIImage *)image andUrl:(NSURL *)url
+{
+    NSMutableArray *sharingItems = [NSMutableArray new];
+    
+    if (text) {
+        [sharingItems addObject:text];
+    }
+    if (image) {
+        [sharingItems addObject:image];
+    }
+    if (url) {
+        [sharingItems addObject:url];
+    }
+    
+    UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:sharingItems applicationActivities:nil];
+    [self presentViewController:activityController animated:YES completion:nil];
+}
 
 
 @end
@@ -453,6 +471,9 @@ CGImageRef createStandardImage(CGImageRef image) {
 }
 
 
+
+
+#pragma share
 
 
 

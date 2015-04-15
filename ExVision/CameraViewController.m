@@ -140,7 +140,7 @@
             wp.stayTime = 1.0;
             
             [newTask addWaypoint:wp];
-            _yaw = _yaw + 26;
+            _yaw = _yaw + 20;
             
         }
      } else {
@@ -153,7 +153,7 @@
              wp.stayTime = 1.0;
              
              [newTask addWaypoint:wp];
-             _yaw = _yaw - 26;
+             _yaw = _yaw - 20;
              
          }
          
