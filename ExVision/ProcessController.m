@@ -83,7 +83,7 @@ exit(-1); \
             else
             {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    CGSize imageSize = CGSizeMake(1096, 822);
+                    CGSize imageSize = CGSizeMake(2192/1.5, 1644/1.5);
                     UIImage *unwarped = [self unwarpVisionImage:[self resizedImage:[UIImage imageWithData:mediaData] to:imageSize interpolationQuality:kCGInterpolationHigh]];
                     [self.imagesForProcessing addObject:unwarped];
                     
@@ -124,7 +124,8 @@ exit(-1); \
         UIImage *uncropped =[CVWrapper processWithArray:self.imagesForProcessing];
         
         
-        CGRect boundsToCrop = CGRectMake(200, 100, [uncropped size].width - 300, [uncropped size].height-150);
+          CGRect boundsToCrop = CGRectMake(200, 100, [uncropped size].width - 300, [uncropped size].height-150);
+        //CGRect boundsToCrop = CGRectMake(0, 0, [uncropped size].width, [uncropped size].height);
         
        // NSLog(@"%f %f SIZE", [uncropped size].width-20, [uncropped size].height-100);
         
@@ -134,7 +135,7 @@ exit(-1); \
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
             //Run UI Updates
-            self.image.image = result;
+            self.image.image = uncropped;
             pano = result;
             self.status.text = @"Done";
             

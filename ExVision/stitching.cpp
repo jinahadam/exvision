@@ -66,7 +66,7 @@
 using namespace std;
 using namespace cv;
 
-bool try_use_gpu = false;
+bool try_use_gpu = true;
 vector<Mat> imgs;
 string result_name = "result.jpg";
 
