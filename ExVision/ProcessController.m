@@ -76,7 +76,7 @@ exit(-1); \
     [m fetchMediaData:^(NSData *data, BOOL *stop, NSError *error) {
         if (*stop) {
             if (error) {
-             NSLog(@"failed :%d index, %@ %d", idx, error.description, error.code);
+             NSLog(@"failed :%d index, %@ %ld", idx, error.description, (long)error.code);
                 [self downloadImageOfIndex:idx];
    
             }
@@ -93,7 +93,7 @@ exit(-1); \
                     
                     int images_remaining = _mediasList.count - self.imagesForProcessing.count;
                     
-                    self.status.text = [NSString stringWithFormat:@"Downloading: %d of %d ",idx + 1, _mediasList.count];
+                    self.status.text = [NSString stringWithFormat:@"Downloading: %d of %lu ",idx + 1, (unsigned long)_mediasList.count];
                     
                     if (images_remaining == 0) {
                         self.status.text = @"Processing Pano";
@@ -124,7 +124,7 @@ exit(-1); \
         UIImage *uncropped =[CVWrapper processWithArray:self.imagesForProcessing];
         
         
-        CGRect boundsToCrop = CGRectMake(80, 80, [uncropped size].width - 110, [uncropped size].height-140);
+        CGRect boundsToCrop = CGRectMake(200, 100, [uncropped size].width - 300, [uncropped size].height-150);
         
        // NSLog(@"%f %f SIZE", [uncropped size].width-20, [uncropped size].height-100);
         
@@ -152,7 +152,8 @@ exit(-1); \
     if (_fetchingMedias) {
         return;
     }
-    NSLog(@"Start Fetch Medias");
+
+    self.barStatus.title = @"Start Fetch Medias";
     _fetchingMedias = YES;
     [_drone.camera fetchMediaListWithResultBlock:^(NSArray *mediaList, NSError *error) {
      //   [self hideLoadingIndicator];
@@ -334,6 +335,12 @@ CGImageRef createStandardImage(CGImageRef image) {
     return dstImage;
 }
 
+-(IBAction)dismiss:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+}
+
+
 
 
 @end
@@ -444,7 +451,6 @@ CGImageRef createStandardImage(CGImageRef image) {
         [queue cancelAllOperations];
     }
 }
-
 
 
 

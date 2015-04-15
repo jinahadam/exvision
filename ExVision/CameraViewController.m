@@ -10,6 +10,7 @@
 #import "VideoPreviewer.h"
 #import <DJISDK/DJISDK.h>
 #import <DJISDK/DJISDCardOperation.h>
+#import <DJISDK/DJIBattery.h>
 
 
 @interface CameraViewController ()
@@ -33,10 +34,19 @@
     wp_idx = -1;
     
     
-    [self.captureBtn primaryStyle];
+    
     [self.panDownBtn warningStyle];
     [self.panUpBtn warningStyle];
     [self.ProcessBtn dangerStyle];
+    
+    [self.cirlce setStrokeColor:[UIColor colorWithRed:240/255.0 green:173/255.0 blue:78/255.0 alpha:1]];
+
+    [self.cirlce setStrokeEnd:0.0 animated:YES];
+    
+
+    
+    _readBatteryInfoTimer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(onReadBatteryInfoTimerTicked:) userInfo:nil repeats:YES];
+
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self // put here the view controller which has to be notified
@@ -44,6 +54,30 @@
                                                  name:@"UIDeviceOrientationDidChangeNotification"
                                                object:nil];
     
+}
+
+-(void) onReadBatteryInfoTimerTicked:(id)timer
+{
+    
+    @try {
+        [_drone.smartBattery updateBatteryInfo:^(DJIError *error) {
+            if (error.errorCode == ERR_Successed) {
+                
+                self.battery.title = [NSString stringWithFormat:@"Battery: %ld%%", (long)_drone.smartBattery.remainPowerPercent];
+            }
+            else
+            {
+                NSLog(@"update BatteryInfo Failed %d", error.errorCode);
+            }
+        }];
+    }
+    @catch (NSException *exception) {
+        
+    }
+    @finally {
+        
+    }
+  
 }
 
 
@@ -106,7 +140,7 @@
             wp.stayTime = 1.0;
             
             [newTask addWaypoint:wp];
-            _yaw = _yaw + 13;
+            _yaw = _yaw + 26;
             
         }
      } else {
@@ -119,7 +153,7 @@
              wp.stayTime = 1.0;
              
              [newTask addWaypoint:wp];
-             _yaw = _yaw - 13;
+             _yaw = _yaw - 26;
              
          }
          
@@ -486,9 +520,11 @@
 -(IBAction) onStartTaskButtonClicked:(id)sender
 {
     
-    self.barStatus.title = @"Starting GS";
 
-    
+    self.barStatus.title = @"Starting GS";
+    self.captureBtn.enabled = false;
+
+    NSLog(@"Starting GS");
     
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
         //Background Thread
@@ -496,7 +532,7 @@
         sleep(2);
         [_groundStation openGroundStation];
         sleep(2);
-        [self calculateAndUploadWPsForDirection:1];
+        [self calculateAndUploadWPsForDirection:0];
         sleep(5);
         [_groundStation startGroundStationTask];
         
@@ -729,7 +765,8 @@
         case GSModeManual:
         {
             ctrlMode = @"MANUAL";
-            NSLog(@"GSModeManual");
+            //NSLog(@"GSModeManual");
+            self.mode.title = ctrlMode;
             break;
         }
         default:
@@ -829,6 +866,17 @@
         if (wp_idx != flyingInfo.targetWaypointIndex) {
             [self SingleShot];
             self.barStatus.title = [NSString stringWithFormat:@"%d images taken", flyingInfo.targetWaypointIndex];
+            
+            [self.cirlce setStrokeEnd:((1.0/15.0)*flyingInfo.targetWaypointIndex) animated:YES];
+            
+            if (flyingInfo.targetWaypointIndex == 15) {
+                self.captureBtn.enabled = true;
+                [self.captureBtn tap];
+
+                
+            }
+
+            
         }
     }
     

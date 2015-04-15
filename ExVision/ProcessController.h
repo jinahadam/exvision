@@ -33,6 +33,11 @@
 @property IBOutlet UILabel *status;
 @property (retain) NSMutableArray* imagesForProcessing;
 
+@property(nonatomic, strong) IBOutlet UIBarButtonItem *barStatus;
+
+-(IBAction)dismiss:(id)sender;
+
+
 - (CGImageRef)resizedImage:(UIImage*)src to:(CGSize)newSize interpolationQuality:(CGInterpolationQuality)quality;
 - (UIImage *)croppedImage:(CGRect)bounds image:(UIImage*) src;
 - (UIImage *)unwarpVisionImage:(CGImageRef)srcCGImage;

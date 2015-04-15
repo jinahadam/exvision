@@ -10,6 +10,9 @@
 #import <DJISDK/DJISDK.h>
 #import "UIButton+Bootstrap.h"
 #import "ProcessController.h"
+#import <pop/POP.h>
+#import "CircleView.h"
+#import "CaptureButton.h"
 
 
 @interface CameraViewController : UIViewController <DJIDroneDelegate, GroundStationDelegate, DJICameraDelegate>
@@ -24,6 +27,11 @@
     NSObject<DJIGroundStation>* _groundStation;
     CLLocationCoordinate2D _homeLocation;
     CLLocationCoordinate2D _CurrentDroneLocation;
+    
+    NSTimer* _readBatteryInfoTimer;
+
+    
+    
  
     int wp_idx;
     double currentAltitude;
@@ -31,14 +39,20 @@
 
 }
 
+@property (strong, nonatomic) IBOutlet CircleView *cirlce;
 @property(nonatomic, retain) IBOutlet UIView* videoPreviewView;
-@property(nonatomic, strong) IBOutlet UIBarButtonItem *barStatus;
-@property(nonatomic, strong) IBOutlet UIBarButtonItem *barAlt;
-@property(nonatomic, strong) IBOutlet UIBarButtonItem *satCount;
-@property(nonatomic, strong) IBOutlet UIButton *captureBtn;
+
+@property(nonatomic, strong) IBOutlet CaptureButton *captureBtn;
 @property(nonatomic, strong) IBOutlet UIButton *panUpBtn;
 @property(nonatomic, strong) IBOutlet UIButton *panDownBtn;
 @property(nonatomic, strong) IBOutlet UIButton *ProcessBtn;
+
+
+@property(nonatomic, strong) IBOutlet UIBarButtonItem *barStatus;
+@property(nonatomic, strong) IBOutlet UIBarButtonItem *barAlt;
+@property(nonatomic, strong) IBOutlet UIBarButtonItem *satCount;
+@property(nonatomic, strong) IBOutlet UIBarButtonItem *mode;
+@property(nonatomic, strong) IBOutlet UIBarButtonItem *battery;
 
 
 /**
