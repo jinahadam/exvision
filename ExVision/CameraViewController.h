@@ -15,7 +15,7 @@
 #import "CaptureButton.h"
 
 
-@interface CameraViewController : UIViewController <DJIDroneDelegate, GroundStationDelegate, DJICameraDelegate>
+@interface CameraViewController : UIViewController <DJIDroneDelegate, GroundStationDelegate, DJICameraDelegate, UIAlertViewDelegate>
 {
     DJIDrone* _drone;
     DJICamera* _camera;
@@ -36,6 +36,7 @@
     int wp_idx;
     double currentAltitude;
     double currentYaw;
+    double PanoSpanAngle;
 
 }
 
@@ -54,6 +55,9 @@
 @property(nonatomic, strong) IBOutlet UIBarButtonItem *mode;
 @property(nonatomic, strong) IBOutlet UIBarButtonItem *battery;
 
+
+
+-(IBAction)setPanoAngle:(id)sender;
 
 /**
  *  Gimbal

@@ -54,6 +54,25 @@
                                                  name:@"UIDeviceOrientationDidChangeNotification"
                                                object:nil];
     
+    PanoSpanAngle = 26;
+    
+}
+
+-(IBAction)setPanoAngle:(id)sender
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Pano Angle" message:@"Set" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    alert.delegate = self;
+    alert.alertViewStyle= UIAlertViewStylePlainTextInput;
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    UITextField *title1 = [alertView textFieldAtIndex:0];
+    
+    double angle = [title1.text doubleValue];
+    PanoSpanAngle = angle;
+    NSLog(@"The name is %f",angle);
+
 }
 
 -(void) onReadBatteryInfoTimerTicked:(id)timer
@@ -140,7 +159,7 @@
             wp.stayTime = 1.0;
             
             [newTask addWaypoint:wp];
-            _yaw = _yaw + 26;
+            _yaw = _yaw + PanoSpanAngle;
             
         }
      } else {
@@ -153,7 +172,7 @@
              wp.stayTime = 1.0;
              
              [newTask addWaypoint:wp];
-             _yaw = _yaw - 26;
+             _yaw = _yaw - PanoSpanAngle;
              
          }
          
