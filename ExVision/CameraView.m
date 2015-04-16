@@ -6,18 +6,18 @@
 //  Copyright (c) 2015 Jinah Adam. All rights reserved.
 //
 
-#import "CameraViewController.h"
+#import "CameraView.h"
 #import "VideoPreviewer.h"
 #import <DJISDK/DJISDK.h>
 #import <DJISDK/DJISDCardOperation.h>
 #import <DJISDK/DJIBattery.h>
+#import "Settings.h"
 
-
-@interface CameraViewController ()
+@interface CameraView ()
 
 @end
 
-@implementation CameraViewController
+@implementation CameraView
 
 - (void)viewDidLoad
 {
@@ -56,24 +56,81 @@
     
     PanoSpanAngle = 26;
     
+    
+    
+    //settings
+    [self loadSettings];
+    
+    
+ 
+    
 }
 
+-(void)loadSettings {
+    NSMutableArray *settingsArray = [[[NSUserDefaults standardUserDefaults] objectForKey:@"settings"]mutableCopy];
+    
+    if ((int)settingsArray.count == 0) {
+        //first time. create defaut settings
+        NSArray *settings = [NSArray arrayWithObjects:[NSNumber numberWithInt:0], [NSNumber numberWithInt:180], nil];
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setObject:settings forKey:@"settings"];
+        [userDefaults synchronize];
+        NSLog(@"settings saved");
+    } else { //load settings
+        
+        direction = (int)[[settingsArray objectAtIndex:0] integerValue];
+        
+        if (direction == 0) {
+            NSLog(@"Right");
+        } else {
+            NSLog(@"Left");
+        }
+        
+        NSNumber *scale = [settingsArray objectAtIndex:1];
+        if ([scale integerValue] == 180)
+        {
+            PanoSpanAngle = 14;
+            NSLog(@"180");
+        } else {
+            PanoSpanAngle = 27;
+            NSLog(@"360");
+            
+        }
+        
+        
+        
+    }
+
+}
+
+
+-(IBAction)showSettings:(id)sender {
+    
+    Settings *modalVC = [self.storyboard instantiateViewControllerWithIdentifier:@"Settings"];
+    modalVC.transitioningDelegate = self;
+    modalVC.modalPresentationStyle = UIModalPresentationCustom;
+    [self.navigationController presentViewController:modalVC animated:YES completion:nil];
+}
+
+#pragma mark - UIViewControllerTransitionDelegate -
+
+- (id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source
+{
+    return [[PresentingAnimationController alloc] init];
+}
+
+- (id <UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed
+{
+    return [[DismissingAnimationController alloc] init];
+}
 -(IBAction)setPanoAngle:(id)sender
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Pano Angle" message:@"Set" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-    alert.delegate = self;
-    alert.alertViewStyle= UIAlertViewStylePlainTextInput;
-    [alert show];
-}
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    UITextField *title1 = [alertView textFieldAtIndex:0];
-    
-    double angle = [title1.text doubleValue];
-    PanoSpanAngle = angle;
-    NSLog(@"The name is %f",angle);
+    [self performSegueWithIdentifier:@"processingSegue" sender:self];
 
 }
+
+
 
 -(void) onReadBatteryInfoTimerTicked:(id)timer
 {
@@ -86,7 +143,7 @@
             }
             else
             {
-                NSLog(@"update BatteryInfo Failed %d", error.errorCode);
+               // NSLog(@"update BatteryInfo Failed %d", error.errorCode);
             }
         }];
     }
@@ -140,8 +197,9 @@
     
 }
 
--(void) calculateAndUploadWPsForDirection:(int)direction {
-    
+-(void) calculateAndUploadWPsForDirection:(int)d {
+    [self loadSettings];
+
    
     const float height = currentAltitude;
     
@@ -149,7 +207,7 @@
     [newTask removeAllWaypoint];
     float _yaw = currentYaw;
     
-     if (direction == 0) {
+     if (d == 0) {
         for (int i = 0; i < 15; i++) {
             CLLocationCoordinate2D step = [self coordinateFromCoord:_CurrentDroneLocation atDistanceKm:(0.5/1000) atBearingDegrees: _yaw];
             
@@ -160,6 +218,9 @@
             
             [newTask addWaypoint:wp];
             _yaw = _yaw + PanoSpanAngle;
+            
+            
+            NSLog(@"Pano %f Right", PanoSpanAngle);
             
         }
      } else {
@@ -173,6 +234,8 @@
              
              [newTask addWaypoint:wp];
              _yaw = _yaw - PanoSpanAngle;
+             NSLog(@"Pano %f Left", PanoSpanAngle);
+
              
          }
          
@@ -551,7 +614,7 @@
         sleep(2);
         [_groundStation openGroundStation];
         sleep(2);
-        [self calculateAndUploadWPsForDirection:0];
+        [self calculateAndUploadWPsForDirection:direction];
         sleep(5);
         [_groundStation startGroundStationTask];
         
@@ -785,7 +848,6 @@
         {
             ctrlMode = @"MANUAL";
             //NSLog(@"GSModeManual");
-            self.mode.title = ctrlMode;
             break;
         }
         default:
@@ -891,6 +953,8 @@
             if (flyingInfo.targetWaypointIndex == 15) {
                 self.captureBtn.enabled = true;
                 [self.captureBtn tap];
+                
+                [self performSegueWithIdentifier:@"processingSegue" sender:self];
 
                 
             }
@@ -904,8 +968,8 @@
     currentYaw = att.yaw/10000.0;
     currentAltitude = flyingInfo.altitude;
     
-    self.satCount.title = [NSString stringWithFormat:@"Sats: %d", flyingInfo.satelliteCount];
-    self.barAlt.title = [NSString stringWithFormat:@"Alt: %f", currentAltitude];
+    self.satCount.title = [NSString stringWithFormat:@"Sats: %d Yaw %f", flyingInfo.satelliteCount, currentYaw];
+
 }
 
 #pragma SD Card Operations

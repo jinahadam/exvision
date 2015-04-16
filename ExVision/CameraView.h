@@ -13,9 +13,11 @@
 #import <pop/POP.h>
 #import "CircleView.h"
 #import "CaptureButton.h"
+#import "PresentingAnimationController.h"
+#import "DismissingAnimationController.h"
 
 
-@interface CameraViewController : UIViewController <DJIDroneDelegate, GroundStationDelegate, DJICameraDelegate, UIAlertViewDelegate>
+@interface CameraView : UIViewController <DJIDroneDelegate, GroundStationDelegate, DJICameraDelegate,UIViewControllerTransitioningDelegate>
 {
     DJIDrone* _drone;
     DJICamera* _camera;
@@ -37,6 +39,7 @@
     double currentAltitude;
     double currentYaw;
     double PanoSpanAngle;
+    int direction;
 
 }
 
@@ -50,14 +53,13 @@
 
 
 @property(nonatomic, strong) IBOutlet UIBarButtonItem *barStatus;
-@property(nonatomic, strong) IBOutlet UIBarButtonItem *barAlt;
 @property(nonatomic, strong) IBOutlet UIBarButtonItem *satCount;
-@property(nonatomic, strong) IBOutlet UIBarButtonItem *mode;
 @property(nonatomic, strong) IBOutlet UIBarButtonItem *battery;
 
 
 
 -(IBAction)setPanoAngle:(id)sender;
+-(IBAction)showSettings:(id)sender;
 
 /**
  *  Gimbal

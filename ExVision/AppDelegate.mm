@@ -32,8 +32,10 @@
         message = [NSString stringWithFormat:@"Register App Failed (ErrorCode:%d)", errorCode];
     }
     
-    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Register" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alertView show];
+    
+    NSLog(@"%@",message);
+//    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Register" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//    [alertView show];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

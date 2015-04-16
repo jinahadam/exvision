@@ -12,7 +12,7 @@
 		801F7A0A1AD384390095BE17 /* NSString+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 801F7A061AD384390095BE17 /* NSString+FontAwesome.m */; };
 		801F7A0B1AD384390095BE17 /* UIButton+Bootstrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 801F7A081AD384390095BE17 /* UIButton+Bootstrap.m */; };
 		801F7A0F1AD3B3630095BE17 /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 801F7A0E1AD3B3630095BE17 /* HelpViewController.m */; };
-		807019291A762CEB00B599C0 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 807019281A762CEB00B599C0 /* CameraViewController.m */; };
+		807019291A762CEB00B599C0 /* CameraView.m in Sources */ = {isa = PBXBuildFile; fileRef = 807019281A762CEB00B599C0 /* CameraView.m */; };
 		807BCBB31AC2A015007E23E2 /* DJISDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 807BCBB21AC2A015007E23E2 /* DJISDK.framework */; };
 		8090FAB91ACD12470011D83C /* ProcessController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8090FAB81ACD12470011D83C /* ProcessController.m */; };
 		8090FABB1ACD2B000011D83C /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8090FABA1ACD2B000011D83C /* opencv2.framework */; };
@@ -56,6 +56,9 @@
 		80DFAB741A7610AE00F69205 /* VideoFrameExtractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 80DFAB651A7610AE00F69205 /* VideoFrameExtractor.m */; };
 		80DFAB751A7610AE00F69205 /* VideoPreviewer.m in Sources */ = {isa = PBXBuildFile; fileRef = 80DFAB671A7610AE00F69205 /* VideoPreviewer.m */; };
 		80DFAB771A7610F200F69205 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 80DFAB761A7610F200F69205 /* libiconv.dylib */; };
+		80E4E7691ADFA87700157EE0 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E4E7681ADFA87700157EE0 /* Settings.m */; };
+		80E4E76C1ADFB15700157EE0 /* PresentingAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E4E76B1ADFB15700157EE0 /* PresentingAnimationController.m */; };
+		80E4E76F1ADFB1C900157EE0 /* DismissingAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E4E76E1ADFB1C900157EE0 /* DismissingAnimationController.m */; };
 		80F34ACE1ADCFABC007473A4 /* CaptureButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F34ACD1ADCFABC007473A4 /* CaptureButton.m */; };
 		80F34AD11ADD10EE007473A4 /* CircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F34AD01ADD10EE007473A4 /* CircleView.m */; };
 /* End PBXBuildFile section */
@@ -79,8 +82,8 @@
 		801F7A081AD384390095BE17 /* UIButton+Bootstrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Bootstrap.m"; sourceTree = "<group>"; };
 		801F7A0D1AD3B3630095BE17 /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
 		801F7A0E1AD3B3630095BE17 /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
-		807019271A762CEB00B599C0 /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
-		807019281A762CEB00B599C0 /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
+		807019271A762CEB00B599C0 /* CameraView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraView.h; sourceTree = "<group>"; };
+		807019281A762CEB00B599C0 /* CameraView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraView.m; sourceTree = "<group>"; };
 		807BCBB21AC2A015007E23E2 /* DJISDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DJISDK.framework; sourceTree = "<group>"; };
 		8090FAB71ACD12470011D83C /* ProcessController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProcessController.h; sourceTree = "<group>"; };
 		8090FAB81ACD12470011D83C /* ProcessController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProcessController.m; sourceTree = "<group>"; };
@@ -213,6 +216,12 @@
 		80DFAB661A7610AE00F69205 /* VideoPreviewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPreviewer.h; sourceTree = "<group>"; };
 		80DFAB671A7610AE00F69205 /* VideoPreviewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPreviewer.m; sourceTree = "<group>"; };
 		80DFAB761A7610F200F69205 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
+		80E4E7671ADFA87700157EE0 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
+		80E4E7681ADFA87700157EE0 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
+		80E4E76A1ADFB15700157EE0 /* PresentingAnimationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresentingAnimationController.h; sourceTree = "<group>"; };
+		80E4E76B1ADFB15700157EE0 /* PresentingAnimationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresentingAnimationController.m; sourceTree = "<group>"; };
+		80E4E76D1ADFB1C900157EE0 /* DismissingAnimationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DismissingAnimationController.h; sourceTree = "<group>"; };
+		80E4E76E1ADFB1C900157EE0 /* DismissingAnimationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DismissingAnimationController.m; sourceTree = "<group>"; };
 		80F34ACC1ADCFABC007473A4 /* CaptureButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaptureButton.h; sourceTree = "<group>"; };
 		80F34ACD1ADCFABC007473A4 /* CaptureButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaptureButton.m; sourceTree = "<group>"; };
 		80F34ACF1ADD10EE007473A4 /* CircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleView.h; sourceTree = "<group>"; };
@@ -310,10 +319,16 @@
 				8090FAB81ACD12470011D83C /* ProcessController.m */,
 				80DFAAD71A760CE100F69205 /* AppDelegate.h */,
 				80DFAAD81A760CE100F69205 /* AppDelegate.mm */,
-				807019271A762CEB00B599C0 /* CameraViewController.h */,
-				807019281A762CEB00B599C0 /* CameraViewController.m */,
+				807019271A762CEB00B599C0 /* CameraView.h */,
+				807019281A762CEB00B599C0 /* CameraView.m */,
 				801F7A0D1AD3B3630095BE17 /* HelpViewController.h */,
 				801F7A0E1AD3B3630095BE17 /* HelpViewController.m */,
+				80E4E7671ADFA87700157EE0 /* Settings.h */,
+				80E4E7681ADFA87700157EE0 /* Settings.m */,
+				80E4E76A1ADFB15700157EE0 /* PresentingAnimationController.h */,
+				80E4E76B1ADFB15700157EE0 /* PresentingAnimationController.m */,
+				80E4E76D1ADFB1C900157EE0 /* DismissingAnimationController.h */,
+				80E4E76E1ADFB1C900157EE0 /* DismissingAnimationController.m */,
 				80DFAADD1A760CE100F69205 /* Main.storyboard */,
 				80DFAAE01A760CE100F69205 /* Images.xcassets */,
 				80DFAAE21A760CE100F69205 /* LaunchScreen.xib */,
@@ -728,18 +743,21 @@
 			files = (
 				801F7A0A1AD384390095BE17 /* NSString+FontAwesome.m in Sources */,
 				80DFAB691A7610AE00F69205 /* DJILinkQueue.m in Sources */,
+				80E4E7691ADFA87700157EE0 /* Settings.m in Sources */,
 				80F34AD11ADD10EE007473A4 /* CircleView.m in Sources */,
 				80DFAAD91A760CE100F69205 /* AppDelegate.mm in Sources */,
 				8090FAD81ACD2BD70011D83C /* stitching.cpp in Sources */,
 				80DFAB751A7610AE00F69205 /* VideoPreviewer.m in Sources */,
 				80DFAAD61A760CE100F69205 /* main.m in Sources */,
+				80E4E76F1ADFB1C900157EE0 /* DismissingAnimationController.m in Sources */,
 				8090FAB91ACD12470011D83C /* ProcessController.m in Sources */,
 				8090FAD71ACD2BD70011D83C /* CVWrapper.mm in Sources */,
 				80DFAB741A7610AE00F69205 /* VideoFrameExtractor.m in Sources */,
-				807019291A762CEB00B599C0 /* CameraViewController.m in Sources */,
+				807019291A762CEB00B599C0 /* CameraView.m in Sources */,
 				80DFAB731A7610AE00F69205 /* MovieGLView.m in Sources */,
 				801F7A0B1AD384390095BE17 /* UIButton+Bootstrap.m in Sources */,
 				80F34ACE1ADCFABC007473A4 /* CaptureButton.m in Sources */,
+				80E4E76C1ADFB15700157EE0 /* PresentingAnimationController.m in Sources */,
 				801F7A0F1AD3B3630095BE17 /* HelpViewController.m in Sources */,
 				80DFAB681A7610AE00F69205 /* DJIDispatch.m in Sources */,
 				8090FAD61ACD2BD70011D83C /* UIImage+OpenCV.mm in Sources */,
@@ -891,6 +909,7 @@
 				);
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -923,6 +942,7 @@
 				);
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

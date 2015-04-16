@@ -118,13 +118,13 @@ exit(-1); \
 
 -(void) processImages {
     __block UIImage *result;
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^(void){
         
         
         UIImage *uncropped =[CVWrapper processWithArray:self.imagesForProcessing];
         
         
-          CGRect boundsToCrop = CGRectMake(200, 100, [uncropped size].width - 300, [uncropped size].height-150);
+    CGRect boundsToCrop = CGRectMake(200, 100, [uncropped size].width - 100, [uncropped size].height-150);
         //CGRect boundsToCrop = CGRectMake(0, 0, [uncropped size].width, [uncropped size].height);
         
        // NSLog(@"%f %f SIZE", [uncropped size].width-20, [uncropped size].height-100);
@@ -135,7 +135,7 @@ exit(-1); \
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
             //Run UI Updates
-            self.image.image = uncropped;
+            self.image.image = result;
             pano = result;
             self.status.text = @"Done";
             
@@ -474,7 +474,6 @@ CGImageRef createStandardImage(CGImageRef image) {
 
 
 
-#pragma share
 
 
 
