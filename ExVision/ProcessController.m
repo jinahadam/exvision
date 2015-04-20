@@ -58,11 +58,13 @@ exit(-1); \
     
     downloadStatus = [[NSMutableDictionary alloc] initWithCapacity:_mediasList.count];
     
+    if (_mediasList.count > 0) {
     for (int i = 0; i < _mediasList.count; i++) {
         [downloadStatus setObject:[NSNumber numberWithInt:0] forKey:[NSNumber numberWithInt:i]];
     }
     
     [self downloadImageOfIndex:0];
+    }
 
 }
 

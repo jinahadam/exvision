@@ -17,12 +17,13 @@
 #import "DismissingAnimationController.h"
 
 
-@interface CameraView : UIViewController <DJIDroneDelegate, GroundStationDelegate, DJICameraDelegate,UIViewControllerTransitioningDelegate>
+@interface CameraView : UIViewController <DJIDroneDelegate, GroundStationDelegate, DJICameraDelegate,UIViewControllerTransitioningDelegate, UIAlertViewDelegate, DJIMainControllerDelegate>
 {
     DJIDrone* _drone;
     DJICamera* _camera;
     
     UILabel* _connectionStatusLabel;
+    BOOL connection;
     BOOL _gimbalAttitudeUpdateFlag;
     BOOL shootPan;
 

@@ -49,7 +49,7 @@
 
 - (void)tap {//:(UITapGestureRecognizer *)recognizer {
  
-    
+    NSLog(@"tap ");
     
     
    // NSLog(@"tap");

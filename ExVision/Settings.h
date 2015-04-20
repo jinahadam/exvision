@@ -24,4 +24,6 @@
 
 - (IBAction)directionChange:(UISegmentedControl *)sender;
 - (IBAction)scaleChange:(UISegmentedControl *)sender;
+
+
 @end
