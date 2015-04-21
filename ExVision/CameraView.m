@@ -13,6 +13,7 @@
 #import <DJISDK/DJIBattery.h>
 #import "Settings.h"
 
+
 @interface CameraView ()
 
 @end
@@ -199,10 +200,26 @@
 
     const float height = currentAltitude;
     
+    
+    DJIGroundStationTask* delTask = [DJIGroundStationTask newTask];
+    
+    [delTask removeAllWaypoint];
+    
+    [_groundStation uploadGroundStationTask:delTask];
+    
+    [_groundStation startGroundStationTask];
+    
+    sleep(3);
+    
+    [_groundStation pauseGroundStationTask];
+
+
+    
     DJIGroundStationTask* newTask = [DJIGroundStationTask newTask];
     
-    [newTask removeAllWaypoint];
+    //[newTask removeAllWaypoint];
 
+    
     
     
     float _yaw = currentYaw;//[self radiansFromDegrees:currentYaw];
@@ -211,6 +228,7 @@
         for (int i = 0; i < 15; i++) {
             CLLocationCoordinate2D step = [self coordinateFromCoord:_CurrentDroneLocation atDistanceKm:(0.5/1000) atBearingDegrees: _yaw];
             
+            NSLog(@"%f %f", step.latitude, step.longitude);
             NSLog(@"Pano %f Right, yaw %f", PanoSpanAngle, _yaw);
 
             DJIGroundStationWaypoint* wp = [[DJIGroundStationWaypoint alloc] initWithCoordinate:step];
@@ -228,6 +246,7 @@
          for (int i = 0; i < 15; i++) {
              CLLocationCoordinate2D step = [self coordinateFromCoord:_CurrentDroneLocation atDistanceKm:(0.5/1000) atBearingDegrees: _yaw];
              
+             NSLog(@"%f %f", step.latitude, step.longitude);
              NSLog(@"Pano %f Right, yaw %f", PanoSpanAngle, _yaw);
 
              
@@ -685,7 +704,8 @@
 {
     
    // NSLog(@"DJIaltitude  = {%d, %d , %d}\n", state.attitude.pitch ,state.attitude.roll , state.attitude.yaw);
-    currentYaw = state.attitude.yaw;
+    currentYaw = state.attitude.yaw + 180;
+    
 }
 
 
@@ -727,9 +747,9 @@
     wp_idx = flyingInfo.targetWaypointIndex;
    // DJIAttitude att = flyingInfo.attitude;
    // currentYaw = att.yaw;//100.0;
-    currentAltitude = flyingInfo.altitude;
+//    currentAltitude = flyingInfo.altitude;
     
-    self.satCount.title = [NSString stringWithFormat:@"Sats: %d Yaw %f", flyingInfo.satelliteCount, currentYaw];
+    self.satCount.title = [NSString stringWithFormat:@"S:%d A:%f", flyingInfo.satelliteCount, currentAltitude];
 
 }
 
@@ -738,11 +758,63 @@
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
         sleep(2);
         [_groundStation openGroundStation];
+        NSLog(@"ground station started");
         sleep(2);
-        [self calculateAndUploadWPsForDirection:direction];
-        sleep(5);
-        [_groundStation startGroundStationTask];
+        [_groundStation pauseGroundStationTask];
+        NSLog(@"ground station paused");
+
+//        sleep(2);
+//
+//        
+//        //[self calculateAndUploadWPsForDirection:direction];
+//        [_groundStation setAircraftJoystickWithPitch:0 Roll:0 Yaw:100 Throttle:0];
+//        NSLog(@"YAW 1");
+//        sleep(3);
+//
+//        [_groundStation setAircraftJoystickWithPitch:0 Roll:0 Yaw:200 Throttle:0];
+//        NSLog(@"YAW 2");
+//        sleep(3);
+//
+//        
+//        [_groundStation setAircraftJoystickWithPitch:0 Roll:0 Yaw:300 Throttle:0];
+//        NSLog(@"YAW 3");
+//        sleep(3);
+//
+//        [_groundStation setAircraftJoystickWithPitch:0 Roll:0 Yaw:400 Throttle:0];
+//        NSLog(@"YAW 4");
+//        sleep(3);
+//
+//        
+//        [_groundStation setAircraftJoystickWithPitch:0 Roll:0 Yaw:500 Throttle:0];
+//        NSLog(@"YAW 4");
+//        sleep(3);
+//        
+//        [_groundStation setAircraftJoystickWithPitch:0 Roll:0 Yaw:0 Throttle:0];
+//        NSLog(@"YAW STOP");
+//        sleep(3);
+        
+   
+        //[_groundStation startGroundStationTask];
+        for (int i=0; i<15; i++) {
+            [_groundStation setAircraftJoystickWithPitch:0 Roll:0 Yaw:100 Throttle:0];
+            sleep(2);
+            [self SingleShot];
+            sleep(2);
+            [_groundStation setAircraftJoystickWithPitch:0 Roll:0 Yaw:0 Throttle:0];
+            sleep(2);
+
+            self.barStatus.title = [NSString stringWithFormat:@"%d images taken", i];
+            [self.cirlce setStrokeEnd:((1.0/15.0)*i) animated:YES];
+            
+        }
+        
     });
+//    
+ 
+    
+  
+    
+    
 }
 #pragma SD Card Operations
 

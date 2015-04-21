@@ -10,6 +10,11 @@
 //#import "MediaPreviewViewController.h"
 #import <DJISDK/DJISDK.h>
 
+#define TOPCUT 150
+#define ADJUST_EXPOSURE 1.3f
+#define ADJUST_SAT 1.5f
+
+
 #define ThrowWandException(wand) { \
 char * description; \
 ExceptionType severity; \
@@ -35,6 +40,33 @@ exit(-1); \
     _fetchingMedias = NO;
     
     self.imagesForProcessing = [[NSMutableArray alloc] init];
+    
+//    UIImage *t = [UIImage imageNamed:@"image.jpg"];
+//   
+//    CIImage *inputImage = [[CIImage alloc] initWithImage:t];
+//    
+//    
+//    
+//    CIFilter *exposureAdjustmentFilter = [CIFilter filterWithName:@"CIExposureAdjust"];
+//    [exposureAdjustmentFilter setDefaults];
+//    [exposureAdjustmentFilter setValue:inputImage forKey:@"inputImage"];
+//    [exposureAdjustmentFilter setValue:[NSNumber numberWithFloat:1.3f] forKey:@"inputEV"];
+//    CIImage *outputImage = [exposureAdjustmentFilter valueForKey:@"outputImage"];
+//    //saturation
+//    CIFilter *filter = [CIFilter filterWithName:@"CIColorControls"];
+//    [filter setValue:outputImage forKey:kCIInputImageKey];
+//    [filter setValue:@1.5f forKey:kCIInputSaturationKey];
+//    
+//    CIImage *outp = [filter valueForKey:@"outputImage"];
+//    
+//    
+//    
+//    CIContext *context = [CIContext contextWithOptions:nil];
+//    self.image.image = [UIImage imageWithCGImage:[context createCGImage:outp fromRect:outp.extent]];
+//    
+//    
+//    pano =self.image.image;
+    
     
     self.status.text = @"Preparing for download...";
 }
@@ -87,7 +119,11 @@ exit(-1); \
                 dispatch_async(dispatch_get_main_queue(), ^{
                     CGSize imageSize = CGSizeMake(2192/1.5, 1644/1.5);
                     UIImage *unwarped = [self unwarpVisionImage:[self resizedImage:[UIImage imageWithData:mediaData] to:imageSize interpolationQuality:kCGInterpolationHigh]];
-                    [self.imagesForProcessing addObject:unwarped];
+                    
+                    CGRect boundsToCrop = CGRectMake(0, TOPCUT, [unwarped size].width, [unwarped size].height);
+                    
+                    UIImage *TopCutOff = [self croppedImage:boundsToCrop image:unwarped];
+                    [self.imagesForProcessing addObject:TopCutOff];
                     
                     if (idx < _mediasList.count - 1)
                         [self downloadImageOfIndex:idx+1];
@@ -99,6 +135,7 @@ exit(-1); \
                     
                     if (images_remaining == 0) {
                         self.status.text = @"Processing Pano";
+                        
                         [self processImages];
                     }
                 });
@@ -126,12 +163,35 @@ exit(-1); \
         UIImage *uncropped =[CVWrapper processWithArray:self.imagesForProcessing];
         
         
-    CGRect boundsToCrop = CGRectMake(200, 100, [uncropped size].width - 100, [uncropped size].height-150);
+    CGRect boundsToCrop = CGRectMake(200, 100, [uncropped size].width - 400, [uncropped size].height-250);
         //CGRect boundsToCrop = CGRectMake(0, 0, [uncropped size].width, [uncropped size].height);
         
        // NSLog(@"%f %f SIZE", [uncropped size].width-20, [uncropped size].height-100);
         
-        result = [self croppedImage:boundsToCrop image:uncropped];
+        
+        //exposure adjustment
+        CIImage *inputImage = [[CIImage alloc] initWithImage:[self croppedImage:boundsToCrop image:uncropped]];
+        
+        
+        
+        CIFilter *exposureAdjustmentFilter = [CIFilter filterWithName:@"CIExposureAdjust"];
+        [exposureAdjustmentFilter setDefaults];
+        [exposureAdjustmentFilter setValue:inputImage forKey:@"inputImage"];
+        [exposureAdjustmentFilter setValue:[NSNumber numberWithFloat:ADJUST_EXPOSURE] forKey:@"inputEV"];
+        CIImage *outputImage = [exposureAdjustmentFilter valueForKey:@"outputImage"];
+        //saturation
+        CIFilter *filter = [CIFilter filterWithName:@"CIColorControls"];
+        [filter setValue:outputImage forKey:kCIInputImageKey];
+        [filter setValue:[NSNumber numberWithFloat:ADJUST_SAT] forKey:kCIInputSaturationKey];
+        
+        CIImage *outp = [filter valueForKey:@"outputImage"];
+
+        
+        
+        CIContext *context = [CIContext contextWithOptions:nil];
+        result = [UIImage imageWithCGImage:[context createCGImage:outp fromRect:outp.extent]];
+        
+        
         
         UIImageWriteToSavedPhotosAlbum(result, nil, nil, nil);
         

@@ -8,13 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		19922B0F0F9E0D6D0210F475 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD413A25A05B885DF0489769 /* libPods.a */; };
+		8005A9D71AE6370700A1822F /* image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8005A9D61AE6370700A1822F /* image.jpg */; };
 		801F7A091AD384390095BE17 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 801F7A041AD384390095BE17 /* FontAwesome.ttf */; };
 		801F7A0A1AD384390095BE17 /* NSString+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 801F7A061AD384390095BE17 /* NSString+FontAwesome.m */; };
 		801F7A0B1AD384390095BE17 /* UIButton+Bootstrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 801F7A081AD384390095BE17 /* UIButton+Bootstrap.m */; };
 		801F7A0F1AD3B3630095BE17 /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 801F7A0E1AD3B3630095BE17 /* HelpViewController.m */; };
 		807019291A762CEB00B599C0 /* CameraView.m in Sources */ = {isa = PBXBuildFile; fileRef = 807019281A762CEB00B599C0 /* CameraView.m */; };
 		807BCBB31AC2A015007E23E2 /* DJISDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 807BCBB21AC2A015007E23E2 /* DJISDK.framework */; };
-		8090FAB91ACD12470011D83C /* ProcessController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8090FAB81ACD12470011D83C /* ProcessController.m */; };
+		807C68FE1AE626C9002C9341 /* test.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 807C68FD1AE626C9002C9341 /* test.JPG */; };
+		807C69001AE62D2C002C9341 /* ProcessController.m in Sources */ = {isa = PBXBuildFile; fileRef = 807C68FF1AE62D2C002C9341 /* ProcessController.m */; };
 		8090FABB1ACD2B000011D83C /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8090FABA1ACD2B000011D83C /* opencv2.framework */; };
 		8090FAC51ACD2B8B0011D83C /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8090FABC1ACD2B8A0011D83C /* Accelerate.framework */; };
 		8090FAC61ACD2B8B0011D83C /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8090FABD1ACD2B8A0011D83C /* AssetsLibrary.framework */; };
@@ -75,6 +77,7 @@
 
 /* Begin PBXFileReference section */
 		20F61F7DB9B3F6A1A9947D0D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		8005A9D61AE6370700A1822F /* image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image.jpg; sourceTree = "<group>"; };
 		801F7A041AD384390095BE17 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
 		801F7A051AD384390095BE17 /* NSString+FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+FontAwesome.h"; sourceTree = "<group>"; };
 		801F7A061AD384390095BE17 /* NSString+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FontAwesome.m"; sourceTree = "<group>"; };
@@ -85,8 +88,9 @@
 		807019271A762CEB00B599C0 /* CameraView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraView.h; sourceTree = "<group>"; };
 		807019281A762CEB00B599C0 /* CameraView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraView.m; sourceTree = "<group>"; };
 		807BCBB21AC2A015007E23E2 /* DJISDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DJISDK.framework; sourceTree = "<group>"; };
+		807C68FD1AE626C9002C9341 /* test.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test.JPG; sourceTree = "<group>"; };
+		807C68FF1AE62D2C002C9341 /* ProcessController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProcessController.m; sourceTree = "<group>"; };
 		8090FAB71ACD12470011D83C /* ProcessController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProcessController.h; sourceTree = "<group>"; };
-		8090FAB81ACD12470011D83C /* ProcessController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProcessController.m; sourceTree = "<group>"; };
 		8090FABA1ACD2B000011D83C /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 		8090FABC1ACD2B8A0011D83C /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		8090FABD1ACD2B8A0011D83C /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
@@ -316,7 +320,7 @@
 				80F34ACF1ADD10EE007473A4 /* CircleView.h */,
 				80F34AD01ADD10EE007473A4 /* CircleView.m */,
 				8090FAB71ACD12470011D83C /* ProcessController.h */,
-				8090FAB81ACD12470011D83C /* ProcessController.m */,
+				807C68FF1AE62D2C002C9341 /* ProcessController.m */,
 				80DFAAD71A760CE100F69205 /* AppDelegate.h */,
 				80DFAAD81A760CE100F69205 /* AppDelegate.mm */,
 				807019271A762CEB00B599C0 /* CameraView.h */,
@@ -340,6 +344,8 @@
 		80DFAAD31A760CE100F69205 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8005A9D61AE6370700A1822F /* image.jpg */,
+				807C68FD1AE626C9002C9341 /* test.JPG */,
 				8090FAF71ACD2E6B0011D83C /* libjpeg.a */,
 				8090FAF81ACD2E6B0011D83C /* libMagickCore.a */,
 				8090FAF91ACD2E6B0011D83C /* libMagickWand.a */,
@@ -686,7 +692,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8005A9D71AE6370700A1822F /* image.jpg in Resources */,
 				8090FB061ACD31E10011D83C /* IM in Resources */,
+				807C68FE1AE626C9002C9341 /* test.JPG in Resources */,
 				801F7A091AD384390095BE17 /* FontAwesome.ttf in Resources */,
 				80DFAADF1A760CE100F69205 /* Main.storyboard in Resources */,
 				80DFAAE41A760CE100F69205 /* LaunchScreen.xib in Resources */,
@@ -742,6 +750,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				801F7A0A1AD384390095BE17 /* NSString+FontAwesome.m in Sources */,
+				807C69001AE62D2C002C9341 /* ProcessController.m in Sources */,
 				80DFAB691A7610AE00F69205 /* DJILinkQueue.m in Sources */,
 				80E4E7691ADFA87700157EE0 /* Settings.m in Sources */,
 				80F34AD11ADD10EE007473A4 /* CircleView.m in Sources */,
@@ -750,7 +759,6 @@
 				80DFAB751A7610AE00F69205 /* VideoPreviewer.m in Sources */,
 				80DFAAD61A760CE100F69205 /* main.m in Sources */,
 				80E4E76F1ADFB1C900157EE0 /* DismissingAnimationController.m in Sources */,
-				8090FAB91ACD12470011D83C /* ProcessController.m in Sources */,
 				8090FAD71ACD2BD70011D83C /* CVWrapper.mm in Sources */,
 				80DFAB741A7610AE00F69205 /* VideoFrameExtractor.m in Sources */,
 				807019291A762CEB00B599C0 /* CameraView.m in Sources */,
