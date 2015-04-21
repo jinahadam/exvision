@@ -13,6 +13,8 @@
 #import <DJISDK/DJIBattery.h>
 #import "Settings.h"
 
+#define YAW_180 150
+#define YAW_360 150
 
 @interface CameraView ()
 
@@ -193,79 +195,6 @@
     
 }
 
--(void) calculateAndUploadWPsForDirection:(int)d {
-    
-    
-    [self loadSettings];
-
-    const float height = currentAltitude;
-    
-    
-    DJIGroundStationTask* delTask = [DJIGroundStationTask newTask];
-    
-    [delTask removeAllWaypoint];
-    
-    [_groundStation uploadGroundStationTask:delTask];
-    
-    [_groundStation startGroundStationTask];
-    
-    sleep(3);
-    
-    [_groundStation pauseGroundStationTask];
-
-
-    
-    DJIGroundStationTask* newTask = [DJIGroundStationTask newTask];
-    
-    //[newTask removeAllWaypoint];
-
-    
-    
-    
-    float _yaw = currentYaw;//[self radiansFromDegrees:currentYaw];
-    
-     if (d == 0) {
-        for (int i = 0; i < 15; i++) {
-            CLLocationCoordinate2D step = [self coordinateFromCoord:_CurrentDroneLocation atDistanceKm:(0.5/1000) atBearingDegrees: _yaw];
-            
-            NSLog(@"%f %f", step.latitude, step.longitude);
-            NSLog(@"Pano %f Right, yaw %f", PanoSpanAngle, _yaw);
-
-            DJIGroundStationWaypoint* wp = [[DJIGroundStationWaypoint alloc] initWithCoordinate:step];
-            wp.altitude = height;
-            wp.horizontalVelocity = 2;
-            wp.stayTime = 1.0;
-            
-            [newTask addWaypoint:wp];
-            _yaw = _yaw + PanoSpanAngle;
-            
-            
-            
-        }
-     } else {
-         for (int i = 0; i < 15; i++) {
-             CLLocationCoordinate2D step = [self coordinateFromCoord:_CurrentDroneLocation atDistanceKm:(0.5/1000) atBearingDegrees: _yaw];
-             
-             NSLog(@"%f %f", step.latitude, step.longitude);
-             NSLog(@"Pano %f Right, yaw %f", PanoSpanAngle, _yaw);
-
-             
-             DJIGroundStationWaypoint* wp = [[DJIGroundStationWaypoint alloc] initWithCoordinate:step];
-             wp.altitude = height;
-             wp.horizontalVelocity = 2;
-             wp.stayTime = 1.0;
-             
-             [newTask addWaypoint:wp];
-             _yaw = _yaw - PanoSpanAngle;
-
-             
-             
-         }
-         
-     }
-    [_groundStation uploadGroundStationTask:newTask];
-}
-
 
 
 
@@ -286,7 +215,8 @@
         if (error.errorCode != ERR_Successed) {
             NSLog(@"Take Photo Error : %@", error.errorDescription);
         } else {
-            
+            self.barStatus.title = [NSString stringWithFormat:@"Image taken"];
+
             
         }
         
@@ -763,48 +693,33 @@
         [_groundStation pauseGroundStationTask];
         NSLog(@"ground station paused");
 
-//        sleep(2);
-//
-//        
-//        //[self calculateAndUploadWPsForDirection:direction];
-//        [_groundStation setAircraftJoystickWithPitch:0 Roll:0 Yaw:100 Throttle:0];
-//        NSLog(@"YAW 1");
-//        sleep(3);
-//
-//        [_groundStation setAircraftJoystickWithPitch:0 Roll:0 Yaw:200 Throttle:0];
-//        NSLog(@"YAW 2");
-//        sleep(3);
-//
-//        
-//        [_groundStation setAircraftJoystickWithPitch:0 Roll:0 Yaw:300 Throttle:0];
-//        NSLog(@"YAW 3");
-//        sleep(3);
-//
-//        [_groundStation setAircraftJoystickWithPitch:0 Roll:0 Yaw:400 Throttle:0];
-//        NSLog(@"YAW 4");
-//        sleep(3);
-//
-//        
-//        [_groundStation setAircraftJoystickWithPitch:0 Roll:0 Yaw:500 Throttle:0];
-//        NSLog(@"YAW 4");
-//        sleep(3);
-//        
-//        [_groundStation setAircraftJoystickWithPitch:0 Roll:0 Yaw:0 Throttle:0];
-//        NSLog(@"YAW STOP");
-//        sleep(3);
-        
+  
    
         //[_groundStation startGroundStationTask];
-        for (int i=0; i<15; i++) {
-            [_groundStation setAircraftJoystickWithPitch:0 Roll:0 Yaw:100 Throttle:0];
+        for (int i=1; i<15; i++) {
+            [_groundStation setAircraftJoystickWithPitch:0 Roll:0 Yaw:YAW_180 Throttle:0];
             sleep(2);
             [self SingleShot];
             sleep(2);
             [_groundStation setAircraftJoystickWithPitch:0 Roll:0 Yaw:0 Throttle:0];
             sleep(2);
 
-            self.barStatus.title = [NSString stringWithFormat:@"%d images taken", i];
             [self.cirlce setStrokeEnd:((1.0/15.0)*i) animated:YES];
+            
+            if (i == 15) {
+                //self.captureBtn.enabled = true;
+                [self.captureBtn tap];
+                shootPan = false;
+                
+                [self.captureBtn setTitle:@"Pano" forState:UIControlStateNormal];
+                self.barStatus.title = @"";
+                [self.cirlce setStrokeEnd:0 animated:NO];
+                
+                [self performSegueWithIdentifier:@"processingSegue" sender:self];
+                
+                
+            }
+
             
         }
         
@@ -920,43 +835,5 @@
 }
 
 
-#pragma GPS Calculations
-
-- (double)radiansFromDegrees:(double)degrees
-{
-    return degrees * (M_PI/180.0);
-}
-
-- (double)degreesFromRadians:(double)radians
-{
-    return radians * (180.0/M_PI);
-}
-
-- (CLLocationCoordinate2D)coordinateFromCoord:
-(CLLocationCoordinate2D)fromCoord
-                                 atDistanceKm:(double)distanceKm
-                             atBearingDegrees:(double)bearingDegrees
-{
-    double distanceRadians = distanceKm / 6371.0;
-    //6,371 = Earth's radius in km
-    double bearingRadians = [self radiansFromDegrees:bearingDegrees];
-    double fromLatRadians = [self radiansFromDegrees:fromCoord.latitude];
-    double fromLonRadians = [self radiansFromDegrees:fromCoord.longitude];
-    
-    double toLatRadians = asin( sin(fromLatRadians) * cos(distanceRadians)
-                               + cos(fromLatRadians) * sin(distanceRadians) * cos(bearingRadians) );
-    
-    double toLonRadians = fromLonRadians + atan2(sin(bearingRadians)
-                                                 * sin(distanceRadians) * cos(fromLatRadians), cos(distanceRadians)
-                                                 - sin(fromLatRadians) * sin(toLatRadians));
-    
-    // adjust toLonRadians to be in the range -180 to +180...
-    toLonRadians = fmod((toLonRadians + 3*M_PI), (2*M_PI)) - M_PI;
-    
-    CLLocationCoordinate2D result;
-    result.latitude = [self degreesFromRadians:toLatRadians];
-    result.longitude = [self degreesFromRadians:toLonRadians];
-    return result;
-}
 
 @end

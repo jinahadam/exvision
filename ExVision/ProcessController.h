@@ -11,11 +11,13 @@
 #import <DJISDK/DJISDK.h>
 #import "MagickWand.h"
 #import "CVWrapper.h"
+#import "JTSImageViewController.h"
+#import "JTSImageInfo.h"
 
 
 @class MediaLoadingManager;
 
-@interface ProcessController : UIViewController <DJIDroneDelegate, DJICameraDelegate>
+@interface ProcessController : UIViewController <DJIDroneDelegate, DJICameraDelegate, UIScrollViewDelegate>
 {
     DJIDrone* _drone;
     DJIMediaManager* _mediaManager;
@@ -31,7 +33,7 @@
 
 
 @property IBOutlet UIImageView *image;
-@property IBOutlet UILabel *status;
+@property IBOutlet UIScrollView *scrollview;
 @property (retain) NSMutableArray* imagesForProcessing;
 
 @property(nonatomic, strong) IBOutlet UIBarButtonItem *barStatus;

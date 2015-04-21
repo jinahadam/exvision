@@ -10,6 +10,11 @@
 //#import "MediaPreviewViewController.h"
 #import <DJISDK/DJISDK.h>
 
+
+
+
+
+
 #define TOPCUT 150
 #define ADJUST_EXPOSURE 1.3f
 #define ADJUST_SAT 1.5f
@@ -67,8 +72,60 @@ exit(-1); \
 //    
 //    pano =self.image.image;
     
+    self.image.image =[UIImage imageNamed:@"image.jpg"];
+    self.barStatus.title = @"Preparing for download...";
     
-    self.status.text = @"Preparing for download...";
+    
+    
+    self.scrollview.hidden = true;
+    self.scrollview = [[UIScrollView alloc]initWithFrame:self.view.bounds];
+    [self.scrollview addSubview:self.image];
+    self.scrollview.contentSize = pano.size;
+    self.scrollview.minimumZoomScale = 0.3f;
+    self.scrollview.maximumZoomScale = 3.0f;
+    self.scrollview.delegate = self;
+    [self.view addSubview:self.scrollview];
+    
+    
+    [self performSelector:@selector(timeout) withObject:nil afterDelay:0.5];
+
+    
+}
+
+
+- (void)scrollViewDidZoom:(UIScrollView *)scrollView
+{
+    CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
+    CGFloat screenHeight = [[UIScreen mainScreen] bounds].size.height;
+    CGFloat viewWidth = self.view.frame.size.width;
+    CGFloat viewHeight = self.view.frame.size.height;
+    
+    CGFloat x = 0;
+    CGFloat y = 0;
+    
+    if(viewWidth < screenWidth) {
+        x = screenWidth / 2;
+    }
+    if(viewHeight < screenHeight) {
+        y = screenHeight / 2 ;
+    }
+    
+    self.scrollview.contentInset = UIEdgeInsetsMake(y, x, y, x);
+}
+
+
+-(void)timeout {
+    self.scrollview.zoomScale = 0.2;
+    sleep(1);
+    self.scrollview.hidden = false;
+
+}
+
+- (UIView *) viewForZoomingInScrollView:(UIScrollView *)scrollView {
+  //  NSLog(@"viewForZoomingInScrollView");
+  //  NSLog(@"%f", self.scrollview.zoomScale);
+    return self.image;
+    
 }
 
 -(void) viewWillAppear:(BOOL)animated
@@ -131,10 +188,14 @@ exit(-1); \
                     
                     int images_remaining = _mediasList.count - self.imagesForProcessing.count;
                     
-                    self.status.text = [NSString stringWithFormat:@"Downloading: %d of %lu ",idx + 1, (unsigned long)_mediasList.count];
+                    self.barStatus.title  = [NSString stringWithFormat:@"Downloading: %d of %lu ",idx + 1, (unsigned long)_mediasList.count];
                     
                     if (images_remaining == 0) {
-                        self.status.text = @"Processing Pano";
+                        self.barStatus.title  = @"Processing Pano";
+                        
+                        
+                        
+                        
                         
                         [self processImages];
                     }
@@ -199,7 +260,18 @@ exit(-1); \
             //Run UI Updates
             self.image.image = result;
             pano = result;
-            self.status.text = @"Done";
+            self.barStatus.title  = @"Done";
+            
+            self.scrollview = [[UIScrollView alloc]initWithFrame:self.view.bounds];
+            [self.scrollview addSubview:self.image];
+            self.scrollview.contentSize = pano.size;
+            self.scrollview.minimumZoomScale = 0.3f;
+            self.scrollview.maximumZoomScale = 3.0f;
+            self.scrollview.delegate = self;
+            [self.view addSubview:self.scrollview];
+            
+            
+            [self performSelector:@selector(timeout) withObject:nil afterDelay:0.5];
             
         });
     });
