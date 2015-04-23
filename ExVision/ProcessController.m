@@ -16,8 +16,8 @@
 
 
 #define TOPCUT 150
-#define ADJUST_EXPOSURE 1.3f
-#define ADJUST_SAT 1.5f
+#define ADJUST_EXPOSURE 1.2f
+#define ADJUST_SAT 1.4f
 
 
 #define ThrowWandException(wand) { \
@@ -72,23 +72,23 @@ exit(-1); \
 //    
 //    pano =self.image.image;
     
-    self.image.image =[UIImage imageNamed:@"image.jpg"];
     self.barStatus.title = @"Preparing for download...";
     
     
-    
-    self.scrollview.hidden = true;
-    self.scrollview = [[UIScrollView alloc]initWithFrame:self.view.bounds];
-    [self.scrollview addSubview:self.image];
-    self.scrollview.contentSize = pano.size;
-    self.scrollview.minimumZoomScale = 0.3f;
-    self.scrollview.maximumZoomScale = 3.0f;
-    self.scrollview.delegate = self;
-    [self.view addSubview:self.scrollview];
-    
-    
-    [self performSelector:@selector(timeout) withObject:nil afterDelay:0.5];
-
+//    self.image.image =[UIImage imageNamed:@"image.jpg"];
+//
+//    self.scrollview.hidden = true;
+//    self.scrollview = [[UIScrollView alloc]initWithFrame:self.view.bounds];
+//    [self.scrollview addSubview:self.image];
+//    self.scrollview.contentSize = pano.size;
+//    self.scrollview.minimumZoomScale = 0.25f;
+//    self.scrollview.maximumZoomScale = 3.0f;
+//    self.scrollview.delegate = self;
+//    [self.view addSubview:self.scrollview];
+//    
+//    
+//    [self performSelector:@selector(timeout) withObject:nil afterDelay:0.5];
+//
     
 }
 
@@ -107,7 +107,7 @@ exit(-1); \
         x = screenWidth / 2;
     }
     if(viewHeight < screenHeight) {
-        y = screenHeight / 2 ;
+        y = screenHeight / 3 ;
     }
     
     self.scrollview.contentInset = UIEdgeInsetsMake(y, x, y, x);
@@ -115,7 +115,7 @@ exit(-1); \
 
 
 -(void)timeout {
-    self.scrollview.zoomScale = 0.2;
+    self.scrollview.zoomScale = 0.25;
     sleep(1);
     self.scrollview.hidden = false;
 
@@ -265,7 +265,7 @@ exit(-1); \
             self.scrollview = [[UIScrollView alloc]initWithFrame:self.view.bounds];
             [self.scrollview addSubview:self.image];
             self.scrollview.contentSize = pano.size;
-            self.scrollview.minimumZoomScale = 0.3f;
+            self.scrollview.minimumZoomScale = 0.25f;
             self.scrollview.maximumZoomScale = 3.0f;
             self.scrollview.delegate = self;
             [self.view addSubview:self.scrollview];

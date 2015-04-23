@@ -13,8 +13,9 @@
 #import <DJISDK/DJIBattery.h>
 #import "Settings.h"
 
-#define YAW_180 150
-#define YAW_360 150
+#define YAW_180 120
+#define YAW_360 120
+#define PANO_SHOTS 7
 
 @interface CameraView ()
 
@@ -39,6 +40,7 @@
     connection = false;
     
     
+    total_images = 0;
     
     [self.panDownBtn warningStyle];
     [self.panUpBtn warningStyle];
@@ -683,31 +685,27 @@
 
 }
 
+-(void)continousShots {
+    
+    [_camera startTakePhoto:CameraSingleCapture withResult:^(DJIError *error) {
+        if (error.errorCode != ERR_Successed) {
+            NSLog(@"Take Photo Error : %@", error.errorDescription);
+        } else {
+            self.barStatus.title = [NSString stringWithFormat:@"Image taken"];
+            total_images = total_images + 1;
+            [self.cirlce setStrokeEnd:((1.0/PANO_SHOTS)*total_images) animated:YES];
+            self.barStatus.title = [NSString stringWithFormat:@"%d Image taken", total_images];
 
--(void) processOperations {
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-        sleep(2);
-        [_groundStation openGroundStation];
-        NSLog(@"ground station started");
-        sleep(2);
-        [_groundStation pauseGroundStationTask];
-        NSLog(@"ground station paused");
-
-  
-   
-        //[_groundStation startGroundStationTask];
-        for (int i=1; i<15; i++) {
-            [_groundStation setAircraftJoystickWithPitch:0 Roll:0 Yaw:YAW_180 Throttle:0];
-            sleep(2);
-            [self SingleShot];
-            sleep(2);
-            [_groundStation setAircraftJoystickWithPitch:0 Roll:0 Yaw:0 Throttle:0];
-            sleep(2);
-
-            [self.cirlce setStrokeEnd:((1.0/15.0)*i) animated:YES];
             
-            if (i == 15) {
-                //self.captureBtn.enabled = true;
+            if (total_images <= PANO_SHOTS) {
+                if(shootPan) {
+                    sleep(1);
+                    [self continousShots];
+                }
+            } else {
+                 //stop the Yaw
+                shootPan = false;
+                [_groundStation setAircraftJoystickWithPitch:0 Roll:0 Yaw:0 Throttle:0];
                 [self.captureBtn tap];
                 shootPan = false;
                 
@@ -717,20 +715,30 @@
                 
                 [self performSegueWithIdentifier:@"processingSegue" sender:self];
                 
-                
             }
-
-            
         }
         
-    });
-//    
- 
-    
-  
-    
+    }];
     
 }
+
+-(void) processOperations {
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+        sleep(2);
+        [_groundStation openGroundStation];
+        NSLog(@"ground station started");
+        sleep(2);
+        [_groundStation pauseGroundStationTask];
+        NSLog(@"ground station paused");
+        
+        [_groundStation setAircraftJoystickWithPitch:0 Roll:0 Yaw:YAW_180 Throttle:0];
+        sleep(1);
+        [self continousShots];
+
+        
+    });
+}
+
 #pragma SD Card Operations
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {

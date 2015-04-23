@@ -35,7 +35,7 @@
 
     
     
- 
+    int total_images;
     int wp_idx;
     double currentAltitude;
     double currentYaw;
