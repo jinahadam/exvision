@@ -15,10 +15,10 @@
 
 
 
-#define CROP_TOP 90
-#define CROP_WIDTH 15
+#define CROP_TOP 200
+#define CROP_WIDTH 20
 #define ADJUST_EXPOSURE 1.2f
-#define ADJUST_SAT 1.1f
+#define ADJUST_SAT 1.3f
 
 
 #define ThrowWandException(wand) { \
@@ -108,7 +108,7 @@ exit(-1); \
     UIImage *img14 = [self manualProcess:[UIImage imageNamed:@"14.JPG"]];
     UIImage *img15 = [self manualProcess:[UIImage imageNamed:@"15.JPG"]];
     
-     UIImage *uncropped =[CVWrapper processWithArray:[NSArray arrayWithObjects:img1,img2,img3,img4,img5,img6,img7,img8,img9,img10,img11,img12,img13,img14,img15, nil]];
+     UIImage *uncropped =[CVWrapper processWithArray:[NSArray arrayWithObjects:img1,img3,img4,img7,img10,img12,img14, nil]];
 
     
     
@@ -150,7 +150,7 @@ exit(-1); \
 
 -(UIImage*) manualProcess: (UIImage*)img {
 
-    CGSize imageSize = CGSizeMake(2192/2, 1644/2);
+    CGSize imageSize = CGSizeMake(2192/1.5, 1644/1.5);
     UIImage *unwarped = [self unwarpVisionImage:[self resizedImage:img to:imageSize interpolationQuality:kCGInterpolationHigh]];
     CGRect boundsToCrop = CGRectMake(CROP_WIDTH, CROP_TOP, [unwarped size].width-CROP_WIDTH, [unwarped size].height);
     UIImage *result = [self croppedImage:boundsToCrop image:unwarped];
