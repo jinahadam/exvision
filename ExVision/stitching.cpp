@@ -66,7 +66,7 @@
 using namespace std;
 using namespace cv;
 
-bool try_use_gpu = true;
+bool try_use_gpu = false;
 vector<Mat> imgs;
 string result_name = "result.jpg";
 
@@ -78,6 +78,17 @@ cv::Mat stitch (vector<Mat>& images)
     imgs = images;
     Mat pano;
     Stitcher stitcher = Stitcher::createDefault(try_use_gpu);
+    
+    stitcher.setFeaturesFinder(makePtr<detail::OrbFeaturesFinder>(Size(3,1),3000,1.3f,5));
+    stitcher.setRegistrationResol(0.1);
+    stitcher.setSeamEstimationResol(0.3);
+    stitcher.setCompositingResol(1);
+    stitcher.setPanoConfidenceThresh(1);
+    stitcher.setFeaturesMatcher(makePtr<detail::BestOf2NearestMatcher>(false, 0.3f));
+    
+   // stitcher.setWaveCorrection(true);
+   // stitcher.setWaveCorrectKind(detail::WAVE_CORRECT_HORIZ);
+
     Stitcher::Status status = stitcher.stitch(imgs, pano);
     
     if (status != Stitcher::OK)
@@ -110,6 +121,23 @@ int deprecatedMain(int argc, char* argv[])
 
     Mat pano;
     Stitcher stitcher = Stitcher::createDefault(try_use_gpu);
+
+    
+   // stitcher.setFeaturesFinder(new detail::SurfFeaturesFinder(1000,3,4,3,4));
+    stitcher.setRegistrationResol(0.1);
+    stitcher.setSeamEstimationResol(0.1);
+    stitcher.setCompositingResol(1);
+    stitcher.setPanoConfidenceThresh(1);
+    stitcher.setWaveCorrection(true);
+    stitcher.setWaveCorrectKind(detail::WAVE_CORRECT_HORIZ);
+   // stitcher.setFeaturesMatcher(new detail::BestOf2NearestMatcher(false,0.3));
+   // stitcher.setBundleAdjuster(new detail::BundleAdjusterRay());
+    
+    
+    
+    
+    
+    
     Stitcher::Status status = stitcher.stitch(imgs, pano);
 
     if (status != Stitcher::OK)

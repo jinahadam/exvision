@@ -17,6 +17,21 @@
 		807BCBB31AC2A015007E23E2 /* DJISDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 807BCBB21AC2A015007E23E2 /* DJISDK.framework */; };
 		807C68FE1AE626C9002C9341 /* test.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 807C68FD1AE626C9002C9341 /* test.JPG */; };
 		807C69001AE62D2C002C9341 /* ProcessController.m in Sources */ = {isa = PBXBuildFile; fileRef = 807C68FF1AE62D2C002C9341 /* ProcessController.m */; };
+		808CAEC81AEA0E4100AD813E /* 1.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 808CAEB91AEA0E4100AD813E /* 1.JPG */; };
+		808CAEC91AEA0E4100AD813E /* 2.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 808CAEBA1AEA0E4100AD813E /* 2.JPG */; };
+		808CAECA1AEA0E4100AD813E /* 3.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 808CAEBB1AEA0E4100AD813E /* 3.JPG */; };
+		808CAECB1AEA0E4100AD813E /* 4.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 808CAEBC1AEA0E4100AD813E /* 4.JPG */; };
+		808CAECC1AEA0E4100AD813E /* 5.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 808CAEBD1AEA0E4100AD813E /* 5.JPG */; };
+		808CAECD1AEA0E4100AD813E /* 6.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 808CAEBE1AEA0E4100AD813E /* 6.JPG */; };
+		808CAECE1AEA0E4100AD813E /* 7.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 808CAEBF1AEA0E4100AD813E /* 7.JPG */; };
+		808CAECF1AEA0E4100AD813E /* 8.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 808CAEC01AEA0E4100AD813E /* 8.JPG */; };
+		808CAED01AEA0E4100AD813E /* 9.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 808CAEC11AEA0E4100AD813E /* 9.JPG */; };
+		808CAED11AEA0E4100AD813E /* 10.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 808CAEC21AEA0E4100AD813E /* 10.JPG */; };
+		808CAED21AEA0E4100AD813E /* 11.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 808CAEC31AEA0E4100AD813E /* 11.JPG */; };
+		808CAED31AEA0E4100AD813E /* 12.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 808CAEC41AEA0E4100AD813E /* 12.JPG */; };
+		808CAED41AEA0E4100AD813E /* 13.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 808CAEC51AEA0E4100AD813E /* 13.JPG */; };
+		808CAED51AEA0E4100AD813E /* 14.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 808CAEC61AEA0E4100AD813E /* 14.JPG */; };
+		808CAED61AEA0E4100AD813E /* 15.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 808CAEC71AEA0E4100AD813E /* 15.JPG */; };
 		8090FABB1ACD2B000011D83C /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8090FABA1ACD2B000011D83C /* opencv2.framework */; };
 		8090FAC51ACD2B8B0011D83C /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8090FABC1ACD2B8A0011D83C /* Accelerate.framework */; };
 		8090FAC61ACD2B8B0011D83C /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8090FABD1ACD2B8A0011D83C /* AssetsLibrary.framework */; };
@@ -90,6 +105,21 @@
 		807BCBB21AC2A015007E23E2 /* DJISDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DJISDK.framework; sourceTree = "<group>"; };
 		807C68FD1AE626C9002C9341 /* test.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test.JPG; sourceTree = "<group>"; };
 		807C68FF1AE62D2C002C9341 /* ProcessController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProcessController.m; sourceTree = "<group>"; };
+		808CAEB91AEA0E4100AD813E /* 1.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.JPG; sourceTree = "<group>"; };
+		808CAEBA1AEA0E4100AD813E /* 2.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.JPG; sourceTree = "<group>"; };
+		808CAEBB1AEA0E4100AD813E /* 3.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3.JPG; sourceTree = "<group>"; };
+		808CAEBC1AEA0E4100AD813E /* 4.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 4.JPG; sourceTree = "<group>"; };
+		808CAEBD1AEA0E4100AD813E /* 5.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 5.JPG; sourceTree = "<group>"; };
+		808CAEBE1AEA0E4100AD813E /* 6.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 6.JPG; sourceTree = "<group>"; };
+		808CAEBF1AEA0E4100AD813E /* 7.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 7.JPG; sourceTree = "<group>"; };
+		808CAEC01AEA0E4100AD813E /* 8.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 8.JPG; sourceTree = "<group>"; };
+		808CAEC11AEA0E4100AD813E /* 9.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 9.JPG; sourceTree = "<group>"; };
+		808CAEC21AEA0E4100AD813E /* 10.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 10.JPG; sourceTree = "<group>"; };
+		808CAEC31AEA0E4100AD813E /* 11.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 11.JPG; sourceTree = "<group>"; };
+		808CAEC41AEA0E4100AD813E /* 12.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 12.JPG; sourceTree = "<group>"; };
+		808CAEC51AEA0E4100AD813E /* 13.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 13.JPG; sourceTree = "<group>"; };
+		808CAEC61AEA0E4100AD813E /* 14.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 14.JPG; sourceTree = "<group>"; };
+		808CAEC71AEA0E4100AD813E /* 15.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 15.JPG; sourceTree = "<group>"; };
 		8090FAB71ACD12470011D83C /* ProcessController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProcessController.h; sourceTree = "<group>"; };
 		8090FABA1ACD2B000011D83C /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 		8090FABC1ACD2B8A0011D83C /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
@@ -344,6 +374,21 @@
 		80DFAAD31A760CE100F69205 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				808CAEB91AEA0E4100AD813E /* 1.JPG */,
+				808CAEBA1AEA0E4100AD813E /* 2.JPG */,
+				808CAEBB1AEA0E4100AD813E /* 3.JPG */,
+				808CAEBC1AEA0E4100AD813E /* 4.JPG */,
+				808CAEBD1AEA0E4100AD813E /* 5.JPG */,
+				808CAEBE1AEA0E4100AD813E /* 6.JPG */,
+				808CAEBF1AEA0E4100AD813E /* 7.JPG */,
+				808CAEC01AEA0E4100AD813E /* 8.JPG */,
+				808CAEC11AEA0E4100AD813E /* 9.JPG */,
+				808CAEC21AEA0E4100AD813E /* 10.JPG */,
+				808CAEC31AEA0E4100AD813E /* 11.JPG */,
+				808CAEC41AEA0E4100AD813E /* 12.JPG */,
+				808CAEC51AEA0E4100AD813E /* 13.JPG */,
+				808CAEC61AEA0E4100AD813E /* 14.JPG */,
+				808CAEC71AEA0E4100AD813E /* 15.JPG */,
 				8005A9D61AE6370700A1822F /* image.jpg */,
 				807C68FD1AE626C9002C9341 /* test.JPG */,
 				8090FAF71ACD2E6B0011D83C /* libjpeg.a */,
@@ -692,13 +737,28 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				808CAECB1AEA0E4100AD813E /* 4.JPG in Resources */,
+				808CAEC91AEA0E4100AD813E /* 2.JPG in Resources */,
 				8005A9D71AE6370700A1822F /* image.jpg in Resources */,
+				808CAED31AEA0E4100AD813E /* 12.JPG in Resources */,
+				808CAECF1AEA0E4100AD813E /* 8.JPG in Resources */,
+				808CAED41AEA0E4100AD813E /* 13.JPG in Resources */,
 				8090FB061ACD31E10011D83C /* IM in Resources */,
+				808CAED11AEA0E4100AD813E /* 10.JPG in Resources */,
+				808CAECA1AEA0E4100AD813E /* 3.JPG in Resources */,
 				807C68FE1AE626C9002C9341 /* test.JPG in Resources */,
 				801F7A091AD384390095BE17 /* FontAwesome.ttf in Resources */,
+				808CAED61AEA0E4100AD813E /* 15.JPG in Resources */,
+				808CAECD1AEA0E4100AD813E /* 6.JPG in Resources */,
 				80DFAADF1A760CE100F69205 /* Main.storyboard in Resources */,
+				808CAEC81AEA0E4100AD813E /* 1.JPG in Resources */,
+				808CAED51AEA0E4100AD813E /* 14.JPG in Resources */,
+				808CAECC1AEA0E4100AD813E /* 5.JPG in Resources */,
 				80DFAAE41A760CE100F69205 /* LaunchScreen.xib in Resources */,
+				808CAED01AEA0E4100AD813E /* 9.JPG in Resources */,
 				80DFAAE11A760CE100F69205 /* Images.xcassets in Resources */,
+				808CAECE1AEA0E4100AD813E /* 7.JPG in Resources */,
+				808CAED21AEA0E4100AD813E /* 11.JPG in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

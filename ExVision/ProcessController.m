@@ -15,9 +15,10 @@
 
 
 
-#define TOPCUT 150
+#define CROP_TOP 90
+#define CROP_WIDTH 15
 #define ADJUST_EXPOSURE 1.2f
-#define ADJUST_SAT 1.4f
+#define ADJUST_SAT 1.1f
 
 
 #define ThrowWandException(wand) { \
@@ -75,20 +76,85 @@ exit(-1); \
     self.barStatus.title = @"Preparing for download...";
     
     
-//    self.image.image =[UIImage imageNamed:@"image.jpg"];
-//
-//    self.scrollview.hidden = true;
-//    self.scrollview = [[UIScrollView alloc]initWithFrame:self.view.bounds];
-//    [self.scrollview addSubview:self.image];
-//    self.scrollview.contentSize = pano.size;
-//    self.scrollview.minimumZoomScale = 0.25f;
-//    self.scrollview.maximumZoomScale = 3.0f;
-//    self.scrollview.delegate = self;
-//    [self.view addSubview:self.scrollview];
-//    
-//    
-//    [self performSelector:@selector(timeout) withObject:nil afterDelay:0.5];
-//
+    self.image.image =[UIImage imageNamed:@"image.jpg"];
+
+    self.scrollview.hidden = true;
+    self.scrollview = [[UIScrollView alloc]initWithFrame:self.view.bounds];
+    [self.scrollview addSubview:self.image];
+    self.scrollview.contentSize = pano.size;
+    self.scrollview.minimumZoomScale = 0.25f;
+    self.scrollview.maximumZoomScale = 3.0f;
+    self.scrollview.delegate = self;
+    [self.view addSubview:self.scrollview];
+    
+    
+    [self performSelector:@selector(timeout) withObject:nil afterDelay:0.5];
+
+ 
+    
+    UIImage *img1 = [self manualProcess:[UIImage imageNamed:@"1.JPG"]];
+    UIImage *img2 = [self manualProcess:[UIImage imageNamed:@"2.JPG"]];
+    UIImage *img3 = [self manualProcess:[UIImage imageNamed:@"3.JPG"]];
+    UIImage *img4 = [self manualProcess:[UIImage imageNamed:@"4.JPG"]];
+    UIImage *img5 = [self manualProcess:[UIImage imageNamed:@"5.JPG"]];
+    UIImage *img6 = [self manualProcess:[UIImage imageNamed:@"6.JPG"]];
+    UIImage *img7 = [self manualProcess:[UIImage imageNamed:@"7.JPG"]];
+    UIImage *img8 = [self manualProcess:[UIImage imageNamed:@"8.JPG"]];
+    UIImage *img9 = [self manualProcess:[UIImage imageNamed:@"9.JPG"]];
+    UIImage *img10 = [self manualProcess:[UIImage imageNamed:@"10.JPG"]];
+    UIImage *img11 = [self manualProcess:[UIImage imageNamed:@"11.JPG"]];
+    UIImage *img12 = [self manualProcess:[UIImage imageNamed:@"12.JPG"]];
+    UIImage *img13 = [self manualProcess:[UIImage imageNamed:@"13.JPG"]];
+    UIImage *img14 = [self manualProcess:[UIImage imageNamed:@"14.JPG"]];
+    UIImage *img15 = [self manualProcess:[UIImage imageNamed:@"15.JPG"]];
+    
+     UIImage *uncropped =[CVWrapper processWithArray:[NSArray arrayWithObjects:img1,img2,img3,img4,img5,img6,img7,img8,img9,img10,img11,img12,img13,img14,img15, nil]];
+
+    
+    
+    CGRect boundsToCrop = CGRectMake(200, 100, [uncropped size].width - 400, [uncropped size].height-250);
+    //CGRect boundsToCrop = CGRectMake(0, 0, [uncropped size].width, [uncropped size].height);
+    
+    // NSLog(@"%f %f SIZE", [uncropped size].width-20, [uncropped size].height-100);
+    
+    
+    //exposure adjustment
+    CIImage *inputImage = [[CIImage alloc] initWithImage:[self croppedImage:boundsToCrop image:uncropped]];
+    
+    
+    
+    CIFilter *exposureAdjustmentFilter = [CIFilter filterWithName:@"CIExposureAdjust"];
+    [exposureAdjustmentFilter setDefaults];
+    [exposureAdjustmentFilter setValue:inputImage forKey:@"inputImage"];
+    [exposureAdjustmentFilter setValue:[NSNumber numberWithFloat:ADJUST_EXPOSURE] forKey:@"inputEV"];
+    CIImage *outputImage = [exposureAdjustmentFilter valueForKey:@"outputImage"];
+    //saturation
+    CIFilter *filter = [CIFilter filterWithName:@"CIColorControls"];
+    [filter setValue:outputImage forKey:kCIInputImageKey];
+    [filter setValue:[NSNumber numberWithFloat:ADJUST_SAT] forKey:kCIInputSaturationKey];
+    
+    CIImage *outp = [filter valueForKey:@"outputImage"];
+    
+    
+    
+    CIContext *context = [CIContext contextWithOptions:nil];
+    UIImage *result = [UIImage imageWithCGImage:[context createCGImage:outp fromRect:outp.extent]];
+                                        
+                                        
+    self.image.image = result;
+    
+    pano = result;
+    
+    
+}
+
+-(UIImage*) manualProcess: (UIImage*)img {
+
+    CGSize imageSize = CGSizeMake(2192/2, 1644/2);
+    UIImage *unwarped = [self unwarpVisionImage:[self resizedImage:img to:imageSize interpolationQuality:kCGInterpolationHigh]];
+    CGRect boundsToCrop = CGRectMake(CROP_WIDTH, CROP_TOP, [unwarped size].width-CROP_WIDTH, [unwarped size].height);
+    UIImage *result = [self croppedImage:boundsToCrop image:unwarped];
+    return result;
     
 }
 
@@ -158,6 +224,14 @@ exit(-1); \
 }
 
 
+
+-(UIImage*)processImageForPano:(UIImage*)img {
+    
+        CGSize imageSize = CGSizeMake(2192/1.5, 1644/1.5);
+        return [UIImage imageWithCGImage:[self resizedImage:img to:imageSize interpolationQuality:kCGInterpolationHigh]];
+    
+}
+
 -(void)downloadImageOfIndex:(int)idx {
 
     DJIMedia *m = [_mediasList objectAtIndex:idx];
@@ -177,7 +251,7 @@ exit(-1); \
                     CGSize imageSize = CGSizeMake(2192/1.5, 1644/1.5);
                     UIImage *unwarped = [self unwarpVisionImage:[self resizedImage:[UIImage imageWithData:mediaData] to:imageSize interpolationQuality:kCGInterpolationHigh]];
                     
-                    CGRect boundsToCrop = CGRectMake(0, TOPCUT, [unwarped size].width, [unwarped size].height);
+                    CGRect boundsToCrop = CGRectMake(CROP_WIDTH, CROP_TOP, [unwarped size].width-CROP_WIDTH, [unwarped size].height);
                     
                     UIImage *TopCutOff = [self croppedImage:boundsToCrop image:unwarped];
                     [self.imagesForProcessing addObject:TopCutOff];
@@ -224,7 +298,7 @@ exit(-1); \
         UIImage *uncropped =[CVWrapper processWithArray:self.imagesForProcessing];
         
         
-    CGRect boundsToCrop = CGRectMake(200, 100, [uncropped size].width - 400, [uncropped size].height-250);
+        CGRect boundsToCrop = CGRectMake(200, 100, [uncropped size].width - 400, [uncropped size].height-250);
         //CGRect boundsToCrop = CGRectMake(0, 0, [uncropped size].width, [uncropped size].height);
         
        // NSLog(@"%f %f SIZE", [uncropped size].width-20, [uncropped size].height-100);

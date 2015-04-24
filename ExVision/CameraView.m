@@ -13,9 +13,9 @@
 #import <DJISDK/DJIBattery.h>
 #import "Settings.h"
 
-#define YAW_180 120
+#define YAW_180 150
 #define YAW_360 120
-#define PANO_SHOTS 7
+#define PANO_SHOTS 10
 
 @interface CameraView ()
 
@@ -30,10 +30,20 @@
     _drone = [[DJIDrone alloc] initWithType:DJIDrone_Phantom];
     _camera = _drone.camera;
     _camera.delegate = self;
-
     _groundStation = _drone.mainController;
+    _groundStation.groundStationDelegate = self;
+    _drone.mainController.mcDelegate = self;
+   
+    
+    [_drone.mainController startUpdateMCSystemState];
+    
+    [_camera startCameraSystemStateUpdates];
+    
+    
 
     [[VideoPreviewer instance] start];
+ 
+    
     currentAltitude = 0;
     shootPan = false;
     wp_idx = -1;
@@ -63,6 +73,28 @@
  
     
 }
+
+
+-(void)setup {
+    
+}
+-(void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    
+    [_drone connectToDrone];
+    [[VideoPreviewer instance] setView:self.videoPreviewView];
+    [[VideoPreviewer instance] resume];
+
+
+    
+    
+    
+}
+
+
+
 
 -(void)loadSettings {
     NSMutableArray *settingsArray = [[[NSUserDefaults standardUserDefaults] objectForKey:@"settings"]mutableCopy];
@@ -161,24 +193,6 @@
     [_drone destroy];
 }
 
--(void) viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    
-    _drone.delegate = self;
-    _groundStation.groundStationDelegate = self;
-    _drone.mainController.mcDelegate = self;
-    [_drone connectToDrone];
-
-    [_drone.mainController startUpdateMCSystemState];
-
-    [_camera startCameraSystemStateUpdates];
-    [[VideoPreviewer instance] setView:self.videoPreviewView];
-
-    
-    
-}
 
 -(void) viewWillDisappear:(BOOL)animated
 {
@@ -685,42 +699,56 @@
 
 }
 
--(void)continousShots {
-    
-    [_camera startTakePhoto:CameraSingleCapture withResult:^(DJIError *error) {
-        if (error.errorCode != ERR_Successed) {
-            NSLog(@"Take Photo Error : %@", error.errorDescription);
-        } else {
-            self.barStatus.title = [NSString stringWithFormat:@"Image taken"];
-            total_images = total_images + 1;
-            [self.cirlce setStrokeEnd:((1.0/PANO_SHOTS)*total_images) animated:YES];
-            self.barStatus.title = [NSString stringWithFormat:@"%d Image taken", total_images];
-
-            
-            if (total_images <= PANO_SHOTS) {
-                if(shootPan) {
-                    sleep(1);
-                    [self continousShots];
-                }
-            } else {
-                 //stop the Yaw
-                shootPan = false;
-                [_groundStation setAircraftJoystickWithPitch:0 Roll:0 Yaw:0 Throttle:0];
-                [self.captureBtn tap];
-                shootPan = false;
-                
-                [self.captureBtn setTitle:@"Pano" forState:UIControlStateNormal];
-                self.barStatus.title = @"";
-                [self.cirlce setStrokeEnd:0 animated:NO];
-                
-                [self performSegueWithIdentifier:@"processingSegue" sender:self];
-                
-            }
-        }
-        
-    }];
-    
-}
+//-(void)continousShots {
+//    
+//    
+//    [_camera setCameraExposureCompensation:CameraExposureCompensationN00 withResultBlock:^(DJIError *error) {
+//        if (error.errorCode == ERR_Successed) {
+//            NSLog(@"Set Exposure Compensation Success");
+//        }
+//        else{
+//            NSLog(@"Set Exposure Compensation Failed");
+//        }
+//    }];
+//    
+//    [_camera startTakePhoto:CameraSingleCapture withResult:^(DJIError *error) {
+//        if (error.errorCode != ERR_Successed) {
+//            NSLog(@"Take Photo Error : %@", error.errorDescription);
+//        } else {
+//        
+//        }
+//        self.barStatus.title = [NSString stringWithFormat:@"Image taken"];
+//        total_images = total_images + 1;
+//        [self.cirlce setStrokeEnd:((1.0/PANO_SHOTS)*total_images) animated:YES];
+//        self.barStatus.title = [NSString stringWithFormat:@"%d Image taken", total_images];
+//        
+//        
+//        if (total_images <= PANO_SHOTS) {
+//            if(shootPan) {
+//                sleep(2);
+//                [_groundStation setAircraftJoystickWithPitch:0 Roll:0 Yaw:YAW_180 Throttle:0];
+//
+//                [self continousShots];
+//            }
+//        } else {
+//            //stop the Yaw
+//            shootPan = false;
+//            [_groundStation setAircraftJoystickWithPitch:0 Roll:0 Yaw:0 Throttle:0];
+//            [self.captureBtn tap];
+//            shootPan = false;
+//            [self.cirlce setStrokeEnd:0 animated:NO];
+//
+//            [self.captureBtn setTitle:@"Pano" forState:UIControlStateNormal];
+//            self.barStatus.title = @"";
+//            [self.cirlce setStrokeEnd:0 animated:NO];
+//            
+//            [self performSegueWithIdentifier:@"processingSegue" sender:self];
+//            
+//        }
+//
+//    }];
+//    
+//}
 
 -(void) processOperations {
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
@@ -731,10 +759,35 @@
         [_groundStation pauseGroundStationTask];
         NSLog(@"ground station paused");
         
-        [_groundStation setAircraftJoystickWithPitch:0 Roll:0 Yaw:YAW_180 Throttle:0];
-        sleep(1);
-        [self continousShots];
-
+        
+        
+        //[_groundStation startGroundStationTask];
+        for (int i=1; i<PANO_SHOTS; i++) {
+            [_groundStation setAircraftJoystickWithPitch:0 Roll:0 Yaw:YAW_180 Throttle:0];
+            sleep(2);
+            [self SingleShot];
+            sleep(2);
+            [_groundStation setAircraftJoystickWithPitch:0 Roll:0 Yaw:0 Throttle:0];
+            sleep(2);
+            
+            [self.cirlce setStrokeEnd:((1.0/PANO_SHOTS)*i) animated:YES];
+            
+            if (i == PANO_SHOTS) {
+                //self.captureBtn.enabled = true;
+                [self.captureBtn tap];
+                shootPan = false;
+                
+                [self.captureBtn setTitle:@"Pano" forState:UIControlStateNormal];
+                self.barStatus.title = @"";
+                [self.cirlce setStrokeEnd:0 animated:NO];
+                
+                [self performSegueWithIdentifier:@"processingSegue" sender:self];
+                
+                
+            }
+            
+            
+        }
         
     });
 }
@@ -773,25 +826,25 @@
 
 -(void)SDCardOperations {
     
-    if (!connection) {
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info"
-                                                        message:@"Connect to Phantom"
-                                                       delegate:self
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert show];
-        
-        [self.captureBtn setTitle:@"Pano" forState:UIControlStateNormal];
-        self.barStatus.title = @"Pano Cancelled";
-        [self.cirlce setStrokeEnd:0 animated:NO];
-        [_groundStation pauseGroundStationTask];
-        [self.captureBtn tap];
-        shootPan = false;
-        
-        return;
-        
-    }
+//    if (!connection) {
+//        
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info"
+//                                                        message:@"Connect to Phantom"
+//                                                       delegate:self
+//                                              cancelButtonTitle:@"OK"
+//                                              otherButtonTitles:nil];
+//        [alert show];
+//        
+//        [self.captureBtn setTitle:@"Pano" forState:UIControlStateNormal];
+//        self.barStatus.title = @"Pano Cancelled";
+//        [self.cirlce setStrokeEnd:0 animated:NO];
+//        [_groundStation pauseGroundStationTask];
+//        [self.captureBtn tap];
+//        shootPan = false;
+//        
+//        return;
+//        
+//    }
 
     
     
