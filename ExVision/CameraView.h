@@ -34,6 +34,7 @@
     NSTimer* _readBatteryInfoTimer;
 
     
+    UIView *mask;
     
     int total_images;
     int wp_idx;

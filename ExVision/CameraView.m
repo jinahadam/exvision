@@ -13,9 +13,9 @@
 #import <DJISDK/DJIBattery.h>
 #import "Settings.h"
 
-#define YAW_180 150
+#define YAW_180 140
 #define YAW_360 120
-#define PANO_SHOTS 10
+#define PANO_SHOTS 8
 
 @interface CameraView ()
 
@@ -136,10 +136,16 @@
 
 -(IBAction)showSettings:(id)sender {
     
+
+    
+    
     Settings *modalVC = [self.storyboard instantiateViewControllerWithIdentifier:@"Settings"];
     modalVC.transitioningDelegate = self;
     modalVC.modalPresentationStyle = UIModalPresentationCustom;
     [self.navigationController presentViewController:modalVC animated:YES completion:nil];
+    
+    
+    
 }
 
 #pragma mark - UIViewControllerTransitionDelegate -
@@ -156,7 +162,17 @@
 -(IBAction)setPanoAngle:(id)sender
 {
 
-    [self performSegueWithIdentifier:@"processingSegue" sender:self];
+    mask = [[UIView alloc] initWithFrame:self.view.frame];
+    [mask setBackgroundColor:[UIColor colorWithWhite:0.0 alpha:0.9]];
+    [self.view addSubview:mask];
+    
+  //  [self performSegueWithIdentifier:@"processingSegue" sender:self];
+    Settings *modalVC = [self.storyboard instantiateViewControllerWithIdentifier:@"processingSegue"];
+    modalVC.transitioningDelegate = self;
+    modalVC.modalPresentationStyle = UIModalPresentationCustom;
+    [self.navigationController presentViewController:modalVC animated:YES completion:nil];
+    
+    
 
 }
 

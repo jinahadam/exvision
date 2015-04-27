@@ -13,6 +13,7 @@
 #import "CVWrapper.h"
 #import "JTSImageViewController.h"
 #import "JTSImageInfo.h"
+#import "MBProgressHUD.h"
 
 
 @class MediaLoadingManager;
@@ -37,15 +38,15 @@
 @property (retain) NSMutableArray* imagesForProcessing;
 
 @property(nonatomic, strong) IBOutlet UIBarButtonItem *barStatus;
+@property(nonatomic, strong) IBOutlet UIButton *close;
+@property(nonatomic, strong) IBOutlet UIButton *share;
 
 -(IBAction)share:(id)sender;
-
+- (IBAction)didClickOnClose:(id)sender;
 
 - (CGImageRef)resizedImage:(UIImage*)src to:(CGSize)newSize interpolationQuality:(CGInterpolationQuality)quality;
 - (UIImage *)croppedImage:(CGRect)bounds image:(UIImage*) src;
 - (UIImage *)unwarpVisionImage:(CGImageRef)srcCGImage;
-
-
 
 
 @end
