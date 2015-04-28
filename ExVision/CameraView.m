@@ -61,8 +61,9 @@
 -(void)setup {
     
     
-    NSLog(@"Setup");
-    
+
+    self.navigationItem.title = @"Phantom Pano";
+
     
     
     _drone = [[DJIDrone alloc] initWithType:DJIDrone_Phantom];
@@ -443,7 +444,7 @@
         case ConnectionStartConnect:
         {
             NSLog(@"Connection Started");
-            self.navigationItem.title = @"Start Reconnect...";
+         //   self.navigationItem.title = @"Start Reconnect...";
             //self.connectionStatus.title = @"Start Reconnect...";
             connection = false;
 
@@ -452,7 +453,7 @@
         case ConnectionSuccessed:
         {
             NSLog(@"connected");
-            self.navigationItem.title = @"Connected";
+          //  self.navigationItem.title = @"Connected";
            // self.connectionStatus.title = @"Connected";
             connection = true;
             break;
@@ -460,7 +461,7 @@
         case ConnectionFailed:
         {
             NSLog(@"Connect Failed...");
-            self.navigationItem.title = @"Connection Failed";
+           // self.navigationItem.title = @"Connection Failed";
             connection = false;
 
             //self.connectionStatus.title = @"Connect Failed";
@@ -468,7 +469,7 @@
         }
         case ConnectionBroken:
         {
-            self.navigationItem.title = @"Disconnected";
+          //  self.navigationItem.title = @"Disconnected";
             connection = false;
 
             NSLog(@"Connect Broken...");
@@ -757,7 +758,7 @@
    // currentYaw = att.yaw;//100.0;
 //    currentAltitude = flyingInfo.altitude;
     
-    self.satCount.title = [NSString stringWithFormat:@"S:%d A:%f", flyingInfo.satelliteCount, currentAltitude];
+    self.satCount.title = [NSString stringWithFormat:@"S:%d", flyingInfo.satelliteCount];
 
 }
 
