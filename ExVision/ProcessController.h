@@ -26,6 +26,7 @@
     MagickWand * magick_wand;
     UIImage *pano;
 
+    MBProgressHUD *hud;
     
     NSMutableDictionary* downloadStatus;
     NSArray* _mediasList;

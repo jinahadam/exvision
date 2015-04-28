@@ -289,7 +289,7 @@ cv::Mat stitch (vector<Mat>& images)
 //    stitcher.setPanoConfidenceThresh(1);
 //    stitcher.setFeaturesMatcher(makePtr<detail::BestOf2NearestMatcher>(false, 0.3f));
 //    
-//    stitcher.setWaveCorrection(true);
+     stitcher.setWaveCorrection(true);
 //  //  stitcher.setWaveCorrectKind(detail::WAVE_CORRECT_VERT);
 
     Stitcher::Status status = stitcher.stitch(imgs, pano);

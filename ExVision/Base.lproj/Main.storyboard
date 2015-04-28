@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14E7f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="M4p-aR-L0k">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14E11f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="M4p-aR-L0k">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
@@ -214,11 +214,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="492"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dW8-lB-Nmq">
-                                <rect key="frame" x="8" y="-8" width="592" height="508"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s2R-Fl-mHH">
-                                <rect key="frame" x="316" y="439" width="100" height="50"/>
+                                <rect key="frame" x="309" y="439" width="100" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="i3A-Pg-LWy"/>
                                     <constraint firstAttribute="width" constant="100" id="w8l-k8-wQg"/>
@@ -229,7 +226,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cK9-aI-5PA">
-                                <rect key="frame" x="207" y="439" width="100" height="50"/>
+                                <rect key="frame" x="200" y="439" width="100" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="CF9-BW-xtT"/>
                                     <constraint firstAttribute="height" constant="50" id="cdA-DT-xJm"/>
@@ -239,13 +236,16 @@
                                     <action selector="share:" destination="Wqb-os-swp" eventType="touchUpInside" id="uSQ-m8-h0o"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dW8-lB-Nmq">
+                                <rect key="frame" x="8" y="-8" width="592" height="508"/>
+                            </imageView>
                         </subviews>
                         <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="dW8-lB-Nmq" secondAttribute="trailing" constant="-16" id="7nA-CZ-lKh"/>
                             <constraint firstItem="s2R-Fl-mHH" firstAttribute="firstBaseline" secondItem="cK9-aI-5PA" secondAttribute="baseline" id="BUo-um-fVO"/>
                             <constraint firstItem="s2R-Fl-mHH" firstAttribute="baseline" secondItem="cK9-aI-5PA" secondAttribute="firstBaseline" id="Ge3-qu-4Hb"/>
-                            <constraint firstItem="s2R-Fl-mHH" firstAttribute="centerX" secondItem="dW8-lB-Nmq" secondAttribute="centerX" constant="62" id="H7c-OU-eKU"/>
+                            <constraint firstItem="s2R-Fl-mHH" firstAttribute="centerX" secondItem="dW8-lB-Nmq" secondAttribute="centerX" constant="55" id="H7c-OU-eKU"/>
                             <constraint firstItem="s2R-Fl-mHH" firstAttribute="leading" secondItem="cK9-aI-5PA" secondAttribute="trailing" constant="9" id="M0n-hA-e9D"/>
                             <constraint firstItem="s2R-Fl-mHH" firstAttribute="top" secondItem="pYh-FS-WdM" secondAttribute="bottom" constant="439" id="UGw-AP-nwG"/>
                             <constraint firstItem="dW8-lB-Nmq" firstAttribute="topMargin" secondItem="pYh-FS-WdM" secondAttribute="bottom" id="Zu1-bd-RhR"/>

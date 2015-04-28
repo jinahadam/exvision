@@ -10,6 +10,7 @@
 //#import "MediaPreviewViewController.h"
 #import <DJISDK/DJISDK.h>
 #import "UIButton+Bootstrap.h"
+#import "CameraView.h"
 
 
 
@@ -48,15 +49,23 @@ exit(-1); \
     [self.close dangerStyle];
     [self.share primaryStyle];
     
-    [self manualPanoProcessing];
+    [self.close setHidden:YES];
+    [self.share setHidden:YES];
     
+    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = @"preparing to download";   // [self manualPanoProcessing];
+    [hud show:YES];
     
 }
 
 - (IBAction)didClickOnClose:(id)sender {
 
+    
     [self dismissViewControllerAnimated:YES completion:nil];
+
 }
+
+
 
 -(void)manualPanoProcessing {
     
@@ -72,7 +81,7 @@ exit(-1); \
         UIImage *img5 = [self processImage:[UIImage imageNamed:@"5.JPG"]];
         UIImage *img6 = [self processImage:[UIImage imageNamed:@"6.JPG"]];
         UIImage *img7 = [self processImage:[UIImage imageNamed:@"7.JPG"]];
-        UIImage *img8 = [self processImage:[UIImage imageNamed:@"8.JPG"]];
+     //   UIImage *img8 = [self processImage:[UIImage imageNamed:@"8.JPG"]];
         //    UIImage *img9 = [self manualProcess:[UIImage imageNamed:@"9.JPG"]];
         //    UIImage *img10 = [self manualProcess:[UIImage imageNamed:@"10.JPG"]];
         //    UIImage *img11 = [self manualProcess:[UIImage imageNamed:@"11.JPG"]];
@@ -81,7 +90,7 @@ exit(-1); \
         //    UIImage *img14 = [self manualProcess:[UIImage imageNamed:@"14.JPG"]];
         //    UIImage *img15 = [self manualProcess:[UIImage imageNamed:@"15.JPG"]];
         //
-        UIImage *uncropped =[CVWrapper processWithArray:[NSArray arrayWithObjects:img1,img2,img3,img4,img5,img6,img7,img8, nil]];
+        UIImage *uncropped =[CVWrapper processWithArray:[NSArray arrayWithObjects:img1,img2,img3,img4,img5,img6,img7, nil]];
         
         
         
@@ -142,31 +151,12 @@ exit(-1); \
 }
 
 
-- (void)scrollViewDidZoom:(UIScrollView *)scrollView
-{
-    CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
-    CGFloat screenHeight = [[UIScreen mainScreen] bounds].size.height;
-    CGFloat viewWidth = self.view.frame.size.width;
-    CGFloat viewHeight = self.view.frame.size.height;
-    
-    CGFloat x = 0;
-    CGFloat y = 0;
-    
-    if(viewWidth < screenWidth) {
-        x = screenWidth / 2;
-    }
-    if(viewHeight < screenHeight) {
-        y = screenHeight / 3 ;
-    }
-    
-    self.scrollview.contentInset = UIEdgeInsetsMake(y, x, y, x);
-}
+
 
 
 -(void)timeout {
     self.scrollview.zoomScale = 0.25;
-    sleep(1);
-    self.scrollview.hidden = false;
+    self.scrollview.hidden = NO;
 
 }
 
@@ -195,6 +185,11 @@ exit(-1); \
 
 -(IBAction)download:(id)sender {
     
+    NSLog(@"begin download");
+    
+    hud.labelText = @"Downloading..";
+
+    
     downloadStatus = [[NSMutableDictionary alloc] initWithCapacity:_mediasList.count];
     
     if (_mediasList.count > 0) {
@@ -221,6 +216,8 @@ exit(-1); \
     DJIMedia *m = [_mediasList objectAtIndex:idx];
     NSMutableData* mediaData = [[NSMutableData alloc] init];
     
+    hud.mode = MBProgressHUDModeDeterminate;
+
     
     [m fetchMediaData:^(NSData *data, BOOL *stop, NSError *error) {
         if (*stop) {
@@ -244,13 +241,22 @@ exit(-1); \
                         [self downloadImageOfIndex:idx+1];
                     
                     
-                    int images_remaining = _mediasList.count - self.imagesForProcessing.count;
+                    int images_remaining = (int)_mediasList.count - (int)self.imagesForProcessing.count;
                     
                     self.barStatus.title  = [NSString stringWithFormat:@"Downloading: %d of %lu ",idx + 1, (unsigned long)_mediasList.count];
                     
+                    NSLog(@"%f",(idx+1)/(double)_mediasList.count);
+                    hud.progress = (idx+1)/(double)_mediasList.count;
+                    
+                  //  NSLog(@"%@", [NSString stringWithFormat:@"Downloading: %d of %lu ",idx + 1, (unsigned long)_mediasList.count]);
+                    
+                    hud.labelText = [NSString stringWithFormat:@"Downloading: %d of %lu ",idx + 1, (unsigned long)_mediasList.count];
+
+                    
                     if (images_remaining == 0) {
-                        self.barStatus.title  = @"Processing Pano";
-                        
+                        hud.labelText  = @"Processing Pano";
+                        hud.mode = MBProgressHUDModeIndeterminate;
+
                         
                         
                         
@@ -282,7 +288,7 @@ exit(-1); \
         UIImage *uncropped =[CVWrapper processWithArray:self.imagesForProcessing];
         
         
-        CGRect boundsToCrop = CGRectMake(200, 100, [uncropped size].width - 400, [uncropped size].height-250);
+       // CGRect boundsToCrop = CGRectMake(200, 100, [uncropped size].width - 400, [uncropped size].height-250);
         //CGRect boundsToCrop = CGRectMake(0, 0, [uncropped size].width, [uncropped size].height);
         
        // NSLog(@"%f %f SIZE", [uncropped size].width-20, [uncropped size].height-100);
@@ -317,8 +323,12 @@ exit(-1); \
         dispatch_async(dispatch_get_main_queue(), ^(void){
             //Run UI Updates
             self.image.image = result;
+            
+            self.image.image = [UIImage imageNamed:@"image.jpg"];
+            
             pano = result;
             self.barStatus.title  = @"Done";
+            [hud hide:YES];
             
             self.scrollview = [[UIScrollView alloc]initWithFrame:self.view.bounds];
             [self.scrollview addSubview:self.image];
@@ -326,10 +336,15 @@ exit(-1); \
             self.scrollview.minimumZoomScale = 0.25f;
             self.scrollview.maximumZoomScale = 3.0f;
             self.scrollview.delegate = self;
+            self.scrollview.hidden = YES;
             [self.view addSubview:self.scrollview];
+            [self.view sendSubviewToBack:self.scrollview];
             
+            [self.close setHidden:NO];
+            [self.share setHidden:NO];
+
             
-            [self performSelector:@selector(timeout) withObject:nil afterDelay:0.5];
+            [self performSelector:@selector(timeout) withObject:nil afterDelay:0.1];
             
         });
     });
@@ -347,7 +362,8 @@ exit(-1); \
         return;
     }
 
-    self.barStatus.title = @"Start Fetch Medias";
+    NSLog(@"Getting Media info");
+  //  self.barStatus.title = @"Start Fetch Medias";
     _fetchingMedias = YES;
     [_drone.camera fetchMediaListWithResultBlock:^(NSArray *mediaList, NSError *error) {
      //   [self hideLoadingIndicator];
@@ -357,6 +373,7 @@ exit(-1); \
             [self download:nil];
         }
         
+      //  NSLog(@"%@", error.description);
         _fetchingMedias = NO;
     }];
     
@@ -381,6 +398,8 @@ exit(-1); \
 
 -(void) camera:(DJICamera*)camera didUpdateSystemState:(DJICameraSystemState*)systemState
 {
+    //NSLog(@"Processing View camera system State");
+
     if (!systemState.isUSBMode) {
         NSLog(@"Set USB Mode");
         [_drone.camera setCamerMode:CameraUSBMode withResultBlock:^(DJIError *error) {

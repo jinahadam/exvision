@@ -59,6 +59,7 @@
 @property(nonatomic, strong) IBOutlet UIBarButtonItem *battery;
 
 
+-(void)setup;
 
 -(IBAction)setPanoAngle:(id)sender;
 -(IBAction)showSettings:(id)sender;

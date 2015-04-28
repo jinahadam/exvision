@@ -27,22 +27,56 @@
 {
     [super viewDidLoad];
     
+    
+    NSLog(@"view did load");
+ 
+    [self setup];
+}
+
+-(void)restartCameraFeed {
+    [mask removeFromSuperview];
+ 
+    
+    
+    
+    _drone = [[DJIDrone alloc] initWithType:DJIDrone_Phantom];
+
+    _camera = _drone.camera;
+    _camera.delegate = self;
+    _groundStation = _drone.mainController;
+    _groundStation.groundStationDelegate = self;
+    _drone.mainController.mcDelegate = self;
+    
+    
+    [_drone.mainController startUpdateMCSystemState];
+    [_camera startCameraSystemStateUpdates];
+    [[VideoPreviewer instance] start];
+    
+    [_drone connectToDrone];
+    [[VideoPreviewer instance] setView:self.videoPreviewView];
+
+
+}
+
+-(void)setup {
+    
+    
+    NSLog(@"Setup");
+    
+    
+    
     _drone = [[DJIDrone alloc] initWithType:DJIDrone_Phantom];
     _camera = _drone.camera;
     _camera.delegate = self;
     _groundStation = _drone.mainController;
     _groundStation.groundStationDelegate = self;
     _drone.mainController.mcDelegate = self;
-   
+    
     
     [_drone.mainController startUpdateMCSystemState];
-    
     [_camera startCameraSystemStateUpdates];
-    
-    
-
     [[VideoPreviewer instance] start];
- 
+    
     
     currentAltitude = 0;
     shootPan = false;
@@ -57,26 +91,19 @@
     [self.ProcessBtn dangerStyle];
     
     [self.cirlce setStrokeColor:[UIColor colorWithRed:240/255.0 green:173/255.0 blue:78/255.0 alpha:1]];
-
+    
     [self.cirlce setStrokeEnd:0.0 animated:YES];
     
-
+    
     
     _readBatteryInfoTimer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(onReadBatteryInfoTimerTicked:) userInfo:nil repeats:YES];
-
+    
     PanoSpanAngle = 26;
     
     //settings
     [self loadSettings];
     
-    
- 
-    
-}
-
-
--(void)setup {
-    
+    [mask setHidden:YES];
 }
 -(void) viewWillAppear:(BOOL)animated
 {
@@ -85,15 +112,8 @@
     
     [_drone connectToDrone];
     [[VideoPreviewer instance] setView:self.videoPreviewView];
-    [[VideoPreviewer instance] resume];
-
-
-    
-    
     
 }
-
-
 
 
 -(void)loadSettings {
@@ -157,15 +177,33 @@
 
 - (id <UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed
 {
+    
+    [self performSelector:@selector(restartCameraFeed) withObject:nil afterDelay:0.5];
     return [[DismissingAnimationController alloc] init];
 }
 -(IBAction)setPanoAngle:(id)sender
 {
 
     mask = [[UIView alloc] initWithFrame:self.view.frame];
-    [mask setBackgroundColor:[UIColor colorWithWhite:0.0 alpha:0.9]];
+    [mask setBackgroundColor:[UIColor colorWithWhite:1 alpha:0.4]];
     [self.view addSubview:mask];
     
+    
+
+    
+    _drone.delegate = Nil;
+    _groundStation.groundStationDelegate = nil;
+    
+    [_camera stopCameraSystemStateUpdates];
+    [_drone disconnectToDrone];
+    [[VideoPreviewer instance] setView:nil];
+    [_connectionStatusLabel removeFromSuperview];
+    [_drone.mainController stopUpdateMCSystemState];
+    
+    [_drone destroy];
+
+
+
   //  [self performSegueWithIdentifier:@"processingSegue" sender:self];
     Settings *modalVC = [self.storyboard instantiateViewControllerWithIdentifier:@"processingSegue"];
     modalVC.transitioningDelegate = self;
@@ -271,7 +309,16 @@
 //        [_camera syncTime:nil];
 //    }
     if (systemState.isUSBMode) {
-        [_camera setCamerMode:CameraCameraMode withResultBlock:Nil];
+        NSLog(@"Camera mode USB");
+        [_camera setCamerMode:CameraCameraMode withResultBlock:^(DJIError *error) {
+            if (error.errorCode == ERR_Successed) {
+
+            } else {
+                NSLog(@"Cant set USB mode");
+            }
+            
+        }];
+        
     }
 }
 
@@ -396,7 +443,7 @@
     switch (status) {
         case ConnectionStartConnect:
         {
-         //   NSLog(@"Connection Started");
+            NSLog(@"Connection Started");
             self.navigationItem.title = @"Start Reconnect...";
             //self.connectionStatus.title = @"Start Reconnect...";
             connection = false;
@@ -405,7 +452,7 @@
         }
         case ConnectionSuccessed:
         {
-           // NSLog(@"connected");
+            NSLog(@"connected");
             self.navigationItem.title = @"Connected";
            // self.connectionStatus.title = @"Connected";
             connection = true;
@@ -413,7 +460,7 @@
         }
         case ConnectionFailed:
         {
-            //NSLog(@"Connect Failed...");
+            NSLog(@"Connect Failed...");
             self.navigationItem.title = @"Connection Failed";
             connection = false;
 
@@ -425,7 +472,7 @@
             self.navigationItem.title = @"Disconnected";
             connection = false;
 
-           // NSLog(@"Connect Broken...");
+            NSLog(@"Connect Broken...");
           //  self.connectionStatus.title = @"Disconnected";
             break;
         }
