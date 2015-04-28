@@ -306,6 +306,21 @@
 			name = "Strap Button";
 			sourceTree = "<group>";
 		};
+		80241BA41AEF8B4C0064309D /* PopUI */ = {
+			isa = PBXGroup;
+			children = (
+				80F34ACC1ADCFABC007473A4 /* CaptureButton.h */,
+				80F34ACD1ADCFABC007473A4 /* CaptureButton.m */,
+				80F34ACF1ADD10EE007473A4 /* CircleView.h */,
+				80F34AD01ADD10EE007473A4 /* CircleView.m */,
+				80E4E76A1ADFB15700157EE0 /* PresentingAnimationController.h */,
+				80E4E76B1ADFB15700157EE0 /* PresentingAnimationController.m */,
+				80E4E76D1ADFB1C900157EE0 /* DismissingAnimationController.h */,
+				80E4E76E1ADFB1C900157EE0 /* DismissingAnimationController.m */,
+			);
+			name = PopUI;
+			sourceTree = "<group>";
+		};
 		80DFAAC71A760CE100F69205 = {
 			isa = PBXGroup;
 			children = (
@@ -329,24 +344,16 @@
 		80DFAAD21A760CE100F69205 /* ExVision */ = {
 			isa = PBXGroup;
 			children = (
-				80F34ACC1ADCFABC007473A4 /* CaptureButton.h */,
-				80F34ACD1ADCFABC007473A4 /* CaptureButton.m */,
-				80F34ACF1ADD10EE007473A4 /* CircleView.h */,
-				80F34AD01ADD10EE007473A4 /* CircleView.m */,
-				8090FAB71ACD12470011D83C /* ProcessController.h */,
-				807C68FF1AE62D2C002C9341 /* ProcessController.m */,
 				80DFAAD71A760CE100F69205 /* AppDelegate.h */,
 				80DFAAD81A760CE100F69205 /* AppDelegate.mm */,
+				8090FAB71ACD12470011D83C /* ProcessController.h */,
+				807C68FF1AE62D2C002C9341 /* ProcessController.m */,
 				807019271A762CEB00B599C0 /* CameraView.h */,
 				807019281A762CEB00B599C0 /* CameraView.m */,
-				801F7A0D1AD3B3630095BE17 /* HelpViewController.h */,
-				801F7A0E1AD3B3630095BE17 /* HelpViewController.m */,
 				80E4E7671ADFA87700157EE0 /* Settings.h */,
 				80E4E7681ADFA87700157EE0 /* Settings.m */,
-				80E4E76A1ADFB15700157EE0 /* PresentingAnimationController.h */,
-				80E4E76B1ADFB15700157EE0 /* PresentingAnimationController.m */,
-				80E4E76D1ADFB1C900157EE0 /* DismissingAnimationController.h */,
-				80E4E76E1ADFB1C900157EE0 /* DismissingAnimationController.m */,
+				801F7A0D1AD3B3630095BE17 /* HelpViewController.h */,
+				801F7A0E1AD3B3630095BE17 /* HelpViewController.m */,
 				80DFAADD1A760CE100F69205 /* Main.storyboard */,
 				80DFAAE01A760CE100F69205 /* Images.xcassets */,
 				80DFAAE21A760CE100F69205 /* LaunchScreen.xib */,
@@ -358,6 +365,7 @@
 		80DFAAD31A760CE100F69205 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				80241BA41AEF8B4C0064309D /* PopUI */,
 				80241B961AEF59D90064309D /* 1.JPG */,
 				80241B971AEF59D90064309D /* 2.JPG */,
 				80241B981AEF59D90064309D /* 3.JPG */,
