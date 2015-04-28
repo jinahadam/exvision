@@ -15,7 +15,7 @@
 
 #define YAW_180 140
 #define YAW_360 120
-#define PANO_SHOTS 8
+#define PANO_SHOTS 7
 
 @interface CameraView ()
 
@@ -91,8 +91,7 @@
     [self.ProcessBtn dangerStyle];
     
     [self.cirlce setStrokeColor:[UIColor colorWithRed:240/255.0 green:173/255.0 blue:78/255.0 alpha:1]];
-    
-    [self.cirlce setStrokeEnd:0.0 animated:YES];
+    [self.cirlce setStrokeEnd:0.0 animated:NO];
     
     
     
@@ -181,11 +180,11 @@
     [self performSelector:@selector(restartCameraFeed) withObject:nil afterDelay:0.5];
     return [[DismissingAnimationController alloc] init];
 }
--(IBAction)setPanoAngle:(id)sender
+-(IBAction)presentProcessingView:(id)sender
 {
 
     mask = [[UIView alloc] initWithFrame:self.view.frame];
-    [mask setBackgroundColor:[UIColor colorWithWhite:1 alpha:0.4]];
+    [mask setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.95]];
     [self.view addSubview:mask];
     
     
@@ -825,7 +824,7 @@
         
         
         //[_groundStation startGroundStationTask];
-        for (int i=1; i<PANO_SHOTS; i++) {
+        for (int i=1; i<=PANO_SHOTS; i++) {
             [_groundStation setAircraftJoystickWithPitch:0 Roll:0 Yaw:YAW_180 Throttle:0];
             sleep(2);
             [self SingleShot];
@@ -833,18 +832,22 @@
             [_groundStation setAircraftJoystickWithPitch:0 Roll:0 Yaw:0 Throttle:0];
             sleep(2);
             
-            [self.cirlce setStrokeEnd:((1.0/PANO_SHOTS)*i) animated:YES];
+            [self.cirlce setStrokeEnd:((1.0/PANO_SHOTS)*(i)) animated:YES];
             
             if (i == PANO_SHOTS) {
                 //self.captureBtn.enabled = true;
                 [self.captureBtn tap];
+
+                
+                [self.cirlce setStrokeColor:[UIColor colorWithRed:240/255.0 green:173/255.0 blue:78/255.0 alpha:1]];
+                [self.cirlce setStrokeEnd:0.0 animated:NO];
+                
                 shootPan = false;
                 
                 [self.captureBtn setTitle:@"Pano" forState:UIControlStateNormal];
                 self.barStatus.title = @"";
-                [self.cirlce setStrokeEnd:0 animated:NO];
                 
-                [self performSegueWithIdentifier:@"processingSegue" sender:self];
+                [self presentProcessingView:nil];
                 
                 
             }

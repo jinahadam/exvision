@@ -16,13 +16,11 @@
 #import "MBProgressHUD.h"
 
 
-@class MediaLoadingManager;
 
 @interface ProcessController : UIViewController <DJIDroneDelegate, DJICameraDelegate, UIScrollViewDelegate>
 {
     DJIDrone* _drone;
     DJIMediaManager* _mediaManager;
-    MediaLoadingManager* _loadingManager;
     MagickWand * magick_wand;
     UIImage *pano;
 
@@ -52,21 +50,4 @@
 
 @end
 
-typedef void (^MediaLoadingManagerTaskBlock)();
 
-@interface MediaLoadingManager : NSObject {
-    NSArray *_operationQueues;
-    NSArray *_taskQueues;
-    NSUInteger _imageThreads;
-    NSUInteger _videoThreads;
-    NSUInteger _mediaIndex;
-}
-
-- (id)initWithThreadsForImage:(NSUInteger)imageThreads threadsForVideo:(NSUInteger)videoThreads;
-
-- (void)addTaskForMedia:(DJIMedia *)media withBlock:(MediaLoadingManagerTaskBlock)block;
-
-- (void)cancelAllTasks;
-
-
-@end

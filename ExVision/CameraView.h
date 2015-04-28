@@ -61,7 +61,7 @@
 
 -(void)setup;
 
--(IBAction)setPanoAngle:(id)sender;
+-(IBAction)presentProcessingView:(id)sender;
 -(IBAction)showSettings:(id)sender;
 
 /**

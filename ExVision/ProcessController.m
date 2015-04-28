@@ -41,7 +41,6 @@ exit(-1); \
     _drone = [[DJIDrone alloc] initWithType:DJIDrone_Phantom];
     _drone.camera.delegate = self;
     _drone.delegate = self;
-    _loadingManager = [[MediaLoadingManager alloc] initWithThreadsForImage:4 threadsForVideo:4];
     _fetchingMedias = NO;
     
     self.imagesForProcessing = [[NSMutableArray alloc] init];
@@ -51,7 +50,7 @@ exit(-1); \
     
     [self.close setHidden:YES];
     [self.share setHidden:YES];
-    
+//    
     hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"preparing to download";   // [self manualPanoProcessing];
     [hud show:YES];
@@ -155,8 +154,10 @@ exit(-1); \
 
 
 -(void)timeout {
-    self.scrollview.zoomScale = 0.25;
+    self.scrollview.zoomScale = 0.3;
     self.scrollview.hidden = NO;
+//    [self.close setHidden:NO];
+//    [self.share setHidden:NO];
 
 }
 
@@ -324,25 +325,24 @@ exit(-1); \
             //Run UI Updates
             self.image.image = result;
             
-            self.image.image = [UIImage imageNamed:@"image.jpg"];
+          //  self.image.image = [UIImage imageNamed:@"image.jpg"];
             
             pano = result;
-            self.barStatus.title  = @"Done";
             [hud hide:YES];
             
-            self.scrollview = [[UIScrollView alloc]initWithFrame:self.view.bounds];
-            [self.scrollview addSubview:self.image];
-            self.scrollview.contentSize = pano.size;
-            self.scrollview.minimumZoomScale = 0.25f;
-            self.scrollview.maximumZoomScale = 3.0f;
-            self.scrollview.delegate = self;
-            self.scrollview.hidden = YES;
-            [self.view addSubview:self.scrollview];
-            [self.view sendSubviewToBack:self.scrollview];
+//            self.scrollview = [[UIScrollView alloc]initWithFrame:self.view.bounds];
+//            [self.scrollview addSubview:self.image];
+//            self.scrollview.contentSize = pano.size;
+//            self.scrollview.minimumZoomScale = 0.25f;
+//            self.scrollview.maximumZoomScale = 3.0f;
+//            self.scrollview.delegate = self;
+//            self.scrollview.hidden = YES;
+//            [self.view addSubview:self.scrollview];
+//            [self.view sendSubviewToBack:self.scrollview];
+            
             
             [self.close setHidden:NO];
             [self.share setHidden:NO];
-
             
             [self performSelector:@selector(timeout) withObject:nil afterDelay:0.1];
             
@@ -575,114 +575,5 @@ CGImageRef createStandardImage(CGImageRef image) {
 
 @end
 
-@interface MediaContextLoadingTask : NSObject
 
-@property (strong, nonatomic) DJIMedia *media;
-@property (copy, nonatomic) MediaLoadingManagerTaskBlock block;
-
-@end
-
-@implementation MediaContextLoadingTask
-
-@end
-
-@implementation MediaLoadingManager
-
-- (id)initWithThreadsForImage:(NSUInteger)imageThreads threadsForVideo:(NSUInteger)videoThreads {
-    self = [super init];
-    if (self) {
-        NSAssert(imageThreads >= 1, @"number of threads for image must be greater than 0.");
-        NSAssert(videoThreads >= 1, @"number of threads for video must be greater than 0.");
-        
-        _imageThreads = imageThreads;
-        _videoThreads = videoThreads;
-        _mediaIndex = 0;
-        
-        NSMutableArray *operationQueues = [NSMutableArray arrayWithCapacity:_imageThreads + _videoThreads];
-        for (NSUInteger i = 0; i < _imageThreads; i++) {
-            NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-            [queue setName:[NSString stringWithFormat:@"MediaDownloadManager image %u", i]];
-            [queue setMaxConcurrentOperationCount:1];
-            [operationQueues addObject:queue];
-        }
-        
-        for (NSUInteger i = 0; i < _videoThreads; i++) {
-            NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-            [queue setName:[NSString stringWithFormat:@"MediaDownloadManager video %u", i]];
-            [queue setMaxConcurrentOperationCount:1];
-            [operationQueues addObject:queue];
-        }
-        
-        _operationQueues = operationQueues;
-        
-        NSMutableArray *taskQueues = [NSMutableArray arrayWithCapacity:_imageThreads + _videoThreads];
-        for (NSUInteger i = 0; i < _imageThreads + _videoThreads; i++) {
-            [taskQueues addObject:[NSMutableArray array]];
-        }
-        
-        _taskQueues = taskQueues;
-    }
-    return self;
-}
-
-- (void)addTaskForMedia:(DJIMedia *)media withBlock:(MediaLoadingManagerTaskBlock)block {
-    NSUInteger threadIndex;
-    if (media.mediaType == MediaTypeJPG) {
-        threadIndex = _mediaIndex % _imageThreads;
-    }
-    else {
-        threadIndex = _imageThreads + _mediaIndex % _videoThreads;
-    }
-    _mediaIndex++;
-    
-    NSMutableArray *taskQueue = [_taskQueues objectAtIndex:threadIndex];
-    @synchronized(taskQueue) {
-        MediaContextLoadingTask *task = [[MediaContextLoadingTask alloc] init];
-        task.media = media;
-        task.block = block;
-        
-        [taskQueue addObject:task];
-    }
-    
-    NSOperationQueue *operationQueue = [_operationQueues objectAtIndex:threadIndex];
-    if (operationQueue.operationCount == 0) {
-        [self driveTaskQueue:@(threadIndex)];
-    }
-}
-
-- (void)driveTaskQueue:(NSNumber *)threadIndex {
-    NSMutableArray *taskQueue = [_taskQueues objectAtIndex:threadIndex.integerValue];
-    NSOperationQueue *operationQueue = [_operationQueues objectAtIndex:threadIndex.integerValue];
-    
-    @synchronized(taskQueue) {
-        if (taskQueue.count == 0) {
-            return;
-        }
-        
-        MediaContextLoadingTask *task = [taskQueue lastObject];
-        [taskQueue removeLastObject];
-        
-        NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
-            task.block();
-            [self driveTaskQueue:threadIndex];
-        }];
-        [operationQueue addOperation:operation];
-    }
-}
-
-- (void)cancelAllTasks {
-    for (NSMutableArray *taskQueue in _taskQueues) {
-        @synchronized(taskQueue) {
-            [taskQueue removeAllObjects];
-        }
-    }
-    
-    for (NSOperationQueue *queue in _operationQueues) {
-        [queue cancelAllOperations];
-    }
-}
-
-
-
-@end
 
