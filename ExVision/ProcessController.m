@@ -48,58 +48,13 @@ exit(-1); \
     [self.close dangerStyle];
     [self.share primaryStyle];
     
-//    UIImage *t = [UIImage imageNamed:@"image.jpg"];
-//   
-//    CIImage *inputImage = [[CIImage alloc] initWithImage:t];
-//    
-//    
-//    
-//    CIFilter *exposureAdjustmentFilter = [CIFilter filterWithName:@"CIExposureAdjust"];
-//    [exposureAdjustmentFilter setDefaults];
-//    [exposureAdjustmentFilter setValue:inputImage forKey:@"inputImage"];
-//    [exposureAdjustmentFilter setValue:[NSNumber numberWithFloat:1.3f] forKey:@"inputEV"];
-//    CIImage *outputImage = [exposureAdjustmentFilter valueForKey:@"outputImage"];
-//    //saturation
-//    CIFilter *filter = [CIFilter filterWithName:@"CIColorControls"];
-//    [filter setValue:outputImage forKey:kCIInputImageKey];
-//    [filter setValue:@1.5f forKey:kCIInputSaturationKey];
-//    
-//    CIImage *outp = [filter valueForKey:@"outputImage"];
-//    
-//    
-//    
-//    CIContext *context = [CIContext contextWithOptions:nil];
-//    self.image.image = [UIImage imageWithCGImage:[context createCGImage:outp fromRect:outp.extent]];
-//    
-//    
-//    pano =self.image.image;
-    
-//    self.barStatus.title = @"Preparing for download...";
-//    
-//    
-//    self.image.image =[UIImage imageNamed:@"image.jpg"];
-//
-//    self.scrollview.hidden = true;
-//    self.scrollview = [[UIScrollView alloc]initWithFrame:self.view.bounds];
-//    [self.scrollview addSubview:self.image];
-//    self.scrollview.contentSize = pano.size;
-//    self.scrollview.minimumZoomScale = 0.25f;
-//    self.scrollview.maximumZoomScale = 3.0f;
-//    self.scrollview.delegate = self;
-//    [self.view addSubview:self.scrollview];
-//    
-//    
-//    [self performSelector:@selector(timeout) withObject:nil afterDelay:0.5];
-//
-// 
-//
-    
     [self manualPanoProcessing];
     
     
 }
 
 - (IBAction)didClickOnClose:(id)sender {
+
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -130,14 +85,14 @@ exit(-1); \
         
         
         
-        CGRect boundsToCrop = CGRectMake(200, 100, [uncropped size].width - 400, [uncropped size].height-250);
+        //CGRect boundsToCrop = CGRectMake(200, 100, [uncropped size].width - 400, [uncropped size].height-250);
         //CGRect boundsToCrop = CGRectMake(0, 0, [uncropped size].width, [uncropped size].height);
         
         // NSLog(@"%f %f SIZE", [uncropped size].width-20, [uncropped size].height-100);
         
         
         //exposure adjustment
-        CIImage *inputImage = [[CIImage alloc] initWithImage:[self croppedImage:boundsToCrop image:uncropped]];
+        CIImage *inputImage = [[CIImage alloc] initWithImage:uncropped];//[self croppedImage:boundsToCrop image:uncropped]];
         
         
         
@@ -224,6 +179,7 @@ exit(-1); \
 
 -(void) viewWillAppear:(BOOL)animated
 {
+    NSLog(@"view will appear");
     [super viewWillAppear:animated];
     [_drone connectToDrone];
     [_drone.camera startCameraSystemStateUpdates];
@@ -333,7 +289,7 @@ exit(-1); \
         
         
         //exposure adjustment
-        CIImage *inputImage = [[CIImage alloc] initWithImage:[self croppedImage:boundsToCrop image:uncropped]];
+        CIImage *inputImage = [[CIImage alloc] initWithImage:uncropped];//[self croppedImage:boundsToCrop image:uncropped]];
         
         
         
