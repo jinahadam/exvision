@@ -34,6 +34,7 @@
 
 @property IBOutlet UIImageView *image;
 @property IBOutlet UIScrollView *scrollview;
+
 @property (retain) NSMutableArray* imagesForProcessing;
 
 @property(nonatomic, strong) IBOutlet UIBarButtonItem *barStatus;

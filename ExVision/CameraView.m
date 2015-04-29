@@ -26,23 +26,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    
-    NSLog(@"view did load");
- 
     [self setup];
+    
+    
 }
 
 -(void)restartCameraFeed {
     [mask removeFromSuperview];
- 
-    
-    
     
     _drone = [[DJIDrone alloc] initWithType:DJIDrone_Phantom];
-
+    _drone.delegate = self;
     _camera = _drone.camera;
     _camera.delegate = self;
+    
     _groundStation = _drone.mainController;
     _groundStation.groundStationDelegate = self;
     _drone.mainController.mcDelegate = self;
@@ -64,9 +60,8 @@
 
     self.navigationItem.title = @"Phantom Pano";
 
-    
-    
     _drone = [[DJIDrone alloc] initWithType:DJIDrone_Phantom];
+    _drone.delegate = self;
     _camera = _drone.camera;
     _camera.delegate = self;
     _groundStation = _drone.mainController;
@@ -100,16 +95,21 @@
     
     PanoSpanAngle = 26;
     
-    //settings
     [self loadSettings];
     
     [mask setHidden:YES];
+    
+    
+    //
+    connectionHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    connectionHud.labelText = @"Connecting..";   // [self manualPanoProcessing];
+    [connectionHud show:YES];
+
 }
+
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    
     [_drone connectToDrone];
     [[VideoPreviewer instance] setView:self.videoPreviewView];
     
@@ -125,7 +125,6 @@
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         [userDefaults setObject:settings forKey:@"settings"];
         [userDefaults synchronize];
-        NSLog(@"settings saved");
     } else { //load settings
         
         direction = (int)[[settingsArray objectAtIndex:0] integerValue];
@@ -155,16 +154,11 @@
 
 
 -(IBAction)showSettings:(id)sender {
-    
-
-    
-    
+   
     Settings *modalVC = [self.storyboard instantiateViewControllerWithIdentifier:@"Settings"];
     modalVC.transitioningDelegate = self;
     modalVC.modalPresentationStyle = UIModalPresentationCustom;
     [self.navigationController presentViewController:modalVC animated:YES completion:nil];
-    
-    
     
 }
 
@@ -181,16 +175,14 @@
     [self performSelector:@selector(restartCameraFeed) withObject:nil afterDelay:0.5];
     return [[DismissingAnimationController alloc] init];
 }
+
+
 -(IBAction)presentProcessingView:(id)sender
 {
-
-    mask = [[UIView alloc] initWithFrame:self.view.frame];
+     mask = [[UIView alloc] initWithFrame:self.view.frame];
     [mask setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.95]];
     [self.view addSubview:mask];
-    
-    
-
-    
+  
     _drone.delegate = Nil;
     _groundStation.groundStationDelegate = nil;
     
@@ -202,24 +194,18 @@
     
     [_drone destroy];
 
-
-
-  //  [self performSegueWithIdentifier:@"processingSegue" sender:self];
     Settings *modalVC = [self.storyboard instantiateViewControllerWithIdentifier:@"processingSegue"];
     modalVC.transitioningDelegate = self;
     modalVC.modalPresentationStyle = UIModalPresentationCustom;
     [self.navigationController presentViewController:modalVC animated:YES completion:nil];
     
-    
-
 }
 
 
 
 -(void) onReadBatteryInfoTimerTicked:(id)timer
 {
-    
-    @try {
+     @try {
         [_drone.smartBattery updateBatteryInfo:^(DJIError *error) {
             if (error.errorCode == ERR_Successed) {
                 
@@ -252,7 +238,7 @@
 {
     [super viewWillDisappear:animated];
     
-    _drone.delegate = Nil;
+    //_drone.delegate = Nil;
     _groundStation.groundStationDelegate = nil;
     
     [_camera stopCameraSystemStateUpdates];
@@ -265,20 +251,10 @@
     
 }
 
-
-
-
 -(IBAction) onOpenButtonClicked:(id)sender
 {
     [_groundStation openGroundStation];
 }
-
-
-
-
-
-
-
 
 -(void) SingleShot {
     [_camera startTakePhoto:CameraSingleCapture withResult:^(DJIError *error) {
@@ -305,18 +281,12 @@
 
 -(void) camera:(DJICamera*)camera didUpdateSystemState:(DJICameraSystemState*)systemState
 {
-//    if (!systemState.isTimeSynced) {
-//        [_camera syncTime:nil];
-//    }
+
     if (systemState.isUSBMode) {
-        NSLog(@"Camera mode USB");
         [_camera setCamerMode:CameraCameraMode withResultBlock:^(DJIError *error) {
             if (error.errorCode == ERR_Successed) {
 
-            } else {
-                NSLog(@"Cant set USB mode");
             }
-            
         }];
         
     }
@@ -438,8 +408,11 @@
 
 #pragma mark - DJIDroneDelegate
 
+
+
 -(void) droneOnConnectionStatusChanged:(DJIConnectionStatus)status
 {
+    NSLog(@"connection ::::");
     switch (status) {
         case ConnectionStartConnect:
         {
@@ -456,11 +429,13 @@
           //  self.navigationItem.title = @"Connected";
            // self.connectionStatus.title = @"Connected";
             connection = true;
+            [connectionHud hide:YES];
             break;
         }
         case ConnectionFailed:
         {
             NSLog(@"Connect Failed...");
+            [connectionHud hide:NO];
            // self.navigationItem.title = @"Connection Failed";
             connection = false;
 
@@ -471,6 +446,7 @@
         {
           //  self.navigationItem.title = @"Disconnected";
             connection = false;
+            [connectionHud hide:NO];
 
             NSLog(@"Connect Broken...");
           //  self.connectionStatus.title = @"Disconnected";
@@ -893,28 +869,25 @@
 
 -(void)SDCardOperations {
     
-//    if (!connection) {
-//        
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info"
-//                                                        message:@"Connect to Phantom"
-//                                                       delegate:self
-//                                              cancelButtonTitle:@"OK"
-//                                              otherButtonTitles:nil];
-//        [alert show];
-//        
-//        [self.captureBtn setTitle:@"Pano" forState:UIControlStateNormal];
-//        self.barStatus.title = @"Pano Cancelled";
-//        [self.cirlce setStrokeEnd:0 animated:NO];
-//        [_groundStation pauseGroundStationTask];
-//        [self.captureBtn tap];
-//        shootPan = false;
-//        
-//        return;
-//        
-//    }
-
-    
-    
+    if (!connection) {
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info"
+                                                        message:@"Connect to Phantom"
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+        
+        [self.captureBtn setTitle:@"Pano" forState:UIControlStateNormal];
+        self.barStatus.title = @"Pano Cancelled";
+        [self.cirlce setStrokeEnd:0 animated:NO];
+        [_groundStation pauseGroundStationTask];
+        [self.captureBtn tap];
+        shootPan = false;
+        
+        return;
+        
+    }
     [_camera getSDCardInfo:^(DJICameraSDCardInfo *sdInfo, DJIError *error)
      {
          if (error.errorCode == ERR_Successed)
@@ -944,7 +917,6 @@
                  [self.captureBtn tap];
                  shootPan = false;
 
-
              }
              
          }
@@ -956,12 +928,5 @@
          
      }];
 
-    
-    
-    
-
 }
-
-
-
 @end

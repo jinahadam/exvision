@@ -42,6 +42,9 @@
     double currentYaw;
     double PanoSpanAngle;
     int direction;
+    
+    MBProgressHUD *connectionHud;
+
 
 }
 
