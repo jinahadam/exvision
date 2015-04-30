@@ -301,7 +301,7 @@ cv::Mat stitch (vector<Mat>& images)
         }
     
     //does open CV crop
-    return intelligentCrop(pano);
+    return  intelligentCrop(pano);
    
 }
 

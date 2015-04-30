@@ -12,8 +12,8 @@
 #import <DJISDK/DJISDCardOperation.h>
 #import <DJISDK/DJIBattery.h>
 #import "Settings.h"
-
-#define YAW_180 140
+//120
+#define YAW_180 -190
 #define YAW_360 120
 #define PANO_SHOTS 7
 
@@ -803,12 +803,11 @@
         //[_groundStation startGroundStationTask];
         for (int i=1; i<=PANO_SHOTS; i++) {
             [_groundStation setAircraftJoystickWithPitch:0 Roll:0 Yaw:YAW_180 Throttle:0];
-            sleep(2);
-            [self SingleShot];
-            sleep(2);
+            sleep(3);
             [_groundStation setAircraftJoystickWithPitch:0 Roll:0 Yaw:0 Throttle:0];
-            sleep(2);
-            
+         //   sleep(3);
+            [self SingleShot];
+
             [self.cirlce setStrokeEnd:((1.0/PANO_SHOTS)*(i)) animated:YES];
             
             if (i == PANO_SHOTS) {

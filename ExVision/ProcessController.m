@@ -14,7 +14,7 @@
 
 
 
-#define CROP_TOP 200
+#define CROP_TOP 0
 #define CROP_WIDTH 20
 #define ADJUST_EXPOSURE 1.2f
 #define ADJUST_SAT 1.1f
@@ -50,18 +50,16 @@ exit(-1); \
     
     [self.close setHidden:YES];
     [self.share setHidden:YES];
-//    
     hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"preparing to download";   // [self manualPanoProcessing];
     [hud show:YES];
     
+    //[self manualPanoProcessing];
+    
 }
 
 - (IBAction)didClickOnClose:(id)sender {
-
-    
     [self dismissViewControllerAnimated:YES completion:nil];
-
 }
 
 
