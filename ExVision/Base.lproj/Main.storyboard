@@ -154,11 +154,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Help" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xxe-1v-54T">
-                                <rect key="frame" x="56" y="0.0" width="327" height="114"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="32"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vLH-EK-aZH">
                                 <rect key="frame" x="200" y="524" width="200" height="66"/>
                                 <constraints>
@@ -172,6 +167,23 @@
                                     <action selector="dismiss:" destination="gFO-8L-8IT" eventType="touchUpInside" id="oRF-td-HJB"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ch9-BW-qHT">
+                                <rect key="frame" x="30" y="62" width="554" height="175"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <mutableString key="text">● Connect your phone to the Range Extender Wifi. Reopen the App. 
+●  Once you see the video stream, fly over to the and position the drone to where you want the Panorama Frame to begin. 
+● Tap the Pano Button. It Takes a while to begin. the Phantom will Yaw Automatically while capturing the images. Once its done it will begin downloading the images for processing. 
+● DO NOT turn off the Phantom or Range Extender during this process.  After downloading it will begin to stitch the photos together. Finally result will be displayed once its done. 
+● Panorama will be saved to the Camera Roll , you will also have the option to share it via the iOS Share Sheet. 
+</mutableString>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Help" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xxe-1v-54T">
+                                <rect key="frame" x="44" y="-24" width="327" height="114"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="32"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
