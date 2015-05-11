@@ -34,6 +34,12 @@
 		8090FAFF1ACD2E6B0011D83C /* libpng.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8090FAFA1ACD2E6B0011D83C /* libpng.a */; };
 		8090FB001ACD2E6B0011D83C /* libtiff.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8090FAFB1ACD2E6B0011D83C /* libtiff.a */; };
 		8090FB061ACD31E10011D83C /* IM in Resources */ = {isa = PBXBuildFile; fileRef = 8090FB051ACD31E10011D83C /* IM */; };
+		80DBDDF01B00A29500CABA0F /* down.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DBDDEE1B00A29500CABA0F /* down.png */; };
+		80DBDDF11B00A29500CABA0F /* up.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DBDDEF1B00A29500CABA0F /* up.png */; };
+		80DBDDF41B00A52300CABA0F /* pano.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DBDDF21B00A52300CABA0F /* pano.png */; };
+		80DBDDF51B00A52300CABA0F /* panostop.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DBDDF31B00A52300CABA0F /* panostop.png */; };
+		80DBDDF81B00A6DE00CABA0F /* help.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DBDDF61B00A6DE00CABA0F /* help.png */; };
+		80DBDDF91B00A6DE00CABA0F /* satellite.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DBDDF71B00A6DE00CABA0F /* satellite.png */; };
 		80DC3CCD1AFC8E1300460630 /* PageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80DC3CCC1AFC8E1300460630 /* PageContentViewController.m */; };
 		80DC3CD11B00978A00460630 /* page1.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DC3CCE1B00978A00460630 /* page1.png */; };
 		80DC3CD21B00978A00460630 /* page2.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DC3CCF1B00978A00460630 /* page2.png */; };
@@ -114,6 +120,12 @@
 		8090FAFA1ACD2E6B0011D83C /* libpng.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpng.a; path = ../IM/libpng.a; sourceTree = "<group>"; };
 		8090FAFB1ACD2E6B0011D83C /* libtiff.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libtiff.a; path = ../IM/libtiff.a; sourceTree = "<group>"; };
 		8090FB051ACD31E10011D83C /* IM */ = {isa = PBXFileReference; lastKnownFileType = folder; path = IM; sourceTree = "<group>"; };
+		80DBDDEE1B00A29500CABA0F /* down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down.png; sourceTree = "<group>"; };
+		80DBDDEF1B00A29500CABA0F /* up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = up.png; sourceTree = "<group>"; };
+		80DBDDF21B00A52300CABA0F /* pano.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pano.png; sourceTree = "<group>"; };
+		80DBDDF31B00A52300CABA0F /* panostop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = panostop.png; sourceTree = "<group>"; };
+		80DBDDF61B00A6DE00CABA0F /* help.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = help.png; sourceTree = "<group>"; };
+		80DBDDF71B00A6DE00CABA0F /* satellite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = satellite.png; sourceTree = "<group>"; };
 		80DC3CCB1AFC8E1300460630 /* PageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageContentViewController.h; sourceTree = "<group>"; };
 		80DC3CCC1AFC8E1300460630 /* PageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageContentViewController.m; sourceTree = "<group>"; };
 		80DC3CCE1B00978A00460630 /* page1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page1.png; sourceTree = "<group>"; };
@@ -360,6 +372,12 @@
 		80DFAAD31A760CE100F69205 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				80DBDDF61B00A6DE00CABA0F /* help.png */,
+				80DBDDF71B00A6DE00CABA0F /* satellite.png */,
+				80DBDDF21B00A52300CABA0F /* pano.png */,
+				80DBDDF31B00A52300CABA0F /* panostop.png */,
+				80DBDDEE1B00A29500CABA0F /* down.png */,
+				80DBDDEF1B00A29500CABA0F /* up.png */,
 				80DC3CCE1B00978A00460630 /* page1.png */,
 				80DC3CCF1B00978A00460630 /* page2.png */,
 				80DC3CD01B00978A00460630 /* page3.png */,
@@ -713,11 +731,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				8090FB061ACD31E10011D83C /* IM in Resources */,
+				80DBDDF01B00A29500CABA0F /* down.png in Resources */,
+				80DBDDF51B00A52300CABA0F /* panostop.png in Resources */,
 				80DC3CD31B00978A00460630 /* page3.png in Resources */,
 				801F7A091AD384390095BE17 /* FontAwesome.ttf in Resources */,
 				80DFAADF1A760CE100F69205 /* Main.storyboard in Resources */,
+				80DBDDF81B00A6DE00CABA0F /* help.png in Resources */,
+				80DBDDF41B00A52300CABA0F /* pano.png in Resources */,
 				80DFAAE41A760CE100F69205 /* LaunchScreen.xib in Resources */,
 				80DC3CD51B009A3900460630 /* page4.png in Resources */,
+				80DBDDF91B00A6DE00CABA0F /* satellite.png in Resources */,
+				80DBDDF11B00A29500CABA0F /* up.png in Resources */,
 				80DC3CD21B00978A00460630 /* page2.png in Resources */,
 				80DC3CD11B00978A00460630 /* page1.png in Resources */,
 				80DFAAE11A760CE100F69205 /* Images.xcassets in Resources */,

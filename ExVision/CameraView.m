@@ -82,8 +82,6 @@
     
     total_images = 0;
     
-    [self.panDownBtn warningStyle];
-    [self.panUpBtn warningStyle];
     [self.ProcessBtn dangerStyle];
     
     [self.cirlce setStrokeColor:[UIColor colorWithRed:240/255.0 green:173/255.0 blue:78/255.0 alpha:1]];
@@ -209,7 +207,7 @@
         [_drone.smartBattery updateBatteryInfo:^(DJIError *error) {
             if (error.errorCode == ERR_Successed) {
                 
-                self.battery.title = [NSString stringWithFormat:@"Battery: %ld%%", (long)_drone.smartBattery.remainPowerPercent];
+                self.battery.title = [NSString stringWithFormat:@"%ld%%", (long)_drone.smartBattery.remainPowerPercent];
             }
             else
             {
@@ -261,7 +259,7 @@
         if (error.errorCode != ERR_Successed) {
             NSLog(@"Take Photo Error : %@", error.errorDescription);
         } else {
-            self.barStatus.title = [NSString stringWithFormat:@"Image taken"];
+            self.barStatus.title = [NSString stringWithFormat:@"In auto mode. use S1 to gain control"];
 
             
         }
@@ -490,14 +488,15 @@
     
     if (!shootPan) {
         shootPan = true;
-        [self.captureBtn setTitle:@"X" forState:UIControlStateNormal];
+        [self.captureBtn setBackgroundImage:[UIImage imageNamed:@"panostop.png"] forState:UIControlStateNormal];
+
         self.barStatus.title = @"Shooting Pano";
 
         [self SDCardOperations];
        
     } else {
         
-        [self.captureBtn setTitle:@"Pano" forState:UIControlStateNormal];
+        [self.captureBtn setBackgroundImage:[UIImage imageNamed:@"pano.png"] forState:UIControlStateNormal];
         self.barStatus.title = @"Pano Cancelled";
         [self.cirlce setStrokeEnd:0 animated:NO];
         [_groundStation pauseGroundStationTask];
@@ -713,7 +712,6 @@
             
             if (flyingInfo.targetWaypointIndex == 15) {
                 //self.captureBtn.enabled = true;
-                [self.captureBtn tap];
                 shootPan = false;
                 
                 [self.captureBtn setTitle:@"Pano" forState:UIControlStateNormal];
@@ -734,7 +732,7 @@
    // currentYaw = att.yaw;//100.0;
 //    currentAltitude = flyingInfo.altitude;
     
-    self.satCount.title = [NSString stringWithFormat:@"S:%d", flyingInfo.satelliteCount];
+    self.satCount.title = [NSString stringWithFormat:@"%d", flyingInfo.satelliteCount];
 
 }
 
@@ -790,6 +788,8 @@
 //}
 
 -(void) processOperations {
+    
+    [self.captureBtn setBackgroundImage:[UIImage imageNamed:@"panostop.png"] forState:UIControlStateNormal];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
         sleep(2);
         [_groundStation openGroundStation];
@@ -811,19 +811,26 @@
             [self.cirlce setStrokeEnd:((1.0/PANO_SHOTS)*(i)) animated:YES];
             
             if (i == PANO_SHOTS) {
-                //self.captureBtn.enabled = true;
-                [self.captureBtn tap];
 
                 
-                [self.cirlce setStrokeColor:[UIColor colorWithRed:240/255.0 green:173/255.0 blue:78/255.0 alpha:1]];
-                [self.cirlce setStrokeEnd:0.0 animated:NO];
                 
-                shootPan = false;
+                dispatch_async(dispatch_get_main_queue(), ^(){
+                    //Add method, task you want perform on mainQueue
+                    //Control UIView, IBOutlet all here
+                    [self.cirlce setStrokeColor:[UIColor colorWithRed:240/255.0 green:173/255.0 blue:78/255.0 alpha:1]];
+                    [self.cirlce setStrokeEnd:0.0 animated:NO];
+                    
+                    shootPan = false;
+                    
+                    [self.captureBtn setBackgroundImage:[UIImage imageNamed:@"pano.png"] forState:UIControlStateNormal];
+                    
+                    self.barStatus.title = [NSString stringWithFormat:@"In auto mode. use S1 to gain control"];
+                    
+                    [self presentProcessingView:nil];
+
+                    
+                });
                 
-                [self.captureBtn setTitle:@"Pano" forState:UIControlStateNormal];
-                self.barStatus.title = @"";
-                
-                [self presentProcessingView:nil];
                 
                 
             }
@@ -841,11 +848,12 @@
        //CANCEL
     if (alertView.tag == 10) {
         if (buttonIndex == 0) {
-            [self.captureBtn setTitle:@"Pano" forState:UIControlStateNormal];
+           // [self.captureBtn setTitle:@"Pano" forState:UIControlStateNormal];
+            [self.captureBtn setBackgroundImage:[UIImage imageNamed:@"pano.png"] forState:UIControlStateNormal];
+
             self.barStatus.title = @"Pano Cancelled";
             [self.cirlce setStrokeEnd:0 animated:NO];
             [_groundStation pauseGroundStationTask];
-            [self.captureBtn tap];
             shootPan = false;
 
         //Take PANO
@@ -881,7 +889,6 @@
         self.barStatus.title = @"Pano Cancelled";
         [self.cirlce setStrokeEnd:0 animated:NO];
         [_groundStation pauseGroundStationTask];
-        [self.captureBtn tap];
         shootPan = false;
         
         return;
@@ -909,11 +916,12 @@
                                                        otherButtonTitles:nil];
                  [alert show];
                  
-                 [self.captureBtn setTitle:@"Pano" forState:UIControlStateNormal];
+               //  [self.captureBtn setTitle:@"Pano" forState:UIControlStateNormal];
+                 [self.captureBtn setBackgroundImage:[UIImage imageNamed:@"pano.png"] forState:UIControlStateNormal];
+
                  self.barStatus.title = @"Pano Cancelled";
                  [self.cirlce setStrokeEnd:0 animated:NO];
                  [_groundStation pauseGroundStationTask];
-                 [self.captureBtn tap];
                  shootPan = false;
 
              }
@@ -923,6 +931,12 @@
          {
              
              NSLog(@"Get SDCard Info Failed\n");
+             [self.captureBtn setBackgroundImage:[UIImage imageNamed:@"pano.png"] forState:UIControlStateNormal];
+             
+             self.barStatus.title = @"Can't Access SD Card";
+             [self.cirlce setStrokeEnd:0 animated:NO];
+             [_groundStation pauseGroundStationTask];
+             shootPan = false;
          }
          
      }];

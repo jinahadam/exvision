@@ -48,13 +48,13 @@ exit(-1); \
     [self.close dangerStyle];
     [self.share primaryStyle];
     
-//    [self.close setHidden:YES];
-//    [self.share setHidden:YES];
-//    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//    hud.labelText = @"preparing to download";   // [self manualPanoProcessing];
-//    [hud show:YES];
+    [self.close setHidden:YES];
+    [self.share setHidden:YES];
+    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = @"preparing to download";   // [self manualPanoProcessing];
+    [hud show:YES];
     
-    [self manualPanoProcessing];
+   // [self manualPanoProcessing];
     
 }
 
@@ -242,7 +242,7 @@ exit(-1); \
                     
                     int images_remaining = (int)_mediasList.count - (int)self.imagesForProcessing.count;
                     
-                    self.barStatus.title  = [NSString stringWithFormat:@"Downloading: %d of %lu ",idx + 1, (unsigned long)_mediasList.count];
+                    NSLog(@"%@",[NSString stringWithFormat:@"Downloading: %d of %lu ",idx + 1, (unsigned long)_mediasList.count]);
                     
                     NSLog(@"%f",(idx+1)/(double)_mediasList.count);
                     hud.progress = (idx+1)/(double)_mediasList.count;
