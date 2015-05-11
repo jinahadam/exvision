@@ -458,7 +458,7 @@
         <!--Help View Controller-->
         <scene sceneID="UvV-xd-JpP">
             <objects>
-                <viewController id="Wrx-8o-8xf" customClass="HelpViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HelpView" id="Wrx-8o-8xf" customClass="HelpViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Bny-8M-ll9"/>
                         <viewControllerLayoutGuide type="bottom" id="Xtz-mg-EmD"/>

@@ -123,6 +123,15 @@
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         [userDefaults setObject:settings forKey:@"settings"];
         [userDefaults synchronize];
+        
+        
+        //first time so show help screen aswell
+        
+        NSString * storyboardName = @"Main";
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle: nil];
+        UIViewController * vc = [storyboard instantiateViewControllerWithIdentifier:@"HelpView"];
+        [self presentViewController:vc animated:YES completion:nil];
+        
     } else { //load settings
         
         direction = (int)[[settingsArray objectAtIndex:0] integerValue];
@@ -315,7 +324,7 @@
     yaw.angle = 0;
     [_drone.gimbal setGimbalPitch:pitch Roll:roll Yaw:yaw withResult:^(DJIError *error) {
     }];
-      
+    
     });
     
 
