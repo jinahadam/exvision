@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7703" systemVersion="14E11f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="M4p-aR-L0k">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14E11f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="M4p-aR-L0k">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6711"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -103,7 +103,7 @@
                         <barButtonItem title="Guide" id="tiU-Kw-13T">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="gFO-8L-8IT" kind="presentation" id="c5c-Z3-E1c"/>
+                                <segue destination="Wrx-8o-8xf" kind="presentation" id="VHO-Cx-iXj"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="Aln-fO-Kyx"/>
@@ -120,9 +120,6 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="lBp-7I-F4X"/>
                         <barButtonItem id="tbQ-RF-MpL">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <segue destination="gFO-8L-8IT" kind="presentation" id="nlp-nw-hPq"/>
-                            </connections>
                         </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="ecN-7p-ivX"/>
@@ -141,71 +138,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lG6-pg-ChW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1521" y="192"/>
-        </scene>
-        <!--Help-->
-        <scene sceneID="JR1-cg-Qe8">
-            <objects>
-                <viewController id="gFO-8L-8IT" userLabel="Help" customClass="HelpViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Mxb-Cc-2sa"/>
-                        <viewControllerLayoutGuide type="bottom" id="v2V-qd-uwE"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="wlI-P8-vAA">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vLH-EK-aZH">
-                                <rect key="frame" x="200" y="524" width="200" height="66"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="66" id="kGB-tA-Pfs"/>
-                                    <constraint firstAttribute="width" constant="200" id="wqu-Y2-lDl"/>
-                                </constraints>
-                                <state key="normal" title="Close">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="dismiss:" destination="gFO-8L-8IT" eventType="touchUpInside" id="oRF-td-HJB"/>
-                                </connections>
-                            </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ch9-BW-qHT">
-                                <rect key="frame" x="30" y="62" width="554" height="175"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">● Connect your phone to the Range Extender Wifi. Reopen the App. 
-●  Once you see the video stream, fly over to the and position the drone to where you want the Panorama Frame to begin. 
-● Tap the Pano Button. It Takes a while to begin. the Phantom will Yaw Automatically while capturing the images. Once its done it will begin downloading the images for processing. 
-● DO NOT turn off the Phantom or Range Extender during this process.  After downloading it will begin to stitch the photos together. Finally result will be displayed once its done. 
-● Panorama will be saved to the Camera Roll , you will also have the option to share it via the iOS Share Sheet. 
-</mutableString>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Help" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xxe-1v-54T">
-                                <rect key="frame" x="44" y="-24" width="327" height="114"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="32"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="centerY" secondItem="vLH-EK-aZH" secondAttribute="centerY" constant="-207" id="0s2-OV-uUt"/>
-                            <constraint firstItem="v2V-qd-uwE" firstAttribute="top" secondItem="vLH-EK-aZH" secondAttribute="bottom" constant="10" id="1Hw-ei-Jlh"/>
-                            <constraint firstItem="vLH-EK-aZH" firstAttribute="centerX" secondItem="wlI-P8-vAA" secondAttribute="centerX" id="A9g-ro-Jum"/>
-                            <constraint firstItem="v2V-qd-uwE" firstAttribute="top" secondItem="vLH-EK-aZH" secondAttribute="bottom" constant="10" id="hBE-1S-cUX"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="0s2-OV-uUt"/>
-                                <exclude reference="1Hw-ei-Jlh"/>
-                            </mask>
-                        </variation>
-                    </view>
-                    <connections>
-                        <outlet property="close" destination="vLH-EK-aZH" id="fXs-Pw-qC1"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="M96-kL-6a7" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1521" y="897"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="h55-fz-hDL">
@@ -228,7 +160,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RQn-Se-pfv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="829" y="192"/>
+            <point key="canvasLocation" x="329" y="168"/>
         </scene>
         <!--Processing-->
         <scene sceneID="4bw-1J-RAB">
@@ -428,25 +360,88 @@
             </objects>
             <point key="canvasLocation" x="1521" y="-509"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="IeY-e7-2n4">
+        <!--Page View Controller-->
+        <scene sceneID="xaR-r4-0HP">
             <objects>
-                <viewController id="hDf-PO-FYv" sceneMemberID="viewController">
+                <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="MCe-Xn-tm1" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Xy-iY-gwk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1521" y="1033"/>
+        </scene>
+        <!--Page Content View Controller-->
+        <scene sceneID="zpC-h5-AoG">
+            <objects>
+                <viewController storyboardIdentifier="PageContentViewController" id="C8V-Hk-Hdg" customClass="PageContentViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Omb-J6-69a"/>
-                        <viewControllerLayoutGuide type="bottom" id="EPZ-qX-zpI"/>
+                        <viewControllerLayoutGuide type="top" id="dyO-d9-JMQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ijv-AC-X8j"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="jdD-ID-fsK">
+                    <view key="view" contentMode="scaleToFill" id="Hgr-Mw-XGG">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="50" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jVl-rt-BJ4">
+                                <rect key="frame" x="22" y="92" width="267" height="246"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Label">
+                                        <attributes>
+                                            <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IRa-DX-siG">
+                                <rect key="frame" x="252" y="20" width="332" height="580"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="332" id="0er-aT-wd8"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gD9-d4-xpf">
+                                <rect key="frame" x="22" y="41" width="267" height="43"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gD9-d4-xpf" firstAttribute="top" secondItem="dyO-d9-JMQ" secondAttribute="bottom" constant="21" id="5T4-xE-iGg"/>
+                            <constraint firstItem="gD9-d4-xpf" firstAttribute="leading" secondItem="Hgr-Mw-XGG" secondAttribute="leadingMargin" constant="6" id="GBv-vW-s6X"/>
+                            <constraint firstItem="Ijv-AC-X8j" firstAttribute="top" secondItem="IRa-DX-siG" secondAttribute="bottom" id="azz-TU-O90"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="IRa-DX-siG" secondAttribute="trailing" id="tDD-j3-Ycf"/>
+                            <constraint firstItem="IRa-DX-siG" firstAttribute="top" secondItem="dyO-d9-JMQ" secondAttribute="bottom" id="tea-ha-uaf"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backgroundImageView" destination="IRa-DX-siG" id="8WL-n0-j77"/>
+                        <outlet property="descriptionLabel" destination="jVl-rt-BJ4" id="g0B-dw-Rob"/>
+                        <outlet property="titleLabel" destination="gD9-d4-xpf" id="aGr-9b-s7d"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aLX-dr-NxF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2278" y="1052"/>
+        </scene>
+        <!--Help View Controller-->
+        <scene sceneID="UvV-xd-JpP">
+            <objects>
+                <viewController id="Wrx-8o-8xf" customClass="HelpViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Bny-8M-ll9"/>
+                        <viewControllerLayoutGuide type="bottom" id="Xtz-mg-EmD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="c2i-fq-EP1">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7C6-cD-Cwd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="InN-3W-EdT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="777" y="845"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="nlp-nw-hPq"/>
-    </inferredMetricsTieBreakers>
 </document>

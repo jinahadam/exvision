@@ -34,6 +34,11 @@
 		8090FAFF1ACD2E6B0011D83C /* libpng.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8090FAFA1ACD2E6B0011D83C /* libpng.a */; };
 		8090FB001ACD2E6B0011D83C /* libtiff.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8090FAFB1ACD2E6B0011D83C /* libtiff.a */; };
 		8090FB061ACD31E10011D83C /* IM in Resources */ = {isa = PBXBuildFile; fileRef = 8090FB051ACD31E10011D83C /* IM */; };
+		80DC3CCD1AFC8E1300460630 /* PageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80DC3CCC1AFC8E1300460630 /* PageContentViewController.m */; };
+		80DC3CD11B00978A00460630 /* page1.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DC3CCE1B00978A00460630 /* page1.png */; };
+		80DC3CD21B00978A00460630 /* page2.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DC3CCF1B00978A00460630 /* page2.png */; };
+		80DC3CD31B00978A00460630 /* page3.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DC3CD01B00978A00460630 /* page3.png */; };
+		80DC3CD51B009A3900460630 /* page4.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DC3CD41B009A3900460630 /* page4.png */; };
 		80DFAAD61A760CE100F69205 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 80DFAAD51A760CE100F69205 /* main.m */; };
 		80DFAAD91A760CE100F69205 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 80DFAAD81A760CE100F69205 /* AppDelegate.mm */; };
 		80DFAADF1A760CE100F69205 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80DFAADD1A760CE100F69205 /* Main.storyboard */; };
@@ -109,6 +114,12 @@
 		8090FAFA1ACD2E6B0011D83C /* libpng.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpng.a; path = ../IM/libpng.a; sourceTree = "<group>"; };
 		8090FAFB1ACD2E6B0011D83C /* libtiff.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libtiff.a; path = ../IM/libtiff.a; sourceTree = "<group>"; };
 		8090FB051ACD31E10011D83C /* IM */ = {isa = PBXFileReference; lastKnownFileType = folder; path = IM; sourceTree = "<group>"; };
+		80DC3CCB1AFC8E1300460630 /* PageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageContentViewController.h; sourceTree = "<group>"; };
+		80DC3CCC1AFC8E1300460630 /* PageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageContentViewController.m; sourceTree = "<group>"; };
+		80DC3CCE1B00978A00460630 /* page1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page1.png; sourceTree = "<group>"; };
+		80DC3CCF1B00978A00460630 /* page2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page2.png; sourceTree = "<group>"; };
+		80DC3CD01B00978A00460630 /* page3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page3.png; sourceTree = "<group>"; };
+		80DC3CD41B009A3900460630 /* page4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page4.png; sourceTree = "<group>"; };
 		80DFAAD01A760CE100F69205 /* ExVision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExVision.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80DFAAD41A760CE100F69205 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80DFAAD51A760CE100F69205 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -336,6 +347,8 @@
 				80E4E7681ADFA87700157EE0 /* Settings.m */,
 				801F7A0D1AD3B3630095BE17 /* HelpViewController.h */,
 				801F7A0E1AD3B3630095BE17 /* HelpViewController.m */,
+				80DC3CCB1AFC8E1300460630 /* PageContentViewController.h */,
+				80DC3CCC1AFC8E1300460630 /* PageContentViewController.m */,
 				80DFAADD1A760CE100F69205 /* Main.storyboard */,
 				80DFAAE01A760CE100F69205 /* Images.xcassets */,
 				80DFAAE21A760CE100F69205 /* LaunchScreen.xib */,
@@ -347,6 +360,10 @@
 		80DFAAD31A760CE100F69205 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				80DC3CCE1B00978A00460630 /* page1.png */,
+				80DC3CCF1B00978A00460630 /* page2.png */,
+				80DC3CD01B00978A00460630 /* page3.png */,
+				80DC3CD41B009A3900460630 /* page4.png */,
 				80241BA41AEF8B4C0064309D /* PopUI */,
 				8090FAF71ACD2E6B0011D83C /* libjpeg.a */,
 				8090FAF81ACD2E6B0011D83C /* libMagickCore.a */,
@@ -663,6 +680,7 @@
 				TargetAttributes = {
 					80DFAACF1A760CE100F69205 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = 29N3XC2CV7;
 					};
 					80DFAAE81A760CE100F69205 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -695,9 +713,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				8090FB061ACD31E10011D83C /* IM in Resources */,
+				80DC3CD31B00978A00460630 /* page3.png in Resources */,
 				801F7A091AD384390095BE17 /* FontAwesome.ttf in Resources */,
 				80DFAADF1A760CE100F69205 /* Main.storyboard in Resources */,
 				80DFAAE41A760CE100F69205 /* LaunchScreen.xib in Resources */,
+				80DC3CD51B009A3900460630 /* page4.png in Resources */,
+				80DC3CD21B00978A00460630 /* page2.png in Resources */,
+				80DC3CD11B00978A00460630 /* page1.png in Resources */,
 				80DFAAE11A760CE100F69205 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -751,6 +773,7 @@
 			files = (
 				801F7A0A1AD384390095BE17 /* NSString+FontAwesome.m in Sources */,
 				807C69001AE62D2C002C9341 /* ProcessController.m in Sources */,
+				80DC3CCD1AFC8E1300460630 /* PageContentViewController.m in Sources */,
 				80DFAB691A7610AE00F69205 /* DJILinkQueue.m in Sources */,
 				80E4E7691ADFA87700157EE0 /* Settings.m in Sources */,
 				80F34AD11ADD10EE007473A4 /* CircleView.m in Sources */,
@@ -827,7 +850,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -869,7 +892,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -893,6 +916,8 @@
 			baseConfigurationReference = 20F61F7DB9B3F6A1A9947D0D /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ExVision/",
@@ -917,6 +942,7 @@
 				);
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -926,6 +952,8 @@
 			baseConfigurationReference = F4F1C3B4AEEFBE73DC53D1B0 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ExVision/",
@@ -950,6 +978,7 @@
 				);
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

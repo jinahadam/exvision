@@ -48,13 +48,13 @@ exit(-1); \
     [self.close dangerStyle];
     [self.share primaryStyle];
     
-    [self.close setHidden:YES];
-    [self.share setHidden:YES];
-    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.labelText = @"preparing to download";   // [self manualPanoProcessing];
-    [hud show:YES];
+//    [self.close setHidden:YES];
+//    [self.share setHidden:YES];
+//    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//    hud.labelText = @"preparing to download";   // [self manualPanoProcessing];
+//    [hud show:YES];
     
-    //[self manualPanoProcessing];
+    [self manualPanoProcessing];
     
 }
 
