@@ -28,12 +28,11 @@
 		8090FAD61ACD2BD70011D83C /* UIImage+OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8090FAD11ACD2BD70011D83C /* UIImage+OpenCV.mm */; };
 		8090FAD71ACD2BD70011D83C /* CVWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8090FAD31ACD2BD70011D83C /* CVWrapper.mm */; };
 		8090FAD81ACD2BD70011D83C /* stitching.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8090FAD41ACD2BD70011D83C /* stitching.cpp */; };
-		8090FAFC1ACD2E6B0011D83C /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8090FAF71ACD2E6B0011D83C /* libjpeg.a */; };
-		8090FAFD1ACD2E6B0011D83C /* libMagickCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8090FAF81ACD2E6B0011D83C /* libMagickCore.a */; };
-		8090FAFE1ACD2E6B0011D83C /* libMagickWand.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8090FAF91ACD2E6B0011D83C /* libMagickWand.a */; };
-		8090FAFF1ACD2E6B0011D83C /* libpng.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8090FAFA1ACD2E6B0011D83C /* libpng.a */; };
-		8090FB001ACD2E6B0011D83C /* libtiff.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8090FAFB1ACD2E6B0011D83C /* libtiff.a */; };
-		8090FB061ACD31E10011D83C /* IM in Resources */ = {isa = PBXBuildFile; fileRef = 8090FB051ACD31E10011D83C /* IM */; };
+		809798A51B01B33E003BB18C /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8090FAF71ACD2E6B0011D83C /* libjpeg.a */; settings = {ATTRIBUTES = (Required, ); }; };
+		809798A61B01B33E003BB18C /* libMagickCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8090FAF81ACD2E6B0011D83C /* libMagickCore.a */; settings = {ATTRIBUTES = (Required, ); }; };
+		809798A71B01B33E003BB18C /* libMagickWand.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8090FAF91ACD2E6B0011D83C /* libMagickWand.a */; settings = {ATTRIBUTES = (Required, ); }; };
+		809798AC1B01B9C8003BB18C /* libpng.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 809798AA1B01B9C8003BB18C /* libpng.a */; settings = {ATTRIBUTES = (Required, ); }; };
+		809798AD1B01B9C8003BB18C /* libtiff.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 809798AB1B01B9C8003BB18C /* libtiff.a */; settings = {ATTRIBUTES = (Required, ); }; };
 		80DBDDF01B00A29500CABA0F /* down.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DBDDEE1B00A29500CABA0F /* down.png */; };
 		80DBDDF11B00A29500CABA0F /* up.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DBDDEF1B00A29500CABA0F /* up.png */; };
 		80DBDDF41B00A52300CABA0F /* pano.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DBDDF21B00A52300CABA0F /* pano.png */; };
@@ -117,9 +116,9 @@
 		8090FAF71ACD2E6B0011D83C /* libjpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libjpeg.a; path = ../IM/libjpeg.a; sourceTree = "<group>"; };
 		8090FAF81ACD2E6B0011D83C /* libMagickCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMagickCore.a; path = ../IM/libMagickCore.a; sourceTree = "<group>"; };
 		8090FAF91ACD2E6B0011D83C /* libMagickWand.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMagickWand.a; path = ../IM/libMagickWand.a; sourceTree = "<group>"; };
-		8090FAFA1ACD2E6B0011D83C /* libpng.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpng.a; path = ../IM/libpng.a; sourceTree = "<group>"; };
-		8090FAFB1ACD2E6B0011D83C /* libtiff.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libtiff.a; path = ../IM/libtiff.a; sourceTree = "<group>"; };
 		8090FB051ACD31E10011D83C /* IM */ = {isa = PBXFileReference; lastKnownFileType = folder; path = IM; sourceTree = "<group>"; };
+		809798AA1B01B9C8003BB18C /* libpng.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libpng.a; sourceTree = "<group>"; };
+		809798AB1B01B9C8003BB18C /* libtiff.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libtiff.a; sourceTree = "<group>"; };
 		80DBDDEE1B00A29500CABA0F /* down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down.png; sourceTree = "<group>"; };
 		80DBDDEF1B00A29500CABA0F /* up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = up.png; sourceTree = "<group>"; };
 		80DBDDF21B00A52300CABA0F /* pano.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pano.png; sourceTree = "<group>"; };
@@ -258,24 +257,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8090FAFC1ACD2E6B0011D83C /* libjpeg.a in Frameworks */,
-				8090FAFD1ACD2E6B0011D83C /* libMagickCore.a in Frameworks */,
-				8090FAFE1ACD2E6B0011D83C /* libMagickWand.a in Frameworks */,
-				8090FAFF1ACD2E6B0011D83C /* libpng.a in Frameworks */,
-				8090FB001ACD2E6B0011D83C /* libtiff.a in Frameworks */,
 				8090FAC51ACD2B8B0011D83C /* Accelerate.framework in Frameworks */,
 				8090FAC61ACD2B8B0011D83C /* AssetsLibrary.framework in Frameworks */,
 				8090FAC71ACD2B8B0011D83C /* AVFoundation.framework in Frameworks */,
+				809798A71B01B33E003BB18C /* libMagickWand.a in Frameworks */,
 				8090FAC81ACD2B8B0011D83C /* CoreGraphics.framework in Frameworks */,
 				8090FAC91ACD2B8B0011D83C /* CoreImage.framework in Frameworks */,
+				809798A51B01B33E003BB18C /* libjpeg.a in Frameworks */,
 				8090FACA1ACD2B8B0011D83C /* CoreMedia.framework in Frameworks */,
 				8090FACB1ACD2B8B0011D83C /* ImageIO.framework in Frameworks */,
 				8090FACC1ACD2B8B0011D83C /* libxml2.dylib in Frameworks */,
 				8090FACD1ACD2B8B0011D83C /* QuartzCore.framework in Frameworks */,
+				809798A61B01B33E003BB18C /* libMagickCore.a in Frameworks */,
 				80DFAB771A7610F200F69205 /* libiconv.dylib in Frameworks */,
 				80DFAAFC1A76100C00F69205 /* libz.dylib in Frameworks */,
 				80DFAB6C1A7610AE00F69205 /* libavfilter.a in Frameworks */,
 				80DFAB721A7610AE00F69205 /* libswscale.a in Frameworks */,
+				809798AD1B01B9C8003BB18C /* libtiff.a in Frameworks */,
 				80DFAB6E1A7610AE00F69205 /* libavresample.a in Frameworks */,
 				8090FABB1ACD2B000011D83C /* opencv2.framework in Frameworks */,
 				80DFAB6D1A7610AE00F69205 /* libavformat.a in Frameworks */,
@@ -283,6 +281,7 @@
 				80DFAB711A7610AE00F69205 /* libswresample.a in Frameworks */,
 				80DFAB6F1A7610AE00F69205 /* libavutil.a in Frameworks */,
 				807BCBB31AC2A015007E23E2 /* DJISDK.framework in Frameworks */,
+				809798AC1B01B9C8003BB18C /* libpng.a in Frameworks */,
 				80DFAB701A7610AE00F69205 /* libpostproc.a in Frameworks */,
 				80DFAB6A1A7610AE00F69205 /* libavcodec.a in Frameworks */,
 				19922B0F0F9E0D6D0210F475 /* libPods.a in Frameworks */,
@@ -386,8 +385,8 @@
 				8090FAF71ACD2E6B0011D83C /* libjpeg.a */,
 				8090FAF81ACD2E6B0011D83C /* libMagickCore.a */,
 				8090FAF91ACD2E6B0011D83C /* libMagickWand.a */,
-				8090FAFA1ACD2E6B0011D83C /* libpng.a */,
-				8090FAFB1ACD2E6B0011D83C /* libtiff.a */,
+				809798AA1B01B9C8003BB18C /* libpng.a */,
+				809798AB1B01B9C8003BB18C /* libtiff.a */,
 				801F7A0C1AD384440095BE17 /* Strap Button */,
 				8090FB051ACD31E10011D83C /* IM */,
 				8090FAD01ACD2BD70011D83C /* UIImage+OpenCV.h */,
@@ -730,7 +729,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8090FB061ACD31E10011D83C /* IM in Resources */,
 				80DBDDF01B00A29500CABA0F /* down.png in Resources */,
 				80DBDDF51B00A52300CABA0F /* panostop.png in Resources */,
 				80DC3CD31B00978A00460630 /* page3.png in Resources */,
@@ -964,6 +962,7 @@
 					"$(PROJECT_DIR)/ExVision/IM",
 					"$(PROJECT_DIR)/ExVision",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1000,6 +999,7 @@
 					"$(PROJECT_DIR)/ExVision/IM",
 					"$(PROJECT_DIR)/ExVision",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
