@@ -300,23 +300,18 @@
 }
 
 #pragma mark - Gimbal movement
-
--(void) onGimbalAttitudeScrollUp
+-(void) onGimbalAttitudeYawRotationForward
 {
-    
-    
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-         DJIGimbalRotation pitch = {YES, 50, RelativeAngle, RotationForward};
+    DJIGimbalRotation pitch = {YES, 0, RelativeAngle, RotationForward};
     DJIGimbalRotation roll = {NO, 0, RelativeAngle, RotationForward};
-    DJIGimbalRotation yaw = {YES, 0, RelativeAngle, RotationForward};
+    DJIGimbalRotation yaw = {YES, 16, RelativeAngle, RotationForward};
     while (_gimbalAttitudeUpdateFlag) {
         [_drone.gimbal setGimbalPitch:pitch Roll:roll Yaw:yaw withResult:^(DJIError *error) {
             if (error.errorCode == ERR_Successed) {
-              //  NSLog(@"gimbal moved up ");
-
+                
             }
         }];
-        // usleep(40000);
+        usleep(40000);
     }
     // stop rotation.
     pitch.angle = 0;
@@ -324,28 +319,62 @@
     yaw.angle = 0;
     [_drone.gimbal setGimbalPitch:pitch Roll:roll Yaw:yaw withResult:^(DJIError *error) {
     }];
-    
-    });
-    
-
-    
-    
-   
 }
 
--(void) onGimbalAttitudeScrollDown{
-    
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-         DJIGimbalRotation pitch = {YES, 50, RelativeAngle, RotationBackward};
+-(void) onGimbalAttitudeYawRotationBackward
+{
+    DJIGimbalRotation pitch = {YES, 0, RelativeAngle, RotationBackward};
+    DJIGimbalRotation roll = {NO, 0, RelativeAngle, RotationBackward};
+    DJIGimbalRotation yaw = {YES, 16, RelativeAngle, RotationBackward};
+    while (_gimbalAttitudeUpdateFlag) {
+        [_drone.gimbal setGimbalPitch:pitch Roll:roll Yaw:yaw withResult:^(DJIError *error) {
+            if (error.errorCode == ERR_Successed) {
+                
+            }
+        }];
+        usleep(40000);
+    }
+    // stop rotation.
+    pitch.angle = 0;
+    roll.angle = 0;
+    yaw.angle = 0;
+    [_drone.gimbal setGimbalPitch:pitch Roll:roll Yaw:yaw withResult:^(DJIError *error) {
+    }];
+}
+
+-(void) onGimbalAttitudeScrollUp
+{
+    DJIGimbalRotation pitch = {YES, 150, RelativeAngle, RotationForward};
+    DJIGimbalRotation roll = {NO, 0, RelativeAngle, RotationForward};
+    DJIGimbalRotation yaw = {YES, 0, RelativeAngle, RotationForward};
+    while (_gimbalAttitudeUpdateFlag) {
+        [_drone.gimbal setGimbalPitch:pitch Roll:roll Yaw:yaw withResult:^(DJIError *error) {
+            if (error.errorCode == ERR_Successed) {
+                
+            }
+        }];
+        usleep(40000);
+    }
+    // stop rotation.
+    pitch.angle = 0;
+    roll.angle = 0;
+    yaw.angle = 0;
+    [_drone.gimbal setGimbalPitch:pitch Roll:roll Yaw:yaw withResult:^(DJIError *error) {
+    }];
+}
+
+-(void) onGimbalAttitudeScrollDown
+{
+    DJIGimbalRotation pitch = {YES, 150, RelativeAngle, RotationBackward};
     DJIGimbalRotation roll = {NO, 0, RelativeAngle, RotationBackward};
     DJIGimbalRotation yaw = {YES, 0, RelativeAngle, RotationBackward};
     while (_gimbalAttitudeUpdateFlag) {
         [_drone.gimbal setGimbalPitch:pitch Roll:roll Yaw:yaw withResult:^(DJIError *error) {
             if (error.errorCode == ERR_Successed) {
-              //  NSLog(@"gimbal moved down ");
+                
             }
         }];
-        //usleep(40000);
+        usleep(40000);
     }
     
     // stop rotation.
@@ -359,55 +388,107 @@
         else
         {
             NSLog(@"Set GimbalAttitude Failed");
-            self.barStatus.title  = @"Set GimbalAttitude Failed";
         }
     }];
+}
 
-      
-    });
-    
+-(IBAction) onGimbalAttitudeUpdateTest:(id)sender
+{
+    static BOOL s_startUpdate = NO;
+    if (s_startUpdate == NO) {
+        s_startUpdate = YES;
+        NSOperationQueue* asyncQueue = [NSOperationQueue mainQueue];
+        asyncQueue.maxConcurrentOperationCount = 1;
+        [_drone.gimbal startGimbalAttitudeUpdateToQueue:asyncQueue withResultBlock:^(DJIGimbalAttitude attitude) {
+//            NSString* attiString = [NSString stringWithFormat:@"Pitch = %d\nRoll = %d\nYaw = %d\n", attitude.pitch, attitude.roll, attitude.yaw];
+        }];
+        //        [_drone.gimbalManager startGimbalAttitudeUpdates];
+        //        [NSThread detachNewThreadSelector:@selector(readGimbalAttitude) toTarget:self withObject:Nil];
+    }
+    else
+    {
+        [_drone.gimbal stopGimbalAttitudeUpdates];
+        s_startUpdate = NO;
+    }
+}
 
-   }
-
-
-
+-(void) readGimbalAttitude
+{
+    while (true) {
+        DJIGimbalAttitude attitude = _drone.gimbal.gimbalAttitude;
+        NSLog(@"Gimbal Atti Pitch:%d, Roll:%d, Yaw:%d", attitude.pitch, attitude.roll, attitude.yaw);
+        
+        [NSThread sleepForTimeInterval:0.2];
+    }
+}
 
 -(IBAction) onGimbalScrollUpTouchDown:(id)sender
 {
-    
     _gimbalAttitudeUpdateFlag = YES;
-    [self onGimbalAttitudeScrollUp];
-
+    [NSThread detachNewThreadSelector:@selector(onGimbalAttitudeScrollUp) toTarget:self withObject:nil];
+    NSOperationQueue* asyncQueue = [NSOperationQueue mainQueue];
+    asyncQueue.maxConcurrentOperationCount = 1;
+    [_drone.gimbal startGimbalAttitudeUpdateToQueue:asyncQueue withResultBlock:^(DJIGimbalAttitude attitude) {
+    //    NSString* attiString = [NSString stringWithFormat:@"Pitch = %d\nRoll = %d\nYaw = %d\n", attitude.pitch, attitude.roll, attitude.yaw];
+    }];
 }
 
 -(IBAction) onGimbalScrollUpTouchUp:(id)sender
 {
     _gimbalAttitudeUpdateFlag = NO;
-    NSLog(@"stop gimbal updates");
-
-  //  dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        [_drone.gimbal stopGimbalAttitudeUpdates];
-    //});
-    
+    [_drone.gimbal stopGimbalAttitudeUpdates];
 }
 
 -(IBAction) onGimbalScroollDownTouchDown:(id)sender
 {
     _gimbalAttitudeUpdateFlag = YES;
-    [self onGimbalAttitudeScrollDown];
+    [NSThread detachNewThreadSelector:@selector(onGimbalAttitudeScrollDown) toTarget:self withObject:nil];
+    NSOperationQueue* asyncQueue = [NSOperationQueue mainQueue];
+    asyncQueue.maxConcurrentOperationCount = 1;
+    [_drone.gimbal startGimbalAttitudeUpdateToQueue:asyncQueue withResultBlock:^(DJIGimbalAttitude attitude) {
+      //  NSString* attiString = [NSString stringWithFormat:@"Pitch = %d\nRoll = %d\nYaw = %d\n", attitude.pitch, attitude.roll, attitude.yaw];
+    }];
 }
 
 -(IBAction) onGimbalScroollDownTouchUp:(id)sender
 {
     _gimbalAttitudeUpdateFlag = NO;
-    NSLog(@"stop gimbal updates");
-
-//    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-
-        [_drone.gimbal stopGimbalAttitudeUpdates];
-  //  });
+    [_drone.gimbal stopGimbalAttitudeUpdates];
 }
 
+-(IBAction) onGimbalYawRotationForwardTouchDown:(id)sender
+{
+    _gimbalAttitudeUpdateFlag = YES;
+    [NSThread detachNewThreadSelector:@selector(onGimbalAttitudeYawRotationForward) toTarget:self withObject:nil];
+    NSOperationQueue* asyncQueue = [NSOperationQueue mainQueue];
+    asyncQueue.maxConcurrentOperationCount = 1;
+    [_drone.gimbal startGimbalAttitudeUpdateToQueue:asyncQueue withResultBlock:^(DJIGimbalAttitude attitude) {
+       // NSString* attiString = [NSString stringWithFormat:@"Pitch = %d\nRoll = %d\nYaw = %d\n", attitude.pitch, attitude.roll, attitude.yaw];
+    }];
+}
+
+-(IBAction) onGimbalYawRotationForwardTouchUp:(id)sender
+{
+    _gimbalAttitudeUpdateFlag = NO;
+    [_drone.gimbal stopGimbalAttitudeUpdates];
+}
+
+-(IBAction) onGimbalYawRotationBackwardTouchDown:(id)sender
+{
+    _gimbalAttitudeUpdateFlag = YES;
+    [NSThread detachNewThreadSelector:@selector(onGimbalAttitudeYawRotationBackward) toTarget:self withObject:nil];
+    NSOperationQueue* asyncQueue = [NSOperationQueue mainQueue];
+    asyncQueue.maxConcurrentOperationCount = 1;
+    [_drone.gimbal startGimbalAttitudeUpdateToQueue:asyncQueue withResultBlock:^(DJIGimbalAttitude attitude) {
+        //NSString* attiString = [NSString stringWithFormat:@"Pitch = %d\nRoll = %d\nYaw = %d\n", attitude.pitch, attitude.roll, attitude.yaw];
+    }];
+}
+
+-(IBAction) onGimbalYawRotationBackwardTouchUp:(id)sender
+{
+    _gimbalAttitudeUpdateFlag = NO;
+    [_drone.gimbal stopGimbalAttitudeUpdates];
+}
 
 
 

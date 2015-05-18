@@ -29,7 +29,7 @@
     
     
     
-    _pageTitles = @[@"1. Connect", @"2. Fly", @"3. Pano", @"Important"];
+    _pageTitles = @[@"Connect", @"Fly", @"Pano", @"Important"];
     _pageDescriptions = @[@"Connect your iPhone to the phantom Wi-Fi before opening this app.", @"Fly and hover the phantom to where you want to shoot.", @"Press the red button to start. Your phantom will hover, then yaw, take photos and generate pano automatically.", @"Your remote controller will not able to control the phantom once pano started. \n\nRegain Control by Flipping S1 switch between Position 1 and 3.\n\nDo this at the end of pano shoot, or anytime you need, like bad weather, low battery, etc."];
     _pageImages = @[@"page1.png", @"page2.png", @"page3.png", @"page4.png"];
 

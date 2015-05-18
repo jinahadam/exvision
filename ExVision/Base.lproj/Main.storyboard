@@ -49,9 +49,9 @@
                                             <rect key="frame" x="588" y="224" width="75" height="50"/>
                                         </variation>
                                         <connections>
-                                            <action selector="onGimbalScrollUpTouchDown:" destination="uqc-4B-zff" eventType="touchDown" id="nyh-8k-lkA"/>
-                                            <action selector="onGimbalScrollUpTouchUp:" destination="uqc-4B-zff" eventType="touchUpOutside" id="9ig-cB-14m"/>
-                                            <action selector="onGimbalScrollUpTouchUp:" destination="uqc-4B-zff" eventType="touchUpInside" id="xjD-c4-FLk"/>
+                                            <action selector="onGimbalScrollUpTouchDown:" destination="uqc-4B-zff" eventType="touchDown" id="0gq-0R-ex7"/>
+                                            <action selector="onGimbalScrollUpTouchUp:" destination="uqc-4B-zff" eventType="touchUpOutside" id="1fx-7B-qEN"/>
+                                            <action selector="onGimbalScrollUpTouchUp:" destination="uqc-4B-zff" eventType="touchUpInside" id="boS-Z6-G7B"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DED-NE-WZT">
@@ -66,9 +66,9 @@
                                             <rect key="frame" x="588" y="282" width="75" height="50"/>
                                         </variation>
                                         <connections>
-                                            <action selector="onGimbalScroollDownTouchDown:" destination="uqc-4B-zff" eventType="touchDown" id="ECN-VE-hxZ"/>
-                                            <action selector="onGimbalScroollDownTouchUp:" destination="uqc-4B-zff" eventType="touchUpInside" id="LiA-ct-Qdh"/>
-                                            <action selector="onGimbalScroollDownTouchUp:" destination="uqc-4B-zff" eventType="touchUpOutside" id="b6E-HU-ebC"/>
+                                            <action selector="onGimbalScroollDownTouchDown:" destination="uqc-4B-zff" eventType="touchDown" id="N06-hs-Ao1"/>
+                                            <action selector="onGimbalScroollDownTouchUp:" destination="uqc-4B-zff" eventType="touchUpInside" id="KLW-BW-4kz"/>
+                                            <action selector="onGimbalScroollDownTouchUp:" destination="uqc-4B-zff" eventType="touchUpOutside" id="uRZ-ZV-48T"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -120,9 +120,6 @@
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                         <barButtonItem id="ch5-TN-bt2">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </barButtonItem>
-                        <barButtonItem width="28" style="plain" systemItem="fixedSpace" id="qYS-jm-5dq">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                         <barButtonItem image="fullbat" id="S69-jC-8E4">
@@ -399,8 +396,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="50" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jVl-rt-BJ4">
-                                <rect key="frame" x="22" y="67" width="267" height="267"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="50" baselineAdjustment="alignBaselines" minimumScaleFactor="1" translatesAutoresizingMaskIntoConstraints="NO" id="jVl-rt-BJ4">
+                                <rect key="frame" x="22" y="104" width="267" height="267"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="267" id="ghf-bJ-s0l"/>
                                 </constraints>
@@ -409,7 +406,7 @@
                                         <attributes>
                                             <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <font key="NSFont" size="17" name="HelveticaNeue"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>
@@ -421,12 +418,6 @@
                                     <constraint firstAttribute="width" constant="292" id="0er-aT-wd8"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gD9-d4-xpf">
-                                <rect key="frame" x="22" y="36" width="175" height="43"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="32"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hlt-pt-W6m">
                                 <rect key="frame" x="525" y="28" width="68" height="43"/>
                                 <constraints>
@@ -441,16 +432,22 @@
                                     <action selector="dismiss:" destination="C8V-Hk-Hdg" eventType="touchUpInside" id="08n-Ff-iY0"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gD9-d4-xpf">
+                                <rect key="frame" x="37" y="47" width="79" height="38"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="42"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="gD9-d4-xpf" firstAttribute="top" secondItem="dyO-d9-JMQ" secondAttribute="bottom" constant="16" id="5T4-xE-iGg"/>
-                            <constraint firstItem="gD9-d4-xpf" firstAttribute="leading" secondItem="Hgr-Mw-XGG" secondAttribute="leadingMargin" constant="6" id="GBv-vW-s6X"/>
+                            <constraint firstItem="gD9-d4-xpf" firstAttribute="top" secondItem="dyO-d9-JMQ" secondAttribute="bottom" constant="27" id="5T4-xE-iGg"/>
+                            <constraint firstItem="gD9-d4-xpf" firstAttribute="leading" secondItem="Hgr-Mw-XGG" secondAttribute="leadingMargin" constant="21" id="GBv-vW-s6X"/>
                             <constraint firstItem="Hlt-pt-W6m" firstAttribute="top" secondItem="dyO-d9-JMQ" secondAttribute="bottom" constant="8" id="Iph-Sa-RiL"/>
                             <constraint firstAttribute="trailingMargin" secondItem="IRa-DX-siG" secondAttribute="trailing" constant="-17" id="UNb-8d-7xE"/>
                             <constraint firstItem="Ijv-AC-X8j" firstAttribute="top" secondItem="IRa-DX-siG" secondAttribute="bottom" id="azz-TU-O90"/>
-                            <constraint firstItem="jVl-rt-BJ4" firstAttribute="leading" secondItem="gD9-d4-xpf" secondAttribute="leading" id="dNt-CW-0pB"/>
-                            <constraint firstItem="jVl-rt-BJ4" firstAttribute="top" secondItem="gD9-d4-xpf" secondAttribute="bottom" constant="-12" id="nHT-CR-IQB"/>
+                            <constraint firstItem="jVl-rt-BJ4" firstAttribute="leading" secondItem="gD9-d4-xpf" secondAttribute="leading" constant="-15" id="dNt-CW-0pB"/>
+                            <constraint firstItem="jVl-rt-BJ4" firstAttribute="top" secondItem="gD9-d4-xpf" secondAttribute="bottom" constant="19" id="nHT-CR-IQB"/>
                             <constraint firstItem="IRa-DX-siG" firstAttribute="leading" secondItem="jVl-rt-BJ4" secondAttribute="trailing" priority="900" constant="20" id="taS-2Z-7hd"/>
                             <constraint firstItem="IRa-DX-siG" firstAttribute="top" secondItem="dyO-d9-JMQ" secondAttribute="bottom" id="tea-ha-uaf"/>
                             <constraint firstItem="Hlt-pt-W6m" firstAttribute="leading" secondItem="IRa-DX-siG" secondAttribute="trailing" constant="-76" id="ygj-F4-pj5"/>
