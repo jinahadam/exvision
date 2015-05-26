@@ -12,12 +12,31 @@
 #import <DJISDK/DJISDCardOperation.h>
 #import <DJISDK/DJIBattery.h>
 #import "Settings.h"
+#import "GHWalkThroughView.h"
+
+static NSString * const sampleDesc1 = @"Connect your iPhone to the phantom Wi-Fi before opening this app.";
+
+static NSString * const sampleDesc2 = @"Fly and hover the phantom to where you want to shoot.";
+
+static NSString * const sampleDesc3 = @"Press the red button to start. Your phantom will hover, then yaw, take photos and generate pano automatically.";
+
+static NSString * const sampleDesc4 = @"Praesent ornare consectetur elit, in fringilla ipsum blandit sed. Nam elementum, sem sit amet convallis dictum, risus metus faucibus augue, nec consectetur tortor mauris ac purus.";
+
+static NSString * const sampleDesc5 = @"Your remote controller will not able to control the phantom once pano started. \n\nRegain Control by Flipping S1 switch between Position 1 and 3.\n\nDo this at the end of pano shoot, or anytime you need, like bad weather, low battery, etc.";
+
+
 //120
 #define YAW_180 -190
 #define YAW_360 120
 #define PANO_SHOTS 7
 
-@interface CameraView ()
+@interface CameraView () <GHWalkThroughViewDataSource>
+
+@property (nonatomic, strong) GHWalkThroughView* ghView ;
+
+@property (nonatomic, strong) NSArray* descStrings;
+
+@property (nonatomic, strong) UILabel* welcomeLabel;
 
 @end
 
@@ -29,7 +48,55 @@
     [self setup];
     
     
+    
+    _ghView = [[GHWalkThroughView alloc] initWithFrame:self.navigationController.view.bounds];
+    [_ghView setDataSource:self];
+    [_ghView setWalkThroughDirection:GHWalkThroughViewDirectionVertical];
+    UILabel* welcomeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 50)];
+    welcomeLabel.text = @"Welcome";
+    welcomeLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:40];
+    welcomeLabel.textColor = [UIColor whiteColor];
+    welcomeLabel.textAlignment = NSTextAlignmentCenter;
+    self.welcomeLabel = welcomeLabel;
+    
+    self.descStrings = [NSArray arrayWithObjects:sampleDesc1,sampleDesc2, sampleDesc3, sampleDesc4, sampleDesc5, nil];
+   
+    
+    
 }
+
+-(IBAction)showHelp:(id)sender {
+    
+    self.ghView.isfixedBackground = NO;
+    [self.ghView setWalkThroughDirection:GHWalkThroughViewDirectionHorizontal];
+    
+    [self.ghView showInView:self.navigationController.view animateDuration:0.3];
+
+}
+
+
+#pragma mark - GHDataSource
+
+-(NSInteger) numberOfPages
+{
+    return 5;
+}
+
+- (void) configurePage:(GHWalkThroughPageCell *)cell atIndex:(NSInteger)index
+{
+    cell.title = [NSString stringWithFormat:@"This is page %ld", index+1];
+    cell.titleImage = [UIImage imageNamed:[NSString stringWithFormat:@"page%ld", index+1]];
+    cell.desc = [self.descStrings objectAtIndex:index];
+}
+
+- (UIImage*) bgImageforPage:(NSInteger)index
+{
+    NSString* imageName =[NSString stringWithFormat:@"page%d.png", index+1];
+    UIImage* image = [UIImage imageNamed:imageName];
+    return image;
+}
+
+
 
 -(void)restartCameraFeed {
     [mask removeFromSuperview];

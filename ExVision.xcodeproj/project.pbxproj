@@ -11,7 +11,8 @@
 		801F7A091AD384390095BE17 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 801F7A041AD384390095BE17 /* FontAwesome.ttf */; };
 		801F7A0A1AD384390095BE17 /* NSString+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 801F7A061AD384390095BE17 /* NSString+FontAwesome.m */; };
 		801F7A0B1AD384390095BE17 /* UIButton+Bootstrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 801F7A081AD384390095BE17 /* UIButton+Bootstrap.m */; };
-		801F7A0F1AD3B3630095BE17 /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 801F7A0E1AD3B3630095BE17 /* HelpViewController.m */; };
+		804E8D4C1B14766F00BC9432 /* GHWalkThroughView.m in Sources */ = {isa = PBXBuildFile; fileRef = 804E8D491B14766F00BC9432 /* GHWalkThroughView.m */; };
+		804E8D4D1B14766F00BC9432 /* GHWalkThroughPageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 804E8D4B1B14766F00BC9432 /* GHWalkThroughPageCell.m */; };
 		807019291A762CEB00B599C0 /* CameraView.m in Sources */ = {isa = PBXBuildFile; fileRef = 807019281A762CEB00B599C0 /* CameraView.m */; };
 		807BCBB31AC2A015007E23E2 /* DJISDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 807BCBB21AC2A015007E23E2 /* DJISDK.framework */; };
 		807C69001AE62D2C002C9341 /* ProcessController.m in Sources */ = {isa = PBXBuildFile; fileRef = 807C68FF1AE62D2C002C9341 /* ProcessController.m */; };
@@ -39,7 +40,6 @@
 		80DBDDF51B00A52300CABA0F /* panostop.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DBDDF31B00A52300CABA0F /* panostop.png */; };
 		80DBDDF81B00A6DE00CABA0F /* help.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DBDDF61B00A6DE00CABA0F /* help.png */; };
 		80DBDDF91B00A6DE00CABA0F /* satellite.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DBDDF71B00A6DE00CABA0F /* satellite.png */; };
-		80DC3CCD1AFC8E1300460630 /* PageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80DC3CCC1AFC8E1300460630 /* PageContentViewController.m */; };
 		80DC3CD11B00978A00460630 /* page1.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DC3CCE1B00978A00460630 /* page1.png */; };
 		80DC3CD21B00978A00460630 /* page2.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DC3CCF1B00978A00460630 /* page2.png */; };
 		80DC3CD31B00978A00460630 /* page3.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DC3CD01B00978A00460630 /* page3.png */; };
@@ -90,8 +90,10 @@
 		801F7A061AD384390095BE17 /* NSString+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FontAwesome.m"; sourceTree = "<group>"; };
 		801F7A071AD384390095BE17 /* UIButton+Bootstrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Bootstrap.h"; sourceTree = "<group>"; };
 		801F7A081AD384390095BE17 /* UIButton+Bootstrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Bootstrap.m"; sourceTree = "<group>"; };
-		801F7A0D1AD3B3630095BE17 /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
-		801F7A0E1AD3B3630095BE17 /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
+		804E8D481B14766F00BC9432 /* GHWalkThroughView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHWalkThroughView.h; sourceTree = "<group>"; };
+		804E8D491B14766F00BC9432 /* GHWalkThroughView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHWalkThroughView.m; sourceTree = "<group>"; };
+		804E8D4A1B14766F00BC9432 /* GHWalkThroughPageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHWalkThroughPageCell.h; sourceTree = "<group>"; };
+		804E8D4B1B14766F00BC9432 /* GHWalkThroughPageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHWalkThroughPageCell.m; sourceTree = "<group>"; };
 		807019271A762CEB00B599C0 /* CameraView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraView.h; sourceTree = "<group>"; };
 		807019281A762CEB00B599C0 /* CameraView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraView.m; sourceTree = "<group>"; };
 		807BCBB21AC2A015007E23E2 /* DJISDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DJISDK.framework; sourceTree = "<group>"; };
@@ -125,8 +127,6 @@
 		80DBDDF31B00A52300CABA0F /* panostop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = panostop.png; sourceTree = "<group>"; };
 		80DBDDF61B00A6DE00CABA0F /* help.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = help.png; sourceTree = "<group>"; };
 		80DBDDF71B00A6DE00CABA0F /* satellite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = satellite.png; sourceTree = "<group>"; };
-		80DC3CCB1AFC8E1300460630 /* PageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageContentViewController.h; sourceTree = "<group>"; };
-		80DC3CCC1AFC8E1300460630 /* PageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageContentViewController.m; sourceTree = "<group>"; };
 		80DC3CCE1B00978A00460630 /* page1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page1.png; sourceTree = "<group>"; };
 		80DC3CCF1B00978A00460630 /* page2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page2.png; sourceTree = "<group>"; };
 		80DC3CD01B00978A00460630 /* page3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page3.png; sourceTree = "<group>"; };
@@ -356,10 +356,6 @@
 				807019281A762CEB00B599C0 /* CameraView.m */,
 				80E4E7671ADFA87700157EE0 /* Settings.h */,
 				80E4E7681ADFA87700157EE0 /* Settings.m */,
-				801F7A0D1AD3B3630095BE17 /* HelpViewController.h */,
-				801F7A0E1AD3B3630095BE17 /* HelpViewController.m */,
-				80DC3CCB1AFC8E1300460630 /* PageContentViewController.h */,
-				80DC3CCC1AFC8E1300460630 /* PageContentViewController.m */,
 				80DFAADD1A760CE100F69205 /* Main.storyboard */,
 				80DFAAE01A760CE100F69205 /* Images.xcassets */,
 				80DFAAE21A760CE100F69205 /* LaunchScreen.xib */,
@@ -371,6 +367,10 @@
 		80DFAAD31A760CE100F69205 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				804E8D481B14766F00BC9432 /* GHWalkThroughView.h */,
+				804E8D491B14766F00BC9432 /* GHWalkThroughView.m */,
+				804E8D4A1B14766F00BC9432 /* GHWalkThroughPageCell.h */,
+				804E8D4B1B14766F00BC9432 /* GHWalkThroughPageCell.m */,
 				80DBDDF61B00A6DE00CABA0F /* help.png */,
 				80DBDDF71B00A6DE00CABA0F /* satellite.png */,
 				80DBDDF21B00A52300CABA0F /* pano.png */,
@@ -795,14 +795,15 @@
 			files = (
 				801F7A0A1AD384390095BE17 /* NSString+FontAwesome.m in Sources */,
 				807C69001AE62D2C002C9341 /* ProcessController.m in Sources */,
-				80DC3CCD1AFC8E1300460630 /* PageContentViewController.m in Sources */,
 				80DFAB691A7610AE00F69205 /* DJILinkQueue.m in Sources */,
 				80E4E7691ADFA87700157EE0 /* Settings.m in Sources */,
 				80F34AD11ADD10EE007473A4 /* CircleView.m in Sources */,
+				804E8D4D1B14766F00BC9432 /* GHWalkThroughPageCell.m in Sources */,
 				80DFAAD91A760CE100F69205 /* AppDelegate.mm in Sources */,
 				8090FAD81ACD2BD70011D83C /* stitching.cpp in Sources */,
 				80DFAB751A7610AE00F69205 /* VideoPreviewer.m in Sources */,
 				80DFAAD61A760CE100F69205 /* main.m in Sources */,
+				804E8D4C1B14766F00BC9432 /* GHWalkThroughView.m in Sources */,
 				80E4E76F1ADFB1C900157EE0 /* DismissingAnimationController.m in Sources */,
 				8090FAD71ACD2BD70011D83C /* CVWrapper.mm in Sources */,
 				80DFAB741A7610AE00F69205 /* VideoFrameExtractor.m in Sources */,
@@ -811,7 +812,6 @@
 				801F7A0B1AD384390095BE17 /* UIButton+Bootstrap.m in Sources */,
 				80F34ACE1ADCFABC007473A4 /* CaptureButton.m in Sources */,
 				80E4E76C1ADFB15700157EE0 /* PresentingAnimationController.m in Sources */,
-				801F7A0F1AD3B3630095BE17 /* HelpViewController.m in Sources */,
 				80DFAB681A7610AE00F69205 /* DJIDispatch.m in Sources */,
 				8090FAD61ACD2BD70011D83C /* UIImage+OpenCV.mm in Sources */,
 			);
