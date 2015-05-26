@@ -58,7 +58,6 @@
     
     
 
-    self.navigationItem.title = @"Phantom Pano";
 
     _drone = [[DJIDrone alloc] initWithType:DJIDrone_Phantom];
     _drone.delegate = self;
@@ -804,7 +803,7 @@
                 //self.captureBtn.enabled = true;
                 shootPan = false;
                 
-                [self.captureBtn setTitle:@"Pano" forState:UIControlStateNormal];
+              //  [self.captureBtn setTitle:@"Pano" forState:UIControlStateNormal];
                 self.barStatus.title = @"";
                 [self.cirlce setStrokeEnd:0 animated:NO];
 
@@ -895,7 +894,7 @@
             [_groundStation setAircraftJoystickWithPitch:0 Roll:0 Yaw:YAW_180 Throttle:0];
             sleep(3);
             [_groundStation setAircraftJoystickWithPitch:0 Roll:0 Yaw:0 Throttle:0];
-         //   sleep(3);
+            sleep(2);
             [self SingleShot];
 
             [self.cirlce setStrokeEnd:((1.0/PANO_SHOTS)*(i)) animated:YES];
@@ -907,7 +906,7 @@
                 dispatch_async(dispatch_get_main_queue(), ^(){
                     //Add method, task you want perform on mainQueue
                     //Control UIView, IBOutlet all here
-                    [self.cirlce setStrokeColor:[UIColor colorWithRed:240/255.0 green:173/255.0 blue:78/255.0 alpha:1]];
+                  //  [self.cirlce setStrokeColor:[UIColor colorWithRed:240/255.0 green:173/255.0 blue:78/255.0 alpha:1]];
                     [self.cirlce setStrokeEnd:0.0 animated:NO];
                     
                     shootPan = false;
@@ -975,7 +974,7 @@
                                               otherButtonTitles:nil];
         [alert show];
         
-        [self.captureBtn setTitle:@"Pano" forState:UIControlStateNormal];
+       // [self.captureBtn setTitle:@"Pano" forState:UIControlStateNormal];
         self.barStatus.title = @"Pano Cancelled";
         [self.cirlce setStrokeEnd:0 animated:NO];
         [_groundStation pauseGroundStationTask];

@@ -16,8 +16,8 @@
 
 #define CROP_TOP 0
 #define CROP_WIDTH 20
-#define ADJUST_EXPOSURE 1.2f
-#define ADJUST_SAT 1.1f
+#define ADJUST_EXPOSURE 1.1f
+#define ADJUST_SAT 1.05f
 
 
 #define ThrowWandException(wand) { \
