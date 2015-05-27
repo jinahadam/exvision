@@ -156,6 +156,7 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
     
     currentAltitude = 0;
     shootPan = false;
+    readyForShoot = false;
     wp_idx = -1;
     connection = false;
     
@@ -726,14 +727,13 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
     {
         
         //self.logLabel.text = @"Upload Task Success";
-        
         self.barStatus.title = @"Uploaded WPs";
 
     }
     else
     {
         self.barStatus.title = [NSString stringWithFormat:@"Upload Task Failed: %d", (int)result.error];
-        
+        readyForShoot = false;
     }
 }
 
@@ -905,57 +905,6 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
     self.satCount.title = [NSString stringWithFormat:@"%d", flyingInfo.satelliteCount];
 
 }
-
-//-(void)continousShots {
-//    
-//    
-//    [_camera setCameraExposureCompensation:CameraExposureCompensationN00 withResultBlock:^(DJIError *error) {
-//        if (error.errorCode == ERR_Successed) {
-//            NSLog(@"Set Exposure Compensation Success");
-//        }
-//        else{
-//            NSLog(@"Set Exposure Compensation Failed");
-//        }
-//    }];
-//    
-//    [_camera startTakePhoto:CameraSingleCapture withResult:^(DJIError *error) {
-//        if (error.errorCode != ERR_Successed) {
-//            NSLog(@"Take Photo Error : %@", error.errorDescription);
-//        } else {
-//        
-//        }
-//        self.barStatus.title = [NSString stringWithFormat:@"Image taken"];
-//        total_images = total_images + 1;
-//        [self.cirlce setStrokeEnd:((1.0/PANO_SHOTS)*total_images) animated:YES];
-//        self.barStatus.title = [NSString stringWithFormat:@"%d Image taken", total_images];
-//        
-//        
-//        if (total_images <= PANO_SHOTS) {
-//            if(shootPan) {
-//                sleep(2);
-//                [_groundStation setAircraftJoystickWithPitch:0 Roll:0 Yaw:YAW_180 Throttle:0];
-//
-//                [self continousShots];
-//            }
-//        } else {
-//            //stop the Yaw
-//            shootPan = false;
-//            [_groundStation setAircraftJoystickWithPitch:0 Roll:0 Yaw:0 Throttle:0];
-//            [self.captureBtn tap];
-//            shootPan = false;
-//            [self.cirlce setStrokeEnd:0 animated:NO];
-//
-//            [self.captureBtn setTitle:@"Pano" forState:UIControlStateNormal];
-//            self.barStatus.title = @"";
-//            [self.cirlce setStrokeEnd:0 animated:NO];
-//            
-//            [self performSegueWithIdentifier:@"processingSegue" sender:self];
-//            
-//        }
-//
-//    }];
-//    
-//}
 
 -(void) processOperations {
     

@@ -26,6 +26,7 @@
     BOOL connection;
     BOOL _gimbalAttitudeUpdateFlag;
     BOOL shootPan;
+    BOOL readyForShoot;
 
     NSObject<DJIGroundStation>* _groundStation;
     CLLocationCoordinate2D _homeLocation;
