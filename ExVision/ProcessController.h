@@ -14,10 +14,11 @@
 #import "JTSImageViewController.h"
 #import "JTSImageInfo.h"
 #import "MBProgressHUD.h"
+#import "IDMPhotoBrowser.h"
 
 
 
-@interface ProcessController : UIViewController <DJIDroneDelegate, DJICameraDelegate, UIScrollViewDelegate>
+@interface ProcessController : UIViewController <DJIDroneDelegate, DJICameraDelegate, UIScrollViewDelegate,IDMPhotoBrowserDelegate >
 {
     DJIDrone* _drone;
     DJIMediaManager* _mediaManager;

@@ -188,7 +188,10 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
 
 -(void) viewWillAppear:(BOOL)animated
 {
+    
+
     [super viewWillAppear:animated];
+
     [_drone connectToDrone];
     [[VideoPreviewer instance] setView:self.videoPreviewView];
     
@@ -267,6 +270,9 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
 
 -(IBAction)presentProcessingView:(id)sender
 {
+    
+
+    
      mask = [[UIView alloc] initWithFrame:self.view.frame];
     [mask setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.95]];
     [self.view addSubview:mask];
@@ -349,7 +355,7 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
         if (error.errorCode != ERR_Successed) {
             NSLog(@"Take Photo Error : %@", error.errorDescription);
         } else {
-            self.barStatus.title = [NSString stringWithFormat:@"In auto mode. use S1 to gain control"];
+            self.barStatus.title = [NSString stringWithFormat:@"In auto mode. flip S1 to gain control"];
 
             
         }
@@ -657,25 +663,30 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
 -(IBAction) onStartTaskButtonClicked:(id)sender
 {
     
-    if (!shootPan) {
-        shootPan = true;
-        [self.captureBtn setBackgroundImage:[UIImage imageNamed:@"panostop.png"] forState:UIControlStateNormal];
+    if (flightMode != 3) {
+    
+        if (!shootPan) {
+            shootPan = true;
+            [self.captureBtn setBackgroundImage:[UIImage imageNamed:@"panostop.png"] forState:UIControlStateNormal];
 
-        self.barStatus.title = @"Shooting Pano";
+            self.barStatus.title = @"Shooting Pano";
 
-        [self SDCardOperations];
-       
+            [self SDCardOperations];
+           
+        } else {
+            
+            [self.captureBtn setBackgroundImage:[UIImage imageNamed:@"pano.png"] forState:UIControlStateNormal];
+            self.barStatus.title = @"Pano Cancelled";
+            [self.cirlce setStrokeEnd:0 animated:NO];
+            [_groundStation pauseGroundStationTask];
+            shootPan = false;
+
+        }
+
     } else {
-        
-        [self.captureBtn setBackgroundImage:[UIImage imageNamed:@"pano.png"] forState:UIControlStateNormal];
-        self.barStatus.title = @"Pano Cancelled";
-        [self.cirlce setStrokeEnd:0 animated:NO];
-        [_groundStation pauseGroundStationTask];
-        shootPan = false;
-
+        NSLog(@"flip S1 switch to top or tap ? for help");
+        self.barStatus.title = @"flip S1 switch to top or tap ? for help";
     }
-    
-    
 }
 
 -(IBAction) onPauseTaskButtonClicked:(id)sender
@@ -758,7 +769,7 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
     if (result.executeStatus == GSExecStatusBegan) {
       //  self.logLabel.text = @"Task Start Began";
        // [self takeContinousPictures];
-        self.barStatus.title = @"Pano Started";
+        //self.barStatus.title = @"Pano Started";
 
         
     }
@@ -766,10 +777,12 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
     {
        // self.logLabel.text = @"Task Start Success";
         self.barStatus.title = @"Task Started";
-        
+        shootPan = true;
     }
     else
     {
+        shootPan = false;
+
        NSLog(@"%@",[NSString stringWithFormat:@"Task Start Failed : %d", (int)result.error]);
         self.barStatus.title = [NSString stringWithFormat:@"Task Start Failed : %d", (int)result.error];
         
@@ -860,6 +873,8 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
    // NSLog(@"DJIaltitude  = {%d, %d , %d}\n", state.attitude.pitch ,state.attitude.roll , state.attitude.yaw);
     currentYaw = state.attitude.yaw + 180;
     
+    flightMode =  (unsigned long)state.flightMode;
+    
 }
 
 
@@ -903,10 +918,18 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
 //    currentAltitude = flyingInfo.altitude;
     
     self.satCount.title = [NSString stringWithFormat:@"%d", flyingInfo.satelliteCount];
+    
+    
+   // NSLog(@"waypoint index %d", flyingInfo.targetWaypointIndex);
+    //NSLog(@"FLIGHT MODE %lu", (unsigned long)flyingInfo.droneStatus);
 
 }
 
 -(void) processOperations {
+    
+    if (!shootPan)
+        return;
+    
     
     [self.captureBtn setBackgroundImage:[UIImage imageNamed:@"panostop.png"] forState:UIControlStateNormal];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
@@ -918,15 +941,25 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
         NSLog(@"ground station paused");
         
         
+        if (!shootPan)
+            return;
         
         //[_groundStation startGroundStationTask];
         for (int i=1; i<=PANO_SHOTS; i++) {
+            
+            if (!shootPan)
+                return;
+            
+            
             [_groundStation setAircraftJoystickWithPitch:0 Roll:0 Yaw:YAW_180 Throttle:0];
             sleep(3);
             [_groundStation setAircraftJoystickWithPitch:0 Roll:0 Yaw:0 Throttle:0];
             sleep(2);
             [self SingleShot];
 
+            if (!shootPan)
+                return;
+            
             [self.cirlce setStrokeEnd:((1.0/PANO_SHOTS)*(i)) animated:YES];
             
             if (i == PANO_SHOTS) {
@@ -937,13 +970,20 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
                     //Add method, task you want perform on mainQueue
                     //Control UIView, IBOutlet all here
                   //  [self.cirlce setStrokeColor:[UIColor colorWithRed:240/255.0 green:173/255.0 blue:78/255.0 alpha:1]];
-                    [self.cirlce setStrokeEnd:0.0 animated:NO];
+                    
+                    if (!shootPan)
+                        return;
+                    
                     
                     shootPan = false;
                     
                     [self.captureBtn setBackgroundImage:[UIImage imageNamed:@"pano.png"] forState:UIControlStateNormal];
                     
                     self.barStatus.title = [NSString stringWithFormat:@"In auto mode. use S1 to gain control"];
+                    
+                    [self.cirlce setStrokeEnd:0.0f animated:YES];
+                    
+                    NSLog(@"set curce stroke before processing");
                     
                     [self presentProcessingView:nil];
 
@@ -953,6 +993,9 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
                 
                 
             }
+            
+            if (!shootPan)
+                return;
             
             
         }

@@ -27,6 +27,7 @@
     BOOL _gimbalAttitudeUpdateFlag;
     BOOL shootPan;
     BOOL readyForShoot;
+    int flightMode;
 
     NSObject<DJIGroundStation>* _groundStation;
     CLLocationCoordinate2D _homeLocation;

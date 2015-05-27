@@ -205,8 +205,8 @@ cv::Mat intelligentCrop (cv::Mat pano) {
         }
     }
     
-    std::cout << "chosen id: " << id << std::endl;
-    std::cout << "max size: " << maxSize << std::endl;
+   // std::cout << "chosen id: " << id << std::endl;
+   // std::cout << "max size: " << maxSize << std::endl;
     
     /// Draw filled contour to obtain a mask with interior parts
     cv::Mat contourMask = cv::Mat::zeros( pano.size(), CV_8UC1 );

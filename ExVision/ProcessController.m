@@ -11,6 +11,8 @@
 #import <DJISDK/DJISDK.h>
 #import "UIButton+Bootstrap.h"
 #import "CameraView.h"
+#import "IDMPhoto.h"
+#import "IDMPhotoBrowser.h"
 
 
 
@@ -45,19 +47,17 @@ exit(-1); \
     
     self.imagesForProcessing = [[NSMutableArray alloc] init];
     
-    [self.close dangerStyle];
-    [self.share primaryStyle];
-    
+
     [self.close setHidden:YES];
     [self.share setHidden:YES];
     hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"preparing to download";   // [self manualPanoProcessing];
     [hud show:YES];
     
-//    NSLog(@"manual processing");
+////    NSLog(@"manual processing");
 //    
-   // [self manualPanoProcessing];
-    
+//    [self manualPanoProcessing];
+//    
 }
 
 - (IBAction)didClickOnClose:(id)sender {
@@ -129,15 +129,25 @@ exit(-1); \
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
             //Run UI Updates
-            self.image.image = pano;
-         
             [MBProgressHUD hideHUDForView:self.view animated:YES];
+
+            
+            IDMPhoto *photo = [IDMPhoto photoWithImage:result];
+            IDMPhotoBrowser *browser = [[IDMPhotoBrowser alloc] initWithPhotos:[NSArray arrayWithObjects:photo, nil]];
+            browser.delegate = self;
+            [self presentViewController:browser animated:YES completion:nil];
+        
+            
         });
     });
 
 }
 
+-(void)photoBrowser:(IDMPhotoBrowser *)photoBrowser didDismissAtPageIndex:(NSUInteger)index {
+    NSLog(@"dismiss");
+    [self dismissViewControllerAnimated:YES completion:nil];
 
+}
 
 -(UIImage*) processImage: (UIImage*)img {
 
@@ -329,26 +339,19 @@ exit(-1); \
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
             //Run UI Updates
-            self.image.image = result;
-            
-          //  self.image.image = [UIImage imageNamed:@"image.jpg"];
+          //  self.image.image = result;
             
             pano = result;
             [hud hide:YES];
             
-//            self.scrollview = [[UIScrollView alloc]initWithFrame:self.view.bounds];
-//            [self.scrollview addSubview:self.image];
-//            self.scrollview.contentSize = pano.size;
-//            self.scrollview.minimumZoomScale = 0.25f;
-//            self.scrollview.maximumZoomScale = 3.0f;
-//            self.scrollview.delegate = self;
-//            self.scrollview.hidden = YES;
-//            [self.view addSubview:self.scrollview];
-//            [self.view sendSubviewToBack:self.scrollview];
+            IDMPhoto *photo = [IDMPhoto photoWithImage:result];
+            IDMPhotoBrowser *browser = [[IDMPhotoBrowser alloc] initWithPhotos:[NSArray arrayWithObjects:photo, nil]];
+            browser.delegate = self;
+            [self presentViewController:browser animated:YES completion:nil];
             
             
-            [self.close setHidden:NO];
-            [self.share setHidden:NO];
+           
+            
             
             [self performSelector:@selector(timeout) withObject:nil afterDelay:0.1];
             
@@ -556,8 +559,8 @@ CGImageRef createStandardImage(CGImageRef image) {
 }
 
 -(IBAction)share:(id)sender {
-    [self shareText:@"Vision+ Pano" andImage:pano andUrl:[NSURL
-                                                          URLWithString:@"http://google.com"]];
+    [self shareText:@"PhantomPano" andImage:pano andUrl:[NSURL
+                                                          URLWithString:@"http://apps.avetics.com"]];
 }
 
 
