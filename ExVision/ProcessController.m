@@ -141,9 +141,9 @@ exit(-1); \
 
 -(UIImage*) processImage: (UIImage*)img {
 
- //   CGSize imageSize = CGSizeMake(2192/1.5, 1644/1.5);
+    CGSize imageSize = CGSizeMake(2192/1.5, 1644/1.5);
   //  @autoreleasepool {
-        CGSize imageSize = CGSizeMake(2192, 1644);
+      //  CGSize imageSize = CGSizeMake(2192, 1644);
         //  CGSize imageSize = CGSizeMake(v);
         // UIImage *unwarped = [self unwarpVisionImage:[self resizedImage:img to:imageSize interpolationQuality:kCGInterpolationHigh]];
         UIImage *unwarped = [self unwarpVisionImage:[self resizedImage:img to:imageSize interpolationQuality:kCGInterpolationHigh]];

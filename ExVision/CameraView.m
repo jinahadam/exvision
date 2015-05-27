@@ -47,9 +47,15 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
 {
     [super viewDidLoad];
     [self setup];
+    [self helpViewSetup];
     
     
+   
     
+    
+}
+
+-(void)helpViewSetup {
     _ghView = [[GHWalkThroughView alloc] initWithFrame:self.navigationController.view.bounds];
     [_ghView setCloseTitle:@"Close"];
     [_ghView setDataSource:self];
@@ -64,21 +70,23 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
     self.welcomeLabel = welcomeLabel;
     self.titleStrings = @[@"Welcome", @"Connect", @"Fly", @"Pano", @"Caution"];
     self.descStrings = [NSArray arrayWithObjects:sampleDesc1,sampleDesc2, sampleDesc3, sampleDesc4, sampleDesc5, nil];
-   
-    
     
 }
 
 -(IBAction)showHelp:(id)sender {
     
-    self.ghView.isfixedBackground = NO;
+    [self presentHelp];
+}
 
+
+-(void)presentHelp {
+    self.ghView.isfixedBackground = NO;
+    
     [self.ghView setWalkThroughDirection:GHWalkThroughViewDirectionHorizontal];
     
     [self.ghView showInView:self.navigationController.view animateDuration:0.3];
 
 }
-
 
 #pragma mark - GHDataSource
 
@@ -199,10 +207,10 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
         
         //first time so show help screen aswell
         
-        NSString * storyboardName = @"Main";
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle: nil];
-        UIViewController * vc = [storyboard instantiateViewControllerWithIdentifier:@"HelpView"];
-        [self presentViewController:vc animated:YES completion:nil];
+        NSLog(@"first time ");
+        
+        [self performSelector:@selector(presentHelp) withObject:nil afterDelay:2.0];
+      
         
     } else { //load settings
         
