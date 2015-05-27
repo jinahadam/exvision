@@ -16,8 +16,8 @@
 
 #define CROP_TOP 0
 #define CROP_WIDTH 20
-#define ADJUST_EXPOSURE 1.1f
-#define ADJUST_SAT 1.05f
+#define ADJUST_EXPOSURE 1.0f
+#define ADJUST_SAT 1.04f
 
 
 #define ThrowWandException(wand) { \
@@ -54,6 +54,8 @@ exit(-1); \
     hud.labelText = @"preparing to download";   // [self manualPanoProcessing];
     [hud show:YES];
     
+//    NSLog(@"manual processing");
+//    
    // [self manualPanoProcessing];
     
 }
@@ -139,11 +141,17 @@ exit(-1); \
 
 -(UIImage*) processImage: (UIImage*)img {
 
-    CGSize imageSize = CGSizeMake(2192/1.5, 1644/1.5);
-    UIImage *unwarped = [self unwarpVisionImage:[self resizedImage:img to:imageSize interpolationQuality:kCGInterpolationHigh]];
-    CGRect boundsToCrop = CGRectMake(CROP_WIDTH, CROP_TOP, [unwarped size].width-CROP_WIDTH, [unwarped size].height);
-    UIImage *result = [self croppedImage:boundsToCrop image:unwarped];
-    return result;
+ //   CGSize imageSize = CGSizeMake(2192/1.5, 1644/1.5);
+  //  @autoreleasepool {
+        CGSize imageSize = CGSizeMake(2192, 1644);
+        //  CGSize imageSize = CGSizeMake(v);
+        // UIImage *unwarped = [self unwarpVisionImage:[self resizedImage:img to:imageSize interpolationQuality:kCGInterpolationHigh]];
+        UIImage *unwarped = [self unwarpVisionImage:[self resizedImage:img to:imageSize interpolationQuality:kCGInterpolationHigh]];
+        CGRect boundsToCrop = CGRectMake(CROP_WIDTH, CROP_TOP, [unwarped size].width-CROP_WIDTH, [unwarped size].height);
+        UIImage *result = [self croppedImage:boundsToCrop image:unwarped];
+        return result;
+   // }
+   
     
 }
 
@@ -475,6 +483,7 @@ exit(-1); \
     //CGImageRelease(newImageRef);
     
     return newImageRef;
+    
 }
 
 
@@ -555,7 +564,7 @@ CGImageRef createStandardImage(CGImageRef image) {
 - (void)shareText:(NSString *)text andImage:(UIImage *)image andUrl:(NSURL *)url
 {
     NSMutableArray *sharingItems = [NSMutableArray new];
-    
+
     if (text) {
         [sharingItems addObject:text];
     }
