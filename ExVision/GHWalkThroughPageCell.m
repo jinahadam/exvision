@@ -58,13 +58,13 @@
     [super layoutSubviews];
     
     CGRect rect1 = self.titleImageView.frame;
-    rect1.origin.x = (self.contentView.frame.size.width - 250);
+    rect1.origin.x = (self.contentView.frame.size.width/2);
     rect1.origin.y = self.frame.size.height - self.titlePositionY - self.imgPositionY - rect1.size.height;
     self.titleImageView.frame = rect1;
 
     [self layoutTitleLabel];
     
-    CGRect descLabelFrame = CGRectMake(20, self.frame.size.height - self.descPositionY, self.contentView.frame.size.width/2, 500);
+    CGRect descLabelFrame = CGRectMake(15, self.frame.size.height - self.descPositionY, (self.contentView.frame.size.width/2)-50, 500);
     self.descLabel.frame = descLabelFrame;
     
 }
@@ -84,7 +84,7 @@
 #pragma clang diagnostic pop
     }
     
-    CGRect titleLabelFrame = CGRectMake(25, self.frame.size.height - self.titlePositionY, self.contentView.frame.size.width - 20, titleHeight);
+    CGRect titleLabelFrame = CGRectMake(20, self.frame.size.height - self.titlePositionY, self.contentView.frame.size.width - 20, titleHeight);
 
     self.titleLabel.frame = titleLabelFrame;
 }
@@ -94,7 +94,7 @@
     self.title = @"Title";
     self.desc = @"Default Description";
     
-    self.imgPositionY    = -300.0f;
+    self.imgPositionY    = (self.contentView.frame.size.height/2)-450.0f;
     self.titlePositionY  = 300.0f;
     self.descPositionY   = 250.0f;
     self.titleFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:32.0];
@@ -112,8 +112,9 @@
     UIView *pageView = [[UIView alloc] initWithFrame:self.contentView.bounds];
     
     if (self.titleImageView == nil) {
-        UIImageView *titleImageView = self.titleImage != nil ? [[UIImageView alloc] initWithImage:self.titleImage] : [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 200, 500)];
+        UIImageView *titleImageView = self.titleImage != nil ? [[UIImageView alloc] initWithImage:self.titleImage] : [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.contentView.frame.size.width/2, 300)];
         self.titleImageView = titleImageView;
+      //  self.titleImageView.backgroundColor = [UIColor orangeColor];
     }
     [pageView addSubview:self.titleImageView];
     

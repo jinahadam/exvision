@@ -14,15 +14,15 @@
 #import "Settings.h"
 #import "GHWalkThroughView.h"
 
-static NSString * const sampleDesc1 = @"Connect your iPhone to the phantom Wi-Fi before opening this app.";
+static NSString * const sampleDesc1 = @"Here are 3 steps to get you started";
 
-static NSString * const sampleDesc2 = @"Fly and hover the phantom to where you want to shoot.";
+static NSString * const sampleDesc2 = @"Connect your iPhone to the Phantom Wi-Fi.";
 
-static NSString * const sampleDesc3 = @"Press the red button to start. Your phantom will hover, then yaw, take photos and generate pano automatically.";
+static NSString * const sampleDesc3 = @"Keep S1 switch in position 1 (upper).\nFly the Phantom to where you want to shoot.";
 
-static NSString * const sampleDesc4 = @"Praesent ornare consectetur elit, in fringilla ipsum blandit sed. Nam elementum, sem sit amet convallis dictum, risus metus faucibus augue, nec consectetur tortor mauris ac purus.";
+static NSString * const sampleDesc4 = @"Press the Start button. Your Phantom will yaw, take photos and generate a panorama automatically.";
 
-static NSString * const sampleDesc5 = @"Your remote controller will not able to control the phantom once pano started. \n\nRegain Control by Flipping S1 switch between Position 1 and 3.\n\nDo this at the end of pano shoot, or anytime you need, like bad weather, low battery, etc.";
+static NSString * const sampleDesc5 = @"Your remote controller will not function once pano has started. So when its finished or if the need arises:\n\nRegain Control by Flipping S1 switch from Position 1 to 3";
 
 
 //120
@@ -35,6 +35,7 @@ static NSString * const sampleDesc5 = @"Your remote controller will not able to 
 @property (nonatomic, strong) GHWalkThroughView* ghView ;
 
 @property (nonatomic, strong) NSArray* descStrings;
+@property (nonatomic, strong) NSArray* titleStrings;
 
 @property (nonatomic, strong) UILabel* welcomeLabel;
 
@@ -59,6 +60,7 @@ static NSString * const sampleDesc5 = @"Your remote controller will not able to 
     welcomeLabel.textAlignment = NSTextAlignmentCenter;
     self.welcomeLabel = welcomeLabel;
     
+    self.titleStrings = @[@"Welcome", @"Connect", @"Fly", @"Pano", @"Caution"];
     self.descStrings = [NSArray arrayWithObjects:sampleDesc1,sampleDesc2, sampleDesc3, sampleDesc4, sampleDesc5, nil];
    
     
@@ -84,7 +86,7 @@ static NSString * const sampleDesc5 = @"Your remote controller will not able to 
 
 - (void) configurePage:(GHWalkThroughPageCell *)cell atIndex:(NSInteger)index
 {
-    cell.title = [NSString stringWithFormat:@"This is page %ld", index+1];
+    cell.title = [self.titleStrings objectAtIndexedSubscript:index];
     cell.titleImage = [UIImage imageNamed:[NSString stringWithFormat:@"page%ld", index+1]];
     cell.desc = [self.descStrings objectAtIndex:index];
 }

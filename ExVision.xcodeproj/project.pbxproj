@@ -13,6 +13,7 @@
 		801F7A0B1AD384390095BE17 /* UIButton+Bootstrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 801F7A081AD384390095BE17 /* UIButton+Bootstrap.m */; };
 		804E8D4C1B14766F00BC9432 /* GHWalkThroughView.m in Sources */ = {isa = PBXBuildFile; fileRef = 804E8D491B14766F00BC9432 /* GHWalkThroughView.m */; };
 		804E8D4D1B14766F00BC9432 /* GHWalkThroughPageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 804E8D4B1B14766F00BC9432 /* GHWalkThroughPageCell.m */; };
+		804E8D611B15AA0D00BC9432 /* page2.png in Resources */ = {isa = PBXBuildFile; fileRef = 804E8D601B15AA0D00BC9432 /* page2.png */; };
 		807019291A762CEB00B599C0 /* CameraView.m in Sources */ = {isa = PBXBuildFile; fileRef = 807019281A762CEB00B599C0 /* CameraView.m */; };
 		807BCBB31AC2A015007E23E2 /* DJISDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 807BCBB21AC2A015007E23E2 /* DJISDK.framework */; };
 		807C69001AE62D2C002C9341 /* ProcessController.m in Sources */ = {isa = PBXBuildFile; fileRef = 807C68FF1AE62D2C002C9341 /* ProcessController.m */; };
@@ -40,10 +41,9 @@
 		80DBDDF51B00A52300CABA0F /* panostop.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DBDDF31B00A52300CABA0F /* panostop.png */; };
 		80DBDDF81B00A6DE00CABA0F /* help.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DBDDF61B00A6DE00CABA0F /* help.png */; };
 		80DBDDF91B00A6DE00CABA0F /* satellite.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DBDDF71B00A6DE00CABA0F /* satellite.png */; };
-		80DC3CD11B00978A00460630 /* page1.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DC3CCE1B00978A00460630 /* page1.png */; };
-		80DC3CD21B00978A00460630 /* page2.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DC3CCF1B00978A00460630 /* page2.png */; };
-		80DC3CD31B00978A00460630 /* page3.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DC3CD01B00978A00460630 /* page3.png */; };
-		80DC3CD51B009A3900460630 /* page4.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DC3CD41B009A3900460630 /* page4.png */; };
+		80DC3CD21B00978A00460630 /* page3.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DC3CCF1B00978A00460630 /* page3.png */; };
+		80DC3CD31B00978A00460630 /* page4.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DC3CD01B00978A00460630 /* page4.png */; };
+		80DC3CD51B009A3900460630 /* page5.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DC3CD41B009A3900460630 /* page5.png */; };
 		80DFAAD61A760CE100F69205 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 80DFAAD51A760CE100F69205 /* main.m */; };
 		80DFAAD91A760CE100F69205 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 80DFAAD81A760CE100F69205 /* AppDelegate.mm */; };
 		80DFAADF1A760CE100F69205 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80DFAADD1A760CE100F69205 /* Main.storyboard */; };
@@ -94,6 +94,7 @@
 		804E8D491B14766F00BC9432 /* GHWalkThroughView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHWalkThroughView.m; sourceTree = "<group>"; };
 		804E8D4A1B14766F00BC9432 /* GHWalkThroughPageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHWalkThroughPageCell.h; sourceTree = "<group>"; };
 		804E8D4B1B14766F00BC9432 /* GHWalkThroughPageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHWalkThroughPageCell.m; sourceTree = "<group>"; };
+		804E8D601B15AA0D00BC9432 /* page2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page2.png; sourceTree = "<group>"; };
 		807019271A762CEB00B599C0 /* CameraView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraView.h; sourceTree = "<group>"; };
 		807019281A762CEB00B599C0 /* CameraView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraView.m; sourceTree = "<group>"; };
 		807BCBB21AC2A015007E23E2 /* DJISDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DJISDK.framework; sourceTree = "<group>"; };
@@ -127,10 +128,9 @@
 		80DBDDF31B00A52300CABA0F /* panostop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = panostop.png; sourceTree = "<group>"; };
 		80DBDDF61B00A6DE00CABA0F /* help.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = help.png; sourceTree = "<group>"; };
 		80DBDDF71B00A6DE00CABA0F /* satellite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = satellite.png; sourceTree = "<group>"; };
-		80DC3CCE1B00978A00460630 /* page1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page1.png; sourceTree = "<group>"; };
-		80DC3CCF1B00978A00460630 /* page2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page2.png; sourceTree = "<group>"; };
-		80DC3CD01B00978A00460630 /* page3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page3.png; sourceTree = "<group>"; };
-		80DC3CD41B009A3900460630 /* page4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page4.png; sourceTree = "<group>"; };
+		80DC3CCF1B00978A00460630 /* page3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page3.png; sourceTree = "<group>"; };
+		80DC3CD01B00978A00460630 /* page4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page4.png; sourceTree = "<group>"; };
+		80DC3CD41B009A3900460630 /* page5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page5.png; sourceTree = "<group>"; };
 		80DFAAD01A760CE100F69205 /* ExVision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExVision.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80DFAAD41A760CE100F69205 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80DFAAD51A760CE100F69205 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -377,10 +377,10 @@
 				80DBDDF31B00A52300CABA0F /* panostop.png */,
 				80DBDDEE1B00A29500CABA0F /* down.png */,
 				80DBDDEF1B00A29500CABA0F /* up.png */,
-				80DC3CCE1B00978A00460630 /* page1.png */,
-				80DC3CCF1B00978A00460630 /* page2.png */,
-				80DC3CD01B00978A00460630 /* page3.png */,
-				80DC3CD41B009A3900460630 /* page4.png */,
+				804E8D601B15AA0D00BC9432 /* page2.png */,
+				80DC3CCF1B00978A00460630 /* page3.png */,
+				80DC3CD01B00978A00460630 /* page4.png */,
+				80DC3CD41B009A3900460630 /* page5.png */,
 				80241BA41AEF8B4C0064309D /* PopUI */,
 				8090FAF71ACD2E6B0011D83C /* libjpeg.a */,
 				8090FAF81ACD2E6B0011D83C /* libMagickCore.a */,
@@ -731,17 +731,17 @@
 			files = (
 				80DBDDF01B00A29500CABA0F /* down.png in Resources */,
 				80DBDDF51B00A52300CABA0F /* panostop.png in Resources */,
-				80DC3CD31B00978A00460630 /* page3.png in Resources */,
+				80DC3CD31B00978A00460630 /* page4.png in Resources */,
 				801F7A091AD384390095BE17 /* FontAwesome.ttf in Resources */,
 				80DFAADF1A760CE100F69205 /* Main.storyboard in Resources */,
 				80DBDDF81B00A6DE00CABA0F /* help.png in Resources */,
 				80DBDDF41B00A52300CABA0F /* pano.png in Resources */,
 				80DFAAE41A760CE100F69205 /* LaunchScreen.xib in Resources */,
-				80DC3CD51B009A3900460630 /* page4.png in Resources */,
+				80DC3CD51B009A3900460630 /* page5.png in Resources */,
+				804E8D611B15AA0D00BC9432 /* page2.png in Resources */,
 				80DBDDF91B00A6DE00CABA0F /* satellite.png in Resources */,
 				80DBDDF11B00A29500CABA0F /* up.png in Resources */,
-				80DC3CD21B00978A00460630 /* page2.png in Resources */,
-				80DC3CD11B00978A00460630 /* page1.png in Resources */,
+				80DC3CD21B00978A00460630 /* page3.png in Resources */,
 				80DFAAE11A760CE100F69205 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -938,8 +938,8 @@
 			baseConfigurationReference = 20F61F7DB9B3F6A1A9947D0D /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Weiliang Zhang (74FL3H8NAA)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Weiliang Zhang (74FL3H8NAA)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ExVision/",
@@ -975,8 +975,8 @@
 			baseConfigurationReference = F4F1C3B4AEEFBE73DC53D1B0 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Weiliang Zhang (74FL3H8NAA)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Weiliang Zhang (74FL3H8NAA)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ExVision/",

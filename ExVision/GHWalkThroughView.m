@@ -35,8 +35,7 @@
 
 - (void) setup
 {
-    //52, 153, 220
-    self.backgroundColor = [UIColor colorWithRed:52.00/255.0 green:153.0/255.0 blue:220.0/255.0 alpha:1];
+    self.backgroundColor = [UIColor colorWithRed:33.00/255.0 green:44.0/255.0 blue:51.0/255.0 alpha:1];
     
     _bgFrontLayer = [[UIImageView alloc] initWithFrame:self.frame];
     _bgBackLayer = [[UIImageView alloc] initWithFrame:self.frame];
@@ -244,6 +243,10 @@
     if (self.pageControl.currentPage == 4) {
         [UIView animateWithDuration:0.5 animations:^{
             self.backgroundColor = [UIColor colorWithRed:255.00/255.0 green:0/255.0 blue:0/255.0 alpha:1];
+        } completion:NULL];
+    } else if (self.pageControl.currentPage == 0) {
+        [UIView animateWithDuration:0.5 animations:^{
+            self.backgroundColor = [UIColor colorWithRed:33.00/255.0 green:44.0/255.0 blue:51.0/255.0 alpha:1];
         } completion:NULL];
     } else {
         [UIView animateWithDuration:0.5 animations:^{
