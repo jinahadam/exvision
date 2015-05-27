@@ -335,7 +335,6 @@ exit(-1); \
         
         
         
-        UIImageWriteToSavedPhotosAlbum(result, nil, nil, nil);
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
             //Run UI Updates
@@ -343,7 +342,8 @@ exit(-1); \
             
             pano = result;
             [hud hide:YES];
-            
+            UIImageWriteToSavedPhotosAlbum(result, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+
             IDMPhoto *photo = [IDMPhoto photoWithImage:result];
             IDMPhotoBrowser *browser = [[IDMPhotoBrowser alloc] initWithPhotos:[NSArray arrayWithObjects:photo, nil]];
             browser.delegate = self;
@@ -359,6 +359,24 @@ exit(-1); \
     });
 }
 
+
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
+{
+    UIAlertView *alert;
+    NSLog(@"Image saved");
+    
+    if (error)
+        alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                           message:@"Unable to save image to Photo Album."
+                                          delegate:self cancelButtonTitle:@"Ok"
+                                 otherButtonTitles:nil];
+    else
+        alert = [[UIAlertView alloc] initWithTitle:@"Success"
+                                           message:@"Image saved to Photo Album."
+                                          delegate:self cancelButtonTitle:@"Ok"
+                                 otherButtonTitles:nil];
+    [alert show];
+}
 
 
 -(void) updateMedias
