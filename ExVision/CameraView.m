@@ -51,7 +51,10 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
     
     
     _ghView = [[GHWalkThroughView alloc] initWithFrame:self.navigationController.view.bounds];
+    [_ghView setCloseTitle:@"Close"];
     [_ghView setDataSource:self];
+    [[_ghView skipButton] setHidden:true];
+    
     [_ghView setWalkThroughDirection:GHWalkThroughViewDirectionVertical];
     UILabel* welcomeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 50)];
     welcomeLabel.text = @"Welcome";
@@ -59,7 +62,6 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
     welcomeLabel.textColor = [UIColor whiteColor];
     welcomeLabel.textAlignment = NSTextAlignmentCenter;
     self.welcomeLabel = welcomeLabel;
-    
     self.titleStrings = @[@"Welcome", @"Connect", @"Fly", @"Pano", @"Caution"];
     self.descStrings = [NSArray arrayWithObjects:sampleDesc1,sampleDesc2, sampleDesc3, sampleDesc4, sampleDesc5, nil];
    
@@ -70,6 +72,7 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
 -(IBAction)showHelp:(id)sender {
     
     self.ghView.isfixedBackground = NO;
+
     [self.ghView setWalkThroughDirection:GHWalkThroughViewDirectionHorizontal];
     
     [self.ghView showInView:self.navigationController.view animateDuration:0.3];
@@ -89,6 +92,7 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
     cell.title = [self.titleStrings objectAtIndexedSubscript:index];
     cell.titleImage = [UIImage imageNamed:[NSString stringWithFormat:@"page%ld", index+1]];
     cell.desc = [self.descStrings objectAtIndex:index];
+    
 }
 
 - (UIImage*) bgImageforPage:(NSInteger)index

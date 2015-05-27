@@ -15,7 +15,6 @@
 @property (nonatomic, strong) UIImageView* bgBackLayer;
 
 @property (nonatomic, strong) UIPageControl* pageControl;
-@property (nonatomic, strong) UIButton* skipButton;
 
 @property (nonatomic, weak) UICollectionViewFlowLayout* layout;
 
@@ -60,6 +59,9 @@
     [self.collectionView registerClass:[GHWalkThroughPageCell class] forCellWithReuseIdentifier:@"cellIdentifier"];
     [self.collectionView setPagingEnabled:YES];
     [self addSubview:_collectionView];
+    
+    
+    self.skipButton.hidden = true;
     
     [self buildFooterView];
 
@@ -242,16 +244,22 @@
  //   NSLog(@"%d", self.pageControl.currentPage);
     if (self.pageControl.currentPage == 4) {
         [UIView animateWithDuration:0.5 animations:^{
-            self.backgroundColor = [UIColor colorWithRed:255.00/255.0 green:0/255.0 blue:0/255.0 alpha:1];
+            //206, 37, 51
+            self.skipButton.hidden = false;
+            self.backgroundColor = [UIColor colorWithRed:206.00/255.0 green:37.0/255.0 blue:51.0/255.0 alpha:1];
         } completion:NULL];
     } else if (self.pageControl.currentPage == 0) {
         [UIView animateWithDuration:0.5 animations:^{
             self.backgroundColor = [UIColor colorWithRed:33.00/255.0 green:44.0/255.0 blue:51.0/255.0 alpha:1];
         } completion:NULL];
+        self.skipButton.hidden = true;
+
     } else {
         [UIView animateWithDuration:0.5 animations:^{
             self.backgroundColor = [UIColor colorWithRed:52.00/255.0 green:153.0/255.0 blue:220.0/255.0 alpha:1];
         } completion:NULL];
+        self.skipButton.hidden = true;
+
     }
     self.bgFrontLayer.alpha = 1;
   //  self.bgFrontLayer.image = [self.dataSource bgImageforPage:page];

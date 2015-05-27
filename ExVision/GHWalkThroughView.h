@@ -33,6 +33,9 @@ typedef NS_ENUM(NSInteger, GHWalkThroughViewDirection) {
 
 @property (nonatomic, copy) NSString *closeTitle;
 
+@property (nonatomic, strong) UIButton* skipButton;
+
+
 - (void) showInView:(UIView*) view animateDuration:(CGFloat) duration;
 
 @end

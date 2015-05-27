@@ -14,6 +14,7 @@
 		804E8D4C1B14766F00BC9432 /* GHWalkThroughView.m in Sources */ = {isa = PBXBuildFile; fileRef = 804E8D491B14766F00BC9432 /* GHWalkThroughView.m */; };
 		804E8D4D1B14766F00BC9432 /* GHWalkThroughPageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 804E8D4B1B14766F00BC9432 /* GHWalkThroughPageCell.m */; };
 		804E8D611B15AA0D00BC9432 /* page2.png in Resources */ = {isa = PBXBuildFile; fileRef = 804E8D601B15AA0D00BC9432 /* page2.png */; };
+		804E8D631B15AB1900BC9432 /* page1.png in Resources */ = {isa = PBXBuildFile; fileRef = 804E8D621B15AB1900BC9432 /* page1.png */; };
 		807019291A762CEB00B599C0 /* CameraView.m in Sources */ = {isa = PBXBuildFile; fileRef = 807019281A762CEB00B599C0 /* CameraView.m */; };
 		807BCBB31AC2A015007E23E2 /* DJISDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 807BCBB21AC2A015007E23E2 /* DJISDK.framework */; };
 		807C69001AE62D2C002C9341 /* ProcessController.m in Sources */ = {isa = PBXBuildFile; fileRef = 807C68FF1AE62D2C002C9341 /* ProcessController.m */; };
@@ -95,6 +96,7 @@
 		804E8D4A1B14766F00BC9432 /* GHWalkThroughPageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHWalkThroughPageCell.h; sourceTree = "<group>"; };
 		804E8D4B1B14766F00BC9432 /* GHWalkThroughPageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHWalkThroughPageCell.m; sourceTree = "<group>"; };
 		804E8D601B15AA0D00BC9432 /* page2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page2.png; sourceTree = "<group>"; };
+		804E8D621B15AB1900BC9432 /* page1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page1.png; sourceTree = "<group>"; };
 		807019271A762CEB00B599C0 /* CameraView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraView.h; sourceTree = "<group>"; };
 		807019281A762CEB00B599C0 /* CameraView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraView.m; sourceTree = "<group>"; };
 		807BCBB21AC2A015007E23E2 /* DJISDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DJISDK.framework; sourceTree = "<group>"; };
@@ -380,6 +382,7 @@
 				804E8D601B15AA0D00BC9432 /* page2.png */,
 				80DC3CCF1B00978A00460630 /* page3.png */,
 				80DC3CD01B00978A00460630 /* page4.png */,
+				804E8D621B15AB1900BC9432 /* page1.png */,
 				80DC3CD41B009A3900460630 /* page5.png */,
 				80241BA41AEF8B4C0064309D /* PopUI */,
 				8090FAF71ACD2E6B0011D83C /* libjpeg.a */,
@@ -740,6 +743,7 @@
 				80DC3CD51B009A3900460630 /* page5.png in Resources */,
 				804E8D611B15AA0D00BC9432 /* page2.png in Resources */,
 				80DBDDF91B00A6DE00CABA0F /* satellite.png in Resources */,
+				804E8D631B15AB1900BC9432 /* page1.png in Resources */,
 				80DBDDF11B00A29500CABA0F /* up.png in Resources */,
 				80DC3CD21B00978A00460630 /* page3.png in Resources */,
 				80DFAAE11A760CE100F69205 /* Images.xcassets in Resources */,
