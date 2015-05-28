@@ -49,7 +49,7 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
     [self setup];
     [self helpViewSetup];
     
-    [self showHideReprocess];
+   // [self showHideReprocess];
     
    
     
@@ -1144,15 +1144,15 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSArray *files = [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:nil];
-    
-    if (files.count > 5) {
-        NSLog(@"images saved can reprocess");
-        [self.reprocessItem setTitle:@""];
-    } else {
-        [self.reprocessItem setTitle:@"Reprocess Last Flight"];
-
-    }
-    
+//    
+//    if (files.count > 5) {
+//        NSLog(@"images saved can reprocess");
+//        [self.reprocessItem setTitle:@""];
+//    } else {
+//        [self.reprocessItem setTitle:@"Reprocess Last Flight"];
+//
+//    }
+//    
 }
 
 @end
