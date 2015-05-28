@@ -54,10 +54,39 @@ exit(-1); \
     hud.labelText = @"preparing to download";   // [self manualPanoProcessing];
     [hud show:YES];
     
-////    NSLog(@"manual processing");
-//    
-//    [self manualPanoProcessing];
-//    
+//    NSLog(@"manual processing");
+    
+    //[self manualPanoProcessing];
+    //[self deleteAllFromDisk];
+  //  [self reprocessFromDisk];
+    
+}
+
+
+-(void)deleteAllFromDisk {
+    NSFileManager *fileMgr = [[NSFileManager alloc] init];
+    NSError *error = nil;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSArray *files = [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:nil];
+    
+    while (files.count > 0) {
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        NSArray *directoryContents = [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:&error];
+        if (error == nil) {
+            for (NSString *path in directoryContents) {
+                NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:path];
+                BOOL removeSuccess = [fileMgr removeItemAtPath:fullPath error:&error];
+                files = [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:nil];
+                if (!removeSuccess) {
+                    // Error
+                }
+            }
+        } else {
+            // Error
+        }
+    }
+    
 }
 
 - (IBAction)didClickOnClose:(id)sender {
@@ -65,6 +94,69 @@ exit(-1); \
 }
 
 
+- (NSString *)applicationDocumentsDirectory {
+    return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+}
+
+
+
+
+-(void)reprocessFromDisk {
+    NSArray *filenames = @[@"1.JPG",@"2.JPG",@"3.JPG",@"4.JPG",@"5.JPG",@"6.JPG",@"7.JPG"];
+    NSMutableArray *images = [NSMutableArray array];
+
+    
+    
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    for (NSString *name in filenames) {
+        NSString *workSpacePath=[[self applicationDocumentsDirectory] stringByAppendingPathComponent:name];
+        [images addObject: [UIImage imageWithData:[NSData dataWithContentsOfFile:workSpacePath]]];
+    }
+    
+    
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^(void){
+        UIImage *uncropped =[CVWrapper processWithArray:images];
+        
+        CIImage *inputImage = [[CIImage alloc] initWithImage:uncropped];//[self croppedImage:boundsToCrop image:uncropped]];
+        
+        
+        
+        CIFilter *exposureAdjustmentFilter = [CIFilter filterWithName:@"CIExposureAdjust"];
+        [exposureAdjustmentFilter setDefaults];
+        [exposureAdjustmentFilter setValue:inputImage forKey:@"inputImage"];
+        [exposureAdjustmentFilter setValue:[NSNumber numberWithFloat:ADJUST_EXPOSURE] forKey:@"inputEV"];
+        CIImage *outputImage = [exposureAdjustmentFilter valueForKey:@"outputImage"];
+        //saturation
+        CIFilter *filter = [CIFilter filterWithName:@"CIColorControls"];
+        [filter setValue:outputImage forKey:kCIInputImageKey];
+        [filter setValue:[NSNumber numberWithFloat:ADJUST_SAT] forKey:kCIInputSaturationKey];
+        
+        CIImage *outp = [filter valueForKey:@"outputImage"];
+        
+        
+        
+        CIContext *context = [CIContext contextWithOptions:nil];
+        UIImage *result = [UIImage imageWithCGImage:[context createCGImage:outp fromRect:outp.extent]];
+        
+        
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            //Run UI Updates
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            
+            NSLog(@"Pano Height : %f", result.size.height);
+            IDMPhoto *photo = [IDMPhoto photoWithImage:result];
+            IDMPhotoBrowser *browser = [[IDMPhotoBrowser alloc] initWithPhotos:[NSArray arrayWithObjects:photo, nil]];
+            browser.delegate = self;
+            [self presentViewController:browser animated:YES completion:nil];
+            
+            
+        });
+    });
+
+ 
+}
 
 -(void)manualPanoProcessing {
     
@@ -91,7 +183,13 @@ exit(-1); \
         //
         UIImage *uncropped =[CVWrapper processWithArray:[NSArray arrayWithObjects:img1,img2,img3,img4,img5,img6,img7, nil]];
         
-        
+        [self saveImage:img1 withName:@"1.JPG"];
+        [self saveImage:img2 withName:@"2.JPG"];
+        [self saveImage:img3 withName:@"3.JPG"];
+        [self saveImage:img4 withName:@"4.JPG"];
+        [self saveImage:img5 withName:@"5.JPG"];
+        [self saveImage:img6 withName:@"6.JPG"];
+        [self saveImage:img7 withName:@"7.JPG"];
         
         //CGRect boundsToCrop = CGRectMake(200, 100, [uncropped size].width - 400, [uncropped size].height-250);
         //CGRect boundsToCrop = CGRectMake(0, 0, [uncropped size].width, [uncropped size].height);
@@ -122,16 +220,11 @@ exit(-1); \
         UIImage *result = [UIImage imageWithCGImage:[context createCGImage:outp fromRect:outp.extent]];
         
         
-        //self.image.image = result;
-        
-        pano = result;
-
-        
         dispatch_async(dispatch_get_main_queue(), ^(void){
             //Run UI Updates
             [MBProgressHUD hideHUDForView:self.view animated:YES];
 
-            
+            NSLog(@"Pano Height : %f", result.size.height);
             IDMPhoto *photo = [IDMPhoto photoWithImage:result];
             IDMPhotoBrowser *browser = [[IDMPhotoBrowser alloc] initWithPhotos:[NSArray arrayWithObjects:photo, nil]];
             browser.delegate = self;
@@ -142,6 +235,7 @@ exit(-1); \
     });
 
 }
+
 
 -(void)photoBrowser:(IDMPhotoBrowser *)photoBrowser didDismissAtPageIndex:(NSUInteger)index {
     NSLog(@"dismiss");
@@ -252,6 +346,12 @@ exit(-1); \
                     CGRect boundsToCrop = CGRectMake(CROP_WIDTH, CROP_TOP, [unwarped size].width-CROP_WIDTH, [unwarped size].height);
                     
                     UIImage *TopCutOff = [self croppedImage:boundsToCrop image:unwarped];
+                    
+                    //save image
+                    
+                    [self saveImage:TopCutOff withName:[NSString stringWithFormat:@"%d.JPG", idx+1]];
+                    
+                    
                     [self.imagesForProcessing addObject:TopCutOff];
                     
                     if (idx < _mediasList.count - 1)
@@ -294,6 +394,14 @@ exit(-1); \
 }
 
 
+- (void)saveImage:(UIImage*) img withName:(NSString*)name {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *savedImagePath = [documentsDirectory stringByAppendingPathComponent:name];
+    UIImage *image = img; // imageView is my image from camera
+    NSData *imageData = UIImagePNGRepresentation(image);
+    [imageData writeToFile:savedImagePath atomically:NO];
+}
 
 
 

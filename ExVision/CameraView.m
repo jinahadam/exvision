@@ -49,6 +49,7 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
     [self setup];
     [self helpViewSetup];
     
+    [self showHideReprocess];
     
    
     
@@ -194,6 +195,9 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
 
     [_drone connectToDrone];
     [[VideoPreviewer instance] setView:self.videoPreviewView];
+    
+    
+    
     
 }
 
@@ -927,6 +931,8 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
 
 -(void) processOperations {
     
+    [self deleteAllFromDisk];
+    
     if (!shootPan)
         return;
     
@@ -1104,4 +1110,49 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
      }];
 
 }
+
+#pragma mark - DISK IO -
+
+-(void)deleteAllFromDisk {
+    NSFileManager *fileMgr = [[NSFileManager alloc] init];
+    NSError *error = nil;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSArray *files = [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:nil];
+    
+    while (files.count > 0) {
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        NSArray *directoryContents = [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:&error];
+        if (error == nil) {
+            for (NSString *path in directoryContents) {
+                NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:path];
+                BOOL removeSuccess = [fileMgr removeItemAtPath:fullPath error:&error];
+                files = [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:nil];
+                if (!removeSuccess) {
+                    // Error
+                }
+            }
+        } else {
+            // Error
+        }
+    }
+    
+}
+
+-(void)showHideReprocess {
+    NSFileManager *fileMgr = [[NSFileManager alloc] init];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSArray *files = [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:nil];
+    
+    if (files.count > 5) {
+        NSLog(@"images saved can reprocess");
+        [self.reprocessItem setTitle:@""];
+    } else {
+        [self.reprocessItem setTitle:@"Reprocess Last Flight"];
+
+    }
+    
+}
+
 @end

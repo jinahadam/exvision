@@ -62,6 +62,7 @@
 @property(nonatomic, strong) IBOutlet UIBarButtonItem *barStatus;
 @property(nonatomic, strong) IBOutlet UIBarButtonItem *satCount;
 @property(nonatomic, strong) IBOutlet UIBarButtonItem *battery;
+@property(nonatomic, strong) IBOutlet UIBarButtonItem *reprocessItem;
 
 
 -(void)setup;
