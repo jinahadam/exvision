@@ -115,6 +115,12 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
 
 -(void)restartCameraFeed {
     
+    NSLog(@"restart camera feed");
+    
+    sleep(1);
+    
+    [mask removeFromSuperview];
+    
     _drone = [[DJIDrone alloc] initWithType:DJIDrone_Phantom];
     _drone.delegate = self;
     _camera = _drone.camera;
@@ -192,6 +198,7 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
 
 -(void)didDismissReprocessView {
 
+    NSLog(@"DELEGATE");
     [self performSelector:@selector(restartCameraFeed) withObject:nil afterDelay:0.5];
 
 }
@@ -274,8 +281,10 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
 
 - (id <UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed
 {
-    NSLog(@"restart camera feed");
-    [self performSelector:@selector(restartCameraFeed) withObject:nil afterDelay:0.5];
+    NSLog(@"restart camera DElegate");
+    
+   [self performSelector:@selector(restartCameraFeed) withObject:nil afterDelay:2.5];
+  //  [self restartCameraFeed];
     return [[DismissingAnimationController alloc] init];
 }
 
@@ -287,9 +296,9 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
     
 
     
-     mask = [[UIView alloc] initWithFrame:self.view.frame];
-    [mask setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.95]];
-    [self.view addSubview:mask];
+//     mask = [[UIView alloc] initWithFrame:self.view.frame];
+//    [mask setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.95]];
+//    [self.view addSubview:mask];
   
     _drone.delegate = Nil;
     _groundStation.groundStationDelegate = nil;
@@ -301,6 +310,8 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
     [_drone.mainController stopUpdateMCSystemState];
     
     [_drone destroy];
+    
+    self.barStatus.title = @"Don't switch off the Phantom/Wifi Extenter";
 
     Settings *modalVC = [self.storyboard instantiateViewControllerWithIdentifier:@"processingSegue"];
     modalVC.transitioningDelegate = self;
@@ -342,7 +353,6 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
 }
 
 - (void)didCloseReprocessView:(Reprocess*)viewController {
-    NSLog(@"Reprocess Delegate");
     [self restartCameraFeed];
 }
 
@@ -375,6 +385,7 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
 -(IBAction) onOpenButtonClicked:(id)sender
 {
     [_groundStation openGroundStation];
+    
 }
 
 -(void) SingleShot {
@@ -382,7 +393,6 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
         if (error.errorCode != ERR_Successed) {
             NSLog(@"Take Photo Error : %@", error.errorDescription);
         } else {
-            self.barStatus.title = [NSString stringWithFormat:@"In auto mode. flip S1 to gain control"];
 
             
         }
@@ -697,7 +707,7 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
             shootPan = true;
             [self.captureBtn setBackgroundImage:[UIImage imageNamed:@"panostop.png"] forState:UIControlStateNormal];
 
-            self.barStatus.title = @"Shooting Pano";
+            self.barStatus.title = @"Starting Pano...";
 
             [self SDCardOperations];
            
@@ -960,7 +970,8 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
     if (!shootPan)
         return;
     
-    
+    self.barStatus.title = [NSString stringWithFormat:@"In auto mode. flip S1 to gain control"];
+
     [self.captureBtn setBackgroundImage:[UIImage imageNamed:@"panostop.png"] forState:UIControlStateNormal];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
         sleep(2);
@@ -1009,12 +1020,11 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
                     
                     [self.captureBtn setBackgroundImage:[UIImage imageNamed:@"pano.png"] forState:UIControlStateNormal];
                     
-                    self.barStatus.title = [NSString stringWithFormat:@"In auto mode. use S1 to gain control"];
                     
                     [self.cirlce setStrokeEnd:0.0f animated:YES];
                     
-                    NSLog(@"set curce stroke before processing");
-                    
+                    self.barStatus.title = @"Don't switch off the Phantom/Wifi Extenter";
+
                     [self presentProcessingView:nil];
 
                     

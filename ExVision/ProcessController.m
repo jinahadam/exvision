@@ -89,9 +89,7 @@ exit(-1); \
     
 }
 
-- (IBAction)didClickOnClose:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
+
 
 
 - (NSString *)applicationDocumentsDirectory {
@@ -238,12 +236,7 @@ exit(-1); \
 
 
 -(void)photoBrowser:(IDMPhotoBrowser *)photoBrowser didDismissAtPageIndex:(NSUInteger)index {
-//
-//    [[NSNotificationCenter defaultCenter] postNotificationName:@"ReprocessViewDismissed"
-//                                                        object:nil
-//                                                      userInfo:nil];
 
-    
     [self dismissViewControllerAnimated:YES completion:nil];
 
 }

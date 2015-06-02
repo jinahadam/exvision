@@ -9,20 +9,23 @@
 #import <UIKit/UIKit.h>
 #import "MBProgressHUD.h"
 #import "IDMPhotoBrowser.h"
-@protocol ReprocessDelegate;
+@protocol RestartCameraFeedDelegate;
 
 
-@interface Reprocess : UIViewController <IDMPhotoBrowserDelegate>
+@interface Reprocess : UIViewController <IDMPhotoBrowserDelegate> {
+    MBProgressHUD *hud;
+
+}
 
 
-@property (nonatomic, weak) id<ReprocessDelegate> delegate;
+@property (nonatomic, weak) id<RestartCameraFeedDelegate> delegate;
 
 
 @end
 
 
-@protocol ReprocessDelegate <NSObject>
+@protocol RestartCameraFeedDelegate <NSObject>
 
-- (void)didCloseReprocessView:(Reprocess*)viewController;
+- (void)didCloseReprocessView:(UIViewController*)viewController;
 
 @end

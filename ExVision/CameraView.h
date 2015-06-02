@@ -18,7 +18,7 @@
 #import "Reprocess.h"
 
 
-@interface CameraView : UIViewController <DJIDroneDelegate, GroundStationDelegate, DJICameraDelegate,UIViewControllerTransitioningDelegate, UIAlertViewDelegate, DJIMainControllerDelegate,ReprocessDelegate>
+@interface CameraView : UIViewController <DJIDroneDelegate, GroundStationDelegate, DJICameraDelegate,UIViewControllerTransitioningDelegate, UIAlertViewDelegate, DJIMainControllerDelegate,RestartCameraFeedDelegate>
 {
     DJIDrone* _drone;
     DJICamera* _camera;

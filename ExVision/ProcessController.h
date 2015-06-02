@@ -33,6 +33,7 @@
 }
 
 
+
 @property IBOutlet UIImageView *image;
 @property IBOutlet UIScrollView *scrollview;
 

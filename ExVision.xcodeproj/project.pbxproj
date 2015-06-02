@@ -8,13 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		448BB940E07C8A94A25E22FB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD413A25A05B885DF0489769 /* libPods.a */; };
-		800C52141B16FC0400E634E0 /* 1.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 800C520D1B16FC0400E634E0 /* 1.JPG */; };
-		800C52151B16FC0400E634E0 /* 2.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 800C520E1B16FC0400E634E0 /* 2.JPG */; };
-		800C52161B16FC0400E634E0 /* 3.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 800C520F1B16FC0400E634E0 /* 3.JPG */; };
-		800C52171B16FC0400E634E0 /* 4.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 800C52101B16FC0400E634E0 /* 4.JPG */; };
-		800C52181B16FC0400E634E0 /* 5.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 800C52111B16FC0400E634E0 /* 5.JPG */; };
-		800C52191B16FC0400E634E0 /* 6.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 800C52121B16FC0400E634E0 /* 6.JPG */; };
-		800C521A1B16FC0400E634E0 /* 7.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 800C52131B16FC0400E634E0 /* 7.JPG */; };
 		800C521D1B170A1600E634E0 /* Reprocess.m in Sources */ = {isa = PBXBuildFile; fileRef = 800C521C1B170A1600E634E0 /* Reprocess.m */; };
 		801F7A091AD384390095BE17 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 801F7A041AD384390095BE17 /* FontAwesome.ttf */; };
 		801F7A0A1AD384390095BE17 /* NSString+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 801F7A061AD384390095BE17 /* NSString+FontAwesome.m */; };
@@ -94,13 +87,6 @@
 
 /* Begin PBXFileReference section */
 		20F61F7DB9B3F6A1A9947D0D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		800C520D1B16FC0400E634E0 /* 1.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.JPG; sourceTree = "<group>"; };
-		800C520E1B16FC0400E634E0 /* 2.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.JPG; sourceTree = "<group>"; };
-		800C520F1B16FC0400E634E0 /* 3.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3.JPG; sourceTree = "<group>"; };
-		800C52101B16FC0400E634E0 /* 4.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 4.JPG; sourceTree = "<group>"; };
-		800C52111B16FC0400E634E0 /* 5.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 5.JPG; sourceTree = "<group>"; };
-		800C52121B16FC0400E634E0 /* 6.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 6.JPG; sourceTree = "<group>"; };
-		800C52131B16FC0400E634E0 /* 7.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 7.JPG; sourceTree = "<group>"; };
 		800C521B1B170A1600E634E0 /* Reprocess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reprocess.h; sourceTree = "<group>"; };
 		800C521C1B170A1600E634E0 /* Reprocess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reprocess.m; sourceTree = "<group>"; };
 		801F7A041AD384390095BE17 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
@@ -388,13 +374,6 @@
 		80DFAAD31A760CE100F69205 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				800C520D1B16FC0400E634E0 /* 1.JPG */,
-				800C520E1B16FC0400E634E0 /* 2.JPG */,
-				800C520F1B16FC0400E634E0 /* 3.JPG */,
-				800C52101B16FC0400E634E0 /* 4.JPG */,
-				800C52111B16FC0400E634E0 /* 5.JPG */,
-				800C52121B16FC0400E634E0 /* 6.JPG */,
-				800C52131B16FC0400E634E0 /* 7.JPG */,
 				804E8D481B14766F00BC9432 /* GHWalkThroughView.h */,
 				804E8D491B14766F00BC9432 /* GHWalkThroughView.m */,
 				804E8D4A1B14766F00BC9432 /* GHWalkThroughPageCell.h */,
@@ -759,25 +738,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				80DBDDF01B00A29500CABA0F /* down.png in Resources */,
-				800C52171B16FC0400E634E0 /* 4.JPG in Resources */,
 				80DBDDF51B00A52300CABA0F /* panostop.png in Resources */,
-				800C52191B16FC0400E634E0 /* 6.JPG in Resources */,
 				80DC3CD31B00978A00460630 /* page4.png in Resources */,
 				801F7A091AD384390095BE17 /* FontAwesome.ttf in Resources */,
 				80DFAADF1A760CE100F69205 /* Main.storyboard in Resources */,
-				800C52141B16FC0400E634E0 /* 1.JPG in Resources */,
 				80DBDDF81B00A6DE00CABA0F /* help.png in Resources */,
 				80DBDDF41B00A52300CABA0F /* pano.png in Resources */,
-				800C52181B16FC0400E634E0 /* 5.JPG in Resources */,
-				800C521A1B16FC0400E634E0 /* 7.JPG in Resources */,
-				800C52151B16FC0400E634E0 /* 2.JPG in Resources */,
 				80DFAAE41A760CE100F69205 /* LaunchScreen.xib in Resources */,
 				80DC3CD51B009A3900460630 /* page5.png in Resources */,
 				804E8D611B15AA0D00BC9432 /* page2.png in Resources */,
 				80DBDDF91B00A6DE00CABA0F /* satellite.png in Resources */,
 				804E8D631B15AB1900BC9432 /* page1.png in Resources */,
 				80DBDDF11B00A29500CABA0F /* up.png in Resources */,
-				800C52161B16FC0400E634E0 /* 3.JPG in Resources */,
 				80DC3CD21B00978A00460630 /* page3.png in Resources */,
 				80DFAAE11A760CE100F69205 /* Images.xcassets in Resources */,
 			);

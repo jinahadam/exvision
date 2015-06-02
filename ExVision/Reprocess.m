@@ -38,10 +38,12 @@
     NSArray *filenames = @[@"1.JPG",@"2.JPG",@"3.JPG",@"4.JPG",@"5.JPG",@"6.JPG",@"7.JPG"];
     NSMutableArray *images = [NSMutableArray array];
     
+    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText  = @"Reprocessing Pano";
+
     
     
-    
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [hud show:YES];
     
     for (NSString *name in filenames) {
         NSString *workSpacePath=[[self applicationDocumentsDirectory] stringByAppendingPathComponent:name];
@@ -76,7 +78,8 @@
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
             //Run UI Updates
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [hud show:NO];
+
             
             NSLog(@"Pano Height : %f", result.size.height);
             IDMPhoto *photo = [IDMPhoto photoWithImage:result];
@@ -105,14 +108,8 @@
 
 
 -(void)photoBrowser:(IDMPhotoBrowser *)photoBrowser didDismissAtPageIndex:(NSUInteger)index {
-
-//    [[NSNotificationCenter defaultCenter] postNotificationName:@"ReprocessViewDismissed"
-//                                                        object:nil
-//                                                      userInfo:nil];
-//
     
-    
-    id<ReprocessDelegate> strongDelegate = self.delegate;
+    id<RestartCameraFeedDelegate> strongDelegate = self.delegate;
     
     // Our delegate method is optional, so we should
     // check that the delegate implements it
