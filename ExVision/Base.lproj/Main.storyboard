@@ -19,6 +19,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2iW-bB-837" userLabel="VideoPreviewLayer">
                                 <rect key="frame" x="-4" y="-40" width="614" height="666"/>
+                                <color key="backgroundColor" red="0.12941176470588234" green="0.17254901960784313" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <variation key="heightClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="0.0" y="9" width="550" height="347"/>
                                 </variation>
@@ -109,13 +110,10 @@
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                         <barButtonItem id="ch5-TN-bt2">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="tintColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
                         </barButtonItem>
                         <barButtonItem image="fullbat" id="S69-jC-8E4">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <segue destination="Wqb-os-swp" kind="presentation" id="hVv-Gg-hNN"/>
-                            </connections>
                         </barButtonItem>
                         <barButtonItem id="iFE-Xx-ahi">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -123,17 +121,17 @@
                                 <action selector="presentProcessingView:" destination="uqc-4B-zff" id="HdZ-UJ-hz4"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem title="Redo Last Flight" id="7fF-FN-ynI">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <segue destination="PKe-Pm-RL0" kind="presentation" id="MqC-rk-9lc"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="lBp-7I-F4X">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                         <barButtonItem id="tbQ-RF-MpL">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
+                        <barButtonItem systemItem="refresh" id="7fF-FN-ynI">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <segue destination="PKe-Pm-RL0" kind="presentation" id="MqC-rk-9lc"/>
+                            </connections>
                         </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Title" id="LHR-vd-GtH"/>
@@ -413,7 +411,7 @@
                     <view key="view" contentMode="scaleToFill" id="ago-bF-KuB">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.12941176469999999" green="0.17254901959999999" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
@@ -430,7 +428,4 @@
         <image name="sat" width="22" height="22"/>
         <image name="up.png" width="512" height="513"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="hVv-Gg-hNN"/>
-    </inferredMetricsTieBreakers>
 </document>

@@ -15,9 +15,10 @@
 #import "CaptureButton.h"
 #import "PresentingAnimationController.h"
 #import "DismissingAnimationController.h"
+#import "Reprocess.h"
 
 
-@interface CameraView : UIViewController <DJIDroneDelegate, GroundStationDelegate, DJICameraDelegate,UIViewControllerTransitioningDelegate, UIAlertViewDelegate, DJIMainControllerDelegate>
+@interface CameraView : UIViewController <DJIDroneDelegate, GroundStationDelegate, DJICameraDelegate,UIViewControllerTransitioningDelegate, UIAlertViewDelegate, DJIMainControllerDelegate,ReprocessDelegate>
 {
     DJIDrone* _drone;
     DJICamera* _camera;

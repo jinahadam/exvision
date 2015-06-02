@@ -114,7 +114,6 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
 
 
 -(void)restartCameraFeed {
-    [mask removeFromSuperview];
     
     _drone = [[DJIDrone alloc] initWithType:DJIDrone_Phantom];
     _drone.delegate = self;
@@ -182,8 +181,18 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
     
     //
     connectionHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    connectionHud.labelText = @"Connecting..";   // [self manualPanoProcessing];
+    connectionHud.labelText = @"Connecting...";   // [self manualPanoProcessing];
     [connectionHud show:YES];
+    
+    self.navigationController.toolbar.barTintColor = [UIColor colorWithRed:44/255.0 green:44/255.0 blue:51/255.0 alpha:1];
+
+    
+   
+}
+
+-(void)didDismissReprocessView {
+
+    [self performSelector:@selector(restartCameraFeed) withObject:nil afterDelay:0.5];
 
 }
 
@@ -193,10 +202,9 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
 
     [super viewWillAppear:animated];
 
+    
     [_drone connectToDrone];
     [[VideoPreviewer instance] setView:self.videoPreviewView];
-    
-    
     
     
 }
@@ -266,10 +274,12 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
 
 - (id <UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed
 {
-    
+    NSLog(@"restart camera feed");
     [self performSelector:@selector(restartCameraFeed) withObject:nil afterDelay:0.5];
     return [[DismissingAnimationController alloc] init];
 }
+
+
 
 
 -(IBAction)presentProcessingView:(id)sender
@@ -326,6 +336,17 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
 
 
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    [segue.destinationViewController setDelegate:self];
+}
+
+- (void)didCloseReprocessView:(Reprocess*)viewController {
+    NSLog(@"Reprocess Delegate");
+    [self restartCameraFeed];
+}
+
+
 -(void) dealloc
 {
     [_drone destroy];
@@ -346,6 +367,8 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
     [_drone.mainController stopUpdateMCSystemState];
 
     [_drone destroy];
+    
+   
     
 }
 
@@ -608,6 +631,7 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
           //  self.navigationItem.title = @"Connected";
            // self.connectionStatus.title = @"Connected";
             connection = true;
+           // [self restartCameraFeed];
             [connectionHud hide:YES];
             break;
         }

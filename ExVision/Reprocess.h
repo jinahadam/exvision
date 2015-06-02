@@ -9,7 +9,20 @@
 #import <UIKit/UIKit.h>
 #import "MBProgressHUD.h"
 #import "IDMPhotoBrowser.h"
+@protocol ReprocessDelegate;
+
 
 @interface Reprocess : UIViewController <IDMPhotoBrowserDelegate>
+
+
+@property (nonatomic, weak) id<ReprocessDelegate> delegate;
+
+
+@end
+
+
+@protocol ReprocessDelegate <NSObject>
+
+- (void)didCloseReprocessView:(Reprocess*)viewController;
 
 @end

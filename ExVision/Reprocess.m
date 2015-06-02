@@ -102,8 +102,25 @@
 }
 
 
+
+
 -(void)photoBrowser:(IDMPhotoBrowser *)photoBrowser didDismissAtPageIndex:(NSUInteger)index {
-    NSLog(@"dismiss");
+
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"ReprocessViewDismissed"
+//                                                        object:nil
+//                                                      userInfo:nil];
+//
+    
+    
+    id<ReprocessDelegate> strongDelegate = self.delegate;
+    
+    // Our delegate method is optional, so we should
+    // check that the delegate implements it
+    if ([strongDelegate respondsToSelector:@selector(didCloseReprocessView:)]) {
+        [strongDelegate didCloseReprocessView:self];
+    }
+    
+    
     [self dismissViewControllerAnimated:YES completion:nil];
     
 }

@@ -238,7 +238,12 @@ exit(-1); \
 
 
 -(void)photoBrowser:(IDMPhotoBrowser *)photoBrowser didDismissAtPageIndex:(NSUInteger)index {
-    NSLog(@"dismiss");
+//
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"ReprocessViewDismissed"
+//                                                        object:nil
+//                                                      userInfo:nil];
+
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 
 }
@@ -367,7 +372,7 @@ exit(-1); \
                     
                   //  NSLog(@"%@", [NSString stringWithFormat:@"Downloading: %d of %lu ",idx + 1, (unsigned long)_mediasList.count]);
                     
-                    hud.labelText = [NSString stringWithFormat:@"Downloading: %d of %lu ",idx + 1, (unsigned long)_mediasList.count];
+                    hud.labelText = [NSString stringWithFormat:@"Downloading: %d of %lu \nPLEASE DON'T SWITCH OFF THE PHANTOM",idx + 1, (unsigned long)_mediasList.count];
 
                     
                     if (images_remaining == 0) {
