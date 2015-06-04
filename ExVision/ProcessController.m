@@ -52,6 +52,8 @@ exit(-1); \
     [self.share setHidden:YES];
     hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"preparing to download";   // [self manualPanoProcessing];
+    hud.detailsLabelText = @"Please don't switch off the Phantom/Wifi Extendor";
+
     [hud show:YES];
     
 //    NSLog(@"manual processing");
@@ -366,6 +368,8 @@ exit(-1); \
                   //  NSLog(@"%@", [NSString stringWithFormat:@"Downloading: %d of %lu ",idx + 1, (unsigned long)_mediasList.count]);
                     
                     hud.labelText = [NSString stringWithFormat:@"Downloading: %d of %lu \nPLEASE DON'T SWITCH OFF THE PHANTOM",idx + 1, (unsigned long)_mediasList.count];
+                    hud.detailsLabelText = @"Please don't switch off the Phantom/Wifi Extendor";
+
 
                     
                     if (images_remaining == 0) {

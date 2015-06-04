@@ -23,6 +23,14 @@
 		801CDDD71B203337002C1D8D /* VideoFrameExtractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 801CDDC91B203337002C1D8D /* VideoFrameExtractor.m */; };
 		801CDDD81B203337002C1D8D /* VideoPreviewer.m in Sources */ = {isa = PBXBuildFile; fileRef = 801CDDCB1B203337002C1D8D /* VideoPreviewer.m */; };
 		801CDDDA1B203399002C1D8D /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 801CDDD91B203399002C1D8D /* libstdc++.6.0.9.dylib */; };
+		801CDE0E1B203E59002C1D8D /* IDMCaptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 801CDDFF1B203E59002C1D8D /* IDMCaptionView.m */; };
+		801CDE0F1B203E59002C1D8D /* IDMPBLocalizations.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 801CDE011B203E59002C1D8D /* IDMPBLocalizations.bundle */; };
+		801CDE101B203E59002C1D8D /* IDMPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 801CDE031B203E59002C1D8D /* IDMPhoto.m */; };
+		801CDE111B203E59002C1D8D /* IDMPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 801CDE041B203E59002C1D8D /* IDMPhotoBrowser.bundle */; };
+		801CDE121B203E59002C1D8D /* IDMPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 801CDE061B203E59002C1D8D /* IDMPhotoBrowser.m */; };
+		801CDE131B203E59002C1D8D /* IDMTapDetectingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 801CDE091B203E59002C1D8D /* IDMTapDetectingImageView.m */; };
+		801CDE141B203E59002C1D8D /* IDMTapDetectingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 801CDE0B1B203E59002C1D8D /* IDMTapDetectingView.m */; };
+		801CDE151B203E59002C1D8D /* IDMZoomingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 801CDE0D1B203E59002C1D8D /* IDMZoomingScrollView.m */; };
 		801F7A091AD384390095BE17 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 801F7A041AD384390095BE17 /* FontAwesome.ttf */; };
 		801F7A0A1AD384390095BE17 /* NSString+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 801F7A061AD384390095BE17 /* NSString+FontAwesome.m */; };
 		801F7A0B1AD384390095BE17 /* UIButton+Bootstrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 801F7A081AD384390095BE17 /* UIButton+Bootstrap.m */; };
@@ -181,6 +189,22 @@
 		801CDDCA1B203337002C1D8D /* VideoPreviewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPreviewer.h; sourceTree = "<group>"; };
 		801CDDCB1B203337002C1D8D /* VideoPreviewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPreviewer.m; sourceTree = "<group>"; };
 		801CDDD91B203399002C1D8D /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
+		801CDDFE1B203E59002C1D8D /* IDMCaptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDMCaptionView.h; sourceTree = "<group>"; };
+		801CDDFF1B203E59002C1D8D /* IDMCaptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDMCaptionView.m; sourceTree = "<group>"; };
+		801CDE001B203E59002C1D8D /* IDMPBConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDMPBConstants.h; sourceTree = "<group>"; };
+		801CDE011B203E59002C1D8D /* IDMPBLocalizations.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IDMPBLocalizations.bundle; sourceTree = "<group>"; };
+		801CDE021B203E59002C1D8D /* IDMPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDMPhoto.h; sourceTree = "<group>"; };
+		801CDE031B203E59002C1D8D /* IDMPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDMPhoto.m; sourceTree = "<group>"; };
+		801CDE041B203E59002C1D8D /* IDMPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IDMPhotoBrowser.bundle; sourceTree = "<group>"; };
+		801CDE051B203E59002C1D8D /* IDMPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDMPhotoBrowser.h; sourceTree = "<group>"; };
+		801CDE061B203E59002C1D8D /* IDMPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDMPhotoBrowser.m; sourceTree = "<group>"; };
+		801CDE071B203E59002C1D8D /* IDMPhotoProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDMPhotoProtocol.h; sourceTree = "<group>"; };
+		801CDE081B203E59002C1D8D /* IDMTapDetectingImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDMTapDetectingImageView.h; sourceTree = "<group>"; };
+		801CDE091B203E59002C1D8D /* IDMTapDetectingImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDMTapDetectingImageView.m; sourceTree = "<group>"; };
+		801CDE0A1B203E59002C1D8D /* IDMTapDetectingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDMTapDetectingView.h; sourceTree = "<group>"; };
+		801CDE0B1B203E59002C1D8D /* IDMTapDetectingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDMTapDetectingView.m; sourceTree = "<group>"; };
+		801CDE0C1B203E59002C1D8D /* IDMZoomingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDMZoomingScrollView.h; sourceTree = "<group>"; };
+		801CDE0D1B203E59002C1D8D /* IDMZoomingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDMZoomingScrollView.m; sourceTree = "<group>"; };
 		801F7A041AD384390095BE17 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
 		801F7A051AD384390095BE17 /* NSString+FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+FontAwesome.h"; sourceTree = "<group>"; };
 		801F7A061AD384390095BE17 /* NSString+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FontAwesome.m"; sourceTree = "<group>"; };
@@ -496,6 +520,30 @@
 			path = lib;
 			sourceTree = "<group>";
 		};
+		801CDDFD1B203E59002C1D8D /* IDMPhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				801CDDFE1B203E59002C1D8D /* IDMCaptionView.h */,
+				801CDDFF1B203E59002C1D8D /* IDMCaptionView.m */,
+				801CDE001B203E59002C1D8D /* IDMPBConstants.h */,
+				801CDE011B203E59002C1D8D /* IDMPBLocalizations.bundle */,
+				801CDE021B203E59002C1D8D /* IDMPhoto.h */,
+				801CDE031B203E59002C1D8D /* IDMPhoto.m */,
+				801CDE041B203E59002C1D8D /* IDMPhotoBrowser.bundle */,
+				801CDE051B203E59002C1D8D /* IDMPhotoBrowser.h */,
+				801CDE061B203E59002C1D8D /* IDMPhotoBrowser.m */,
+				801CDE071B203E59002C1D8D /* IDMPhotoProtocol.h */,
+				801CDE081B203E59002C1D8D /* IDMTapDetectingImageView.h */,
+				801CDE091B203E59002C1D8D /* IDMTapDetectingImageView.m */,
+				801CDE0A1B203E59002C1D8D /* IDMTapDetectingView.h */,
+				801CDE0B1B203E59002C1D8D /* IDMTapDetectingView.m */,
+				801CDE0C1B203E59002C1D8D /* IDMZoomingScrollView.h */,
+				801CDE0D1B203E59002C1D8D /* IDMZoomingScrollView.m */,
+			);
+			name = IDMPhotoBrowser;
+			path = Classes;
+			sourceTree = "<group>";
+		};
 		801F7A0C1AD384440095BE17 /* Strap Button */ = {
 			isa = PBXGroup;
 			children = (
@@ -567,6 +615,7 @@
 		80DFAAD31A760CE100F69205 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				801CDDFD1B203E59002C1D8D /* IDMPhotoBrowser */,
 				804E8D481B14766F00BC9432 /* GHWalkThroughView.h */,
 				804E8D491B14766F00BC9432 /* GHWalkThroughView.m */,
 				804E8D4A1B14766F00BC9432 /* GHWalkThroughPageCell.h */,
@@ -739,10 +788,12 @@
 				80DC3CD31B00978A00460630 /* page4.png in Resources */,
 				801F7A091AD384390095BE17 /* FontAwesome.ttf in Resources */,
 				80DFAADF1A760CE100F69205 /* Main.storyboard in Resources */,
+				801CDE111B203E59002C1D8D /* IDMPhotoBrowser.bundle in Resources */,
 				80DBDDF81B00A6DE00CABA0F /* help.png in Resources */,
 				80DBDDF41B00A52300CABA0F /* pano.png in Resources */,
 				80DFAAE41A760CE100F69205 /* LaunchScreen.xib in Resources */,
 				80DC3CD51B009A3900460630 /* page5.png in Resources */,
+				801CDE0F1B203E59002C1D8D /* IDMPBLocalizations.bundle in Resources */,
 				804E8D611B15AA0D00BC9432 /* page2.png in Resources */,
 				80DBDDF91B00A6DE00CABA0F /* satellite.png in Resources */,
 				804E8D631B15AB1900BC9432 /* page1.png in Resources */,
@@ -807,6 +858,7 @@
 				80DFAAD91A760CE100F69205 /* AppDelegate.mm in Sources */,
 				8090FAD81ACD2BD70011D83C /* stitching.cpp in Sources */,
 				801CDDD61B203337002C1D8D /* MovieGLView.m in Sources */,
+				801CDE0E1B203E59002C1D8D /* IDMCaptionView.m in Sources */,
 				80DFAAD61A760CE100F69205 /* main.m in Sources */,
 				804E8D4C1B14766F00BC9432 /* GHWalkThroughView.m in Sources */,
 				801CDDCC1B203337002C1D8D /* DJILinkQueues.m in Sources */,
@@ -815,11 +867,16 @@
 				8090FAD71ACD2BD70011D83C /* CVWrapper.mm in Sources */,
 				801CDDD71B203337002C1D8D /* VideoFrameExtractor.m in Sources */,
 				807019291A762CEB00B599C0 /* CameraView.m in Sources */,
+				801CDE141B203E59002C1D8D /* IDMTapDetectingView.m in Sources */,
+				801CDE131B203E59002C1D8D /* IDMTapDetectingImageView.m in Sources */,
 				801F7A0B1AD384390095BE17 /* UIButton+Bootstrap.m in Sources */,
+				801CDE101B203E59002C1D8D /* IDMPhoto.m in Sources */,
 				80F34ACE1ADCFABC007473A4 /* CaptureButton.m in Sources */,
+				801CDE121B203E59002C1D8D /* IDMPhotoBrowser.m in Sources */,
 				80E4E76C1ADFB15700157EE0 /* PresentingAnimationController.m in Sources */,
 				8090FAD61ACD2BD70011D83C /* UIImage+OpenCV.mm in Sources */,
 				801CDDD81B203337002C1D8D /* VideoPreviewer.m in Sources */,
+				801CDE151B203E59002C1D8D /* IDMZoomingScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

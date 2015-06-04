@@ -49,7 +49,7 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
     [self setup];
     [self helpViewSetup];
     
-   // [self showHideReprocess];
+    [self toggleReprocessBarButtonItem];
     
    
     
@@ -116,6 +116,7 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
 -(void)restartCameraFeed {
     
     NSLog(@"restart camera feed");
+    [self toggleReprocessBarButtonItem];
     
     sleep(1);
     
@@ -208,6 +209,9 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
     
 
     [super viewWillAppear:animated];
+
+    
+    [self toggleReprocessBarButtonItem];
 
     
     [_drone connectToDrone];
@@ -311,7 +315,7 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
     
     [_drone destroy];
     
-    self.barStatus.title = @"Don't switch off the Phantom/Wifi Extenter";
+    self.barStatus.title = @"Toggle S1 switch to gain control.";
 
     Settings *modalVC = [self.storyboard instantiateViewControllerWithIdentifier:@"processingSegue"];
     modalVC.transitioningDelegate = self;
@@ -722,8 +726,8 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
         }
 
     } else {
-        NSLog(@"flip S1 switch to top or tap ? for help");
-        self.barStatus.title = @"flip S1 switch to top or tap ? for help";
+        NSLog(@"toglle S1 switch to top or tap ? for help");
+        self.barStatus.title = @"Toggle S1 switch to top or tap ? for help";
     }
 }
 
@@ -970,7 +974,7 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
     if (!shootPan)
         return;
     
-    self.barStatus.title = [NSString stringWithFormat:@"In auto mode. flip S1 to gain control"];
+    self.barStatus.title = [NSString stringWithFormat:@"In auto mode. Toggle S1 to gain control"];
 
     [self.captureBtn setBackgroundImage:[UIImage imageNamed:@"panostop.png"] forState:UIControlStateNormal];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
@@ -1023,7 +1027,7 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
                     
                     [self.cirlce setStrokeEnd:0.0f animated:YES];
                     
-                    self.barStatus.title = @"Don't switch off the Phantom/Wifi Extenter";
+                    self.barStatus.title = @"Toggle S1 Switch to gain control.";
 
                     [self presentProcessingView:nil];
 
@@ -1173,20 +1177,22 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
     
 }
 
--(void)showHideReprocess {
+-(void)toggleReprocessBarButtonItem {
     NSFileManager *fileMgr = [[NSFileManager alloc] init];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSArray *files = [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:nil];
-//    
-//    if (files.count > 5) {
-//        NSLog(@"images saved can reprocess");
-//        [self.reprocessItem setTitle:@""];
-//    } else {
-//        [self.reprocessItem setTitle:@"Reprocess Last Flight"];
-//
-//    }
-//    
+    
+    
+
+    if (files.count > 5) {
+        NSLog(@"images saved can reprocess");
+        self.reprocessItem.enabled = YES;
+    } else {
+        self.reprocessItem.enabled = NO;
+
+    }
+    
 }
 
 @end

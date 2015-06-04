@@ -40,7 +40,7 @@
     
     hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText  = @"Reprocessing Pano";
-
+    hud.detailsLabelText = @"Please don't switch off the Phantom/Wifi Extendor";
     
     
     [hud show:YES];
@@ -76,18 +76,20 @@
         UIImage *result = [UIImage imageWithCGImage:[context createCGImage:outp fromRect:outp.extent]];
         
         
+
+        
         dispatch_async(dispatch_get_main_queue(), ^(void){
             //Run UI Updates
-            [hud show:NO];
 
+            [hud hide:YES];
             
-            NSLog(@"Pano Height : %f", result.size.height);
+            UIImageWriteToSavedPhotosAlbum(result, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+
+
             IDMPhoto *photo = [IDMPhoto photoWithImage:result];
             IDMPhotoBrowser *browser = [[IDMPhotoBrowser alloc] initWithPhotos:[NSArray arrayWithObjects:photo, nil]];
             browser.delegate = self;
-            browser.usePopAnimation = YES;
 
-            browser.displayDoneButton = NO;
 
             
             [self presentViewController:browser animated:YES completion:nil];
@@ -98,6 +100,25 @@
     
     
 }
+
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
+{
+    UIAlertView *alert;
+    NSLog(@"Image saved");
+    
+    if (error)
+        alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                           message:@"Unable to save image to Photo Album."
+                                          delegate:self cancelButtonTitle:@"Ok"
+                                 otherButtonTitles:nil];
+    else
+        alert = [[UIAlertView alloc] initWithTitle:@"Success"
+                                           message:@"Image saved to Photo Album."
+                                          delegate:self cancelButtonTitle:@"Ok"
+                                 otherButtonTitles:nil];
+    [alert show];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -118,7 +139,7 @@
     }
     
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:NO completion:nil];
     
 }
 
