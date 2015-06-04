@@ -2,7 +2,7 @@
 //  DJIGimbalCapacity.h
 //  DJISDK
 //
-//  Copyright (c) 2014年 DJI. All rights reserved.
+//  Copyright (c) 2015 DJI. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

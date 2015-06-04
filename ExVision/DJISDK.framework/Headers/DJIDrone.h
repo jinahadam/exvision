@@ -2,7 +2,7 @@
 //  DJIDrone.h
 //  DJISDK
 //
-//  Copyright (c) 2014年 DJI. All rights reserved.
+//  Copyright (c) 2015 DJI. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -12,13 +12,32 @@
 @class DJIGimbal;
 @class DJIRangeExtender;
 @class DJIBattery;
+@class DJIImageTransmitter;
+@class DJIRemoteController;
 @class DJIMediaManager;
 @class DJIError;
 @protocol DJIDroneDelegate;
 
-typedef NS_ENUM(NSInteger, DJIDroneType)
-{
+/**
+ *  Drone type
+ */
+typedef NS_ENUM(NSInteger, DJIDroneType){
+    /**
+     *  Type for product Phantom 2 vision / Phantom 2 vision+
+     */
     DJIDrone_Phantom,
+    /**
+     *  Type for product Inspire / Phantom3 Professional / M100
+     */
+    DJIDrone_Inspire,
+    /**
+     *  Type for product Phantom3 Advanced
+     */
+    DJIDrone_Phantom3Advanced,
+    /**
+     *  Unknown type
+     */
+    DJIDrone_Unknown,
 };
 
 typedef NS_ENUM(NSUInteger, DJIConnectionStatus)
@@ -27,17 +46,14 @@ typedef NS_ENUM(NSUInteger, DJIConnectionStatus)
      *  Start reconnect: Broken -> Reconnect -> Successed/Failed
      */
     ConnectionStartConnect,
-    
     /**
      *  Reconnect successed: Reconnect -> Successed -> Broken
      */
     ConnectionSuccessed,
-    
     /**
      *  Reconnect Failed: Reconnect -> Failed -> Reconnect
      */
     ConnectionFailed,
-    
     /**
      *  Connection broken: Successed -> Broken -> Reconnect
      */
@@ -83,6 +99,16 @@ typedef NS_ENUM(NSUInteger, DJIConnectionStatus)
  *  Smart battery
  */
 @property(nonatomic, readonly) DJIBattery* smartBattery;
+
+/**
+ *  Image transmitter
+ */
+@property(nonatomic, readonly) DJIImageTransmitter* imageTransmitter;
+
+/**
+ *  Remote Controller
+ */
+@property(nonatomic, readonly) DJIRemoteController* remoteController;
 
 /**
  *  init drone object with type

@@ -2,19 +2,36 @@
 //  DJIMedia.h
 //  DJISDK
 //
-//  Copyright (c) 2014年 DJI. All rights reserved.
+//  Copyright (c) 2015 DJI. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #include <time.h>
 
 @class UIImage;
-
-typedef NS_ENUM(NSUInteger, MediaType) {
+/**
+ *  Media type
+ */
+typedef NS_ENUM(NSUInteger, MediaType){
+    /**
+     *  Unknown
+     */
     MediaTypeUnknown,
+    /**
+     *  JPG
+     */
     MediaTypeJPG,
+    /**
+     *  MP4
+     */
     MediaTypeMP4,
+    /**
+     *  MOV
+     */
     MediaTypeMOV,
+    /**
+     *  M4V
+     */
     MediaTypeM4V,
 };
 

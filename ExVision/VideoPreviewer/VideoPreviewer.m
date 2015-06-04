@@ -6,11 +6,8 @@
 //
 
 #import "VideoPreviewer.h"
-#import "DJIDispatch.h"
-//#define BEGIN_DISPATCH_SERIAL \
-//dispatch_async(_dispatchQueue, ^{
-//#define END_DISPATCH_SERIAL \
-//});
+#define BEGIN_DISPATCH_QUEUE dispatch_async(_dispatchQueue, ^{
+#define END_DISPATCH_QUEUE   });
 
 //#define BEGIN_DISPATCH_SERIAL \
 //dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND,0), ^{
@@ -28,8 +25,10 @@
     _glView = nil;
     _delegate = nil;
     
-    _dataQueue = [[DJILinkQueue alloc] initWithSize:10000];
+    _dataQueue = [[DJILinkQueues alloc] initWithSize:10000];
     _videoExtractor = [[VideoFrameExtractor alloc] initExtractor];
+    
+    _dispatchQueue = dispatch_queue_create("video_previewer_async_queue", DISPATCH_QUEUE_SERIAL);
     
     for(int i = 0;i<RENDER_FRAME_NUMBER;i++){
         _renderYUVFrame[i] = NULL;
@@ -61,10 +60,11 @@
 +(VideoPreviewer*) instance
 {
     static VideoPreviewer* previewer = nil;
-    if(previewer == nil)
-    {
+    static dispatch_once_t predicate;
+    dispatch_once(&predicate, ^{
         previewer = [[VideoPreviewer alloc] init];
-    }
+    });
+    
     return previewer;
 }
 
@@ -222,14 +222,14 @@
             inputData = NULL;
         }
     }
-//    for(int i = 0;i<RENDER_FRAME_NUMBER;i++){
-//        pthread_rwlock_wrlock(&(_renderYUVFrame[i]->mutex));
-//        free(_renderYUVFrame[i]->luma);
-//        free(_renderYUVFrame[i]->chromaB);
-//        free(_renderYUVFrame[i]->chromaR);
-//        pthread_rwlock_unlock(&(_renderYUVFrame[i]->mutex));
-//        free(_renderYUVFrame[i]);
-//    }
+    for(int i = 0;i<RENDER_FRAME_NUMBER;i++){
+        pthread_rwlock_wrlock(&(_renderYUVFrame[i]->mutex));
+        free(_renderYUVFrame[i]->luma);
+        free(_renderYUVFrame[i]->chromaB);
+        free(_renderYUVFrame[i]->chromaR);
+        pthread_rwlock_unlock(&(_renderYUVFrame[i]->mutex));
+        free(_renderYUVFrame[i]);
+    }
 }
 
 -(void) dealloc

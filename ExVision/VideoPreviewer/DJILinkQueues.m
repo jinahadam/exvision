@@ -1,11 +1,11 @@
 //
-//  DJILinkQueue.m
+//  DJILinkQueues.m
 //  DJI
 //
 //  Copyright (c) 2013年. All rights reserved.
 //
 
-#import "DJILinkQueue.h"
+#import "DJILinkQueues.h"
 #import <sys/time.h>
 
 /**
@@ -16,7 +16,7 @@ typedef struct{
     int size;
 }DJILinkNode;
 
-@interface DJILinkQueue()
+@interface DJILinkQueues()
 {
     //node
     DJILinkNode *_node;
@@ -35,9 +35,9 @@ typedef struct{
 }
 @end
 
-@implementation DJILinkQueue
+@implementation DJILinkQueues
 
-- (DJILinkQueue *)initWithSize:(int)size{
+- (DJILinkQueues *)initWithSize:(int)size{
     self = [super init];
     pthread_mutex_init(&_mutex, NULL);
     pthread_cond_init(&_cond, NULL);

@@ -2,7 +2,7 @@
 //  DJICamera.h
 //  DJISDK
 //
-//  Copyright (c) 2014年 DJI. All rights reserved.
+//  Copyright (c) 2015 DJI. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -11,8 +11,10 @@
 #import <DJISDK/DJIObject.h>
 #import <DJISDK/DJICameraSettingsDef.h>
 
+@class DJIMedia;
 @class DJICamera;
 @class DJICameraSystemState;
+@class DJICameraPlaybackState;
 
 @protocol DJICameraDelegate <NSObject>
 
@@ -32,6 +34,21 @@
  *  @param systemState The camera's system state.
  */
 -(void) camera:(DJICamera*)camera didUpdateSystemState:(DJICameraSystemState*)systemState;
+
+@optional
+/**
+ *  Push media info while completed taking photo or recording.
+ *
+ *  @param newMedia The new media object.
+ */
+-(void) camera:(DJICamera *)camera didGeneratedNewMedia:(DJIMedia*)newMedia;
+
+/**
+ *  Update playback state. only supported in inspire camera.
+ *
+ *  @param playbackState The camera's playback state.
+ */
+-(void) camera:(DJICamera *)camera didUpdatePlaybackState:(DJICameraPlaybackState*)playbackState;
 
 @end
 
@@ -94,7 +111,7 @@
  *
  *  @param videoQuality Video quality to be set
  *  @param block  The remote execute result
- *  @attention If the parameters was setup successed, the remote video module will restart
+ *  @attention If the parameters was configured successed, the remote video module will restart
  */
 -(void) setVideoQuality:(VideoQuality)videoQuality withResultBlock:(DJIExecuteResultBlock)block;
 
@@ -301,7 +318,7 @@
 -(void) getContinuousCaptureParam:(void(^)(CameraContinuousCapturePara capturePara, DJIError* error))block;
 
 /**
- *  Set what the camera will be action while the connection was broken.
+ *  Set the camera action mode while the connection was broken.
  *
  *  @param action Camera action
  *  @param block  The remote execute result block

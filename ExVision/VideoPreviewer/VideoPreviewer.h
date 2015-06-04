@@ -8,7 +8,7 @@
 #import <Foundation/Foundation.h>
 #import "VideoFrameExtractor.h"
 #import "MovieGLView.h"
-#import "DJILinkQueue.h"
+#import "DJILinkQueues.h"
 
 #define VIDEO_PREVIEWER_DISPATCH "video_preview_create_thread_dispatcher"
 
@@ -61,6 +61,8 @@ typedef NS_ENUM(NSUInteger, VideoPreviewerEvent){
     VideoFrameYUV *_renderYUVFrame[RENDER_FRAME_NUMBER];
     int _decodeFrameIndex;   //解码帧
     int _renderFrameIndex;    //渲染帧
+    
+    dispatch_queue_t _dispatchQueue;
 }
 
 /**
@@ -70,7 +72,7 @@ typedef NS_ENUM(NSUInteger, VideoPreviewerEvent){
 /**
  *  数据通道
  */
-@property(retain) DJILinkQueue *dataQueue;
+@property(retain) DJILinkQueues *dataQueue;
 /**
  *  解码组件状态
  */

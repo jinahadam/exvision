@@ -2,7 +2,7 @@
 //  DJICameraSDCardInfo.h
 //  DJISDK
 //
-//  Copyright (c) 2014年 DJI. All rights reserved.
+//  Copyright (c) 2015 DJI. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -66,5 +66,10 @@
  *  The available count for taking photo
  */
 @property(nonatomic, readonly) int availableCaptureCount;
+
+/**
+ *  Time available for recording. Supported in Inspire 1/Phantom3 professional
+ */
+@property(nonatomic, readonly) int availableRecordingTime;
 
 @end

@@ -2,10 +2,11 @@
 //  DJICameraSystemState.h
 //  DJISDK
 //
-//  Copyright (c) 2014年 DJI. All rights reserved.
+//  Copyright (c) 2015 DJI. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import <DJISDK/DJICameraSettingsDef.h>
 
 @interface DJICameraSystemState : NSObject
 
@@ -73,5 +74,15 @@
  *  Indicate whether the camera is connected to PC.
  */
 @property(nonatomic, readonly) BOOL isConnectedToPC;
+
+/**
+ *  Current work mode of camera. Property is available in Inspire/Phantom3 professional
+ */
+@property(nonatomic, readonly) CameraWorkMode workMode;
+
+/**
+ *  Current recording time of camera. Property is available in Inspire/Phantom3 professional
+ */
+@property(nonatomic, readonly) int currentRecordingTime;
 
 @end

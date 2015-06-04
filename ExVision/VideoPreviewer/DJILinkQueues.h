@@ -1,5 +1,5 @@
 //
-//  DJILinkQueue.h
+//  DJILinkQueues.h
 //  DJI
 //
 //  Copyright (c) 2013年. All rights reserved.
@@ -11,7 +11,7 @@
 /**
  *  静态指针循环队列(线程安全)
  */
-@interface DJILinkQueue : NSObject
+@interface DJILinkQueues : NSObject
 
 /**
  *  初始化大小为size的静态指针循环队列
@@ -20,7 +20,7 @@
  *
  *  @return 返回0
  */
-- (DJILinkQueue *)initWithSize:(int)size;
+- (DJILinkQueues *)initWithSize:(int)size;
 
 /**
  *  清空队列，该情况下队列会加锁

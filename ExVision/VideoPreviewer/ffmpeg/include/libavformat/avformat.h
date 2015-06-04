@@ -208,7 +208,7 @@
 #include "libavformat/version.h"
 
 #if FF_API_AV_GETTIME
-#include "libavutil/time.h"
+//#include "libavutil/time.h"
 #endif
 
 struct AVFormatContext;

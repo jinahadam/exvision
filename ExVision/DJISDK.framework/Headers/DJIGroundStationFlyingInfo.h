@@ -2,7 +2,7 @@
 //  DJIGroundStationFlightInfo.h
 //  DJISDK
 //
-//  Copyright (c) 2014年 DJI. All rights reserved.
+//  Copyright (c) 2015 DJI. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -42,7 +42,7 @@ typedef NS_ENUM(NSUInteger, GroundStationDroneStatus)
 @interface DJIGroundStationFlyingInfo : NSObject
 
 /**
- *  Target waypoint index that will flying to. -1 if the task not start
+ *  Target waypoint index that will fly to. -1 if the task not start
  */
 @property(nonatomic, readonly) int targetWaypointIndex;
 
@@ -62,7 +62,7 @@ typedef NS_ENUM(NSUInteger, GroundStationDroneStatus)
 @property(nonatomic, readonly) CLLocationCoordinate2D droneLocation;
 
 /**
- *  The target waypoint location will flying to
+ *  The target waypoint location will fly to
  */
 @property(nonatomic, readonly) CLLocationCoordinate2D targetWaypointLocation;
 
