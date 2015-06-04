@@ -136,7 +136,7 @@
 		80DC3CCF1B00978A00460630 /* page3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page3.png; sourceTree = "<group>"; };
 		80DC3CD01B00978A00460630 /* page4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page4.png; sourceTree = "<group>"; };
 		80DC3CD41B009A3900460630 /* page5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page5.png; sourceTree = "<group>"; };
-		80DFAAD01A760CE100F69205 /* ExVision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExVision.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		80DFAAD01A760CE100F69205 /* phantom2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = phantom2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80DFAAD41A760CE100F69205 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80DFAAD51A760CE100F69205 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		80DFAAD71A760CE100F69205 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -144,7 +144,7 @@
 		80DFAADE1A760CE100F69205 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		80DFAAE01A760CE100F69205 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		80DFAAE31A760CE100F69205 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		80DFAAE91A760CE100F69205 /* ExVisionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExVisionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		80DFAAE91A760CE100F69205 /* phantom2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = phantom2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		80DFAAEE1A760CE100F69205 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80DFAAEF1A760CE100F69205 /* ExVisionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExVisionTests.m; sourceTree = "<group>"; };
 		80DFAAFB1A76100C00F69205 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -344,8 +344,8 @@
 		80DFAAD11A760CE100F69205 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				80DFAAD01A760CE100F69205 /* ExVision.app */,
-				80DFAAE91A760CE100F69205 /* ExVisionTests.xctest */,
+				80DFAAD01A760CE100F69205 /* phantom2.app */,
+				80DFAAE91A760CE100F69205 /* phantom2Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -657,9 +657,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		80DFAACF1A760CE100F69205 /* ExVision */ = {
+		80DFAACF1A760CE100F69205 /* phantom2 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 80DFAAF31A760CE100F69205 /* Build configuration list for PBXNativeTarget "ExVision" */;
+			buildConfigurationList = 80DFAAF31A760CE100F69205 /* Build configuration list for PBXNativeTarget "phantom2" */;
 			buildPhases = (
 				7AD776B03E580EEF659D1A4C /* Check Pods Manifest.lock */,
 				80DFAACC1A760CE100F69205 /* Sources */,
@@ -671,14 +671,14 @@
 			);
 			dependencies = (
 			);
-			name = ExVision;
+			name = phantom2;
 			productName = ExVision;
-			productReference = 80DFAAD01A760CE100F69205 /* ExVision.app */;
+			productReference = 80DFAAD01A760CE100F69205 /* phantom2.app */;
 			productType = "com.apple.product-type.application";
 		};
-		80DFAAE81A760CE100F69205 /* ExVisionTests */ = {
+		80DFAAE81A760CE100F69205 /* phantom2Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 80DFAAF61A760CE100F69205 /* Build configuration list for PBXNativeTarget "ExVisionTests" */;
+			buildConfigurationList = 80DFAAF61A760CE100F69205 /* Build configuration list for PBXNativeTarget "phantom2Tests" */;
 			buildPhases = (
 				80DFAAE51A760CE100F69205 /* Sources */,
 				80DFAAE61A760CE100F69205 /* Frameworks */,
@@ -689,9 +689,9 @@
 			dependencies = (
 				80DFAAEB1A760CE100F69205 /* PBXTargetDependency */,
 			);
-			name = ExVisionTests;
+			name = phantom2Tests;
 			productName = ExVisionTests;
-			productReference = 80DFAAE91A760CE100F69205 /* ExVisionTests.xctest */;
+			productReference = 80DFAAE91A760CE100F69205 /* phantom2Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -713,7 +713,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 80DFAACB1A760CE100F69205 /* Build configuration list for PBXProject "ExVision" */;
+			buildConfigurationList = 80DFAACB1A760CE100F69205 /* Build configuration list for PBXProject "phantom2" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -726,8 +726,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				80DFAACF1A760CE100F69205 /* ExVision */,
-				80DFAAE81A760CE100F69205 /* ExVisionTests */,
+				80DFAACF1A760CE100F69205 /* phantom2 */,
+				80DFAAE81A760CE100F69205 /* phantom2Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -840,7 +840,7 @@
 /* Begin PBXTargetDependency section */
 		80DFAAEB1A760CE100F69205 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 80DFAACF1A760CE100F69205 /* ExVision */;
+			target = 80DFAACF1A760CE100F69205 /* phantom2 */;
 			targetProxy = 80DFAAEA1A760CE100F69205 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -974,7 +974,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = phantom2;
 				PROVISIONING_PROFILE = "0974a0a9-1e2c-4b21-8071-eb199d138ca1";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1011,7 +1011,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = phantom2;
 				PROVISIONING_PROFILE = "0974a0a9-1e2c-4b21-8071-eb199d138ca1";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1031,7 +1031,7 @@
 				);
 				INFOPLIST_FILE = ExVisionTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = phantom2Tests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ExVision.app/ExVision";
 			};
 			name = Debug;
@@ -1046,7 +1046,7 @@
 				);
 				INFOPLIST_FILE = ExVisionTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = phantom2Tests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ExVision.app/ExVision";
 			};
 			name = Release;
@@ -1054,7 +1054,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		80DFAACB1A760CE100F69205 /* Build configuration list for PBXProject "ExVision" */ = {
+		80DFAACB1A760CE100F69205 /* Build configuration list for PBXProject "phantom2" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				80DFAAF11A760CE100F69205 /* Debug */,
@@ -1063,7 +1063,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		80DFAAF31A760CE100F69205 /* Build configuration list for PBXNativeTarget "ExVision" */ = {
+		80DFAAF31A760CE100F69205 /* Build configuration list for PBXNativeTarget "phantom2" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				80DFAAF41A760CE100F69205 /* Debug */,
@@ -1072,7 +1072,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		80DFAAF61A760CE100F69205 /* Build configuration list for PBXNativeTarget "ExVisionTests" */ = {
+		80DFAAF61A760CE100F69205 /* Build configuration list for PBXNativeTarget "phantom2Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				80DFAAF71A760CE100F69205 /* Debug */,

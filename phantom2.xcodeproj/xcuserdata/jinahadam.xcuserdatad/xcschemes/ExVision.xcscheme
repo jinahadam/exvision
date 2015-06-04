@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "80DFAACF1A760CE100F69205"
-               BuildableName = "ExVision.app"
-               BlueprintName = "ExVision"
-               ReferencedContainer = "container:ExVision.xcodeproj">
+               BuildableName = "phantom2.app"
+               BlueprintName = "phantom2"
+               ReferencedContainer = "container:phantom2.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "80DFAAE81A760CE100F69205"
-               BuildableName = "ExVisionTests.xctest"
-               BlueprintName = "ExVisionTests"
-               ReferencedContainer = "container:ExVision.xcodeproj">
+               BuildableName = "phantom2Tests.xctest"
+               BlueprintName = "phantom2Tests"
+               ReferencedContainer = "container:phantom2.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,9 +47,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "80DFAAE81A760CE100F69205"
-               BuildableName = "ExVisionTests.xctest"
-               BlueprintName = "ExVisionTests"
-               ReferencedContainer = "container:ExVision.xcodeproj">
+               BuildableName = "phantom2Tests.xctest"
+               BlueprintName = "phantom2Tests"
+               ReferencedContainer = "container:phantom2.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "80DFAACF1A760CE100F69205"
-            BuildableName = "ExVision.app"
-            BlueprintName = "ExVision"
-            ReferencedContainer = "container:ExVision.xcodeproj">
+            BuildableName = "phantom2.app"
+            BlueprintName = "phantom2"
+            ReferencedContainer = "container:phantom2.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -72,13 +72,14 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "80DFAACF1A760CE100F69205"
-            BuildableName = "ExVision.app"
-            BlueprintName = "ExVision"
-            ReferencedContainer = "container:ExVision.xcodeproj">
+            BuildableName = "phantom2.app"
+            BlueprintName = "phantom2"
+            ReferencedContainer = "container:phantom2.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -90,13 +91,14 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "80DFAACF1A760CE100F69205"
-            BuildableName = "ExVision.app"
-            BlueprintName = "ExVision"
-            ReferencedContainer = "container:ExVision.xcodeproj">
+            BuildableName = "phantom2.app"
+            BlueprintName = "phantom2"
+            ReferencedContainer = "container:phantom2.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
