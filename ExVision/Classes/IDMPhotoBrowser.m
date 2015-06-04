@@ -9,8 +9,19 @@
 #import <QuartzCore/QuartzCore.h>
 #import "IDMPhotoBrowser.h"
 #import "IDMZoomingScrollView.h"
+#import "MBProgressHUD.h"
+
 
 #import "pop/POP.h"
+
+#import "CVWrapper.h"
+
+
+#define CROP_TOP 0
+#define CROP_WIDTH 20
+#define ADJUST_EXPOSURE 1.0f
+#define ADJUST_SAT 1.04f
+
 
 #ifndef IDMPhotoBrowserLocalizedStrings
 #define IDMPhotoBrowserLocalizedStrings(key) \
@@ -35,6 +46,7 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
 	
     // Buttons
     UIBarButtonItem *_doneButton;
+    UIBarButtonItem *_reprocessButton;
     
 	// Toolbar
 	UIToolbar *_toolbar;
@@ -212,6 +224,100 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
     
     return self;
 }
+
+- (NSString *)applicationDocumentsDirectory {
+    return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+}
+
+
+-(void)reprocessFromDisk {
+    NSArray *filenames = @[@"1.JPG",@"2.JPG",@"3.JPG",@"4.JPG",@"5.JPG",@"6.JPG",@"7.JPG"];
+    NSMutableArray *images = [NSMutableArray array];
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText  = @"Reprocessing Pano";
+   // hud.detailsLabelText = @"Please don't switch off the Phantom/Wifi Extendor";
+    
+    
+    [hud show:YES];
+    
+    for (NSString *name in filenames) {
+        NSString *workSpacePath=[[self applicationDocumentsDirectory] stringByAppendingPathComponent:name];
+        [images addObject: [UIImage imageWithData:[NSData dataWithContentsOfFile:workSpacePath]]];
+    }
+    
+    
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^(void){
+        UIImage *uncropped =[CVWrapper processWithArray:images];
+        
+        CIImage *inputImage = [[CIImage alloc] initWithImage:uncropped];//[self croppedImage:boundsToCrop image:uncropped]];
+        
+        
+        
+        CIFilter *exposureAdjustmentFilter = [CIFilter filterWithName:@"CIExposureAdjust"];
+        [exposureAdjustmentFilter setDefaults];
+        [exposureAdjustmentFilter setValue:inputImage forKey:@"inputImage"];
+        [exposureAdjustmentFilter setValue:[NSNumber numberWithFloat:ADJUST_EXPOSURE] forKey:@"inputEV"];
+        CIImage *outputImage = [exposureAdjustmentFilter valueForKey:@"outputImage"];
+        //saturation
+        CIFilter *filter = [CIFilter filterWithName:@"CIColorControls"];
+        [filter setValue:outputImage forKey:kCIInputImageKey];
+        [filter setValue:[NSNumber numberWithFloat:ADJUST_SAT] forKey:kCIInputSaturationKey];
+        
+        CIImage *outp = [filter valueForKey:@"outputImage"];
+        
+        
+        
+        CIContext *context = [CIContext contextWithOptions:nil];
+        UIImage *result = [UIImage imageWithCGImage:[context createCGImage:outp fromRect:outp.extent]];
+        
+        
+        
+        
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            //Run UI Updates
+            
+            [hud hide:YES];
+            
+            UIImageWriteToSavedPhotosAlbum(result, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+            
+            
+            
+              IDMPhoto *photo = [IDMPhoto photoWithImage:result];
+              //[self reloadData];
+              _photos = [NSMutableArray arrayWithObjects:photo, nil];
+              [self reloadData];
+            
+            
+            
+            
+            
+        });
+    });
+    
+    
+}
+
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
+{
+    UIAlertView *alert;
+    NSLog(@"Image saved");
+    
+    if (error)
+        alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                           message:@"Unable to save image to Photo Album."
+                                          delegate:self cancelButtonTitle:@"Ok"
+                                 otherButtonTitles:nil];
+    else
+        alert = [[UIAlertView alloc] initWithTitle:@"Success"
+                                           message:@"Image saved to Photo Album."
+                                          delegate:self cancelButtonTitle:@"Ok"
+                                 otherButtonTitles:nil];
+    [alert show];
+}
+
+
+
 
 - (id)initWithPhotos:(NSArray *)photosArray {
     if ((self = [self init])) {
@@ -624,8 +730,12 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
                                                                   target:self
                                                                   action:@selector(actionButtonPressed:)];
     _doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-                                                                  target:self
-                                                                  action:@selector(doneButtonPressed:)];
+                                                                target:self
+                                                                action:@selector(doneButtonPressed:)];
+
+    _reprocessButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
+                                                                target:self
+                                                                     action:@selector(reprocessFromDisk)];
     
     // Gesture
     _panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognized:)];
@@ -777,6 +887,8 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
     
     if(_displayActionButton) {
         [items addObject:_actionButton];
+        [items addObject:fixedLeftSpace];
+        [items addObject:_reprocessButton];
         [items addObject:flexSpace];
         [items addObject:_doneButton];
     }
