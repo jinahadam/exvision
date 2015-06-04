@@ -1222,6 +1222,10 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
             NSMutableArray *activityItems = [NSMutableArray arrayWithObject:[photo underlyingImage]];
             if (photo.caption) [activityItems addObject:photo.caption];
             
+            [activityItems addObject:[NSURL URLWithString:@"http://apps.avetics.com"]];
+            
+            [activityItems addObject:@"#PhantomPano"];
+            
             self.activityViewController = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
             
             __typeof__(self) __weak selfBlock = self;

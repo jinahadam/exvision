@@ -116,6 +116,7 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
 -(void)restartCameraFeed {
     
     NSLog(@"restart camera feed");
+    self.barStatus.title = @"";
     [self toggleReprocessBarButtonItem];
     
     sleep(1);
