@@ -1025,7 +1025,7 @@
 					"$(PROJECT_DIR)/ExVision/IM",
 					"$(PROJECT_DIR)/ExVision",
 				);
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = phantom2;
 				PROVISIONING_PROFILE = "0974a0a9-1e2c-4b21-8071-eb199d138ca1";
@@ -1062,7 +1062,7 @@
 					"$(PROJECT_DIR)/ExVision/IM",
 					"$(PROJECT_DIR)/ExVision",
 				);
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = phantom2;
 				PROVISIONING_PROFILE = "0974a0a9-1e2c-4b21-8071-eb199d138ca1";
