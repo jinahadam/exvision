@@ -22,7 +22,7 @@ static NSString * const sampleDesc3 = @"Keep S1 switch in position 1 (upper).\nF
 
 static NSString * const sampleDesc4 = @"Press the Start button. Your Phantom will yaw, take photos and generate a panorama automatically.";
 
-static NSString * const sampleDesc5 = @"Your remote controller will not function once pano has started. So when its finished or if the need arises:\n\nRegain Control by Flipping S1 switch from Position 1 to 3";
+static NSString * const sampleDesc5 = @"Your remote controller will not function once pano has started. So when its finished or if the need arises:\n\nRegain Control by Toggling S1 switch from Position 1 to 3";
 
 
 //120
@@ -74,10 +74,7 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
     
 }
 
--(IBAction)showHelp:(id)sender {
-    
-    [self presentHelp];
-}
+
 
 
 -(void)presentHelp {
@@ -218,6 +215,8 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
     [_drone connectToDrone];
     [[VideoPreviewer instance] setView:self.videoPreviewView];
     
+    self.navigationController.toolbarHidden = NO;
+
     
 }
 
@@ -354,7 +353,7 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    [segue.destinationViewController setDelegate:self];
+   // [segue.destinationViewController setDelegate:self];
 }
 
 - (void)didCloseReprocessView:(Reprocess*)viewController {

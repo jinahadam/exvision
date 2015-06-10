@@ -54,6 +54,10 @@
 		8090FAD61ACD2BD70011D83C /* UIImage+OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8090FAD11ACD2BD70011D83C /* UIImage+OpenCV.mm */; };
 		8090FAD71ACD2BD70011D83C /* CVWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8090FAD31ACD2BD70011D83C /* CVWrapper.mm */; };
 		8090FAD81ACD2BD70011D83C /* stitching.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8090FAD41ACD2BD70011D83C /* stitching.cpp */; };
+		809625841B28250F00262DE9 /* AboutTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 809625831B28250E00262DE9 /* AboutTableViewController.m */; };
+		809625861B2827D100262DE9 /* Phantom Pano Icon v1.png in Resources */ = {isa = PBXBuildFile; fileRef = 809625851B2827D100262DE9 /* Phantom Pano Icon v1.png */; };
+		809625891B28318A00262DE9 /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 809625881B28318A00262DE9 /* HelpViewController.m */; };
+		8096258C1B28352B00262DE9 /* FAQViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8096258B1B28352B00262DE9 /* FAQViewController.m */; };
 		809798A51B01B33E003BB18C /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8090FAF71ACD2E6B0011D83C /* libjpeg.a */; settings = {ATTRIBUTES = (Required, ); }; };
 		809798A61B01B33E003BB18C /* libMagickCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8090FAF81ACD2E6B0011D83C /* libMagickCore.a */; settings = {ATTRIBUTES = (Required, ); }; };
 		809798A71B01B33E003BB18C /* libMagickWand.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8090FAF91ACD2E6B0011D83C /* libMagickWand.a */; settings = {ATTRIBUTES = (Required, ); }; };
@@ -241,6 +245,13 @@
 		8090FAF81ACD2E6B0011D83C /* libMagickCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMagickCore.a; path = ../IM/libMagickCore.a; sourceTree = "<group>"; };
 		8090FAF91ACD2E6B0011D83C /* libMagickWand.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMagickWand.a; path = ../IM/libMagickWand.a; sourceTree = "<group>"; };
 		8090FB051ACD31E10011D83C /* IM */ = {isa = PBXFileReference; lastKnownFileType = folder; path = IM; sourceTree = "<group>"; };
+		809625821B28250E00262DE9 /* AboutTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutTableViewController.h; sourceTree = "<group>"; };
+		809625831B28250E00262DE9 /* AboutTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutTableViewController.m; sourceTree = "<group>"; };
+		809625851B2827D100262DE9 /* Phantom Pano Icon v1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Phantom Pano Icon v1.png"; sourceTree = "<group>"; };
+		809625871B28318A00262DE9 /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
+		809625881B28318A00262DE9 /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
+		8096258A1B28352B00262DE9 /* FAQViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FAQViewController.h; sourceTree = "<group>"; };
+		8096258B1B28352B00262DE9 /* FAQViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FAQViewController.m; sourceTree = "<group>"; };
 		809798AA1B01B9C8003BB18C /* libpng.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libpng.a; sourceTree = "<group>"; };
 		809798AB1B01B9C8003BB18C /* libtiff.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libtiff.a; sourceTree = "<group>"; };
 		80DBDDEE1B00A29500CABA0F /* down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down.png; sourceTree = "<group>"; };
@@ -604,6 +615,12 @@
 				807019281A762CEB00B599C0 /* CameraView.m */,
 				80E4E7671ADFA87700157EE0 /* Settings.h */,
 				80E4E7681ADFA87700157EE0 /* Settings.m */,
+				809625821B28250E00262DE9 /* AboutTableViewController.h */,
+				809625831B28250E00262DE9 /* AboutTableViewController.m */,
+				809625871B28318A00262DE9 /* HelpViewController.h */,
+				809625881B28318A00262DE9 /* HelpViewController.m */,
+				8096258A1B28352B00262DE9 /* FAQViewController.h */,
+				8096258B1B28352B00262DE9 /* FAQViewController.m */,
 				80DFAADD1A760CE100F69205 /* Main.storyboard */,
 				80DFAAE01A760CE100F69205 /* Images.xcassets */,
 				80DFAAE21A760CE100F69205 /* LaunchScreen.xib */,
@@ -615,6 +632,7 @@
 		80DFAAD31A760CE100F69205 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				809625851B2827D100262DE9 /* Phantom Pano Icon v1.png */,
 				801CDDFD1B203E59002C1D8D /* IDMPhotoBrowser */,
 				804E8D481B14766F00BC9432 /* GHWalkThroughView.h */,
 				804E8D491B14766F00BC9432 /* GHWalkThroughView.m */,
@@ -795,6 +813,7 @@
 				80DC3CD51B009A3900460630 /* page5.png in Resources */,
 				801CDE0F1B203E59002C1D8D /* IDMPBLocalizations.bundle in Resources */,
 				804E8D611B15AA0D00BC9432 /* page2.png in Resources */,
+				809625861B2827D100262DE9 /* Phantom Pano Icon v1.png in Resources */,
 				80DBDDF91B00A6DE00CABA0F /* satellite.png in Resources */,
 				804E8D631B15AB1900BC9432 /* page1.png in Resources */,
 				80DBDDF11B00A29500CABA0F /* up.png in Resources */,
@@ -857,6 +876,7 @@
 				804E8D4D1B14766F00BC9432 /* GHWalkThroughPageCell.m in Sources */,
 				80DFAAD91A760CE100F69205 /* AppDelegate.mm in Sources */,
 				8090FAD81ACD2BD70011D83C /* stitching.cpp in Sources */,
+				809625891B28318A00262DE9 /* HelpViewController.m in Sources */,
 				801CDDD61B203337002C1D8D /* MovieGLView.m in Sources */,
 				801CDE0E1B203E59002C1D8D /* IDMCaptionView.m in Sources */,
 				80DFAAD61A760CE100F69205 /* main.m in Sources */,
@@ -874,9 +894,11 @@
 				80F34ACE1ADCFABC007473A4 /* CaptureButton.m in Sources */,
 				801CDE121B203E59002C1D8D /* IDMPhotoBrowser.m in Sources */,
 				80E4E76C1ADFB15700157EE0 /* PresentingAnimationController.m in Sources */,
+				8096258C1B28352B00262DE9 /* FAQViewController.m in Sources */,
 				8090FAD61ACD2BD70011D83C /* UIImage+OpenCV.mm in Sources */,
 				801CDDD81B203337002C1D8D /* VideoPreviewer.m in Sources */,
 				801CDE151B203E59002C1D8D /* IDMZoomingScrollView.m in Sources */,
+				809625841B28250F00262DE9 /* AboutTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1025,7 +1047,7 @@
 					"$(PROJECT_DIR)/ExVision/IM",
 					"$(PROJECT_DIR)/ExVision",
 				);
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = phantom2;
 				PROVISIONING_PROFILE = "0974a0a9-1e2c-4b21-8071-eb199d138ca1";
@@ -1062,7 +1084,7 @@
 					"$(PROJECT_DIR)/ExVision/IM",
 					"$(PROJECT_DIR)/ExVision",
 				);
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = phantom2;
 				PROVISIONING_PROFILE = "0974a0a9-1e2c-4b21-8071-eb199d138ca1";

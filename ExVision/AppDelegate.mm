@@ -19,6 +19,7 @@
     // Override point for customization after application launch.
     //Register App with key
     NSString* appKey = @"01f9d7e79b72b9dbbfda6e4a";
+    //01f9d7e79b72b9dbbfda6e4a
     
     [DJIAppManager registerApp:appKey withDelegate:self];
  

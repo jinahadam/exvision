@@ -70,7 +70,6 @@
 
 -(IBAction)presentProcessingView:(id)sender;
 -(IBAction)showSettings:(id)sender;
--(IBAction)showHelp:(id)sender;
 
 /**
  *  Gimbal
