@@ -51,7 +51,15 @@
     bool cameraSettingsShown;
     NSArray *ExposureSettings;
     NSArray *ExposureSettingString;
+    NSArray *ContrastSettingString;
+    NSArray *SharpnessSettingString;
+    NSArray *WhiteBalanceString;
     int currentExposure;
+    int currentContrast;
+    int currentSharpness;
+    int currentWB;
+    
+    
 }
 
 @property (strong, nonatomic) IBOutlet CircleView *cirlce;

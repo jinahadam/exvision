@@ -228,21 +228,97 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
    
     [self setUpCameraSettingsView];
     
-    ExposureSettings = [[NSArray alloc] initWithObjects:CameraExposureCompensationDefault,CameraExposureCompensationN20,CameraExposureCompensationN17,CameraExposureCompensationN13,CameraExposureCompensationN10,CameraExposureCompensationN07,CameraExposureCompensationN03,CameraExposureCompensationN00,CameraExposureCompensationP03,CameraExposureCompensationP07,CameraExposureCompensationP10,CameraExposureCompensationP13,CameraExposureCompensationP17, nil];
+
     
     ExposureSettingString = [[NSArray alloc] initWithObjects:@"-1.3ev",@"-1.0ev",@"-0.7ev",@"-0.3ev",@"0.0ev",@"+0.3ev",@"+0.7ev", @"+1.0ev", @"+1.3ev",@"+1.7ev", nil];
     currentExposure = 4;
     
-    NSLog(@"Exposure %hhu", CameraExposureCompensationP10);
+    ContrastSettingString = [[NSArray alloc] initWithObjects:@"Standard", @"Hard", @"Soft", nil];
+    SharpnessSettingString = [[NSArray alloc] initWithObjects:@"Standard", @"Hard", @"Soft", nil];
+    WhiteBalanceString = [[NSArray alloc] initWithObjects:@"Auto",@"Sunny",@"Cloudy",@"Indoor", nil];
+    
+    
+    
+    currentWB = 0;
+    currentContrast = 0;
+    currentSharpness = 0;
     
     self.settingValue.hidden = YES;
 }
 
--(void)ShowSettingValue:(NSString *)val {
+
+-(void)cycleThroughtCameraWB {
     
-
-
+    if (currentWB < ([WhiteBalanceString count])) {
+        [_camera setCameraWhiteBalance:(CameraWhiteBalanceType)currentWB withResultBlock:^(DJIError *error) {
+            if (error.errorCode == ERR_Successed) {
+                self.barStatus.title = [NSString stringWithFormat:@"White Balance : %@", [WhiteBalanceString objectAtIndex:currentWB]];
+                currentWB = currentWB + 1;
+                
+                if (currentWB == (int)[WhiteBalanceString count]) {
+                    //reset
+                    currentWB = 0;
+                }
+            }
+            else{
+                NSLog(@"Set WP Failed");
+            }
+        }];
+        
+    }
+    
 }
+
+-(void)cycleThroughtCameraSharpness {
+    
+    if (currentSharpness < ([SharpnessSettingString count])) {
+        NSLog(@"setting contrast %d", currentSharpness);
+        [_camera setCameraSharpness:(CameraSharpnessType)currentSharpness withResultBlock:^(DJIError *error) {
+            if (error.errorCode == ERR_Successed) {
+                NSLog(@"Set Exposure Sharpness Success");
+                
+                self.barStatus.title = [NSString stringWithFormat:@"Sharpness : %@", [SharpnessSettingString objectAtIndex:currentSharpness]];
+                currentSharpness = currentSharpness + 1;
+                
+                if (currentSharpness == (int)[ContrastSettingString count]) {
+                    //reset
+                    currentSharpness = 0;
+                }
+            }
+            else{
+                NSLog(@"Set Exposure Sharpness Failed");
+            }
+        }];
+        
+    }
+    
+}
+
+-(void)cycleThroughtCameraContrast {
+    
+    if (currentContrast < ([ContrastSettingString count])) {
+        NSLog(@"setting contrast %d", currentContrast);
+        [_camera setCameraContrast:(CameraContrastType)currentContrast withResultBlock:^(DJIError *error) {
+            if (error.errorCode == ERR_Successed) {
+                NSLog(@"Set Exposure Contrast Success");
+                
+                self.barStatus.title = [NSString stringWithFormat:@"Contrast : %@", [ContrastSettingString objectAtIndex:currentContrast]];
+                currentContrast = currentContrast + 1;
+
+                if (currentContrast == (int)[ContrastSettingString count]) {
+                    //reset
+                    currentContrast = 0;
+                }
+            }
+            else{
+                NSLog(@"Set Exposure Contrast Failed");
+            }
+        }];
+        
+    }
+    
+}
+
 
 
 -(IBAction)exposureIncrease:(id)sender {
@@ -325,6 +401,34 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
     [button2 setTitle:@"-" forState:UIControlStateNormal];
     button2.frame = CGRectMake(100, 0, 50, 50);
     [self.cameraSettingsView addSubview:button2];
+    
+    UIButton *contrastButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [contrastButton addTarget:self
+                action:@selector(cycleThroughtCameraContrast)
+      forControlEvents:UIControlEventTouchUpInside];
+    contrastButton.titleLabel.font = [UIFont systemFontOfSize:20];
+    [contrastButton setTitle:@"Con" forState:UIControlStateNormal];
+    contrastButton.frame = CGRectMake(170, 0, 50, 50);
+    [self.cameraSettingsView addSubview:contrastButton];
+    
+    UIButton *sharpnessButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [sharpnessButton addTarget:self
+                       action:@selector(cycleThroughtCameraSharpness)
+             forControlEvents:UIControlEventTouchUpInside];
+    sharpnessButton.titleLabel.font = [UIFont systemFontOfSize:20];
+    [sharpnessButton setTitle:@"Shp" forState:UIControlStateNormal];
+    sharpnessButton.frame = CGRectMake(240, 0, 50, 50);
+    [self.cameraSettingsView addSubview:sharpnessButton];
+    
+    UIButton *wbButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [wbButton addTarget:self
+                        action:@selector(cycleThroughtCameraWB)
+              forControlEvents:UIControlEventTouchUpInside];
+    wbButton.titleLabel.font = [UIFont systemFontOfSize:20];
+    [wbButton setTitle:@"WB" forState:UIControlStateNormal];
+    wbButton.frame = CGRectMake(310, 0, 50, 50);
+    [self.cameraSettingsView addSubview:wbButton];
+
 }
 
 -(IBAction)resetCameraSettings:(id)sender {
