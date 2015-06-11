@@ -8,6 +8,7 @@
 
 #import "Settings.h"
 
+
 @interface Settings ()
 
 @end
@@ -46,8 +47,37 @@
     
 
     self.view.layer.cornerRadius = 8.f;
+    
+    
+    _drone = [[DJIDrone alloc] initWithType:DJIDrone_Phantom];
+    _camera = _drone.camera;
+    
+    [_camera setCameraExposureCompensation:CameraExposureCompensationP17 withResultBlock:^(DJIError *error) {
+        if (error.errorCode == ERR_Successed) {
+            NSLog(@"Set Exposure Compensation Success");
+        }
+        else{
+            NSLog(@"Set Exposure Compensation Failed");
+        }
+    }];
+    
+    
+    
 }
 
+-(void)dealloc {
+    _camera = nil;
+    _drone = nil;
+}
+
+-(void) viewWillDisappear:(BOOL)animated
+{
+    NSLog(@"vuew will disappaer");
+    [super viewWillDisappear:animated];
+    [_drone.camera stopCameraSystemStateUpdates];
+    [_drone disconnectToDrone];
+    [_drone destroy];
+}
 
 -(IBAction)directionChange:(UISegmentedControl *)sender {
     NSNumber *scale = [NSNumber numberWithInt:(int)[sender selectedSegmentIndex]];

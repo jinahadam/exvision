@@ -733,11 +733,13 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
                                                                 target:self
                                                                 action:@selector(doneButtonPressed:)];
 
-    _reprocessButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRedo
-                                                                target:self
-                                                                     action:@selector(reprocessFromDisk)];
+    _reprocessButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"reprocess"]
+                                                        style:UIBarButtonItemStylePlain
+                                                        target:self
+                                                        action:@selector(reprocessFromDisk)];
     
-    [_reprocessButton setBackgroundImage:[UIImage imageNamed:@"reprocess"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    
+//    [_reprocessButton setBackgroundImage:[UIImage imageNamed:@"reprocess"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
 
     
     

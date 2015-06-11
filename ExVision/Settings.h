@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "UIButton+Bootstrap.h"
+#import <DJISDK/DJISDK.h>
 
 
 @interface Settings : UITableViewController {
     NSMutableArray *settingsArray;
+    DJIDrone* _drone;
+    DJICamera* _camera;
 }
 
 @property (nonatomic,strong) NSArray *data;

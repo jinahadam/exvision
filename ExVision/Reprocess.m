@@ -40,7 +40,7 @@
     
     hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText  = @"Reprocessing Pano";
-    hud.detailsLabelText = @"Please don't switch off the Phantom/Wifi Extendor";
+  //  hud.detailsLabelText = @"Please don't switch off the Phantom/Wifi Extendor";
     
     
     [hud show:YES];

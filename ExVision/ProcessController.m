@@ -21,6 +21,7 @@
 #define ADJUST_EXPOSURE 1.0f
 #define ADJUST_SAT 1.04f
 
+#define PANO_SHOTS 7
 
 #define ThrowWandException(wand) { \
 char * description; \
@@ -301,15 +302,22 @@ exit(-1); \
     hud.labelText = @"Downloading..";
 
     
-    downloadStatus = [[NSMutableDictionary alloc] initWithCapacity:_mediasList.count];
+//    downloadStatus = [[NSMutableDictionary alloc] initWithCapacity:_mediasList.count];
+//    
+//    if (_mediasList.count > 0) {
+//        for (int i = 0; i < _mediasList.count; i++) {
+//          //  [downloadStatus setObject:[NSNumber numberWithInt:0] forKey:[NSNumber numberWithInt:i]];
+//            
+//            NSLog(@"%@ create time", [[_mediasList objectAtIndex:i] createTime]);
+//        }
+//    }
     
-    if (_mediasList.count > 0) {
-    for (int i = 0; i < _mediasList.count; i++) {
-        [downloadStatus setObject:[NSNumber numberWithInt:0] forKey:[NSNumber numberWithInt:i]];
-    }
+   // NSLog(@"%@", _mediasList.firstObject);
     
-    [self downloadImageOfIndex:0];
-    }
+    
+    
+    [self downloadImageOfIndex:(int)_mediasList.count - 1];
+    //}
 
 }
 
@@ -354,20 +362,23 @@ exit(-1); \
                     
                     [self.imagesForProcessing addObject:TopCutOff];
                     
-                    if (idx < _mediasList.count - 1)
-                        [self downloadImageOfIndex:idx+1];
+                    if ((idx -1) >= (_mediasList.count - PANO_SHOTS)) {
+                        [self downloadImageOfIndex:idx-1];
                     
+                        NSLog(@"download");
+                    }
+                    int images_remaining = idx - (int)(_mediasList.count - PANO_SHOTS);
+                    int downloading_idx = PANO_SHOTS - images_remaining;
+                    NSLog(@"remaining %d", images_remaining);
                     
-                    int images_remaining = (int)_mediasList.count - (int)self.imagesForProcessing.count;
+                   // NSLog(@"%@",[NSString stringWithFormat:@"Downloading: %d of %lu ",idx + 1, (unsigned long)_mediasList.count]);
                     
-                    NSLog(@"%@",[NSString stringWithFormat:@"Downloading: %d of %lu ",idx + 1, (unsigned long)_mediasList.count]);
-                    
-                    NSLog(@"%f",(idx+1)/(double)_mediasList.count);
-                    hud.progress = (idx+1)/(double)_mediasList.count;
+                  //  NSLog(@"%f",(idx+1)/(double)_mediasList.count);
+                    hud.progress = downloading_idx/(double)PANO_SHOTS;
                     
                   //  NSLog(@"%@", [NSString stringWithFormat:@"Downloading: %d of %lu ",idx + 1, (unsigned long)_mediasList.count]);
                     
-                    hud.labelText = [NSString stringWithFormat:@"Downloading: %d of %lu \nPLEASE DON'T SWITCH OFF THE PHANTOM",idx + 1, (unsigned long)_mediasList.count];
+                    hud.labelText = [NSString stringWithFormat:@"Downloading: %d of %d \nPLEASE DON'T SWITCH OFF THE PHANTOM",downloading_idx, PANO_SHOTS];
                     hud.detailsLabelText = @"Please don't switch off the Phantom/Wifi Extendor";
 
 
@@ -376,6 +387,7 @@ exit(-1); \
                         hud.labelText  = @"Processing Pano";
                         hud.mode = MBProgressHUDModeIndeterminate;
 
+                        NSLog(@"processing %lu images", (unsigned long)[self.imagesForProcessing count]);
                         
                         
                         
@@ -506,7 +518,7 @@ exit(-1); \
      //   [self hideLoadingIndicator];
         if (mediaList) {
             _mediasList = mediaList;
-            NSLog(@"MediaDirs: %@", _mediasList);
+           // NSLog(@"MediaDirs: %@", _mediasList);
             [self download:nil];
         }
         

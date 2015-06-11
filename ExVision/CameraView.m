@@ -103,11 +103,35 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
 
 - (UIImage*) bgImageforPage:(NSInteger)index
 {
-    NSString* imageName =[NSString stringWithFormat:@"page%d.png", index+1];
+    NSString* imageName =[NSString stringWithFormat:@"page%ld.png", index+1];
     UIImage* image = [UIImage imageNamed:imageName];
     return image;
 }
 
+
+-(IBAction)exposureIncrease:(id)sender {
+    [_camera setCameraExposureCompensation:CameraExposureCompensationP17 withResultBlock:^(DJIError *error) {
+        if (error.errorCode == ERR_Successed) {
+            NSLog(@"Set Exposure Compensation Success");
+        }
+        else{
+            NSLog(@"Set Exposure Compensation Failed");
+        }
+    }];
+    
+}
+
+-(IBAction)exposureDecrease:(id)sender {
+    [_camera setCameraExposureCompensation:CameraExposureCompensationN20 withResultBlock:^(DJIError *error) {
+        if (error.errorCode == ERR_Successed) {
+            NSLog(@"Set Exposure Compensation Success");
+        }
+        else{
+            NSLog(@"Set Exposure Compensation Failed");
+        }
+    }];
+    
+}
 
 
 -(void)restartCameraFeed {
@@ -191,8 +215,39 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
     
     self.navigationController.toolbar.barTintColor = [UIColor colorWithRed:44/255.0 green:44/255.0 blue:51/255.0 alpha:1];
 
-    
+
+
    
+}
+
+-(IBAction)resetCameraSettings:(id)sender {
+    [_camera setCameraExposureCompensation:CameraExposureCompensationDefault withResultBlock:^(DJIError *error) {
+        if (error.errorCode == ERR_Successed) {
+            NSLog(@"Set Exposure Compensation Success");
+        }
+        else{
+            NSLog(@"Set Exposure Compensation Failed");
+        }
+    }];
+    
+    [_camera setCameraExposureMetering:CameraExposureMeteringAverage withResultBlock:^(DJIError *error) {
+        if (error.errorCode == ERR_Successed) {
+            NSLog(@"Set CameraExposureMeteringAverage  Success");
+        }
+        else{
+            NSLog(@"Set CameraExposureMeteringAverage Failed");
+        }
+    }];
+    
+    [_camera setCameraWhiteBalance:CameraWhiteBalanceCloudy withResultBlock:^(DJIError *error) {
+        if (error.errorCode == ERR_Successed) {
+            NSLog(@"Set White Balance");
+        }
+        else{
+            NSLog(@"Set White Balance Fail");
+        }
+    }];
+
 }
 
 -(void)didDismissReprocessView {
@@ -647,12 +702,14 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
             connection = true;
            // [self restartCameraFeed];
             [connectionHud hide:YES];
+            
+          //  [self restartCameraFeed];
             break;
         }
         case ConnectionFailed:
         {
             NSLog(@"Connect Failed...");
-            [connectionHud hide:NO];
+            [connectionHud show:YES];
            // self.navigationItem.title = @"Connection Failed";
             connection = false;
 
@@ -663,7 +720,7 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
         {
           //  self.navigationItem.title = @"Disconnected";
             connection = false;
-            [connectionHud hide:NO];
+            [connectionHud show:YES];
 
             NSLog(@"Connect Broken...");
           //  self.connectionStatus.title = @"Disconnected";
@@ -726,7 +783,7 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
         }
 
     } else {
-        NSLog(@"toglle S1 switch to top or tap ? for help");
+        NSLog(@"1 Toggle S1 switch to top or tap ? for help");
         self.barStatus.title = @"Toggle S1 switch to top or tap ? for help";
     }
 }
@@ -933,7 +990,7 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
     if (flyingInfo.targetWaypointIndex != -1) {
         if (wp_idx != flyingInfo.targetWaypointIndex) {
             [self SingleShot];
-            self.barStatus.title = [NSString stringWithFormat:@"%d images taken", flyingInfo.targetWaypointIndex];
+          //  self.barStatus.title = [NSString stringWithFormat:@"In auto mode. Toggle S1 to gain control"];
             
             [self.cirlce setStrokeEnd:((1.0/15.0)*flyingInfo.targetWaypointIndex) animated:YES];
             
@@ -1064,20 +1121,42 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
 
         //Take PANO
         } else {
+            self.barStatus.title = @"Erasing SD Card..";
             [_camera formatSDCard:^(DJIError *error) {
-                NSLog(@"error %@", error.errorDescription);
+                
                 if (error.errorCode == ERR_Successed) {
                     // NSLog(@"Formated CD card");
-                    self.barStatus.title = @"SD erased";
-                    
+                    self.barStatus.title = @"SD card erased";
+                     [self processOperations];
+                } else {
+                    NSLog(@"error %@", error.errorDescription);
+                    sleep(5);
+                    [self eraseSDCardRetry];
                 }
             }];
             
-            [self processOperations];
+           
             
         }
     }
 }
+
+-(void)eraseSDCardRetry {
+    self.barStatus.title = @"Erasing SD Card..(retry)";
+    [_camera formatSDCard:^(DJIError *error) {
+       
+        if (error.errorCode == ERR_Successed) {
+            // NSLog(@"Formated CD card");
+            self.barStatus.title = @"SD card erased";
+            [self processOperations];
+        } else {
+            NSLog(@"error %@", error.errorDescription);
+            sleep(5);
+            [self eraseSDCardRetry];
+        }
+    }];
+}
+
 
 
 -(void)SDCardOperations {
@@ -1106,13 +1185,18 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
          {
 
              if (sdInfo.isInserted == 1) {
-                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning"
-                                                                 message:@"This App needs to ERASE the SD card. You will lose all data on the card"
-                                                                delegate:self
-                                                       cancelButtonTitle:@"Cancel"
-                                                       otherButtonTitles:@"Ok", nil];
-                 alert.tag = 10;
-                 [alert show];
+                 
+                 
+                 [self processOperations];
+
+                 
+//                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning"
+//                                                                 message:@"This App needs to ERASE the SD card. You will lose all data on the card"
+//                                                                delegate:self
+//                                                       cancelButtonTitle:@"Cancel"
+//                                                       otherButtonTitles:@"Ok", nil];
+//                 alert.tag = 10;
+//                 [alert show];
                  
              } else {
                  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info"

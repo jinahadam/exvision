@@ -25,8 +25,8 @@
     UIView *toView = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey].view;
     toView.frame = CGRectMake(0,
                               0,
-                              CGRectGetWidth(transitionContext.containerView.bounds) - 20.f,
-                              CGRectGetHeight(transitionContext.containerView.bounds) - 80.f);
+                              CGRectGetWidth(transitionContext.containerView.bounds) - 200.f,
+                              CGRectGetHeight(transitionContext.containerView.bounds) - 120.f);
     CGPoint p = CGPointMake(transitionContext.containerView.center.x, -transitionContext.containerView.center.y);
     toView.center = p;
     
