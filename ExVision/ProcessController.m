@@ -240,6 +240,7 @@ exit(-1); \
 
 -(void)photoBrowser:(IDMPhotoBrowser *)photoBrowser didDismissAtPageIndex:(NSUInteger)index {
 
+    NSLog(@"photo viewwer dismiss>>");
     [self dismissViewControllerAnimated:YES completion:nil];
 
 }
@@ -342,6 +343,7 @@ exit(-1); \
         if (*stop) {
             if (error) {
              NSLog(@"failed :%d index, %@ %ld", idx, error.description, (long)error.code);
+                sleep(5);
                 [self downloadImageOfIndex:idx];
    
             }
@@ -357,7 +359,6 @@ exit(-1); \
                     
                     //save image
                     
-                    [self saveImage:TopCutOff withName:[NSString stringWithFormat:@"%d.JPG", idx+1]];
                     
                     
                     [self.imagesForProcessing addObject:TopCutOff];
@@ -370,6 +371,9 @@ exit(-1); \
                     int images_remaining = idx - (int)(_mediasList.count - PANO_SHOTS);
                     int downloading_idx = PANO_SHOTS - images_remaining;
                     NSLog(@"remaining %d", images_remaining);
+                    
+                    [self saveImage:TopCutOff withName:[NSString stringWithFormat:@"%d.JPG", images_remaining+1]];
+
                     
                    // NSLog(@"%@",[NSString stringWithFormat:@"Downloading: %d of %lu ",idx + 1, (unsigned long)_mediasList.count]);
                     

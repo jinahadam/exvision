@@ -48,11 +48,16 @@
     
     MBProgressHUD *connectionHud;
 
-
+    bool cameraSettingsShown;
+    NSArray *ExposureSettings;
+    NSArray *ExposureSettingString;
+    int currentExposure;
 }
 
 @property (strong, nonatomic) IBOutlet CircleView *cirlce;
 @property(nonatomic, retain) IBOutlet UIView* videoPreviewView;
+@property(nonatomic, retain) IBOutlet UIVisualEffectView* cameraSettingsView;
+@property(nonatomic, retain) IBOutlet UILabel* settingValue;
 
 @property(nonatomic, strong) IBOutlet CaptureButton *captureBtn;
 @property(nonatomic, strong) IBOutlet UIButton *panUpBtn;

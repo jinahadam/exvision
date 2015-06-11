@@ -109,28 +109,37 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
 }
 
 
--(IBAction)exposureIncrease:(id)sender {
-    [_camera setCameraExposureCompensation:CameraExposureCompensationP17 withResultBlock:^(DJIError *error) {
-        if (error.errorCode == ERR_Successed) {
-            NSLog(@"Set Exposure Compensation Success");
-        }
-        else{
-            NSLog(@"Set Exposure Compensation Failed");
-        }
-    }];
-    
-}
 
--(IBAction)exposureDecrease:(id)sender {
-    [_camera setCameraExposureCompensation:CameraExposureCompensationN20 withResultBlock:^(DJIError *error) {
-        if (error.errorCode == ERR_Successed) {
-            NSLog(@"Set Exposure Compensation Success");
-        }
-        else{
-            NSLog(@"Set Exposure Compensation Failed");
-        }
-    }];
+
+-(IBAction)toggleCameraSettingsView:(id)sender {
     
+    
+    
+    
+    if (!cameraSettingsShown) {
+    NSLog(@"animate camera view");
+    [UIView animateWithDuration:0.5
+                          delay:0.1
+                        options: UIViewAnimationOptionCurveEaseIn
+                     animations:^{
+                         self.cameraSettingsView.frame = CGRectMake(0, self.view.frame.size.height - 85, self.view.frame.size.width+50, 120);
+//                        / self.cameraSettingsView.frame = CGRectMake(0, 50, self.view.frame.size.width+50, 100);
+
+                     }
+                     completion:^(BOOL finished){
+                     }];
+        cameraSettingsShown = true;
+    } else {
+        [UIView animateWithDuration:0.5
+                              delay:0.1
+                            options: UIViewAnimationOptionCurveEaseIn
+                         animations:^{
+                             self.cameraSettingsView.frame = CGRectMake(0, self.view.frame.size.height + 100, self.view.frame.size.width+50, 80);
+                         }
+                         completion:^(BOOL finished){
+                         }];
+        cameraSettingsShown = false;
+    }
 }
 
 
@@ -188,7 +197,7 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
     readyForShoot = false;
     wp_idx = -1;
     connection = false;
-    
+    cameraSettingsShown = false;
     
     total_images = 0;
     
@@ -215,12 +224,113 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
     
     self.navigationController.toolbar.barTintColor = [UIColor colorWithRed:44/255.0 green:44/255.0 blue:51/255.0 alpha:1];
 
-
-
+    
    
+    [self setUpCameraSettingsView];
+    
+    ExposureSettings = [[NSArray alloc] initWithObjects:CameraExposureCompensationDefault,CameraExposureCompensationN20,CameraExposureCompensationN17,CameraExposureCompensationN13,CameraExposureCompensationN10,CameraExposureCompensationN07,CameraExposureCompensationN03,CameraExposureCompensationN00,CameraExposureCompensationP03,CameraExposureCompensationP07,CameraExposureCompensationP10,CameraExposureCompensationP13,CameraExposureCompensationP17, nil];
+    
+    ExposureSettingString = [[NSArray alloc] initWithObjects:@"-1.3ev",@"-1.0ev",@"-0.7ev",@"-0.3ev",@"0.0ev",@"+0.3ev",@"+0.7ev", @"+1.0ev", @"+1.3ev",@"+1.7ev", nil];
+    currentExposure = 4;
+    
+    NSLog(@"Exposure %hhu", CameraExposureCompensationP10);
+    
+    self.settingValue.hidden = YES;
+}
+
+-(void)ShowSettingValue:(NSString *)val {
+    
+
+
+}
+
+
+-(IBAction)exposureIncrease:(id)sender {
+
+    
+    
+    NSLog(@"%d %lu", currentExposure, (unsigned long)[ExposureSettingString count]);
+    if (currentExposure < ([ExposureSettingString count] - 1)) {
+        NSLog(@"increase exp");
+
+    currentExposure = currentExposure + 1;
+//    [self ShowSettingValue:[ExposureSettingString objectAtIndex:currentExposure]];
+        
+        
+    [_camera setCameraExposureCompensation:(CameraExposureCompensationType)currentExposure withResultBlock:^(DJIError *error) {
+        if (error.errorCode == ERR_Successed) {
+            NSLog(@"Set Exposure Compensation Success");
+
+            self.barStatus.title = [NSString stringWithFormat:@"Exposure : %@", [ExposureSettingString objectAtIndex:currentExposure]];
+        }
+        else{
+            NSLog(@"Set Exposure Compensation Failed");
+        }
+    }];
+        
+    }
+    
+
+    
+}
+
+-(IBAction)exposureDecrease:(id)sender {
+
+    
+    if (currentExposure > 0) {
+        currentExposure = currentExposure - 1;
+      //  [self ShowSettingValue:[ExposureSettingString objectAtIndex:currentExposure]];
+
+        [_camera setCameraExposureCompensation:(CameraExposureCompensationType)currentExposure withResultBlock:^(DJIError *error) {
+            if (error.errorCode == ERR_Successed) {
+                NSLog(@"Set Exposure Compensation Success");
+                self.barStatus.title = [NSString stringWithFormat:@"Exposure : %@", [ExposureSettingString objectAtIndex:currentExposure]];
+
+            }
+            else{
+                NSLog(@"Set Exposure Compensation Failed");
+            }
+        }];
+    }
+    
+}
+
+-(void)setUpCameraSettingsView {
+    
+    
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [button addTarget:self
+               action:@selector(exposureIncrease:)
+     forControlEvents:UIControlEventTouchUpInside];
+    button.titleLabel.font = [UIFont systemFontOfSize:20];
+    [button setTitle:@"+" forState:UIControlStateNormal];
+    button.frame = CGRectMake(20, 0, 50, 50);
+    [self.cameraSettingsView addSubview:button];
+    
+    UIButton *buttonEx = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [buttonEx addTarget:self
+                 action:@selector(resetCameraSettings:)
+       forControlEvents:UIControlEventTouchUpInside];
+    buttonEx.titleLabel.font = [UIFont systemFontOfSize:20];
+    [buttonEx setTitle:@"Exp" forState:UIControlStateNormal];
+    buttonEx.frame = CGRectMake(60, 0, 50, 50);
+    [self.cameraSettingsView addSubview:buttonEx];
+    
+    UIButton *button2 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [button2 addTarget:self
+                action:@selector(exposureDecrease:)
+      forControlEvents:UIControlEventTouchUpInside];
+    button2.titleLabel.font = [UIFont systemFontOfSize:20];
+    [button2 setTitle:@"-" forState:UIControlStateNormal];
+    button2.frame = CGRectMake(100, 0, 50, 50);
+    [self.cameraSettingsView addSubview:button2];
 }
 
 -(IBAction)resetCameraSettings:(id)sender {
+    currentExposure = 4;
+
+    
     [_camera setCameraExposureCompensation:CameraExposureCompensationDefault withResultBlock:^(DJIError *error) {
         if (error.errorCode == ERR_Successed) {
             NSLog(@"Set Exposure Compensation Success");

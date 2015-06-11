@@ -17,13 +17,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2iW-bB-837" userLabel="VideoPreviewLayer">
+                            <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2iW-bB-837" userLabel="VideoPreviewLayer">
                                 <rect key="frame" x="-4" y="-40" width="614" height="666"/>
                                 <color key="backgroundColor" red="0.12941176470588234" green="0.17254901960784313" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <variation key="heightClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="0.0" y="9" width="550" height="347"/>
                                 </variation>
                             </view>
+                            <view alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C2Q-Qj-kLy" customClass="UIVisualEffectView">
+                                <rect key="frame" x="-62" y="484" width="723" height="72"/>
+                                <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label thi sis " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lmq-wi-DHt">
+                                <rect key="frame" x="252" y="282" width="173.5" height="36.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="31"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u28-tw-BFp" userLabel="ControlsView">
                                 <rect key="frame" x="499" y="142" width="100" height="317"/>
                                 <subviews>
@@ -88,7 +99,9 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstAttribute="centerX" secondItem="lmq-wi-DHt" secondAttribute="centerX" constant="-38.5" id="324-Tv-tNY"/>
                             <constraint firstItem="2iW-bB-837" firstAttribute="leading" secondItem="pPX-cz-P0v" secondAttribute="leadingMargin" constant="-20" id="Bw8-cs-6w0"/>
+                            <constraint firstAttribute="centerY" secondItem="lmq-wi-DHt" secondAttribute="centerY" id="C1R-9u-zYR"/>
                             <constraint firstAttribute="trailing" secondItem="2iW-bB-837" secondAttribute="trailing" constant="-10" id="J6W-FH-5Du"/>
                             <constraint firstItem="2iW-bB-837" firstAttribute="top" secondItem="91D-Sp-K7o" secondAttribute="bottom" constant="-60" id="JLW-Iz-EId"/>
                             <constraint firstItem="F9T-iT-djq" firstAttribute="top" secondItem="2iW-bB-837" secondAttribute="bottom" constant="-70" id="f82-OW-uKp"/>
@@ -125,15 +138,9 @@
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                         <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="psO-Q7-LPt"/>
-                        <barButtonItem title="+" id="cKp-Vy-s21">
+                        <barButtonItem title="Settings" id="cKp-Vy-s21">
                             <connections>
-                                <action selector="exposureIncrease:" destination="uqc-4B-zff" id="8fj-pD-c5r"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="lWy-hV-vAi"/>
-                        <barButtonItem title="-" id="AOn-mk-PNk">
-                            <connections>
-                                <action selector="exposureDecrease:" destination="uqc-4B-zff" id="2VN-C9-mxy"/>
+                                <action selector="toggleCameraSettingsView:" destination="uqc-4B-zff" id="T2c-5q-rkp"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="lBp-7I-F4X">
@@ -153,12 +160,14 @@
                     <connections>
                         <outlet property="barStatus" destination="tbQ-RF-MpL" id="9in-aG-QEf"/>
                         <outlet property="battery" destination="iFE-Xx-ahi" id="YG7-B1-sV2"/>
+                        <outlet property="cameraSettingsView" destination="C2Q-Qj-kLy" id="qJ6-14-h0U"/>
                         <outlet property="captureBtn" destination="ZpN-8H-rgi" id="zIJ-bj-7gu"/>
                         <outlet property="cirlce" destination="KAP-gc-FrC" id="10B-UP-Ge3"/>
                         <outlet property="panDownBtn" destination="DED-NE-WZT" id="yl4-9W-dQK"/>
                         <outlet property="panUpBtn" destination="GQv-R0-CW8" id="MaN-cB-7Yn"/>
                         <outlet property="reprocessItem" destination="7fF-FN-ynI" id="J4W-7t-xiY"/>
                         <outlet property="satCount" destination="ch5-TN-bt2" id="bnG-vs-aYs"/>
+                        <outlet property="settingValue" destination="lmq-wi-DHt" id="oED-3E-5Fy"/>
                         <outlet property="videoPreviewView" destination="2iW-bB-837" id="TL4-5i-cMj"/>
                         <segue destination="Wqb-os-swp" kind="show" identifier="processingSegue" id="Iyy-EC-ILm"/>
                     </connections>
