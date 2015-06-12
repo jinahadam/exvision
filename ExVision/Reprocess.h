@@ -14,6 +14,7 @@
 
 @interface Reprocess : UIViewController <IDMPhotoBrowserDelegate> {
     MBProgressHUD *hud;
+    
 
 }
 

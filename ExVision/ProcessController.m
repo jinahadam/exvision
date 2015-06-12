@@ -109,7 +109,7 @@ exit(-1); \
     
     
     
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+   // [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     for (NSString *name in filenames) {
         NSString *workSpacePath=[[self applicationDocumentsDirectory] stringByAppendingPathComponent:name];
@@ -144,7 +144,7 @@ exit(-1); \
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
             //Run UI Updates
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
+           // [MBProgressHUD hideHUDForView:self.view animated:YES];
             
             NSLog(@"Pano Height : %f", result.size.height);
             IDMPhoto *photo = [IDMPhoto photoWithImage:result];
@@ -152,7 +152,7 @@ exit(-1); \
             browser.delegate = self;
             [self presentViewController:browser animated:YES completion:nil];
             
-            
+            [_timer invalidate];
         });
     });
 
@@ -265,13 +265,7 @@ exit(-1); \
 
 
 
--(void)timeout {
-    self.scrollview.zoomScale = 0.3;
-    self.scrollview.hidden = NO;
-//    [self.close setHidden:NO];
-//    [self.share setHidden:NO];
 
-}
 
 - (UIView *) viewForZoomingInScrollView:(UIScrollView *)scrollView {
   //  NSLog(@"viewForZoomingInScrollView");
@@ -282,7 +276,6 @@ exit(-1); \
 
 -(void) viewWillAppear:(BOOL)animated
 {
-    NSLog(@"view will appear");
     [super viewWillAppear:animated];
     [_drone connectToDrone];
     [_drone.camera startCameraSystemStateUpdates];
@@ -301,24 +294,7 @@ exit(-1); \
     NSLog(@"begin download");
     
     hud.labelText = @"Downloading..";
-
-    
-//    downloadStatus = [[NSMutableDictionary alloc] initWithCapacity:_mediasList.count];
-//    
-//    if (_mediasList.count > 0) {
-//        for (int i = 0; i < _mediasList.count; i++) {
-//          //  [downloadStatus setObject:[NSNumber numberWithInt:0] forKey:[NSNumber numberWithInt:i]];
-//            
-//            NSLog(@"%@ create time", [[_mediasList objectAtIndex:i] createTime]);
-//        }
-//    }
-    
-   // NSLog(@"%@", _mediasList.firstObject);
-    
-    
-    
     [self downloadImageOfIndex:(int)_mediasList.count - 1];
-    //}
 
 }
 
@@ -344,7 +320,7 @@ exit(-1); \
             if (error) {
              NSLog(@"failed :%d index, %@ %ld", idx, error.description, (long)error.code);
                 sleep(5);
-                [self downloadImageOfIndex:idx];
+                [self downloadImageOfIndex:(int)_mediasList.count - 1];
    
             }
             else
@@ -385,11 +361,27 @@ exit(-1); \
                     hud.labelText = [NSString stringWithFormat:@"Downloading: %d of %d \nPLEASE DON'T SWITCH OFF THE PHANTOM",downloading_idx, PANO_SHOTS];
                     hud.detailsLabelText = @"Please don't switch off the Phantom/Wifi Extendor";
 
-
+   
+                    
+                    //download timeout
+                    
+                    [download_time invalidate];
+                    
+                    
                     
                     if (images_remaining == 0) {
                         hud.labelText  = @"Processing Pano";
                         hud.mode = MBProgressHUDModeIndeterminate;
+                        
+                        if (!_timer) {
+                            _timer = [NSTimer scheduledTimerWithTimeInterval:30.0f
+                                                                      target:self
+                                                                    selector:@selector(_reprocess_pano)
+                                                                    userInfo:nil
+                                                                     repeats:YES];
+                        }
+                        
+                        
 
                         NSLog(@"processing %lu images", (unsigned long)[self.imagesForProcessing count]);
                         
@@ -408,6 +400,14 @@ exit(-1); \
             }
         }
     }];
+
+}
+
+-(void)_reprocess_pano {
+    hud.labelText  = @"Timed out. Retrying..";
+    hud.mode = MBProgressHUDModeIndeterminate;
+    [self.imagesForProcessing removeAllObjects];
+    [self reprocessFromDisk];
 
 }
 
@@ -475,11 +475,9 @@ exit(-1); \
             browser.delegate = self;
             [self presentViewController:browser animated:YES completion:nil];
             
-            
+            [_timer invalidate];
+            NSLog(@"invalidate timer");
            
-            
-            
-            [self performSelector:@selector(timeout) withObject:nil afterDelay:0.1];
             
         });
     });
@@ -507,6 +505,9 @@ exit(-1); \
 
 -(void) updateMedias
 {
+  //  NSLog(@"update medias");
+    
+    
     if (_mediasList) {
         return;
     }
@@ -515,7 +516,7 @@ exit(-1); \
         return;
     }
 
-    NSLog(@"Getting Media info");
+   // NSLog(@"Getting Media info");
   //  self.barStatus.title = @"Start Fetch Medias";
     _fetchingMedias = YES;
     [_drone.camera fetchMediaListWithResultBlock:^(NSArray *mediaList, NSError *error) {
@@ -551,13 +552,25 @@ exit(-1); \
 
 -(void) camera:(DJICamera*)camera didUpdateSystemState:(DJICameraSystemState*)systemState
 {
-    //NSLog(@"Processing View camera system State");
+   // NSLog(@"Processing View camera system State");
 
     if (!systemState.isUSBMode) {
         NSLog(@"Set USB Mode");
         [_drone.camera setCamerMode:CameraUSBMode withResultBlock:^(DJIError *error) {
             if (error.errorCode == ERR_Successed) {
                 NSLog(@"Set USB Mode Successed");
+                
+                if (!download_time) {
+                    download_time = [NSTimer scheduledTimerWithTimeInterval:30.0f
+                                                              target:self
+                                                            selector:@selector(restart_download)
+                                                            userInfo:nil
+                                                             repeats:YES];
+                }
+                
+
+            } else {
+                NSLog(@"Cant set USB mode on Camera %@", error.description);
             }
         }];
     }
@@ -573,6 +586,18 @@ exit(-1); \
     [self updateMedias];
 }
 
+-(void) restart_download {
+    hud.labelText  = @"Timed out. Trying to download again.";
+    hud.mode = MBProgressHUDModeIndeterminate;
+    
+    [self updateMedias];
+    
+    if (_mediasList.count > 6) {
+        [self downloadImageOfIndex:(int)_mediasList.count - 1];
+    }
+    
+
+}
 
 #pragma "Wand and CV"
 

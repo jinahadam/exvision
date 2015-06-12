@@ -30,6 +30,9 @@
     NSMutableDictionary* downloadStatus;
     NSArray* _mediasList;
     BOOL _fetchingMedias;
+    int downloaded;
+    NSTimer *_timer;
+    NSTimer *download_time;
 }
 
 
