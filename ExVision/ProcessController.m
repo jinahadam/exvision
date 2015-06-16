@@ -49,8 +49,6 @@ exit(-1); \
     self.imagesForProcessing = [[NSMutableArray alloc] init];
     
 
-    [self.close setHidden:YES];
-    [self.share setHidden:YES];
     hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"preparing to download";   // [self manualPanoProcessing];
     hud.detailsLabelText = @"Please don't switch off the Phantom/Wifi Extendor";
@@ -240,7 +238,6 @@ exit(-1); \
 
 -(void)photoBrowser:(IDMPhotoBrowser *)photoBrowser didDismissAtPageIndex:(NSUInteger)index {
 
-    NSLog(@"photo viewwer dismiss>>");
     [self dismissViewControllerAnimated:YES completion:nil];
 
 }
@@ -288,6 +285,12 @@ exit(-1); \
     [_drone disconnectToDrone];
     [_drone destroy];
 }
+
+-(void) dealloc
+{
+    [_drone destroy];
+}
+
 
 -(IBAction)download:(id)sender {
     

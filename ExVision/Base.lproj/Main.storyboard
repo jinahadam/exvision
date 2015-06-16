@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E33b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="M4p-aR-L0k">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E36b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="M4p-aR-L0k">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -29,12 +29,6 @@
                                 <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label thi sis " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lmq-wi-DHt">
-                                <rect key="frame" x="252" y="282" width="173.5" height="36.5"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="31"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u28-tw-BFp" userLabel="ControlsView">
                                 <rect key="frame" x="499" y="142" width="100" height="317"/>
                                 <subviews>
@@ -99,9 +93,7 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="lmq-wi-DHt" secondAttribute="centerX" constant="-38.5" id="324-Tv-tNY"/>
                             <constraint firstItem="2iW-bB-837" firstAttribute="leading" secondItem="pPX-cz-P0v" secondAttribute="leadingMargin" constant="-20" id="Bw8-cs-6w0"/>
-                            <constraint firstAttribute="centerY" secondItem="lmq-wi-DHt" secondAttribute="centerY" id="C1R-9u-zYR"/>
                             <constraint firstAttribute="trailing" secondItem="2iW-bB-837" secondAttribute="trailing" constant="-10" id="J6W-FH-5Du"/>
                             <constraint firstItem="2iW-bB-837" firstAttribute="top" secondItem="91D-Sp-K7o" secondAttribute="bottom" constant="-60" id="JLW-Iz-EId"/>
                             <constraint firstItem="F9T-iT-djq" firstAttribute="top" secondItem="2iW-bB-837" secondAttribute="bottom" constant="-70" id="f82-OW-uKp"/>
@@ -113,7 +105,7 @@
                         <barButtonItem image="help" style="plain" id="tiU-Kw-13T">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="l0n-OW-Glt" kind="show" id="Hu2-RG-NMU"/>
+                                <segue destination="l0n-OW-Glt" kind="show" identifier="about" id="Hu2-RG-NMU"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem width="26" style="plain" systemItem="fixedSpace" id="DQX-rd-4r5">
@@ -137,8 +129,9 @@
                         <barButtonItem id="iFE-Xx-ahi">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
-                        <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="psO-Q7-LPt"/>
-                        <barButtonItem title="Settings" id="cKp-Vy-s21">
+                        <barButtonItem width="25" style="plain" systemItem="fixedSpace" id="psO-Q7-LPt"/>
+                        <barButtonItem image="settings" id="cKp-Vy-s21">
+                            <color key="tintColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
                             <connections>
                                 <action selector="toggleCameraSettingsView:" destination="uqc-4B-zff" id="T2c-5q-rkp"/>
                             </connections>
@@ -167,7 +160,6 @@
                         <outlet property="panUpBtn" destination="GQv-R0-CW8" id="MaN-cB-7Yn"/>
                         <outlet property="reprocessItem" destination="7fF-FN-ynI" id="J4W-7t-xiY"/>
                         <outlet property="satCount" destination="ch5-TN-bt2" id="bnG-vs-aYs"/>
-                        <outlet property="settingValue" destination="lmq-wi-DHt" id="oED-3E-5Fy"/>
                         <outlet property="videoPreviewView" destination="2iW-bB-837" id="TL4-5i-cMj"/>
                         <segue destination="Wqb-os-swp" kind="show" identifier="processingSegue" id="Iyy-EC-ILm"/>
                     </connections>
@@ -348,7 +340,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QB3-lb-gOg" id="h0u-dD-5JY">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Phantom Pano Icon v1.png" translatesAutoresizingMaskIntoConstraints="NO" id="nX9-aH-HgQ">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo - Phantom Pano 2.png" translatesAutoresizingMaskIntoConstraints="NO" id="nX9-aH-HgQ">
                                                     <rect key="frame" x="222" y="19" width="156" height="148"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="156" id="YJn-0g-kxS"/>
@@ -542,13 +534,14 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Phantom Pano Icon v1.png" width="1024" height="1024"/>
+        <image name="Logo - Phantom Pano 2.png" width="2048" height="2048"/>
         <image name="down.png" width="512" height="513"/>
         <image name="fullbat" width="22" height="22"/>
         <image name="help" width="22" height="22"/>
         <image name="pano.png" width="512" height="512"/>
         <image name="reprocess" width="22" height="22"/>
         <image name="sat" width="22" height="22"/>
+        <image name="settings" width="22" height="22"/>
         <image name="up.png" width="512" height="513"/>
     </resources>
     <inferredMetricsTieBreakers>

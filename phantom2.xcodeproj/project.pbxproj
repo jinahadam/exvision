@@ -41,6 +41,8 @@
 		807019291A762CEB00B599C0 /* CameraView.m in Sources */ = {isa = PBXBuildFile; fileRef = 807019281A762CEB00B599C0 /* CameraView.m */; };
 		807BCBB31AC2A015007E23E2 /* DJISDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 807BCBB21AC2A015007E23E2 /* DJISDK.framework */; };
 		807C69001AE62D2C002C9341 /* ProcessController.m in Sources */ = {isa = PBXBuildFile; fileRef = 807C68FF1AE62D2C002C9341 /* ProcessController.m */; };
+		8080CD5F1B3090C8005AAA3E /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 8080CD5E1B3090C8005AAA3E /* close.png */; };
+		8080CD611B3090DD005AAA3E /* Logo - Phantom Pano 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8080CD601B3090DD005AAA3E /* Logo - Phantom Pano 2.png */; };
 		8090FABB1ACD2B000011D83C /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8090FABA1ACD2B000011D83C /* opencv2.framework */; };
 		8090FAC51ACD2B8B0011D83C /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8090FABC1ACD2B8A0011D83C /* Accelerate.framework */; };
 		8090FAC61ACD2B8B0011D83C /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8090FABD1ACD2B8A0011D83C /* AssetsLibrary.framework */; };
@@ -55,7 +57,6 @@
 		8090FAD71ACD2BD70011D83C /* CVWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8090FAD31ACD2BD70011D83C /* CVWrapper.mm */; };
 		8090FAD81ACD2BD70011D83C /* stitching.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8090FAD41ACD2BD70011D83C /* stitching.cpp */; };
 		809625841B28250F00262DE9 /* AboutTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 809625831B28250E00262DE9 /* AboutTableViewController.m */; };
-		809625861B2827D100262DE9 /* Phantom Pano Icon v1.png in Resources */ = {isa = PBXBuildFile; fileRef = 809625851B2827D100262DE9 /* Phantom Pano Icon v1.png */; };
 		809625891B28318A00262DE9 /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 809625881B28318A00262DE9 /* HelpViewController.m */; };
 		8096258C1B28352B00262DE9 /* FAQViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8096258B1B28352B00262DE9 /* FAQViewController.m */; };
 		809798A51B01B33E003BB18C /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8090FAF71ACD2E6B0011D83C /* libjpeg.a */; settings = {ATTRIBUTES = (Required, ); }; };
@@ -224,6 +225,8 @@
 		807019281A762CEB00B599C0 /* CameraView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraView.m; sourceTree = "<group>"; };
 		807BCBB21AC2A015007E23E2 /* DJISDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DJISDK.framework; sourceTree = "<group>"; };
 		807C68FF1AE62D2C002C9341 /* ProcessController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProcessController.m; sourceTree = "<group>"; };
+		8080CD5E1B3090C8005AAA3E /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
+		8080CD601B3090DD005AAA3E /* Logo - Phantom Pano 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Logo - Phantom Pano 2.png"; sourceTree = "<group>"; };
 		8090FAB71ACD12470011D83C /* ProcessController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProcessController.h; sourceTree = "<group>"; };
 		8090FABA1ACD2B000011D83C /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 		8090FABC1ACD2B8A0011D83C /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
@@ -247,7 +250,6 @@
 		8090FB051ACD31E10011D83C /* IM */ = {isa = PBXFileReference; lastKnownFileType = folder; path = IM; sourceTree = "<group>"; };
 		809625821B28250E00262DE9 /* AboutTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutTableViewController.h; sourceTree = "<group>"; };
 		809625831B28250E00262DE9 /* AboutTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutTableViewController.m; sourceTree = "<group>"; };
-		809625851B2827D100262DE9 /* Phantom Pano Icon v1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Phantom Pano Icon v1.png"; sourceTree = "<group>"; };
 		809625871B28318A00262DE9 /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
 		809625881B28318A00262DE9 /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
 		8096258A1B28352B00262DE9 /* FAQViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FAQViewController.h; sourceTree = "<group>"; };
@@ -632,7 +634,8 @@
 		80DFAAD31A760CE100F69205 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				809625851B2827D100262DE9 /* Phantom Pano Icon v1.png */,
+				8080CD601B3090DD005AAA3E /* Logo - Phantom Pano 2.png */,
+				8080CD5E1B3090C8005AAA3E /* close.png */,
 				801CDDFD1B203E59002C1D8D /* IDMPhotoBrowser */,
 				804E8D481B14766F00BC9432 /* GHWalkThroughView.h */,
 				804E8D491B14766F00BC9432 /* GHWalkThroughView.m */,
@@ -809,11 +812,12 @@
 				801CDE111B203E59002C1D8D /* IDMPhotoBrowser.bundle in Resources */,
 				80DBDDF81B00A6DE00CABA0F /* help.png in Resources */,
 				80DBDDF41B00A52300CABA0F /* pano.png in Resources */,
+				8080CD611B3090DD005AAA3E /* Logo - Phantom Pano 2.png in Resources */,
 				80DFAAE41A760CE100F69205 /* LaunchScreen.xib in Resources */,
 				80DC3CD51B009A3900460630 /* page5.png in Resources */,
+				8080CD5F1B3090C8005AAA3E /* close.png in Resources */,
 				801CDE0F1B203E59002C1D8D /* IDMPBLocalizations.bundle in Resources */,
 				804E8D611B15AA0D00BC9432 /* page2.png in Resources */,
-				809625861B2827D100262DE9 /* Phantom Pano Icon v1.png in Resources */,
 				80DBDDF91B00A6DE00CABA0F /* satellite.png in Resources */,
 				804E8D631B15AB1900BC9432 /* page1.png in Resources */,
 				80DBDDF11B00A29500CABA0F /* up.png in Resources */,

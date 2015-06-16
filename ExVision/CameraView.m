@@ -122,7 +122,7 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
                           delay:0.1
                         options: UIViewAnimationOptionCurveEaseIn
                      animations:^{
-                         self.cameraSettingsView.frame = CGRectMake(0, self.view.frame.size.height - 85, self.view.frame.size.width+50, 120);
+                         self.cameraSettingsView.frame = CGRectMake(0, self.view.frame.size.height - 105, self.view.frame.size.width+50, 140);
 //                        / self.cameraSettingsView.frame = CGRectMake(0, 50, self.view.frame.size.width+50, 100);
 
                      }
@@ -379,54 +379,56 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
     [button addTarget:self
                action:@selector(exposureIncrease:)
      forControlEvents:UIControlEventTouchUpInside];
-    button.titleLabel.font = [UIFont systemFontOfSize:20];
+    button.titleLabel.font = [UIFont systemFontOfSize:28];
     [button setTitle:@"+" forState:UIControlStateNormal];
-    button.frame = CGRectMake(20, 0, 50, 50);
+    button.frame = CGRectMake(20, 10, 50, 50);
     [self.cameraSettingsView addSubview:button];
     
-    UIButton *buttonEx = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton *buttonEx = [UIButton buttonWithType:UIButtonTypeCustom];
     [buttonEx addTarget:self
                  action:@selector(resetCameraSettings:)
        forControlEvents:UIControlEventTouchUpInside];
-    buttonEx.titleLabel.font = [UIFont systemFontOfSize:20];
-    [buttonEx setTitle:@"Exp" forState:UIControlStateNormal];
-    buttonEx.frame = CGRectMake(60, 0, 50, 50);
+    [buttonEx setBackgroundImage:[UIImage imageNamed:@"expo"] forState:UIControlStateNormal];
+
+    buttonEx.frame = CGRectMake(70, 10, 50, 50);
     [self.cameraSettingsView addSubview:buttonEx];
     
     UIButton *button2 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [button2 addTarget:self
                 action:@selector(exposureDecrease:)
       forControlEvents:UIControlEventTouchUpInside];
-    button2.titleLabel.font = [UIFont systemFontOfSize:20];
+    button2.titleLabel.font = [UIFont systemFontOfSize:28];
     [button2 setTitle:@"-" forState:UIControlStateNormal];
-    button2.frame = CGRectMake(100, 0, 50, 50);
+    button2.frame = CGRectMake(120,10, 50, 50);
     [self.cameraSettingsView addSubview:button2];
     
-    UIButton *contrastButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton *contrastButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [contrastButton addTarget:self
                 action:@selector(cycleThroughtCameraContrast)
       forControlEvents:UIControlEventTouchUpInside];
+    [contrastButton setBackgroundImage:[UIImage imageNamed:@"contrast"] forState:UIControlStateNormal];
     contrastButton.titleLabel.font = [UIFont systemFontOfSize:20];
-    [contrastButton setTitle:@"Con" forState:UIControlStateNormal];
-    contrastButton.frame = CGRectMake(170, 0, 50, 50);
+    contrastButton.frame = CGRectMake(200, 10, 50, 50);
     [self.cameraSettingsView addSubview:contrastButton];
     
-    UIButton *sharpnessButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton *sharpnessButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [sharpnessButton setBackgroundImage:[UIImage imageNamed:@"sharpness"] forState:UIControlStateNormal];
     [sharpnessButton addTarget:self
                        action:@selector(cycleThroughtCameraSharpness)
              forControlEvents:UIControlEventTouchUpInside];
     sharpnessButton.titleLabel.font = [UIFont systemFontOfSize:20];
-    [sharpnessButton setTitle:@"Shp" forState:UIControlStateNormal];
-    sharpnessButton.frame = CGRectMake(240, 0, 50, 50);
+  //  [sharpnessButton setTitle:@"Shp" forState:UIControlStateNormal];
+    sharpnessButton.frame = CGRectMake(280, 10, 50, 50);
     [self.cameraSettingsView addSubview:sharpnessButton];
     
-    UIButton *wbButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton *wbButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [wbButton addTarget:self
                         action:@selector(cycleThroughtCameraWB)
               forControlEvents:UIControlEventTouchUpInside];
+    [wbButton setBackgroundImage:[UIImage imageNamed:@"wb"] forState:UIControlStateNormal];
+
     wbButton.titleLabel.font = [UIFont systemFontOfSize:20];
-    [wbButton setTitle:@"WB" forState:UIControlStateNormal];
-    wbButton.frame = CGRectMake(310, 0, 50, 50);
+    wbButton.frame = CGRectMake(360, 10, 50, 50);
     [self.cameraSettingsView addSubview:wbButton];
 
 }
@@ -622,7 +624,14 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-   // [segue.destinationViewController setDelegate:self];
+    
+    if ([[segue identifier] isEqualToString:@"about"]){
+    }else {
+        [segue.destinationViewController setDelegate:self];
+
+    }
+    
+    
 }
 
 - (void)didCloseReprocessView:(Reprocess*)viewController {

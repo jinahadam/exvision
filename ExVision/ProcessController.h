@@ -18,7 +18,7 @@
 
 
 
-@interface ProcessController : UIViewController <DJIDroneDelegate, DJICameraDelegate, UIScrollViewDelegate,IDMPhotoBrowserDelegate >
+@interface ProcessController : UIViewController <DJIDroneDelegate, DJICameraDelegate, UIScrollViewDelegate, IDMPhotoBrowserDelegate>
 {
     DJIDrone* _drone;
     DJIMediaManager* _mediaManager;
@@ -37,14 +37,16 @@
 
 
 
-@property IBOutlet UIImageView *image;
-@property IBOutlet UIScrollView *scrollview;
-
-@property (retain) NSMutableArray* imagesForProcessing;
-
+@property(nonatomic, strong) IBOutlet UIImageView *image;
+@property(nonatomic, strong) IBOutlet UIScrollView *scrollview;
 @property(nonatomic, strong) IBOutlet UIBarButtonItem *barStatus;
 @property(nonatomic, strong) IBOutlet UIButton *close;
 @property(nonatomic, strong) IBOutlet UIButton *share;
+
+
+@property (retain) NSMutableArray* imagesForProcessing;
+
+
 
 -(IBAction)share:(id)sender;
 - (IBAction)didClickOnClose:(id)sender;

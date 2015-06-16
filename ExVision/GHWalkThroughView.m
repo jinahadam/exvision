@@ -95,8 +95,8 @@
 
 - (void)setCloseTitle:(NSString *)closeTitle
 {
-    _closeTitle = closeTitle;
-    [self.skipButton setTitle:_closeTitle forState:UIControlStateNormal];
+   // _closeTitle = closeTitle;
+   // [self.skipButton setTitle:_closeTitle forState:UIControlStateNormal];
 }
 
 - (void) orientFooter
@@ -123,7 +123,7 @@
             self.pageControl.transform = CGAffineTransformRotate(self.pageControl.transform, -M_PI_2);
             self.pageControl.frame = CGRectMake(0, self.frame.size.height - 25, self.frame.size.width, 20);
             
-            self.skipButton.frame = CGRectMake(self.frame.size.width - 80, self.pageControl.frame.origin.y - ((50 - self.pageControl.frame.size.height)/2), 80, 30);
+            self.skipButton.frame = CGRectMake(self.frame.size.width - 50, self.pageControl.frame.origin.y - ((50 - self.pageControl.frame.size.height)/2), 40, 40);
 
         }
     }
@@ -142,11 +142,13 @@
     
     self.skipButton = [UIButton buttonWithType:UIButtonTypeCustom];
     
-    self.skipButton.frame = CGRectMake(self.frame.size.width - 80, self.pageControl.frame.origin.y - ((30 - self.pageControl.frame.size.height)/2), 80, 30);
+    self.skipButton.frame = CGRectMake(self.frame.size.width - 80, self.pageControl.frame.origin.y - ((30 - self.pageControl.frame.size.height)/2), 50, 50);
     
     self.skipButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-    [self.skipButton setTitle:@"Skip" forState:UIControlStateNormal];
-    [self.skipButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    //[self.skipButton setTitle:@"Skip" forState:UIControlStateNormal];
+    [self.skipButton setBackgroundImage:[UIImage imageNamed:@"close.png"] forState:UIControlStateNormal];
+    
+    
     [self.skipButton addTarget:self action:@selector(skipIntroduction) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.skipButton];
     [self bringSubviewToFront:self.skipButton]; 

@@ -108,12 +108,12 @@
     
     if (error)
         alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                           message:@"Unable to save image to Photo Album."
+                                           message:@"Unable to save image to Camera Roll."
                                           delegate:self cancelButtonTitle:@"Ok"
                                  otherButtonTitles:nil];
     else
         alert = [[UIAlertView alloc] initWithTitle:@"Success"
-                                           message:@"Image saved to Photo Album."
+                                           message:@"Image saved to Camera Roll."
                                           delegate:self cancelButtonTitle:@"Ok"
                                  otherButtonTitles:nil];
     [alert show];
