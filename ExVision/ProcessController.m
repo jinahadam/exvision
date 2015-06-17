@@ -49,11 +49,6 @@ exit(-1); \
     self.imagesForProcessing = [[NSMutableArray alloc] init];
     
 
-    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.labelText = @"preparing to download";   // [self manualPanoProcessing];
-    hud.detailsLabelText = @"Please don't switch off the Phantom/Wifi Extendor";
-
-    [hud show:YES];
     
 //    NSLog(@"manual processing");
     
@@ -274,8 +269,23 @@ exit(-1); \
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = @"initilizing download";   // [self manualPanoProcessing];
+    hud.detailsLabelText = @"Please don't switch off the Phantom/Wifi Extendor";
+    
+    [hud show:YES];
+   
+    
+    
+    [self performSelector:@selector(init_download) withObject:nil afterDelay:5];
+}
+
+-(void)init_download {
+    
     [_drone connectToDrone];
     [_drone.camera startCameraSystemStateUpdates];
+
 }
 
 -(void) viewWillDisappear:(BOOL)animated
