@@ -231,6 +231,10 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
 
 
 -(void)reprocessFromDisk {
+    
+ 
+   
+    //
     NSArray *filenames = @[@"1.JPG",@"2.JPG",@"3.JPG",@"4.JPG",@"5.JPG",@"6.JPG",@"7.JPG"];
     NSMutableArray *images = [NSMutableArray array];
     
@@ -282,12 +286,27 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
             UIImageWriteToSavedPhotosAlbum(result, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
             
             
+            IDMPhoto *photo = [IDMPhoto photoWithImage:result];
+
             
-              IDMPhoto *photo = [IDMPhoto photoWithImage:result];
+            [[self.view subviews]
+             makeObjectsPerformSelector:@selector(removeFromSuperview)];
+            
+            [_photos replaceObjectAtIndex:0 withObject:photo];
+
+            [self setupUI];
+            
               //[self reloadData];
-              _photos = [NSMutableArray arrayWithObjects:photo, nil];
-              [self reloadData];
             
+            
+            
+            
+            [self reloadData];
+            
+//            
+//              _photos = [NSMutableArray arrayWithObjects:photo, nil];
+//              [self reloadData];
+//            
             
             
             
@@ -653,24 +672,29 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
 
 - (void)viewDidLoad {
     // Transition animation
+    [self setupUI];
+       [super viewDidLoad];
+}
+
+- (void) setupUI {
     [self performPresentAnimation];
     
     // View
-	self.view.backgroundColor = [UIColor colorWithWhite:(_useWhiteBackgroundColor ? 1 : 0) alpha:1];
+    self.view.backgroundColor = [UIColor colorWithWhite:(_useWhiteBackgroundColor ? 1 : 0) alpha:1];
     
     self.view.clipsToBounds = YES;
     
-	// Setup paging scrolling view
-	CGRect pagingScrollViewFrame = [self frameForPagingScrollView];
-	_pagingScrollView = [[UIScrollView alloc] initWithFrame:pagingScrollViewFrame];
+    // Setup paging scrolling view
+    CGRect pagingScrollViewFrame = [self frameForPagingScrollView];
+    _pagingScrollView = [[UIScrollView alloc] initWithFrame:pagingScrollViewFrame];
     //_pagingScrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-	_pagingScrollView.pagingEnabled = YES;
-	_pagingScrollView.delegate = self;
-	_pagingScrollView.showsHorizontalScrollIndicator = NO;
-	_pagingScrollView.showsVerticalScrollIndicator = NO;
-	_pagingScrollView.backgroundColor = [UIColor clearColor];
+    _pagingScrollView.pagingEnabled = YES;
+    _pagingScrollView.delegate = self;
+    _pagingScrollView.showsHorizontalScrollIndicator = NO;
+    _pagingScrollView.showsVerticalScrollIndicator = NO;
+    _pagingScrollView.backgroundColor = [UIColor clearColor];
     _pagingScrollView.contentSize = [self contentSizeForPagingScrollView];
-	[self.view addSubview:_pagingScrollView];
+    [self.view addSubview:_pagingScrollView];
     
     UIInterfaceOrientation currentOrientation = [UIApplication sharedApplication].statusBarOrientation;
     
@@ -684,7 +708,7 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
               forToolbarPosition:UIToolbarPositionAny
                       barMetrics:UIBarMetricsDefault];
     
-
+    
     
     UIImage *leftButtonImage = (_leftArrowImage == nil) ?
     [UIImage imageNamed:@"IDMPhotoBrowser.bundle/images/IDMPhotoBrowser_arrowLeft.png"]          : _leftArrowImage;
@@ -732,15 +756,15 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
     _doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                                 target:self
                                                                 action:@selector(doneButtonPressed:)];
-
+    
     _reprocessButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"reprocess"]
                                                         style:UIBarButtonItemStylePlain
-                                                        target:self
-                                                        action:@selector(reprocessFromDisk)];
+                                                       target:self
+                                                       action:@selector(reprocessFromDisk)];
     
     
-//    [_reprocessButton setBackgroundImage:[UIImage imageNamed:@"reprocess"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-
+    //    [_reprocessButton setBackgroundImage:[UIImage imageNamed:@"reprocess"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    
     
     
     // Gesture
@@ -751,8 +775,8 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
     // Update
     //[self reloadData];
     
-	// Super
-    [super viewDidLoad];
+    // Super
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -963,7 +987,7 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
 - (void)loadAdjacentPhotosIfNecessary:(id<IDMPhoto>)photo {
     IDMZoomingScrollView *page = [self pageDisplayingPhoto:photo];
     if (page) {
-        // If page is current page then initiate loading of previous and next pages
+        // If page is currrrrent page then initiate loading of previous and next pages
         NSUInteger pageIndex = PAGE_INDEX(page);
         if (_currentPageIndex == pageIndex) {
             if (pageIndex > 0) {
