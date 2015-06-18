@@ -16,6 +16,9 @@
 #import "MBProgressHUD.h"
 #import "IDMPhotoBrowser.h"
 
+@protocol DownloadTimeoutDelegate;
+
+
 
 
 @interface ProcessController : UIViewController <DJIDroneDelegate, DJICameraDelegate, UIScrollViewDelegate, IDMPhotoBrowserDelegate>
@@ -34,6 +37,8 @@
     NSTimer *_timer;
     NSTimer *download_time;
 }
+
+@property (nonatomic, weak) id<DownloadTimeoutDelegate> delegate;
 
 
 
@@ -54,6 +59,13 @@
 - (CGImageRef)resizedImage:(UIImage*)src to:(CGSize)newSize interpolationQuality:(CGInterpolationQuality)quality;
 - (UIImage *)croppedImage:(CGRect)bounds image:(UIImage*) src;
 - (UIImage *)unwarpVisionImage:(CGImageRef)srcCGImage;
+
+
+@end
+
+@protocol DownloadTimeoutDelegate <NSObject>
+
+- (void)donwloadTimedout:(UIViewController*)viewController;
 
 
 @end

@@ -243,6 +243,9 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
     currentContrast = 0;
     currentSharpness = 0;
     
+    
+    
+    downloadtimedout = false;
     self.settingValue.hidden = YES;
 }
 
@@ -469,7 +472,12 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
 -(void)didDismissReprocessView {
 
     NSLog(@"DELEGATE");
-    [self performSelector:@selector(restartCameraFeed) withObject:nil afterDelay:0.5];
+   // if (downloadtimedout) {
+   //     [self presentProcessingView:nil];
+
+    //} else {
+        [self performSelector:@selector(restartCameraFeed) withObject:nil afterDelay:0.5];
+   // }
 
 }
 
@@ -627,6 +635,8 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
     
     if ([[segue identifier] isEqualToString:@"about"]){
     }else {
+        
+        NSLog(@"delegate set ?>>>");
         [segue.destinationViewController setDelegate:self];
 
     }
@@ -649,6 +659,9 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
 {
     [super viewWillDisappear:animated];
     
+    NSLog(@"disappaera");
+
+    
     //_drone.delegate = Nil;
     _groundStation.groundStationDelegate = nil;
     
@@ -663,6 +676,8 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
    
     
 }
+
+
 
 -(IBAction) onOpenButtonClicked:(id)sender
 {
@@ -1290,6 +1305,7 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
             if (i == PANO_SHOTS) {
 
                 
+                sleep(3);
                 
                 dispatch_async(dispatch_get_main_queue(), ^(){
                     //Add method, task you want perform on mainQueue
@@ -1326,6 +1342,19 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
         
     });
 }
+
+-(void)donwloadTimedout:(UIViewController *)viewController {
+    NSLog(@"download timed out...");
+    
+    
+    downloadtimedout = true;
+  //  sleep(5);
+    
+    [self performSelector:@selector(presentProcessingView:) withObject:nil afterDelay:5];
+  
+    
+}
+
 
 #pragma SD Card Operations
 

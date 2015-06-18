@@ -126,7 +126,9 @@
 }
 
 
-
+- (void) dealloc {
+    hud = nil;
+}
 
 -(void)photoBrowser:(IDMPhotoBrowser *)photoBrowser didDismissAtPageIndex:(NSUInteger)index {
     

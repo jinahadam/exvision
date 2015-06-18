@@ -56,6 +56,8 @@ exit(-1); \
     //[self deleteAllFromDisk];
   //  [self reprocessFromDisk];
     
+  //  [self performSelector:@selector(restart_download) withObject:nil afterDelay:10];
+    
 }
 
 
@@ -271,7 +273,7 @@ exit(-1); \
     [super viewWillAppear:animated];
     
     hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.labelText = @"initilizing download";   // [self manualPanoProcessing];
+    hud.labelText = @"preparing download";   // [self manualPanoProcessing];
     hud.detailsLabelText = @"Please don't switch off the Phantom/Wifi Extendor";
     
     [hud show:YES];
@@ -283,8 +285,20 @@ exit(-1); \
 
 -(void)init_download {
     
+    NSLog(@"init download??");
+    
     [_drone connectToDrone];
     [_drone.camera startCameraSystemStateUpdates];
+    
+    if (!download_time) {
+        download_time = [NSTimer scheduledTimerWithTimeInterval:20.0f
+                                                         target:self
+                                                       selector:@selector(restart_download)
+                                                       userInfo:nil
+                                                        repeats:YES];
+    }
+    
+    
 
 }
 
@@ -379,6 +393,7 @@ exit(-1); \
                     //download timeout
                     
                     [download_time invalidate];
+                    
                     
                     
                     
@@ -547,15 +562,78 @@ exit(-1); \
  
 }
 
+-(void)cameraModeRecursive {
+    [_drone.camera setCamerMode:CameraUSBMode withResultBlock:^(DJIError *error) {
+        NSLog(@"CAMERA set usb mode fail? %@", error.errorDescription);
+        
+        if (error.errorCode == ERR_Successed) {
+            NSLog(@"REccursive Set USB Mode Successed");
+            
+            
+            
+        } else {
+            NSLog(@"REccursive Cant set USB mode on Camera %@", error.description);
+            sleep(2);
+            [self cameraModeRecursive];
+        }
+        
+    }];
+}
+
 #pragma mark - DJIDroneDelegate
 
 -(void) droneOnConnectionStatusChanged:(DJIConnectionStatus)status
 {
-    if (status == ConnectionSuccessed) {
-        [_drone.camera setCamerMode:CameraUSBMode withResultBlock:^(DJIError *error) {
+
+    
+    NSLog(@"connection ::::");
+    switch (status) {
+        case ConnectionStartConnect:
+        {
+            NSLog(@"Connection Started");
             
-        }];
+            break;
+        }
+        case ConnectionSuccessed:
+        {
+            NSLog(@"connected");
+            [_drone.camera setCamerMode:CameraUSBMode withResultBlock:^(DJIError *error) {
+                NSLog(@"CAMERA set usb mode fail? %@", error.errorDescription);
+                if (error.errorCode == ERR_Successed) {
+                    NSLog(@"Set USB Mode Successed");
+                    
+                    
+                    
+                } else {
+                    NSLog(@"Cant set USB mode on Camera %@", error.description);
+                    sleep(2);
+                    [self cameraModeRecursive];
+                }
+                
+            }];
+            //  self.navigationItem.title = @"Connected";
+            //  [self restartCameraFeed];
+            break;
+        }
+        case ConnectionFailed:
+        {
+            NSLog(@"Connect Failed...");
+            
+            //self.connectionStatus.title = @"Connect Failed";
+            break;
+        }
+        case ConnectionBroken:
+        {
+            //  self.navigationItem.title = @"Disconnected";
+            
+            NSLog(@"Connect Broken...");
+            //  self.connectionStatus.title = @"Disconnected";
+            break;
+        }
+        default:
+            break;
     }
+
 }
 
 -(void) camera:(DJICamera*)camera didReceivedVideoData:(uint8_t*)videoBuffer length:(int)length
@@ -565,7 +643,7 @@ exit(-1); \
 
 -(void) camera:(DJICamera*)camera didUpdateSystemState:(DJICameraSystemState*)systemState
 {
-   // NSLog(@"Processing View camera system State");
+  //  NSLog(@"Processing View camera system State");
 
     if (!systemState.isUSBMode) {
         NSLog(@"Set USB Mode");
@@ -573,14 +651,7 @@ exit(-1); \
             if (error.errorCode == ERR_Successed) {
                 NSLog(@"Set USB Mode Successed");
                 
-                if (!download_time) {
-                    download_time = [NSTimer scheduledTimerWithTimeInterval:30.0f
-                                                              target:self
-                                                            selector:@selector(restart_download)
-                                                            userInfo:nil
-                                                             repeats:YES];
-                }
-                
+            
 
             } else {
                 NSLog(@"Cant set USB mode on Camera %@", error.description);
@@ -588,7 +659,7 @@ exit(-1); \
         }];
     }
     if (!systemState.isSDCardExist) {
-        NSLog(@"SD Card Not Insert");
+        NSLog(@"No SD Card");
         return;
     }
     if (systemState.isConnectedToPC) {
@@ -600,15 +671,20 @@ exit(-1); \
 }
 
 -(void) restart_download {
-    hud.labelText  = @"Timed out. Trying to download again.";
-    hud.mode = MBProgressHUDModeIndeterminate;
     
-    [self updateMedias];
+    [_drone.camera stopCameraSystemStateUpdates];
+    [_drone disconnectToDrone];
+    [_drone destroy];
+
+    id<DownloadTimeoutDelegate> strongDelegate = self.delegate;
     
-    if (_mediasList.count > 6) {
-        [self downloadImageOfIndex:(int)_mediasList.count - 1];
+    // Our delegate method is optional, so we should
+    // check that the delegate implements it
+    if ([strongDelegate respondsToSelector:@selector(donwloadTimedout:)]) {
+        [strongDelegate donwloadTimedout:self];
     }
     
+    [self dismissViewControllerAnimated:YES completion:nil];
 
 }
 
@@ -740,29 +816,7 @@ CGImageRef createStandardImage(CGImageRef image) {
     return dstImage;
 }
 
--(IBAction)share:(id)sender {
-    [self shareText:@"PhantomPano" andImage:pano andUrl:[NSURL
-                                                          URLWithString:@"http://apps.avetics.com"]];
-}
 
-
-- (void)shareText:(NSString *)text andImage:(UIImage *)image andUrl:(NSURL *)url
-{
-    NSMutableArray *sharingItems = [NSMutableArray new];
-
-    if (text) {
-        [sharingItems addObject:text];
-    }
-    if (image) {
-        [sharingItems addObject:image];
-    }
-    if (url) {
-        [sharingItems addObject:url];
-    }
-    
-    UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:sharingItems applicationActivities:nil];
-    [self presentViewController:activityController animated:YES completion:nil];
-}
 
 
 @end

@@ -16,9 +16,10 @@
 #import "PresentingAnimationController.h"
 #import "DismissingAnimationController.h"
 #import "Reprocess.h"
+#import "ProcessController.h"
 
 
-@interface CameraView : UIViewController <DJIDroneDelegate, GroundStationDelegate, DJICameraDelegate,UIViewControllerTransitioningDelegate, UIAlertViewDelegate, DJIMainControllerDelegate,RestartCameraFeedDelegate>
+@interface CameraView : UIViewController <DJIDroneDelegate, GroundStationDelegate, DJICameraDelegate,UIViewControllerTransitioningDelegate, UIAlertViewDelegate, DJIMainControllerDelegate,RestartCameraFeedDelegate, DownloadTimeoutDelegate>
 {
     DJIDrone* _drone;
     DJICamera* _camera;
@@ -28,6 +29,7 @@
     BOOL _gimbalAttitudeUpdateFlag;
     BOOL shootPan;
     BOOL readyForShoot;
+    BOOL downloadtimedout;
     int flightMode;
 
     NSObject<DJIGroundStation>* _groundStation;
