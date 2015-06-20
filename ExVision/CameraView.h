@@ -49,6 +49,7 @@
     int direction;
     
     MBProgressHUD *connectionHud;
+    MBProgressHUD *restartHud;
 
     bool cameraSettingsShown;
     NSArray *ExposureSettings;
@@ -78,6 +79,7 @@
 @property(nonatomic, strong) IBOutlet UIBarButtonItem *barStatus;
 @property(nonatomic, strong) IBOutlet UIBarButtonItem *satCount;
 @property(nonatomic, strong) IBOutlet UIBarButtonItem *battery;
+@property(nonatomic, strong) IBOutlet UIBarButtonItem *batteryIcon;
 @property(nonatomic, strong) IBOutlet UIBarButtonItem *reprocessItem;
 
 

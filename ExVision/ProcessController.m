@@ -49,14 +49,8 @@ exit(-1); \
     self.imagesForProcessing = [[NSMutableArray alloc] init];
     
 
+    cancel_downloads = false;
     
-//    NSLog(@"manual processing");
-    
-    //[self manualPanoProcessing];
-    //[self deleteAllFromDisk];
-  //  [self reprocessFromDisk];
-    
-  //  [self performSelector:@selector(restart_download) withObject:nil afterDelay:10];
     
 }
 
@@ -280,7 +274,7 @@ exit(-1); \
    
     
     
-    [self performSelector:@selector(init_download) withObject:nil afterDelay:5];
+    [self performSelector:@selector(init_download) withObject:nil afterDelay:1];
 }
 
 -(void)init_download {
@@ -336,22 +330,24 @@ exit(-1); \
 
 -(void)downloadImageOfIndex:(int)idx {
 
+    if (!cancel_downloads) {
+        
     DJIMedia *m = [_mediasList objectAtIndex:idx];
     NSMutableData* mediaData = [[NSMutableData alloc] init];
     
     hud.mode = MBProgressHUDModeDeterminate;
 
     
+    
     [m fetchMediaData:^(NSData *data, BOOL *stop, NSError *error) {
         if (*stop) {
             if (error) {
-             NSLog(@"failed :%d index, %@ %ld", idx, error.description, (long)error.code);
-                sleep(5);
-                [self downloadImageOfIndex:(int)_mediasList.count - 1];
-   
+                [self restart_download];
+                
             }
             else
             {
+                if (!cancel_downloads) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     CGSize imageSize = CGSizeMake(2192/1.5, 1644/1.5);
                     UIImage *unwarped = [self unwarpVisionImage:[self resizedImage:[UIImage imageWithData:mediaData] to:imageSize interpolationQuality:kCGInterpolationHigh]];
@@ -419,6 +415,7 @@ exit(-1); \
                         [self processImages];
                     }
                 });
+              }
             }
         }
         else
@@ -428,6 +425,7 @@ exit(-1); \
             }
         }
     }];
+    }
 
 }
 
@@ -672,6 +670,7 @@ exit(-1); \
 
 -(void) restart_download {
     
+    cancel_downloads = true;
     [_drone.camera stopCameraSystemStateUpdates];
     [_drone disconnectToDrone];
     [_drone destroy];

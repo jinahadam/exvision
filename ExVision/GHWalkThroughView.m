@@ -123,7 +123,7 @@
             self.pageControl.transform = CGAffineTransformRotate(self.pageControl.transform, -M_PI_2);
             self.pageControl.frame = CGRectMake(0, self.frame.size.height - 25, self.frame.size.width, 20);
             
-            self.skipButton.frame = CGRectMake(self.frame.size.width - 50, self.pageControl.frame.origin.y - ((50 - self.pageControl.frame.size.height)/2), 40, 40);
+            self.skipButton.frame = CGRectMake(self.frame.size.width - 50, self.pageControl.frame.origin.y - ((50 - self.pageControl.frame.size.height)/2), 30, 30);
 
         }
     }

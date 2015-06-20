@@ -36,6 +36,8 @@
     int downloaded;
     NSTimer *_timer;
     NSTimer *download_time;
+    
+    __block BOOL cancel_downloads;
 }
 
 @property (nonatomic, weak) id<DownloadTimeoutDelegate> delegate;

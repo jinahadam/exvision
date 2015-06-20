@@ -105,7 +105,7 @@
                         <barButtonItem image="help" style="plain" id="tiU-Kw-13T">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="Wqb-os-swp" kind="show" id="Pqv-EM-e1S"/>
+                                <segue destination="l0n-OW-Glt" kind="show" identifier="about" id="Hq0-YI-DIl"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem width="26" style="plain" systemItem="fixedSpace" id="DQX-rd-4r5">
@@ -113,14 +113,11 @@
                         </barButtonItem>
                         <barButtonItem image="sat" style="plain" id="uf6-j1-Xmy">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <segue destination="Wqb-os-swp" kind="presentation" id="2dm-eg-N3y"/>
-                            </connections>
                         </barButtonItem>
                         <barButtonItem id="ch5-TN-bt2">
                             <color key="tintColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
                         </barButtonItem>
-                        <barButtonItem image="fullbat" id="S69-jC-8E4">
+                        <barButtonItem image="fullbat" style="plain" id="S69-jC-8E4">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="resetCameraSettings:" destination="uqc-4B-zff" id="T2b-0P-jKo"/>
@@ -153,6 +150,7 @@
                     <connections>
                         <outlet property="barStatus" destination="tbQ-RF-MpL" id="9in-aG-QEf"/>
                         <outlet property="battery" destination="iFE-Xx-ahi" id="YG7-B1-sV2"/>
+                        <outlet property="batteryIcon" destination="S69-jC-8E4" id="TN7-9O-Zkm"/>
                         <outlet property="cameraSettingsView" destination="C2Q-Qj-kLy" id="qJ6-14-h0U"/>
                         <outlet property="captureBtn" destination="ZpN-8H-rgi" id="zIJ-bj-7gu"/>
                         <outlet property="cirlce" destination="KAP-gc-FrC" id="10B-UP-Ge3"/>
@@ -165,7 +163,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lG6-pg-ChW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1565" y="150"/>
+            <point key="canvasLocation" x="1399" y="102"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="h55-fz-hDL">
@@ -543,7 +541,4 @@
         <image name="settings" width="22" height="22"/>
         <image name="up.png" width="512" height="513"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="Pqv-EM-e1S"/>
-    </inferredMetricsTieBreakers>
 </document>

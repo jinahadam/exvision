@@ -46,10 +46,19 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setup];
-    [self helpViewSetup];
     
-    [self toggleReprocessBarButtonItem];
+    if (!downloadtimedout) {
+        [self setup];
+        [self helpViewSetup];
+        [self toggleReprocessBarButtonItem];
+        
+
+        
+        
+    } else {
+    }
+
+   
     
    
     
@@ -122,7 +131,7 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
                           delay:0.1
                         options: UIViewAnimationOptionCurveEaseIn
                      animations:^{
-                         self.cameraSettingsView.frame = CGRectMake(0, self.view.frame.size.height - 105, self.view.frame.size.width+50, 140);
+                         self.cameraSettingsView.frame = CGRectMake(0, self.view.frame.size.height - 90, self.view.frame.size.width+50, 140);
 //                        / self.cameraSettingsView.frame = CGRectMake(0, 50, self.view.frame.size.width+50, 100);
 
                      }
@@ -322,96 +331,114 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
     
 }
 
-
-
--(IBAction)exposureIncrease:(id)sender {
-
+-(void)cycleThroughtCameraExposure {
     
-    
-    NSLog(@"%d %lu", currentExposure, (unsigned long)[ExposureSettingString count]);
-    if (currentExposure < ([ExposureSettingString count] - 1)) {
-        NSLog(@"increase exp");
-
-    currentExposure = currentExposure + 1;
-//    [self ShowSettingValue:[ExposureSettingString objectAtIndex:currentExposure]];
-        
-        
-    [_camera setCameraExposureCompensation:(CameraExposureCompensationType)currentExposure withResultBlock:^(DJIError *error) {
-        if (error.errorCode == ERR_Successed) {
-            NSLog(@"Set Exposure Compensation Success");
-
-            self.barStatus.title = [NSString stringWithFormat:@"Exposure : %@", [ExposureSettingString objectAtIndex:currentExposure]];
-        }
-        else{
-            NSLog(@"Set Exposure Compensation Failed");
-        }
-    }];
-        
-    }
-    
-
-    
-}
-
--(IBAction)exposureDecrease:(id)sender {
-
-    
-    if (currentExposure > 0) {
-        currentExposure = currentExposure - 1;
-      //  [self ShowSettingValue:[ExposureSettingString objectAtIndex:currentExposure]];
-
+    if (currentExposure < ([ExposureSettingString count])) {
+        NSLog(@"setting currentExposure %d", currentExposure);
         [_camera setCameraExposureCompensation:(CameraExposureCompensationType)currentExposure withResultBlock:^(DJIError *error) {
             if (error.errorCode == ERR_Successed) {
-                NSLog(@"Set Exposure Compensation Success");
+                NSLog(@"Set Exposure  Success");
+                
                 self.barStatus.title = [NSString stringWithFormat:@"Exposure : %@", [ExposureSettingString objectAtIndex:currentExposure]];
-
+                currentExposure = currentExposure + 1;
+                
+                if (currentExposure == (int)[ExposureSettingString count]) {
+                    //reset
+                    currentExposure = 0;
+                }
             }
             else{
-                NSLog(@"Set Exposure Compensation Failed");
+                NSLog(@"Set Exposure  Failed");
             }
         }];
+        
     }
     
 }
+
+
+
+
+
+//-(IBAction)exposureIncrease:(id)sender {
+//
+//    
+//    
+//    NSLog(@"%d %lu", currentExposure, (unsigned long)[ExposureSettingString count]);
+//    if (currentExposure < ([ExposureSettingString count] - 1)) {
+//        NSLog(@"increase exp");
+//
+//    currentExposure = currentExposure + 1;
+////    [self ShowSettingValue:[ExposureSettingString objectAtIndex:currentExposure]];
+//        
+//        
+//    [_camera setCameraExposureCompensation:(CameraExposureCompensationType)currentExposure withResultBlock:^(DJIError *error) {
+//        if (error.errorCode == ERR_Successed) {
+//            NSLog(@"Set Exposure Compensation Success");
+//
+//            self.barStatus.title = [NSString stringWithFormat:@"Exposure : %@", [ExposureSettingString objectAtIndex:currentExposure]];
+//        }
+//        else{
+//            NSLog(@"Set Exposure Compensation Failed");
+//        }
+//    }];
+//        
+//    }
+//    
+//
+//    
+//}
+//
+//-(IBAction)exposureDecrease:(id)sender {
+//
+//    
+//    if (currentExposure > 0) {
+//        currentExposure = currentExposure - 1;
+//      //  [self ShowSettingValue:[ExposureSettingString objectAtIndex:currentExposure]];
+//
+//        [_camera setCameraExposureCompensation:(CameraExposureCompensationType)currentExposure withResultBlock:^(DJIError *error) {
+//            if (error.errorCode == ERR_Successed) {
+//                NSLog(@"Set Exposure Compensation Success");
+//                self.barStatus.title = [NSString stringWithFormat:@"Exposure : %@", [ExposureSettingString objectAtIndex:currentExposure]];
+//
+//            }
+//            else{
+//                NSLog(@"Set Exposure Compensation Failed");
+//            }
+//        }];
+//    }
+//    
+//}
 
 -(void)setUpCameraSettingsView {
     
+
     
+    float width = self.view.frame.size.width / 10;
     
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [button addTarget:self
-               action:@selector(exposureIncrease:)
-     forControlEvents:UIControlEventTouchUpInside];
-    button.titleLabel.font = [UIFont systemFontOfSize:28];
-    [button setTitle:@"+" forState:UIControlStateNormal];
-    button.frame = CGRectMake(20, 10, 50, 50);
-    [self.cameraSettingsView addSubview:button];
+    float diff = 140;
+
+    if (self.view.frame.size.width > 600) {
+        diff = 150;
+    }
+    
     
     UIButton *buttonEx = [UIButton buttonWithType:UIButtonTypeCustom];
     [buttonEx addTarget:self
-                 action:@selector(resetCameraSettings:)
+                 action:@selector(cycleThroughtCameraExposure)
        forControlEvents:UIControlEventTouchUpInside];
     [buttonEx setBackgroundImage:[UIImage imageNamed:@"expo"] forState:UIControlStateNormal];
 
-    buttonEx.frame = CGRectMake(70, 10, 50, 50);
+    buttonEx.frame = CGRectMake(width, 5, 50, 50);
     [self.cameraSettingsView addSubview:buttonEx];
     
-    UIButton *button2 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [button2 addTarget:self
-                action:@selector(exposureDecrease:)
-      forControlEvents:UIControlEventTouchUpInside];
-    button2.titleLabel.font = [UIFont systemFontOfSize:28];
-    [button2 setTitle:@"-" forState:UIControlStateNormal];
-    button2.frame = CGRectMake(120,10, 50, 50);
-    [self.cameraSettingsView addSubview:button2];
     
     UIButton *contrastButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [contrastButton addTarget:self
                 action:@selector(cycleThroughtCameraContrast)
       forControlEvents:UIControlEventTouchUpInside];
     [contrastButton setBackgroundImage:[UIImage imageNamed:@"contrast"] forState:UIControlStateNormal];
-    contrastButton.titleLabel.font = [UIFont systemFontOfSize:20];
-    contrastButton.frame = CGRectMake(200, 10, 50, 50);
+    contrastButton.frame = CGRectMake(width+diff, 5, 50, 50);
     [self.cameraSettingsView addSubview:contrastButton];
     
     UIButton *sharpnessButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -419,9 +446,7 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
     [sharpnessButton addTarget:self
                        action:@selector(cycleThroughtCameraSharpness)
              forControlEvents:UIControlEventTouchUpInside];
-    sharpnessButton.titleLabel.font = [UIFont systemFontOfSize:20];
-  //  [sharpnessButton setTitle:@"Shp" forState:UIControlStateNormal];
-    sharpnessButton.frame = CGRectMake(280, 10, 50, 50);
+    sharpnessButton.frame = CGRectMake(width+(diff*2), 5, 50, 50);
     [self.cameraSettingsView addSubview:sharpnessButton];
     
     UIButton *wbButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -429,9 +454,7 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
                         action:@selector(cycleThroughtCameraWB)
               forControlEvents:UIControlEventTouchUpInside];
     [wbButton setBackgroundImage:[UIImage imageNamed:@"wb"] forState:UIControlStateNormal];
-
-    wbButton.titleLabel.font = [UIFont systemFontOfSize:20];
-    wbButton.frame = CGRectMake(360, 10, 50, 50);
+    wbButton.frame = CGRectMake(width+(diff*3), 5, 74, 50);
     [self.cameraSettingsView addSubview:wbButton];
 
 }
@@ -471,13 +494,10 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
 
 -(void)didDismissReprocessView {
 
-    NSLog(@"DELEGATE");
-   // if (downloadtimedout) {
-   //     [self presentProcessingView:nil];
-
-    //} else {
+    NSLog(@"DELEGATE CALL AFTER DISMISS");
+   if (!downloadtimedout) {
         [self performSelector:@selector(restartCameraFeed) withObject:nil afterDelay:0.5];
-   // }
+    }
 
 }
 
@@ -487,14 +507,20 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
 
     [super viewWillAppear:animated];
 
-    
     [self toggleReprocessBarButtonItem];
+    self.navigationController.toolbarHidden = NO;
 
     
-    [_drone connectToDrone];
-    [[VideoPreviewer instance] setView:self.videoPreviewView];
+    if (!downloadtimedout) {
+        [_drone connectToDrone];
+        [[VideoPreviewer instance] setView:self.videoPreviewView];
+
+    }
+
     
-    self.navigationController.toolbarHidden = NO;
+    
+
+    
 
     
 }
@@ -612,6 +638,10 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
             if (error.errorCode == ERR_Successed) {
                 
                 self.battery.title = [NSString stringWithFormat:@"%ld%%", (long)_drone.smartBattery.remainPowerPercent];
+                
+                //set battery icon
+                
+                
             }
             else
             {
@@ -636,7 +666,7 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
     if ([[segue identifier] isEqualToString:@"about"]){
     }else {
         
-        NSLog(@"delegate set ?>>>");
+        NSLog(@"DELEGATE SETT->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         [segue.destinationViewController setDelegate:self];
 
     }
@@ -658,9 +688,6 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
 -(void) viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    
-    NSLog(@"disappaera");
-
     
     //_drone.delegate = Nil;
     _groundStation.groundStationDelegate = nil;
@@ -1264,6 +1291,9 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
 
 -(void) processOperations {
     
+    
+    downloadtimedout = false;
+    
     [self deleteAllFromDisk];
     
     if (!shootPan)
@@ -1346,13 +1376,23 @@ static NSString * const sampleDesc5 = @"Your remote controller will not function
 -(void)donwloadTimedout:(UIViewController *)viewController {
     NSLog(@"download timed out...");
     
+    restartHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    restartHud.labelText = @"Restarting download....";   // [self manualPanoProcessing];
+    [restartHud show:YES];
+
+    
     
     downloadtimedout = true;
-  //  sleep(5);
-    
-    [self performSelector:@selector(presentProcessingView:) withObject:nil afterDelay:5];
+
+    [self performSelector:@selector(delayedProcessingView) withObject:nil afterDelay:5];
   
     
+}
+
+-(void)delayedProcessingView {
+    [restartHud hide:YES];
+    [self presentProcessingView:nil];
+
 }
 
 

@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "contrast.png"
+      "filename" : "con.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "contrast@2x.png"
+      "filename" : "con2.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "contrast@3x.png"
+      "filename" : "con3.png"
     }
   ],
   "info" : {

@@ -78,7 +78,6 @@
 		80DFAADF1A760CE100F69205 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80DFAADD1A760CE100F69205 /* Main.storyboard */; };
 		80DFAAE11A760CE100F69205 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80DFAAE01A760CE100F69205 /* Images.xcassets */; };
 		80DFAAE41A760CE100F69205 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80DFAAE21A760CE100F69205 /* LaunchScreen.xib */; };
-		80DFAAF01A760CE100F69205 /* ExVisionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 80DFAAEF1A760CE100F69205 /* ExVisionTests.m */; };
 		80DFAAFC1A76100C00F69205 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 80DFAAFB1A76100C00F69205 /* libz.dylib */; };
 		80DFAB771A7610F200F69205 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 80DFAB761A7610F200F69205 /* libiconv.dylib */; };
 		80E4E7691ADFA87700157EE0 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E4E7681ADFA87700157EE0 /* Settings.m */; };
@@ -87,16 +86,6 @@
 		80F34ACE1ADCFABC007473A4 /* CaptureButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F34ACD1ADCFABC007473A4 /* CaptureButton.m */; };
 		80F34AD11ADD10EE007473A4 /* CircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F34AD01ADD10EE007473A4 /* CircleView.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		80DFAAEA1A760CE100F69205 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 80DFAAC81A760CE100F69205 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 80DFAACF1A760CE100F69205;
-			remoteInfo = ExVision;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		20F61F7DB9B3F6A1A9947D0D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -273,7 +262,6 @@
 		80DFAADE1A760CE100F69205 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		80DFAAE01A760CE100F69205 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		80DFAAE31A760CE100F69205 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		80DFAAE91A760CE100F69205 /* phantom2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = phantom2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		80DFAAEE1A760CE100F69205 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80DFAAEF1A760CE100F69205 /* ExVisionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExVisionTests.m; sourceTree = "<group>"; };
 		80DFAAFB1A76100C00F69205 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -326,13 +314,6 @@
 				809798AC1B01B9C8003BB18C /* libpng.a in Frameworks */,
 				801CDDCF1B203337002C1D8D /* libavfilter.a in Frameworks */,
 				448BB940E07C8A94A25E22FB /* libPods.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		80DFAAE61A760CE100F69205 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -599,7 +580,6 @@
 			isa = PBXGroup;
 			children = (
 				80DFAAD01A760CE100F69205 /* phantom2.app */,
-				80DFAAE91A760CE100F69205 /* phantom2Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -743,24 +723,6 @@
 			productReference = 80DFAAD01A760CE100F69205 /* phantom2.app */;
 			productType = "com.apple.product-type.application";
 		};
-		80DFAAE81A760CE100F69205 /* phantom2Tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 80DFAAF61A760CE100F69205 /* Build configuration list for PBXNativeTarget "phantom2Tests" */;
-			buildPhases = (
-				80DFAAE51A760CE100F69205 /* Sources */,
-				80DFAAE61A760CE100F69205 /* Frameworks */,
-				80DFAAE71A760CE100F69205 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				80DFAAEB1A760CE100F69205 /* PBXTargetDependency */,
-			);
-			name = phantom2Tests;
-			productName = ExVisionTests;
-			productReference = 80DFAAE91A760CE100F69205 /* phantom2Tests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -773,10 +735,6 @@
 					80DFAACF1A760CE100F69205 = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = 29N3XC2CV7;
-					};
-					80DFAAE81A760CE100F69205 = {
-						CreatedOnToolsVersion = 6.1.1;
-						TestTargetID = 80DFAACF1A760CE100F69205;
 					};
 				};
 			};
@@ -794,7 +752,6 @@
 			projectRoot = "";
 			targets = (
 				80DFAACF1A760CE100F69205 /* phantom2 */,
-				80DFAAE81A760CE100F69205 /* phantom2Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -823,13 +780,6 @@
 				80DBDDF11B00A29500CABA0F /* up.png in Resources */,
 				80DC3CD21B00978A00460630 /* page3.png in Resources */,
 				80DFAAE11A760CE100F69205 /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		80DFAAE71A760CE100F69205 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -906,23 +856,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		80DFAAE51A760CE100F69205 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				80DFAAF01A760CE100F69205 /* ExVisionTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		80DFAAEB1A760CE100F69205 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 80DFAACF1A760CE100F69205 /* phantom2 */;
-			targetProxy = 80DFAAEA1A760CE100F69205 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		80DFAADD1A760CE100F69205 /* Main.storyboard */ = {
@@ -1096,40 +1030,6 @@
 			};
 			name = Release;
 		};
-		80DFAAF71A760CE100F69205 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = ExVisionTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = phantom2Tests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ExVision.app/ExVision";
-			};
-			name = Debug;
-		};
-		80DFAAF81A760CE100F69205 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = ExVisionTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = phantom2Tests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ExVision.app/ExVision";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1147,15 +1047,6 @@
 			buildConfigurations = (
 				80DFAAF41A760CE100F69205 /* Debug */,
 				80DFAAF51A760CE100F69205 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		80DFAAF61A760CE100F69205 /* Build configuration list for PBXNativeTarget "phantom2Tests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				80DFAAF71A760CE100F69205 /* Debug */,
-				80DFAAF81A760CE100F69205 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
